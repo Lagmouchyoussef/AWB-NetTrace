@@ -340,5 +340,11 @@
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
+<div style="text-align:center; padding: 1rem; font-family: sans-serif;">
+  <strong>Backend :</strong> {{ backendMessage() }}
+  <span [style.color]="backendOk() ? 'green' : 'red'">
+    ({{ backendOk() ? 'connecté' : 'déconnecté' }})
+  </span>
+</div>
 
 <router-outlet />

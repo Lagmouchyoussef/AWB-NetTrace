@@ -5,6 +5,10 @@
   <title>Frontend</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Defense-in-depth for local dev only. Real CSP enforcement (with frame-ancestors
+       and report-uri support) must happen via the Content-Security-Policy HTTP response
+       header at the reverse-proxy/hosting layer in production. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://localhost:8443; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'self'; frame-ancestors 'none'">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
