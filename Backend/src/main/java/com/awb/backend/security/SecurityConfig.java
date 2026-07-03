@@ -51,7 +51,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // stateless bearer-token API, no cookies/session in play
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/hello", "/api/auth/login").permitAll()
+                        .requestMatchers("/api/hello", "/api/auth/login", "/error").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(new JwtAuthenticationFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
 
