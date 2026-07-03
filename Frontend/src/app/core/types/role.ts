@@ -16,3 +16,13 @@ export const ROLE_SLUGS: Record<Role, string> = {
   REQUESTER: 'requester',
   AUDITOR: 'auditor',
 };
+
+export const ROLE_LABELS: Record<Role, string> = {
+  SUPER_ADMIN: 'Super Admin',
+  DC_ADMIN: 'DC Admin',
+  NETWORK_ENGINEER: 'Network Engineer',
+  TECHNICIAN: 'Technician',
+  APPROVER: 'Approver',
+  REQUESTER: 'Requester',
+  AUDITOR: 'Auditor',
+};

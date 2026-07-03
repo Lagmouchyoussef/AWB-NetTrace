@@ -3,11 +3,14 @@ import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
   {
-    path: 'login',
-    loadComponent: () => import('./auth/login/login.component').then((m) => m.LoginComponent),
+    path: '',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./landing/role-select.component').then((m) => m.RoleSelectComponent),
   },
+  // Old generic login URL, kept only as a redirect for anyone with it bookmarked.
+  { path: 'login', pathMatch: 'full', redirectTo: '' },
   {
     path: 'super-admin-login',
     data: { expectedRole: 'SUPER_ADMIN' },

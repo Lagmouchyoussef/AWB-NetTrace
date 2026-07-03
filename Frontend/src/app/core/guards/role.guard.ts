@@ -9,14 +9,15 @@ export function roleGuard(allowedRole: Role): CanActivateFn {
     const router = inject(Router);
 
     if (!authService.isAuthenticated()) {
-      return router.createUrlTree(['/login']);
+      return router.createUrlTree(['/']);
     }
 
     const currentRole = authService.currentRole();
     if (currentRole !== allowedRole) {
       // Already authenticated, just the wrong role: send them back to their own space
-      // rather than to /login (which would be confusing since they're not logged out).
-      const ownSlug = currentRole ? ROLE_SLUGS[currentRole] : 'login';
+      // rather than to the role-selection page (which would be confusing since they're
+      // not logged out).
+      const ownSlug = currentRole ? ROLE_SLUGS[currentRole] : '';
       return router.createUrlTree([`/${ownSlug}`]);
     }
 
