@@ -14,8 +14,7 @@ jobs:
         working-directory: Backend
     env:
       APP_SECURITY_JWT_SECRET: ci-only-test-secret-never-used-outside-pipelines-0000000000
-      APP_SECURITY_ADMIN_USERNAME: ci-test-admin
-      APP_SECURITY_ADMIN_PASSWORD: ci-test-password-never-real
+      APP_SECURITY_DEMO_USERS_PASSWORD: ci-test-password-never-real
       DB_HOST: localhost
       DB_PORT: 5432
       DB_NAME: awb_nettrace_test

@@ -1,2 +1,2 @@
-/** Module de gestion du cablage physique et logique, acces filtre par role. */
+/** Module for managing physical and logical cabling, role-filtered access. */
 package com.awb.backend.cabling;

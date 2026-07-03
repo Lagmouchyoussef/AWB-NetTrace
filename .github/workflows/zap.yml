@@ -19,13 +19,12 @@ jobs:
           DB_PASSWORD: zap-scan-only-password-0000000000
           SSL_KEYSTORE_PASSWORD: zap-scan-only-keystore-password-0000
           APP_SECURITY_JWT_SECRET: zap-scan-only-jwt-secret-never-used-elsewhere-0000
-          APP_SECURITY_ADMIN_USERNAME: zap-scan-admin
-          APP_SECURITY_ADMIN_PASSWORD: zap-scan-only-admin-password-0000
+          APP_SECURITY_DEMO_USERS_PASSWORD: zap-scan-only-demo-password-0000
         run: |
           docker compose up -d --build db backend
           echo "Waiting for backend to become reachable..."
           for i in $(seq 1 30); do
-            if curl -sk -o /dev/null https://localhost:8443/api/hello; then
+            if curl -sk -o /dev/null https://localhost:8443/api/auth/me; then
               echo "Backend is up."
               break
             fi

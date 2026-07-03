@@ -1,2 +1,2 @@
-/** DTOs partages pour le modele physique central. */
+/** Shared DTOs for the central physical model. */
 package com.awb.backend.core.dto;

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class JwtService {
 
   private static final long EXPIRATION_MS = 3600_000L; // 1 hour
+  private static final String ROLE_CLAIM = "role";
 
   private final SecretKey signingKey;
 
@@ -20,11 +21,12 @@ public class JwtService {
     this.signingKey = Keys.hmacShaKeyFor(jwtSecret.getBytes());
   }
 
-  public String generateToken(String username) {
+  public String generateToken(String username, String role) {
     Date now = new Date();
     Date expiry = new Date(now.getTime() + EXPIRATION_MS);
     return Jwts.builder()
         .subject(username)
+        .claim(ROLE_CLAIM, role)
         .issuedAt(now)
         .expiration(expiry)
         .signWith(signingKey)
@@ -37,6 +39,10 @@ public class JwtService {
 
   public String extractUsername(String token) {
     return parseClaims(token).getSubject();
+  }
+
+  public String extractRole(String token) {
+    return parseClaims(token).get(ROLE_CLAIM, String.class);
   }
 
   public boolean isTokenValid(String token) {

@@ -1,2 +1,2 @@
-/** Repositories JPA pour le modele physique central. */
+/** JPA repositories for the central physical model. */
 package com.awb.backend.core.repository;

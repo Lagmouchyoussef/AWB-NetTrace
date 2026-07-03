@@ -1,2 +1,2 @@
-/** Annotations de securite personnalisees (ex. @RequireRole) pour l'autorisation declarative. */
+/** Custom security annotations (e.g. @RequireRole) for declarative authorization. */
 package com.awb.backend.security.annotation;

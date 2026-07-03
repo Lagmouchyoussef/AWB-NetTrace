@@ -1,2 +1,2 @@
-/** Connecteurs d'integration reseau (SNMP, NETCONF, SD-WAN). */
+/** Network integration connectors (SNMP, NETCONF, SD-WAN). */
 package com.awb.backend.integrations;

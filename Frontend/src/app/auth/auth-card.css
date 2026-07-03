@@ -1,0 +1,184 @@
+.login-page {
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('/login-background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.login-card-border {
+  position: relative;
+  width: 90%;
+  max-width: 360px;
+  border-radius: 18px;
+  padding: 3px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+}
+
+.login-card-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 3px;
+  /* Faint base ring (bottom layer) + a short bright "snake" segment chasing around it (top layer). */
+  background:
+    conic-gradient(
+      from var(--border-angle),
+      transparent 0deg,
+      transparent 320deg,
+      #ffcb7d 335deg,
+      #f7941d 348deg,
+      #ee5b41 360deg
+    ),
+    rgba(255, 255, 255, 0.15);
+  animation: login-border-spin 2.2s linear infinite;
+  /* Only paint the ring: cut out the content-box so the middle stays fully transparent. */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  transition: background 0.25s ease;
+}
+
+.login-card-border.state-error::before {
+  background: #e0342c;
+  animation: none;
+}
+
+.login-card-border.state-success::before {
+  background: #2fae4e;
+  animation: none;
+}
+
+@keyframes login-border-spin {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+.login-card {
+  background: rgba(40, 42, 46, 0.22);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  border-radius: 15px;
+  padding: 2.5rem 2.25rem;
+}
+
+.login-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.login-logo img {
+  max-width: 200px;
+}
+
+.login-field {
+  margin-bottom: 1.25rem;
+}
+
+.login-field label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.login-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.7rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.login-field input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.login-field input:focus {
+  outline: none;
+  border-color: #ee5b41;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.login-error {
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(238, 91, 65, 0.18);
+  border: 1px solid rgba(238, 91, 65, 0.4);
+  color: #ffdcd4;
+  font-size: 0.85rem;
+}
+
+.login-submit {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #f7941d, #ee5b41);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease;
+}
+
+.login-submit:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.login-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-forgot {
+  text-align: right;
+  margin-bottom: 1.25rem;
+}
+
+.login-forgot a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.login-forgot a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}

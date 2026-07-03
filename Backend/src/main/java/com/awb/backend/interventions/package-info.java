@@ -1,2 +1,2 @@
-/** Module de workflow des interventions terrain. */
+/** Field intervention workflow module. */
 package com.awb.backend.interventions;

@@ -1,3 +1,3 @@
-# Rôle : super-admin
+# Role: super-admin
 
-Dashboard, gestion des utilisateurs, parametres generaux.
+Dashboard, user management, general settings.
