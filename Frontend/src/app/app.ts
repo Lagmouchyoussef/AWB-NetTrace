@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HelloControllerService } from './api';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,9 @@ export class App implements OnInit {
       },
       error: () => {
         this.backendMessage.set(
-          "Impossible de joindre le backend (http://localhost:8080). Vérifiez qu'il est démarré.",
+          `Impossible de joindre le backend (${environment.apiBaseUrl}). Vérifiez qu'il est démarré ` +
+            `et que le certificat auto-signé a été accepté (ouvrez ${environment.apiBaseUrl}/api/hello ` +
+            `dans un onglet et acceptez l'avertissement).`,
         );
         this.backendOk.set(false);
       },
