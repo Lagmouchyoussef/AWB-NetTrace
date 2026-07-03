@@ -9,6 +9,41 @@ export const routes: Routes = [
     loadComponent: () => import('./auth/login/login.component').then((m) => m.LoginComponent),
   },
   {
+    path: 'super-admin-login',
+    data: { expectedRole: 'SUPER_ADMIN' },
+    loadComponent: () => import('./auth/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
+    path: 'dc-admin-login',
+    data: { expectedRole: 'DC_ADMIN' },
+    loadComponent: () => import('./auth/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
+    path: 'network-engineer-login',
+    data: { expectedRole: 'NETWORK_ENGINEER' },
+    loadComponent: () => import('./auth/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
+    path: 'technician-login',
+    data: { expectedRole: 'TECHNICIAN' },
+    loadComponent: () => import('./auth/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
+    path: 'approver-login',
+    data: { expectedRole: 'APPROVER' },
+    loadComponent: () => import('./auth/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
+    path: 'requester-login',
+    data: { expectedRole: 'REQUESTER' },
+    loadComponent: () => import('./auth/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
+    path: 'auditor-login',
+    data: { expectedRole: 'AUDITOR' },
+    loadComponent: () => import('./auth/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
     path: 'forgot-password',
     loadComponent: () =>
       import('./auth/forgot-password/forgot-password.component').then(

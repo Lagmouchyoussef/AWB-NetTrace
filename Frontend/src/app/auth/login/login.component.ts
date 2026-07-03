@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
-import { ROLE_SLUGS } from '../../core/types/role';
+import { ROLE_SLUGS, Role } from '../../core/types/role';
 
 type BorderState = 'idle' | 'error' | 'success';
 
@@ -16,6 +16,9 @@ type BorderState = 'idle' | 'error' | 'success';
 export class LoginComponent {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+
+  private readonly expectedRole = this.route.snapshot.data['expectedRole'] as Role | undefined;
 
   protected username = '';
   protected password = '';
@@ -32,7 +35,7 @@ export class LoginComponent {
     this.errorMessage.set(null);
     this.loading.set(true);
     try {
-      const role = await this.authService.login(this.username, this.password);
+      const role = await this.authService.login(this.username, this.password, this.expectedRole);
       this.borderState.set('success');
       const slug = ROLE_SLUGS[role];
       await new Promise((resolve) => setTimeout(resolve, 500));

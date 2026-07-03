@@ -28,11 +28,12 @@ export class AuthService {
     sessionStorage.getItem(ROLE_KEY) as Role | null,
   );
 
-  async login(username: string, password: string): Promise<Role> {
+  async login(username: string, password: string, expectedRole?: Role): Promise<Role> {
     const loginResponse = await firstValueFrom(
       this.http.post<LoginResponse>(`${environment.apiBaseUrl}/api/auth/login`, {
         username,
         password,
+        expectedRole,
       }),
     );
     sessionStorage.setItem(TOKEN_KEY, loginResponse.token);

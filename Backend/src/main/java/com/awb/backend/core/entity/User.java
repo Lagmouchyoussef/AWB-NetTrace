@@ -34,6 +34,9 @@ public class User {
   @Column(name = "created_at", nullable = false)
   private Instant createdAt;
 
+  @Column(name = "ip_restriction_enabled", nullable = false)
+  private boolean ipRestrictionEnabled;
+
   public Long getId() {
     return id;
   }
@@ -76,5 +79,13 @@ public class User {
 
   public void setCreatedAt(Instant createdAt) {
     this.createdAt = createdAt;
+  }
+
+  public boolean isIpRestrictionEnabled() {
+    return ipRestrictionEnabled;
+  }
+
+  public void setIpRestrictionEnabled(boolean ipRestrictionEnabled) {
+    this.ipRestrictionEnabled = ipRestrictionEnabled;
   }
 }

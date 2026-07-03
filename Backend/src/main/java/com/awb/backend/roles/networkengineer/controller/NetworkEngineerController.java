@@ -1,0 +1,18 @@
+package com.awb.backend.roles.networkengineer.controller;
+
+import java.util.Map;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/roles/network-engineer")
+public class NetworkEngineerController {
+
+  @GetMapping("/ping")
+  public Map<String, String> ping(Authentication authentication) {
+    return Map.of(
+        "message", "authenticated", "role", "NETWORK_ENGINEER", "user", authentication.getName());
+  }
+}
