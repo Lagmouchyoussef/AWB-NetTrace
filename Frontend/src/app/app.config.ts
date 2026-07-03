@@ -11,6 +11,6 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(),
-    provideApi(environment.apiBaseUrl)
-  ]
+    provideApi(environment.apiBaseUrl),
+  ],
 };

@@ -21,40 +21,47 @@ import org.springframework.web.cors.CorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Bean
-    public UserDetailsService userDetailsService(
-            @Value("${app.security.admin-username}") String adminUsername,
-            @Value("${app.security.admin-password}") String adminPassword,
-            PasswordEncoder passwordEncoder) {
-        var user = User.withUsername(adminUsername)
-                .password(passwordEncoder.encode(adminPassword))
-                .roles("USER")
-                .build();
-        return new InMemoryUserDetailsManager(user);
-    }
+  @Bean
+  public UserDetailsService userDetailsService(
+      @Value("${app.security.admin-username}") String adminUsername,
+      @Value("${app.security.admin-password}") String adminPassword,
+      PasswordEncoder passwordEncoder) {
+    var user =
+        User.withUsername(adminUsername)
+            .password(passwordEncoder.encode(adminPassword))
+            .roles("USER")
+            .build();
+    return new InMemoryUserDetailsManager(user);
+  }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
+  @Bean
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
+      throws Exception {
+    return config.getAuthenticationManager();
+  }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtService jwtService,
-            CorsConfigurationSource corsConfigurationSource) throws Exception {
-        http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource))
-                .csrf(csrf -> csrf.disable()) // stateless bearer-token API, no cookies/session in play
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/hello", "/api/auth/login", "/error").permitAll()
-                        .anyRequest().authenticated())
-                .addFilterBefore(new JwtAuthenticationFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
+  @Bean
+  public SecurityFilterChain securityFilterChain(
+      HttpSecurity http, JwtService jwtService, CorsConfigurationSource corsConfigurationSource)
+      throws Exception {
+    http.cors(cors -> cors.configurationSource(corsConfigurationSource))
+        .csrf(csrf -> csrf.disable()) // stateless bearer-token API, no cookies/session in play
+        .sessionManagement(
+            session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .authorizeHttpRequests(
+            auth ->
+                auth.requestMatchers("/api/hello", "/api/auth/login", "/error")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated())
+        .addFilterBefore(
+            new JwtAuthenticationFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
-    }
+    return http.build();
+  }
 }

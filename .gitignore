@@ -1,2 +1,4 @@
 .rmv/
 .github/modernize/
+.env
+.vscode/

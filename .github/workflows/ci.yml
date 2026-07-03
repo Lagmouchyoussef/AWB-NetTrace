@@ -16,6 +16,25 @@ jobs:
       APP_SECURITY_JWT_SECRET: ci-only-test-secret-never-used-outside-pipelines-0000000000
       APP_SECURITY_ADMIN_USERNAME: ci-test-admin
       APP_SECURITY_ADMIN_PASSWORD: ci-test-password-never-real
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_NAME: awb_nettrace_test
+      DB_USERNAME: ci_test_user
+      DB_PASSWORD: ci_test_password
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: awb_nettrace_test
+          POSTGRES_USER: ci_test_user
+          POSTGRES_PASSWORD: ci_test_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     steps:
       - uses: actions/checkout@v4
 
@@ -26,6 +45,12 @@ jobs:
           java-version: "21"
           cache: maven
           cache-dependency-path: Backend/pom.xml
+
+      - name: Format check (Spotless)
+        run: ./mvnw -B spotless:check
+
+      - name: Lint (Checkstyle)
+        run: ./mvnw -B checkstyle:check
 
       - name: Compile
         run: ./mvnw -B compile
@@ -50,6 +75,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format check
+        run: npm run format:check
 
       - name: Build
         run: npm run build
