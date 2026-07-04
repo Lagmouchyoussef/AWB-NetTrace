@@ -1,0 +1,123 @@
+<div class="topbar">
+  <button type="button" class="icon-button menu-button" (click)="menuToggle.emit()">
+    <mat-icon fontSet="material-symbols-outlined">menu</mat-icon>
+  </button>
+
+  <div class="topbar-brand">
+    <img class="topbar-logo" src="attijariwafa-logo.png" alt="Attijariwafa Bank" />
+    <span class="topbar-divider"></span>
+    <span class="topbar-title">AWB-NetTrace</span>
+  </div>
+
+  <div class="topbar-search">
+    <mat-icon fontSet="material-symbols-outlined" class="search-icon">search</mat-icon>
+    <input
+      type="text"
+      [placeholder]="'topbar.searchPlaceholder' | translate"
+      [value]="searchQuery()"
+      (input)="onSearchInput($any($event.target).value)"
+    />
+    @if (searchResults().length) {
+      <ul class="search-dropdown">
+        @for (result of searchResults(); track result.path) {
+          <li>
+            <button type="button" (click)="selectResult(result)">{{ result.label }}</button>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+
+  <div class="topbar-actions">
+    <button type="button" class="icon-button" [matMenuTriggerFor]="notifMenu">
+      <mat-icon fontSet="material-symbols-outlined">notifications</mat-icon>
+      <mat-icon fontSet="material-symbols-outlined" class="dropdown-chevron">expand_more</mat-icon>
+      @if (unreadCount() > 0) {
+        <span class="badge">{{ unreadCount() }}</span>
+      }
+    </button>
+    <mat-menu #notifMenu="matMenu">
+      @if (notifications().length === 0) {
+        <div class="empty-menu-item">{{ 'topbar.noNotifications' | translate }}</div>
+      } @else {
+        @for (notification of notifications(); track notification.id) {
+          <button mat-menu-item>{{ notification.message }}</button>
+        }
+      }
+    </mat-menu>
+
+    <button type="button" class="icon-button" [matMenuTriggerFor]="themeMenu">
+      <mat-icon fontSet="material-symbols-outlined">{{ themeIcon() }}</mat-icon>
+      <mat-icon fontSet="material-symbols-outlined" class="dropdown-chevron">expand_more</mat-icon>
+    </button>
+    <mat-menu #themeMenu="matMenu">
+      <button mat-menu-item (click)="setTheme('light')">
+        <mat-icon fontSet="material-symbols-outlined">light_mode</mat-icon>
+        {{ 'topbar.light' | translate }}
+        @if (themePreference() === 'light') {
+          <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
+        }
+      </button>
+      <button mat-menu-item (click)="setTheme('dark')">
+        <mat-icon fontSet="material-symbols-outlined">dark_mode</mat-icon>
+        {{ 'topbar.dark' | translate }}
+        @if (themePreference() === 'dark') {
+          <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
+        }
+      </button>
+      <button mat-menu-item (click)="setTheme('system')">
+        <mat-icon fontSet="material-symbols-outlined">brightness_auto</mat-icon>
+        {{ 'topbar.system' | translate }}
+        @if (themePreference() === 'system') {
+          <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
+        }
+      </button>
+    </mat-menu>
+
+    <button type="button" class="icon-button" [matMenuTriggerFor]="languageMenu">
+      <mat-icon fontSet="material-symbols-outlined">language</mat-icon>
+      <mat-icon fontSet="material-symbols-outlined" class="dropdown-chevron">expand_more</mat-icon>
+    </button>
+    <mat-menu #languageMenu="matMenu">
+      <button mat-menu-item (click)="setLanguage('en')">
+        English
+        @if (language() === 'en') {
+          <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
+        }
+      </button>
+      <button mat-menu-item (click)="setLanguage('fr')">
+        Français
+        @if (language() === 'fr') {
+          <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
+        }
+      </button>
+      <button mat-menu-item (click)="setLanguage('ar')">
+        العربية
+        @if (language() === 'ar') {
+          <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
+        }
+      </button>
+      <button mat-menu-item (click)="setLanguage('es')">
+        Español
+        @if (language() === 'es') {
+          <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
+        }
+      </button>
+    </mat-menu>
+
+    <button type="button" class="profile-button" [matMenuTriggerFor]="profileMenu">
+      <span class="avatar">{{ initials() }}</span>
+      <mat-icon fontSet="material-symbols-outlined" class="dropdown-chevron">expand_more</mat-icon>
+    </button>
+    <mat-menu #profileMenu="matMenu">
+      <div class="profile-header">
+        <div class="profile-name">{{ username() }}</div>
+        <div class="profile-role">{{ role() }}</div>
+      </div>
+      <button mat-menu-item (click)="onLogout()">
+        <mat-icon fontSet="material-symbols-outlined">logout</mat-icon>
+        {{ 'topbar.logout' | translate }}
+      </button>
+    </mat-menu>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="sidebar" [class.collapsed]="collapsed()">
+  <nav class="sidebar-nav">
+    @for (section of sections(); track section.labelKey) {
+      @if (section.children && section.children.length) {
+        @if (collapsed()) {
+          <button
+            type="button"
+            class="sidebar-link sidebar-group-trigger"
+            [matMenuTriggerFor]="flyout"
+            [matTooltip]="section.labelKey | translate"
+            matTooltipPosition="after"
+          >
+            <mat-icon fontSet="material-symbols-outlined">{{ section.icon }}</mat-icon>
+          </button>
+          <mat-menu #flyout="matMenu">
+            @for (leaf of section.children; track leaf.path) {
+              <a mat-menu-item [routerLink]="leaf.path" routerLinkActive="active-link">
+                <mat-icon fontSet="material-symbols-outlined">{{ leaf.icon }}</mat-icon>
+                <span>{{ leaf.labelKey | translate }}</span>
+              </a>
+            }
+          </mat-menu>
+        } @else {
+          <mat-expansion-panel class="sidebar-group" [expanded]="isGroupActive(section)">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon fontSet="material-symbols-outlined">{{ section.icon }}</mat-icon>
+                <span>{{ section.labelKey | translate }}</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            @for (leaf of section.children; track leaf.path) {
+              <a
+                class="sidebar-link sidebar-leaf"
+                [routerLink]="leaf.path"
+                routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <mat-icon fontSet="material-symbols-outlined">{{ leaf.icon }}</mat-icon>
+                <span>{{ leaf.labelKey | translate }}</span>
+              </a>
+            }
+          </mat-expansion-panel>
+        }
+      } @else {
+        <a
+          class="sidebar-link sidebar-direct"
+          [routerLink]="section.path"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          [matTooltip]="collapsed() ? (section.labelKey | translate) : ''"
+          matTooltipPosition="after"
+        >
+          <mat-icon fontSet="material-symbols-outlined">{{ section.icon }}</mat-icon>
+          <span>{{ section.labelKey | translate }}</span>
+        </a>
+      }
+    }
+  </nav>
+
+  <div class="sidebar-footer">
+    @if (!collapsed()) {
+      <span class="role-badge">{{ roleLabelKey() | translate }}</span>
+    } @else {
+      <span
+        class="role-dot"
+        [matTooltip]="roleLabelKey() | translate"
+        matTooltipPosition="after"
+      ></span>
+    }
+  </div>
+</div>

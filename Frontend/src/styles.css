@@ -6,3 +6,44 @@ body {
   padding: 0;
   height: 100%;
 }
+
+/* Themable surfaces for our own hand-styled components (topbar, breadcrumbs, content area,
+   placeholder pages). Not used by the sidebar, which keeps a permanent dark brand color.
+   ThemeService flips `color-scheme` on <html> at runtime, and light-dark() resolves accordingly —
+   the same mechanism Angular Material's own tokens already use internally. */
+:root {
+  color-scheme: light;
+  --awb-surface: light-dark(#ffffff, #232427);
+  --awb-on-surface: light-dark(#2c2c2c, #e8e8ea);
+  --awb-on-surface-muted: light-dark(rgba(44, 44, 44, 0.6), rgba(232, 232, 234, 0.6));
+  --awb-content-bg: light-dark(#f4f5f7, #17181a);
+  --awb-border: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.08));
+  --awb-hover: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.06));
+}
+
+/* Self-hosted (no external CDN, required by the app's CSP: default-src 'self'). */
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: block;
+  src: url('/fonts/material-symbols-outlined.woff2') format('woff2');
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga';
+}

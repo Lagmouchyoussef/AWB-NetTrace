@@ -1,0 +1,73 @@
+{
+  "auth": {
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "showPassword": "Afficher le mot de passe",
+    "hidePassword": "Masquer le mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "logIn": "Se connecter",
+    "loggingIn": "Connexion en cours...",
+    "invalidCredentials": "Nom d'utilisateur ou mot de passe incorrect.",
+    "backToLogin": "Retour à la connexion",
+    "forgotIntro": "Saisissez votre nom d'utilisateur et votre administrateur système sera notifié pour vous aider à réinitialiser votre mot de passe.",
+    "sendRequest": "Envoyer la demande",
+    "forgotSuccess": "Si un compte existe pour ce nom d'utilisateur, votre administrateur a été notifié."
+  },
+  "roles": {
+    "superAdmin": "Super Administrateur"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "physicalInfrastructure": "Infrastructure physique",
+    "datacenters": "Centres de données",
+    "rooms": "Salles",
+    "racks": "Baies",
+    "devices": "Équipements",
+    "fabricTopology": "Fabric et topologie",
+    "networkRoles": "Rôles réseau",
+    "vxlanEvpnOverlay": "Overlay VXLAN/EVPN",
+    "interactiveTopologyView": "Vue topologie interactive",
+    "cabling": "Câblage",
+    "cables": "Câbles",
+    "connectorsTransceivers": "Connecteurs et transceivers",
+    "pathTracing": "Traçage de chemin",
+    "sdwanConnectivity": "SD-WAN et connectivité",
+    "sdwanEdges": "Edges SD-WAN",
+    "overlayTunnels": "Tunnels overlay",
+    "carrierCircuits": "Circuits opérateurs",
+    "telemetryMonitoring": "Télémétrie et supervision",
+    "telemetryConnectors": "Connecteurs de télémétrie",
+    "realTimeDashboards": "Tableaux de bord temps réel",
+    "anomalyDetection": "Détection d'anomalies",
+    "interventions": "Interventions",
+    "technicalLibrary": "Bibliothèque technique",
+    "equipmentTypes": "Types d'équipements",
+    "networkTechnologyCatalog": "Catalogue des technologies réseau",
+    "administration": "Administration",
+    "users": "Utilisateurs",
+    "rolesPermissions": "Rôles et permissions",
+    "systemSettings": "Paramètres système",
+    "integrations": "Intégrations",
+    "snmpNetconfGnmiConnectors": "Connecteurs SNMP/NETCONF/gNMI",
+    "syncDrift": "Synchronisation et dérive",
+    "auditCompliance": "Audit et conformité",
+    "reports": "Rapports"
+  },
+  "topbar": {
+    "searchPlaceholder": "Rechercher...",
+    "noNotifications": "Aucune notification pour le moment",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système",
+    "logout": "Déconnexion"
+  },
+  "placeholder": {
+    "notBuiltYet": "Cette page n'est pas encore construite — elle arrivera dans une prochaine étape du module Super Admin."
+  },
+  "dashboard": {
+    "title": "Espace Super Administrateur",
+    "welcome": "Bienvenue, {{user}} — le backend confirme le rôle {{role}}.",
+    "unableToReach": "Impossible de contacter le backend pour ce rôle.",
+    "loading": "Chargement..."
+  }
+}

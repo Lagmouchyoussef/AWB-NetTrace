@@ -1,0 +1,9 @@
+@if (crumbKeys().length) {
+  <nav class="breadcrumbs">
+    <span class="crumb-root">{{ 'roles.superAdmin' | translate }}</span>
+    @for (key of crumbKeys(); track key) {
+      <span class="crumb-sep">/</span>
+      <span class="crumb">{{ key | translate }}</span>
+    }
+  </nav>
+}

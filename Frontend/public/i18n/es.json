@@ -1,0 +1,73 @@
+{
+  "auth": {
+    "username": "Usuario",
+    "password": "Contraseña",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "forgotPassword": "¿Olvidó su contraseña?",
+    "logIn": "Iniciar sesión",
+    "loggingIn": "Iniciando sesión...",
+    "invalidCredentials": "Usuario o contraseña incorrectos.",
+    "backToLogin": "Volver al inicio de sesión",
+    "forgotIntro": "Introduzca su usuario y su administrador del sistema será notificado para ayudarle a restablecer su contraseña.",
+    "sendRequest": "Enviar solicitud",
+    "forgotSuccess": "Si existe una cuenta con este usuario, se ha notificado a su administrador."
+  },
+  "roles": {
+    "superAdmin": "Superadministrador"
+  },
+  "nav": {
+    "dashboard": "Panel de control",
+    "physicalInfrastructure": "Infraestructura física",
+    "datacenters": "Centros de datos",
+    "rooms": "Salas",
+    "racks": "Racks",
+    "devices": "Dispositivos",
+    "fabricTopology": "Fabric y topología",
+    "networkRoles": "Roles de red",
+    "vxlanEvpnOverlay": "Overlay VXLAN/EVPN",
+    "interactiveTopologyView": "Vista de topología interactiva",
+    "cabling": "Cableado",
+    "cables": "Cables",
+    "connectorsTransceivers": "Conectores y transceptores",
+    "pathTracing": "Trazado de ruta",
+    "sdwanConnectivity": "SD-WAN y conectividad",
+    "sdwanEdges": "Edges SD-WAN",
+    "overlayTunnels": "Túneles overlay",
+    "carrierCircuits": "Circuitos de operador",
+    "telemetryMonitoring": "Telemetría y monitoreo",
+    "telemetryConnectors": "Conectores de telemetría",
+    "realTimeDashboards": "Paneles en tiempo real",
+    "anomalyDetection": "Detección de anomalías",
+    "interventions": "Intervenciones",
+    "technicalLibrary": "Biblioteca técnica",
+    "equipmentTypes": "Tipos de equipos",
+    "networkTechnologyCatalog": "Catálogo de tecnologías de red",
+    "administration": "Administración",
+    "users": "Usuarios",
+    "rolesPermissions": "Roles y permisos",
+    "systemSettings": "Configuración del sistema",
+    "integrations": "Integraciones",
+    "snmpNetconfGnmiConnectors": "Conectores SNMP/NETCONF/gNMI",
+    "syncDrift": "Sincronización y drift",
+    "auditCompliance": "Auditoría y cumplimiento",
+    "reports": "Informes"
+  },
+  "topbar": {
+    "searchPlaceholder": "Buscar...",
+    "noNotifications": "Sin notificaciones por ahora",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema",
+    "logout": "Cerrar sesión"
+  },
+  "placeholder": {
+    "notBuiltYet": "Esta página aún no está construida — llegará en una etapa posterior del módulo Super Admin."
+  },
+  "dashboard": {
+    "title": "Espacio de Superadministrador",
+    "welcome": "Bienvenido, {{user}} — el backend confirma el rol {{role}}.",
+    "unableToReach": "No se pudo contactar con el backend para este rol.",
+    "loading": "Cargando..."
+  }
+}

@@ -1,0 +1,238 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.25rem;
+  height: 64px;
+  background: var(--awb-surface);
+  border-bottom: 1px solid var(--awb-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--awb-on-surface);
+  padding: 0.4rem;
+  border-radius: 6px;
+  position: relative;
+}
+
+.icon-button:hover {
+  background: var(--awb-hover);
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-shrink: 0;
+}
+
+.topbar-logo {
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.topbar-divider {
+  width: 1px;
+  height: 26px;
+  background: var(--awb-border);
+}
+
+.topbar-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  color: var(--awb-on-surface);
+  white-space: nowrap;
+}
+
+/* The brand text/divider take too much width to coexist with search + 4 action dropdowns on
+   narrow phones — drop them and keep just the logo mark. The chevrons are dropped too (each
+   button stays a fully functional dropdown trigger without one, just without the desktop hint). */
+@media (max-width: 560px) {
+  .topbar {
+    gap: 0.6rem;
+    padding: 0 0.75rem;
+  }
+
+  .topbar-divider,
+  .topbar-title,
+  .dropdown-chevron {
+    display: none;
+  }
+
+  .topbar-actions {
+    gap: 0.25rem;
+  }
+}
+
+.topbar-search {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  background: var(--awb-hover);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.45rem 0.8rem;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.topbar-search:focus-within {
+  background: var(--awb-surface);
+  border-color: #f47920;
+}
+
+.search-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--awb-on-surface-muted);
+  margin-inline-end: 0.5rem;
+}
+
+.topbar-search input {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 0.85rem;
+  width: 100%;
+  min-width: 0;
+  color: var(--awb-on-surface);
+}
+
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--awb-surface);
+  border: 1px solid var(--awb-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0;
+  z-index: 20;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.search-dropdown li {
+  padding: 0;
+}
+
+.search-dropdown button {
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: start;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--awb-on-surface);
+}
+
+.search-dropdown button:hover {
+  background: rgba(244, 121, 32, 0.08);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-inline-start: auto;
+  flex-shrink: 0;
+}
+
+.badge {
+  position: absolute;
+  top: 2px;
+  inset-inline-end: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  border-radius: 999px;
+  background: #ee5b41;
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #2c2c2c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.dropdown-chevron {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  color: var(--awb-on-surface-muted);
+  flex-shrink: 0;
+}
+
+.empty-menu-item {
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  color: var(--awb-on-surface-muted);
+}
+
+.profile-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--awb-border);
+}
+
+.profile-name {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--awb-on-surface);
+}
+
+.profile-role {
+  font-size: 0.75rem;
+  color: var(--awb-on-surface-muted);
+}
+
+.check-icon {
+  margin-inline-start: auto;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #f47920;
+}

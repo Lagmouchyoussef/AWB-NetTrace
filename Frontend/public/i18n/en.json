@@ -1,0 +1,73 @@
+{
+  "auth": {
+    "username": "Username",
+    "password": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "forgotPassword": "Forgot password?",
+    "logIn": "Log in",
+    "loggingIn": "Logging in...",
+    "invalidCredentials": "Incorrect username or password.",
+    "backToLogin": "Back to login",
+    "forgotIntro": "Enter your username and your system administrator will be notified to help you reset your password.",
+    "sendRequest": "Send request",
+    "forgotSuccess": "If an account exists for this username, your administrator has been notified."
+  },
+  "roles": {
+    "superAdmin": "Super Admin"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "physicalInfrastructure": "Physical Infrastructure",
+    "datacenters": "Datacenters",
+    "rooms": "Rooms",
+    "racks": "Racks",
+    "devices": "Devices",
+    "fabricTopology": "Fabric & Topology",
+    "networkRoles": "Network Roles",
+    "vxlanEvpnOverlay": "VXLAN/EVPN Overlay",
+    "interactiveTopologyView": "Interactive Topology View",
+    "cabling": "Cabling",
+    "cables": "Cables",
+    "connectorsTransceivers": "Connectors & Transceivers",
+    "pathTracing": "Path Tracing",
+    "sdwanConnectivity": "SD-WAN & Connectivity",
+    "sdwanEdges": "SD-WAN Edges",
+    "overlayTunnels": "Overlay Tunnels",
+    "carrierCircuits": "Carrier Circuits",
+    "telemetryMonitoring": "Telemetry & Monitoring",
+    "telemetryConnectors": "Telemetry Connectors",
+    "realTimeDashboards": "Real-Time Dashboards",
+    "anomalyDetection": "Anomaly Detection",
+    "interventions": "Interventions",
+    "technicalLibrary": "Technical Library",
+    "equipmentTypes": "Equipment Types",
+    "networkTechnologyCatalog": "Network Technology Catalog",
+    "administration": "Administration",
+    "users": "Users",
+    "rolesPermissions": "Roles & Permissions",
+    "systemSettings": "System Settings",
+    "integrations": "Integrations",
+    "snmpNetconfGnmiConnectors": "SNMP/NETCONF/gNMI Connectors",
+    "syncDrift": "Sync & Drift",
+    "auditCompliance": "Audit & Compliance",
+    "reports": "Reports"
+  },
+  "topbar": {
+    "searchPlaceholder": "Search...",
+    "noNotifications": "No notifications yet",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "logout": "Logout"
+  },
+  "placeholder": {
+    "notBuiltYet": "This page is not built yet — it will arrive in a later step of the Super Admin module."
+  },
+  "dashboard": {
+    "title": "Super Administrator Space",
+    "welcome": "Welcome, {{user}} — backend confirms role {{role}}.",
+    "unableToReach": "Unable to reach the backend for this role.",
+    "loading": "Loading..."
+  }
+}

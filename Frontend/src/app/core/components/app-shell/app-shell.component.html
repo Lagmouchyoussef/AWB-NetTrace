@@ -1,0 +1,23 @@
+<mat-sidenav-container class="shell-container" [autosize]="sidenavMode() === 'side'">
+  <mat-sidenav
+    #drawer
+    class="shell-sidenav"
+    [class.collapsed]="collapsed()"
+    [mode]="sidenavMode()"
+    [opened]="sidenavOpened()"
+  >
+    <app-sidebar
+      [sections]="sections()"
+      [roleLabelKey]="roleLabelKey()"
+      [collapsed]="collapsed()"
+    />
+  </mat-sidenav>
+
+  <mat-sidenav-content class="shell-content">
+    <app-topbar [sections]="sections()" (menuToggle)="onMenuToggle(drawer)" />
+    <app-breadcrumbs />
+    <div class="shell-page">
+      <ng-content></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

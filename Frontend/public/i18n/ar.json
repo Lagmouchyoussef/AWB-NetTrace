@@ -1,0 +1,73 @@
+{
+  "auth": {
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "showPassword": "إظهار كلمة المرور",
+    "hidePassword": "إخفاء كلمة المرور",
+    "forgotPassword": "هل نسيت كلمة المرور؟",
+    "logIn": "تسجيل الدخول",
+    "loggingIn": "جارٍ تسجيل الدخول...",
+    "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة.",
+    "backToLogin": "العودة إلى تسجيل الدخول",
+    "forgotIntro": "أدخل اسم المستخدم الخاص بك وسيتم إخطار مسؤول النظام لمساعدتك في إعادة تعيين كلمة المرور.",
+    "sendRequest": "إرسال الطلب",
+    "forgotSuccess": "إذا كان هناك حساب مرتبط بهذا الاسم، فقد تم إخطار المسؤول."
+  },
+  "roles": {
+    "superAdmin": "المسؤول العام"
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "physicalInfrastructure": "البنية التحتية المادية",
+    "datacenters": "مراكز البيانات",
+    "rooms": "الغرف",
+    "racks": "الحوامل",
+    "devices": "الأجهزة",
+    "fabricTopology": "البنية الشبكية والطوبولوجيا",
+    "networkRoles": "أدوار الشبكة",
+    "vxlanEvpnOverlay": "شبكة VXLAN/EVPN الفوقية",
+    "interactiveTopologyView": "عرض الطوبولوجيا التفاعلي",
+    "cabling": "الكابلات",
+    "cables": "الكابلات",
+    "connectorsTransceivers": "الموصلات ووحدات الإرسال والاستقبال",
+    "pathTracing": "تتبع المسار",
+    "sdwanConnectivity": "SD-WAN والاتصال",
+    "sdwanEdges": "أطراف SD-WAN",
+    "overlayTunnels": "الأنفاق الفوقية",
+    "carrierCircuits": "دوائر مشغلي الاتصالات",
+    "telemetryMonitoring": "القياس عن بعد والمراقبة",
+    "telemetryConnectors": "موصلات القياس عن بعد",
+    "realTimeDashboards": "لوحات المعلومات اللحظية",
+    "anomalyDetection": "كشف الحالات الشاذة",
+    "interventions": "التدخلات",
+    "technicalLibrary": "المكتبة التقنية",
+    "equipmentTypes": "أنواع الأجهزة",
+    "networkTechnologyCatalog": "كتالوج تقنيات الشبكة",
+    "administration": "الإدارة",
+    "users": "المستخدمون",
+    "rolesPermissions": "الأدوار والصلاحيات",
+    "systemSettings": "إعدادات النظام",
+    "integrations": "عمليات التكامل",
+    "snmpNetconfGnmiConnectors": "موصلات SNMP/NETCONF/gNMI",
+    "syncDrift": "المزامنة والانحراف",
+    "auditCompliance": "التدقيق والامتثال",
+    "reports": "التقارير"
+  },
+  "topbar": {
+    "searchPlaceholder": "بحث...",
+    "noNotifications": "لا توجد إشعارات بعد",
+    "light": "فاتح",
+    "dark": "داكن",
+    "system": "النظام",
+    "logout": "تسجيل الخروج"
+  },
+  "placeholder": {
+    "notBuiltYet": "هذه الصفحة لم تُبنَ بعد — ستتوفر في مرحلة لاحقة من وحدة المسؤول العام."
+  },
+  "dashboard": {
+    "title": "مساحة المسؤول العام",
+    "welcome": "مرحبًا، {{user}} — يؤكد الخادم الخلفي الدور {{role}}.",
+    "unableToReach": "تعذر الوصول إلى الخادم الخلفي لهذا الدور.",
+    "loading": "جارٍ التحميل..."
+  }
+}

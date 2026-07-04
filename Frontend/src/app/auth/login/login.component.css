@@ -5,13 +5,13 @@
 }
 
 .password-input-wrapper input {
-  padding-right: 2.5rem;
+  padding-inline-end: 2.5rem;
 }
 
 .password-toggle {
   position: absolute;
   top: 50%;
-  right: 0.65rem;
+  inset-inline-end: 0.65rem;
   transform: translateY(-50%);
   background: none;
   border: none;

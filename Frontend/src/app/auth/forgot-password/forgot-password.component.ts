@@ -1,11 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, TranslatePipe],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.css',
 })

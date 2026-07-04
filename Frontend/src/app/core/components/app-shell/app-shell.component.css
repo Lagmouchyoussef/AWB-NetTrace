@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.shell-container {
+  height: 100%;
+}
+
+.shell-sidenav {
+  width: 260px;
+  border-right: none;
+  transition: width 0.15s ease;
+}
+
+.shell-sidenav.collapsed {
+  width: 72px;
+}
+
+.shell-content {
+  background: var(--awb-content-bg);
+  display: flex;
+  flex-direction: column;
+  /* Guards against a real bug we hit: any accidental horizontal overflow here lets a CDK
+     overlay (e.g. opening a mat-menu) auto-scroll this container sideways to bring the
+     trigger into view, and it never scrolls back — permanently shifting the sticky topbar. */
+  overflow-x: hidden;
+}
+
+app-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+}
+
+app-breadcrumbs {
+  position: sticky;
+  top: 64px;
+  z-index: 5;
+}
+
+.shell-page {
+  box-sizing: border-box;
+  min-height: 100%;
+}

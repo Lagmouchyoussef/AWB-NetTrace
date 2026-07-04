@@ -1,0 +1,24 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.8rem;
+  color: var(--awb-on-surface-muted);
+  background: var(--awb-surface);
+  border-bottom: 1px solid var(--awb-border);
+}
+
+.crumb-root {
+  font-weight: 600;
+  color: var(--awb-on-surface);
+}
+
+.crumb-sep {
+  color: var(--awb-on-surface-muted);
+}
+
+.crumb:last-child {
+  font-weight: 600;
+  color: #f47920;
+}
