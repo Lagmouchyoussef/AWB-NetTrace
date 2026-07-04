@@ -10,6 +10,7 @@ import { ThemePreference, ThemeService } from '../../services/theme.service';
 import { AppLanguage, LanguageService } from '../../services/language.service';
 import { NavSection } from '../../types/nav';
 import { Role } from '../../types/role';
+import { FlagIconComponent } from '../flag-icon/flag-icon.component';
 
 interface SearchResult {
   label: string;
@@ -19,7 +20,7 @@ interface SearchResult {
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [MatIconModule, MatMenuModule, TranslatePipe],
+  imports: [MatIconModule, MatMenuModule, TranslatePipe, FlagIconComponent],
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.css',
 })

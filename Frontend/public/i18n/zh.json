@@ -1,0 +1,415 @@
+{
+  "auth": {
+    "username": "用户名",
+    "password": "密码",
+    "showPassword": "显示密码",
+    "hidePassword": "隐藏密码",
+    "forgotPassword": "忘记密码？",
+    "logIn": "登录",
+    "loggingIn": "正在登录...",
+    "invalidCredentials": "用户名或密码不正确。",
+    "backToLogin": "返回登录",
+    "forgotIntro": "请输入您的用户名，系统管理员将收到通知以帮助您重置密码。",
+    "sendRequest": "发送请求",
+    "forgotSuccess": "如果存在与此用户名关联的账户，管理员已收到通知。"
+  },
+  "roles": {
+    "superAdmin": "超级管理员"
+  },
+  "nav": {
+    "dashboard": "仪表盘",
+    "physicalInfrastructure": "物理基础设施",
+    "datacenters": "数据中心",
+    "rooms": "机房",
+    "racks": "机柜",
+    "devices": "设备",
+    "fabricTopology": "网络架构与拓扑",
+    "networkRoles": "网络角色",
+    "vxlanEvpnOverlay": "VXLAN/EVPN 叠加网络",
+    "interactiveTopologyView": "交互式拓扑视图",
+    "cabling": "布线",
+    "cables": "线缆",
+    "connectorsTransceivers": "连接器与收发器",
+    "pathTracing": "路径追踪",
+    "sdwanConnectivity": "SD-WAN 与连接",
+    "sdwanEdges": "SD-WAN 边缘节点",
+    "overlayTunnels": "叠加隧道",
+    "carrierCircuits": "运营商线路",
+    "telemetryMonitoring": "遥测与监控",
+    "telemetryConnectors": "遥测连接器",
+    "realTimeDashboards": "实时仪表盘",
+    "anomalyDetection": "异常检测",
+    "interventions": "维护干预",
+    "technicalLibrary": "技术资料库",
+    "equipmentTypes": "设备类型",
+    "networkTechnologyCatalog": "网络技术目录",
+    "administration": "管理",
+    "users": "用户",
+    "rolesPermissions": "角色与权限",
+    "systemSettings": "系统设置",
+    "integrations": "集成",
+    "snmpNetconfGnmiConnectors": "SNMP/NETCONF/gNMI 连接器",
+    "syncDrift": "同步与偏差检测",
+    "auditCompliance": "审计与合规",
+    "reports": "报表"
+  },
+  "topbar": {
+    "searchPlaceholder": "搜索...",
+    "noNotifications": "暂无通知",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统",
+    "logout": "退出登录"
+  },
+  "placeholder": {
+    "notBuiltYet": "此页面尚未构建 — 将在超级管理员模块的后续阶段推出。"
+  },
+  "dashboard": {
+    "title": "超级管理员空间",
+    "welcome": "欢迎，{{user}} — 后端已确认角色 {{role}}。",
+    "unableToReach": "无法连接到该角色对应的后端服务。",
+    "loading": "加载中..."
+  },
+  "common": {
+    "search": "搜索...",
+    "exportCsv": "导出CSV",
+    "view": "查看",
+    "edit": "编辑",
+    "delete": "删除",
+    "noResults": "未找到结果。",
+    "cancel": "取消",
+    "confirm": "确认",
+    "save": "保存",
+    "saving": "正在保存...",
+    "close": "关闭",
+    "itemsPerPage": "每页项数：",
+    "nextPage": "下一页",
+    "previousPage": "上一页",
+    "firstPage": "首页",
+    "lastPage": "末页",
+    "of": "共"
+  },
+  "datacenters": {
+    "pageTitle": "数据中心",
+    "addNew": "添加数据中心",
+    "createTitle": "新建数据中心",
+    "editTitle": "编辑数据中心",
+    "deleteTitle": "删除数据中心",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "city": "城市",
+      "tier": "等级",
+      "status": "状态"
+    },
+    "fields": {
+      "name": "名称",
+      "code": "代码",
+      "city": "城市",
+      "country": "国家",
+      "address": "地址",
+      "tier": "等级",
+      "status": "状态",
+      "totalPowerKw": "总功率（千瓦）",
+      "totalSpaceSqm": "总面积（平方米）",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "tier": {
+      "TIER_I": "一级",
+      "TIER_II": "二级",
+      "TIER_III": "三级",
+      "TIER_IV": "四级"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "MAINTENANCE": "维护中",
+      "DECOMMISSIONED": "已停用"
+    }
+  },
+  "rooms": {
+    "pageTitle": "机房",
+    "addNew": "添加机房",
+    "createTitle": "新建机房",
+    "editTitle": "编辑机房",
+    "deleteTitle": "删除机房",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "datacenter": "数据中心",
+      "roomType": "机房类型",
+      "coolingType": "制冷类型",
+      "status": "状态"
+    },
+    "fields": {
+      "datacenter": "数据中心",
+      "name": "名称",
+      "code": "代码",
+      "roomType": "机房类型",
+      "floor": "楼层",
+      "areaSqm": "面积（平方米）",
+      "maxPowerKw": "最大功率（千瓦）",
+      "coolingType": "制冷类型",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "roomType": {
+      "SERVER_ROOM": "服务器机房",
+      "NETWORK_ROOM": "网络机房",
+      "STORAGE_ROOM": "存储机房",
+      "UPS_ROOM": "UPS机房",
+      "COOLING_PLANT": "制冷站",
+      "ELECTRICAL_ROOM": "配电室"
+    },
+    "coolingType": {
+      "CRAC": "CRAC（精密空调）",
+      "CRAH": "CRAH（空气处理机）",
+      "IN_ROW": "行间制冷",
+      "REAR_DOOR_HEAT_EXCHANGER": "背板热交换器",
+      "DIRECT_LIQUID_COOLING": "直接液冷",
+      "IMMERSION_COOLING": "浸没式冷却"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "MAINTENANCE": "维护中",
+      "DECOMMISSIONED": "已停用"
+    }
+  },
+  "racks": {
+    "pageTitle": "机柜",
+    "addNew": "添加机柜",
+    "createTitle": "新建机柜",
+    "editTitle": "编辑机柜",
+    "deleteTitle": "删除机柜",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "room": "机房",
+      "heightU": "高度",
+      "containment": "冷热通道",
+      "status": "状态"
+    },
+    "fields": {
+      "room": "机房",
+      "name": "名称",
+      "code": "代码",
+      "heightU": "高度（U）",
+      "powerCapacityKw": "功率容量（千瓦）",
+      "currentPowerDrawKw": "当前功耗（千瓦）",
+      "maxWeightKg": "最大承重（千克）",
+      "containment": "冷热通道",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "containment": {
+      "HOT_AISLE": "热通道",
+      "COLD_AISLE": "冷通道",
+      "NONE": "无"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "MAINTENANCE": "维护中",
+      "DECOMMISSIONED": "已停用",
+      "RESERVED": "已预留"
+    }
+  },
+  "devices": {
+    "pageTitle": "设备",
+    "addNew": "添加设备",
+    "createTitle": "新建设备",
+    "editTitle": "编辑设备",
+    "deleteTitle": "删除设备",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认序列号是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "serialNumber": "序列号",
+      "rack": "机柜",
+      "deviceType": "类型",
+      "status": "状态"
+    },
+    "fields": {
+      "rack": "机柜",
+      "name": "名称",
+      "serialNumber": "序列号",
+      "deviceType": "设备类型",
+      "manufacturer": "制造商",
+      "model": "型号",
+      "positionUStart": "起始位置（U）",
+      "heightU": "高度（U）",
+      "powerConsumptionW": "功耗（瓦）",
+      "managementIp": "管理IP",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "deviceType": {
+      "SERVER": "服务器",
+      "GPU_AI_NODE": "GPU/AI节点",
+      "SWITCH": "交换机",
+      "ROUTER": "路由器",
+      "FIREWALL": "防火墙",
+      "LOAD_BALANCER": "负载均衡器",
+      "STORAGE_ARRAY": "存储阵列",
+      "PDU": "配电单元",
+      "UPS": "不间断电源",
+      "COOLING_UNIT": "制冷设备",
+      "OTHER": "其他"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "MAINTENANCE": "维护中",
+      "DECOMMISSIONED": "已停用",
+      "SPARE": "备用"
+    }
+  },
+  "networkRoles": {
+    "pageTitle": "网络角色",
+    "addNew": "添加网络角色",
+    "createTitle": "新建网络角色",
+    "editTitle": "编辑网络角色",
+    "deleteTitle": "删除网络角色",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，且该设备尚未分配角色。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "device": "设备",
+      "roleType": "组网角色",
+      "asn": "ASN",
+      "status": "状态"
+    },
+    "fields": {
+      "device": "设备",
+      "name": "名称",
+      "code": "代码",
+      "roleType": "组网角色",
+      "asn": "BGP ASN",
+      "loopbackIp": "环回IP",
+      "podNumber": "Pod编号",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "roleType": {
+      "SUPER_SPINE": "超级脊交换机",
+      "SPINE": "脊交换机",
+      "LEAF": "叶交换机",
+      "BORDER_LEAF": "边界叶交换机",
+      "TOR_SWITCH": "架顶交换机",
+      "ROUTE_REFLECTOR": "路由反射器"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "MAINTENANCE": "维护中",
+      "DECOMMISSIONED": "已停用",
+      "PLANNED": "已规划"
+    }
+  },
+  "overlayNetworks": {
+    "pageTitle": "VXLAN/EVPN 叠加网络",
+    "addNew": "添加叠加网络",
+    "createTitle": "新建叠加网络",
+    "editTitle": "编辑叠加网络",
+    "deleteTitle": "删除叠加网络",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码和VNI是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "datacenter": "数据中心",
+      "vni": "VNI",
+      "overlayType": "叠加类型",
+      "status": "状态"
+    },
+    "fields": {
+      "datacenter": "数据中心",
+      "name": "名称",
+      "code": "代码",
+      "vni": "VNI",
+      "overlayType": "叠加类型",
+      "vlanId": "VLAN ID",
+      "vrfName": "VRF名称",
+      "routeDistinguisher": "路由区分符",
+      "routeTargets": "路由目标",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "overlayType": {
+      "L2_EVPN": "L2 EVPN（桥接叠加）",
+      "L3_EVPN": "L3 EVPN（路由叠加/VRF）",
+      "ANYCAST_GATEWAY": "任播网关"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "MAINTENANCE": "维护中",
+      "DECOMMISSIONED": "已停用",
+      "PLANNED": "已规划"
+    }
+  },
+  "topologyLinks": {
+    "pageTitle": "交互式拓扑视图",
+    "addNew": "添加拓扑链路",
+    "createTitle": "新建拓扑链路",
+    "editTitle": "编辑拓扑链路",
+    "deleteTitle": "删除拓扑链路",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，且源与目标不同。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "source": "源",
+      "target": "目标",
+      "linkType": "链路类型",
+      "speedGbps": "速率",
+      "status": "状态"
+    },
+    "fields": {
+      "source": "源角色",
+      "target": "目标角色",
+      "name": "名称",
+      "code": "代码",
+      "linkType": "链路类型",
+      "speedGbps": "速率（Gbps）",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "linkType": {
+      "FABRIC_UPLINK": "组网上行链路",
+      "FABRIC_DOWNLINK": "组网下行链路",
+      "INTER_POD": "Pod间链路",
+      "DCI": "数据中心互联",
+      "PEER_LINK": "对等链路"
+    },
+    "status": {
+      "UP": "正常",
+      "DOWN": "中断",
+      "DEGRADED": "降级",
+      "PLANNED": "已规划"
+    }
+  }
+}

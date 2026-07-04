@@ -69,5 +69,347 @@
     "welcome": "Bienvenido, {{user}} — el backend confirma el rol {{role}}.",
     "unableToReach": "No se pudo contactar con el backend para este rol.",
     "loading": "Cargando..."
+  },
+  "common": {
+    "search": "Buscar...",
+    "exportCsv": "Exportar CSV",
+    "view": "Ver",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "noResults": "No se encontraron resultados.",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "save": "Guardar",
+    "saving": "Guardando...",
+    "close": "Cerrar",
+    "itemsPerPage": "Elementos por página:",
+    "nextPage": "Página siguiente",
+    "previousPage": "Página anterior",
+    "firstPage": "Primera página",
+    "lastPage": "Última página",
+    "of": "de"
+  },
+  "datacenters": {
+    "pageTitle": "Centros de datos",
+    "addNew": "Añadir centro de datos",
+    "createTitle": "Nuevo centro de datos",
+    "editTitle": "Editar centro de datos",
+    "deleteTitle": "Eliminar centro de datos",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "city": "Ciudad",
+      "tier": "Nivel",
+      "status": "Estado"
+    },
+    "fields": {
+      "name": "Nombre",
+      "code": "Código",
+      "city": "Ciudad",
+      "country": "País",
+      "address": "Dirección",
+      "tier": "Nivel",
+      "status": "Estado",
+      "totalPowerKw": "Potencia total (kW)",
+      "totalSpaceSqm": "Superficie total (m²)",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "tier": {
+      "TIER_I": "Nivel I",
+      "TIER_II": "Nivel II",
+      "TIER_III": "Nivel III",
+      "TIER_IV": "Nivel IV"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "MAINTENANCE": "Mantenimiento",
+      "DECOMMISSIONED": "Fuera de servicio"
+    }
+  },
+  "rooms": {
+    "pageTitle": "Salas",
+    "addNew": "Añadir sala",
+    "createTitle": "Nueva sala",
+    "editTitle": "Editar sala",
+    "deleteTitle": "Eliminar sala",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "datacenter": "Centro de datos",
+      "roomType": "Tipo de sala",
+      "coolingType": "Tipo de refrigeración",
+      "status": "Estado"
+    },
+    "fields": {
+      "datacenter": "Centro de datos",
+      "name": "Nombre",
+      "code": "Código",
+      "roomType": "Tipo de sala",
+      "floor": "Planta",
+      "areaSqm": "Superficie (m²)",
+      "maxPowerKw": "Potencia máxima (kW)",
+      "coolingType": "Tipo de refrigeración",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "roomType": {
+      "SERVER_ROOM": "Sala de servidores",
+      "NETWORK_ROOM": "Sala de red",
+      "STORAGE_ROOM": "Sala de almacenamiento",
+      "UPS_ROOM": "Sala de SAI",
+      "COOLING_PLANT": "Planta de refrigeración",
+      "ELECTRICAL_ROOM": "Sala eléctrica"
+    },
+    "coolingType": {
+      "CRAC": "CRAC (climatización de precisión)",
+      "CRAH": "CRAH (manejadora de aire)",
+      "IN_ROW": "Refrigeración en fila",
+      "REAR_DOOR_HEAT_EXCHANGER": "Intercambiador de calor de puerta trasera",
+      "DIRECT_LIQUID_COOLING": "Refrigeración líquida directa",
+      "IMMERSION_COOLING": "Refrigeración por inmersión"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "MAINTENANCE": "Mantenimiento",
+      "DECOMMISSIONED": "Fuera de servicio"
+    }
+  },
+  "racks": {
+    "pageTitle": "Racks",
+    "addNew": "Añadir rack",
+    "createTitle": "Nuevo rack",
+    "editTitle": "Editar rack",
+    "deleteTitle": "Eliminar rack",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "room": "Sala",
+      "heightU": "Altura",
+      "containment": "Contención",
+      "status": "Estado"
+    },
+    "fields": {
+      "room": "Sala",
+      "name": "Nombre",
+      "code": "Código",
+      "heightU": "Altura (U)",
+      "powerCapacityKw": "Capacidad de potencia (kW)",
+      "currentPowerDrawKw": "Consumo actual (kW)",
+      "maxWeightKg": "Peso máximo (kg)",
+      "containment": "Contención",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "containment": {
+      "HOT_AISLE": "Pasillo caliente",
+      "COLD_AISLE": "Pasillo frío",
+      "NONE": "Ninguno"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "MAINTENANCE": "Mantenimiento",
+      "DECOMMISSIONED": "Fuera de servicio",
+      "RESERVED": "Reservado"
+    }
+  },
+  "devices": {
+    "pageTitle": "Dispositivos",
+    "addNew": "Añadir dispositivo",
+    "createTitle": "Nuevo dispositivo",
+    "editTitle": "Editar dispositivo",
+    "deleteTitle": "Eliminar dispositivo",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el número de serie sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "serialNumber": "Número de serie",
+      "rack": "Rack",
+      "deviceType": "Tipo",
+      "status": "Estado"
+    },
+    "fields": {
+      "rack": "Rack",
+      "name": "Nombre",
+      "serialNumber": "Número de serie",
+      "deviceType": "Tipo de dispositivo",
+      "manufacturer": "Fabricante",
+      "model": "Modelo",
+      "positionUStart": "Posición inicial (U)",
+      "heightU": "Altura (U)",
+      "powerConsumptionW": "Consumo de energía (W)",
+      "managementIp": "IP de gestión",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "deviceType": {
+      "SERVER": "Servidor",
+      "GPU_AI_NODE": "Nodo GPU / IA",
+      "SWITCH": "Conmutador",
+      "ROUTER": "Router",
+      "FIREWALL": "Cortafuegos",
+      "LOAD_BALANCER": "Balanceador de carga",
+      "STORAGE_ARRAY": "Cabina de almacenamiento",
+      "PDU": "PDU",
+      "UPS": "SAI",
+      "COOLING_UNIT": "Unidad de refrigeración",
+      "OTHER": "Otro"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "MAINTENANCE": "Mantenimiento",
+      "DECOMMISSIONED": "Fuera de servicio",
+      "SPARE": "De repuesto"
+    }
+  },
+  "networkRoles": {
+    "pageTitle": "Roles de red",
+    "addNew": "Añadir rol de red",
+    "createTitle": "Nuevo rol de red",
+    "editTitle": "Editar rol de red",
+    "deleteTitle": "Eliminar rol de red",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único y que el dispositivo no tenga ya un rol asignado.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "device": "Dispositivo",
+      "roleType": "Rol de fabric",
+      "asn": "ASN",
+      "status": "Estado"
+    },
+    "fields": {
+      "device": "Dispositivo",
+      "name": "Nombre",
+      "code": "Código",
+      "roleType": "Rol de fabric",
+      "asn": "ASN BGP",
+      "loopbackIp": "IP de loopback",
+      "podNumber": "Número de pod",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "roleType": {
+      "SUPER_SPINE": "Super Spine",
+      "SPINE": "Spine",
+      "LEAF": "Leaf",
+      "BORDER_LEAF": "Border Leaf",
+      "TOR_SWITCH": "Switch Top-of-Rack",
+      "ROUTE_REFLECTOR": "Route Reflector"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "MAINTENANCE": "Mantenimiento",
+      "DECOMMISSIONED": "Fuera de servicio",
+      "PLANNED": "Planificado"
+    }
+  },
+  "overlayNetworks": {
+    "pageTitle": "Redes overlay VXLAN/EVPN",
+    "addNew": "Añadir red overlay",
+    "createTitle": "Nueva red overlay",
+    "editTitle": "Editar red overlay",
+    "deleteTitle": "Eliminar red overlay",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código y el VNI sean únicos e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "datacenter": "Centro de datos",
+      "vni": "VNI",
+      "overlayType": "Tipo de overlay",
+      "status": "Estado"
+    },
+    "fields": {
+      "datacenter": "Centro de datos",
+      "name": "Nombre",
+      "code": "Código",
+      "vni": "VNI",
+      "overlayType": "Tipo de overlay",
+      "vlanId": "ID de VLAN",
+      "vrfName": "Nombre de VRF",
+      "routeDistinguisher": "Route Distinguisher",
+      "routeTargets": "Route Targets",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "overlayType": {
+      "L2_EVPN": "L2 EVPN (Overlay puenteado)",
+      "L3_EVPN": "L3 EVPN (Overlay enrutado / VRF)",
+      "ANYCAST_GATEWAY": "Puerta de enlace Anycast"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "MAINTENANCE": "Mantenimiento",
+      "DECOMMISSIONED": "Fuera de servicio",
+      "PLANNED": "Planificado"
+    }
+  },
+  "topologyLinks": {
+    "pageTitle": "Vista de topología interactiva",
+    "addNew": "Añadir enlace de topología",
+    "createTitle": "Nuevo enlace de topología",
+    "editTitle": "Editar enlace de topología",
+    "deleteTitle": "Eliminar enlace de topología",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único y que el origen y destino sean diferentes.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "source": "Origen",
+      "target": "Destino",
+      "linkType": "Tipo de enlace",
+      "speedGbps": "Velocidad",
+      "status": "Estado"
+    },
+    "fields": {
+      "source": "Rol de origen",
+      "target": "Rol de destino",
+      "name": "Nombre",
+      "code": "Código",
+      "linkType": "Tipo de enlace",
+      "speedGbps": "Velocidad (Gbps)",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "linkType": {
+      "FABRIC_UPLINK": "Enlace ascendente de fabric",
+      "FABRIC_DOWNLINK": "Enlace descendente de fabric",
+      "INTER_POD": "Inter-pod",
+      "DCI": "Interconexión de centros de datos",
+      "PEER_LINK": "Enlace de peering"
+    },
+    "status": {
+      "UP": "Activo",
+      "DOWN": "Inactivo",
+      "DEGRADED": "Degradado",
+      "PLANNED": "Planificado"
+    }
   }
 }

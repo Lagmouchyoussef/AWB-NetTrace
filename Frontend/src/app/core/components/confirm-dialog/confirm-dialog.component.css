@@ -1,0 +1,38 @@
+h2[mat-dialog-title] {
+  color: var(--awb-on-surface);
+}
+
+mat-dialog-content p {
+  color: var(--awb-on-surface-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.dialog-button {
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--awb-border);
+  background: none;
+  color: var(--awb-on-surface);
+}
+
+.dialog-button-cancel:hover {
+  background: var(--awb-hover);
+}
+
+.dialog-button-confirm {
+  border: none;
+  background: linear-gradient(90deg, #f7941d, #ee5b41);
+  color: #fff;
+}
+
+.dialog-button-confirm.dialog-button-danger {
+  background: #e0342c;
+}
+
+.dialog-button-confirm:hover {
+  filter: brightness(1.08);
+}

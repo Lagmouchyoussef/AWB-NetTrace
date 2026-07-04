@@ -1,0 +1,180 @@
+.data-table-container {
+  background: var(--awb-surface);
+  border-radius: 10px;
+  border: 1px solid var(--awb-border);
+  overflow: hidden;
+}
+
+.data-table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--awb-border);
+}
+
+.table-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+  max-width: 320px;
+  min-width: 0;
+  background: var(--awb-hover);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.table-search:focus-within {
+  background: var(--awb-surface);
+  border-color: #f47920;
+}
+
+.table-search mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--awb-on-surface-muted);
+  flex-shrink: 0;
+}
+
+.table-search input {
+  border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  min-width: 0;
+  font-size: 0.85rem;
+  color: var(--awb-on-surface);
+}
+
+.export-button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: 1px solid var(--awb-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--awb-on-surface);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.export-button:hover {
+  background: var(--awb-hover);
+}
+
+.export-button mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.table-scroll {
+  position: relative;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  background: transparent;
+}
+
+th.mat-mdc-header-cell {
+  color: var(--awb-on-surface-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+td.mat-mdc-cell {
+  color: var(--awb-on-surface);
+  font-size: 0.85rem;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: flex-end;
+}
+
+.row-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 0.35rem;
+  color: var(--awb-on-surface-muted);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.row-action:hover {
+  background: var(--awb-hover);
+  color: #f47920;
+}
+
+.row-action mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.empty-state {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--awb-on-surface-muted);
+  font-size: 0.88rem;
+}
+
+.skeleton-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--awb-surface);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.skeleton-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.skeleton-cell {
+  height: 14px;
+  flex: 1 1 0;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--awb-hover) 25%,
+    var(--awb-border) 37%,
+    var(--awb-hover) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

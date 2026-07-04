@@ -69,5 +69,347 @@
     "welcome": "Bienvenue, {{user}} — le backend confirme le rôle {{role}}.",
     "unableToReach": "Impossible de contacter le backend pour ce rôle.",
     "loading": "Chargement..."
+  },
+  "common": {
+    "search": "Rechercher...",
+    "exportCsv": "Exporter en CSV",
+    "view": "Voir",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "noResults": "Aucun résultat trouvé.",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "saving": "Enregistrement...",
+    "close": "Fermer",
+    "itemsPerPage": "Éléments par page :",
+    "nextPage": "Page suivante",
+    "previousPage": "Page précédente",
+    "firstPage": "Première page",
+    "lastPage": "Dernière page",
+    "of": "sur"
+  },
+  "datacenters": {
+    "pageTitle": "Centres de données",
+    "addNew": "Ajouter un centre de données",
+    "createTitle": "Nouveau centre de données",
+    "editTitle": "Modifier le centre de données",
+    "deleteTitle": "Supprimer le centre de données",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "city": "Ville",
+      "tier": "Niveau",
+      "status": "Statut"
+    },
+    "fields": {
+      "name": "Nom",
+      "code": "Code",
+      "city": "Ville",
+      "country": "Pays",
+      "address": "Adresse",
+      "tier": "Niveau",
+      "status": "Statut",
+      "totalPowerKw": "Puissance totale (kW)",
+      "totalSpaceSqm": "Surface totale (m²)",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "tier": {
+      "TIER_I": "Niveau I",
+      "TIER_II": "Niveau II",
+      "TIER_III": "Niveau III",
+      "TIER_IV": "Niveau IV"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Hors service"
+    }
+  },
+  "rooms": {
+    "pageTitle": "Salles",
+    "addNew": "Ajouter une salle",
+    "createTitle": "Nouvelle salle",
+    "editTitle": "Modifier la salle",
+    "deleteTitle": "Supprimer la salle",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "datacenter": "Centre de données",
+      "roomType": "Type de salle",
+      "coolingType": "Type de refroidissement",
+      "status": "Statut"
+    },
+    "fields": {
+      "datacenter": "Centre de données",
+      "name": "Nom",
+      "code": "Code",
+      "roomType": "Type de salle",
+      "floor": "Étage",
+      "areaSqm": "Surface (m²)",
+      "maxPowerKw": "Puissance max (kW)",
+      "coolingType": "Type de refroidissement",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "roomType": {
+      "SERVER_ROOM": "Salle serveurs",
+      "NETWORK_ROOM": "Salle réseau",
+      "STORAGE_ROOM": "Salle de stockage",
+      "UPS_ROOM": "Salle onduleurs",
+      "COOLING_PLANT": "Centrale de refroidissement",
+      "ELECTRICAL_ROOM": "Salle électrique"
+    },
+    "coolingType": {
+      "CRAC": "CRAC (climatisation de précision)",
+      "CRAH": "CRAH (traitement d'air)",
+      "IN_ROW": "Refroidissement en rangée",
+      "REAR_DOOR_HEAT_EXCHANGER": "Échangeur de chaleur porte arrière",
+      "DIRECT_LIQUID_COOLING": "Refroidissement liquide direct",
+      "IMMERSION_COOLING": "Refroidissement par immersion"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Hors service"
+    }
+  },
+  "racks": {
+    "pageTitle": "Racks",
+    "addNew": "Ajouter une rack",
+    "createTitle": "Nouvelle rack",
+    "editTitle": "Modifier la rack",
+    "deleteTitle": "Supprimer la rack",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "room": "Salle",
+      "heightU": "Hauteur",
+      "containment": "Confinement",
+      "status": "Statut"
+    },
+    "fields": {
+      "room": "Salle",
+      "name": "Nom",
+      "code": "Code",
+      "heightU": "Hauteur (U)",
+      "powerCapacityKw": "Capacité de puissance (kW)",
+      "currentPowerDrawKw": "Tirage actuel (kW)",
+      "maxWeightKg": "Poids max (kg)",
+      "containment": "Confinement",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "containment": {
+      "HOT_AISLE": "Allée chaude",
+      "COLD_AISLE": "Allée froide",
+      "NONE": "Aucun"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Hors service",
+      "RESERVED": "Réservé"
+    }
+  },
+  "devices": {
+    "pageTitle": "Équipements",
+    "addNew": "Ajouter un équipement",
+    "createTitle": "Nouvel équipement",
+    "editTitle": "Modifier l'équipement",
+    "deleteTitle": "Supprimer l'équipement",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le numéro de série est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "serialNumber": "Numéro de série",
+      "rack": "Rack",
+      "deviceType": "Type",
+      "status": "Statut"
+    },
+    "fields": {
+      "rack": "Rack",
+      "name": "Nom",
+      "serialNumber": "Numéro de série",
+      "deviceType": "Type d'équipement",
+      "manufacturer": "Fabricant",
+      "model": "Modèle",
+      "positionUStart": "Position de départ (U)",
+      "heightU": "Hauteur (U)",
+      "powerConsumptionW": "Consommation (W)",
+      "managementIp": "IP de gestion",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "deviceType": {
+      "SERVER": "Serveur",
+      "GPU_AI_NODE": "Nœud GPU / IA",
+      "SWITCH": "Commutateur",
+      "ROUTER": "Routeur",
+      "FIREWALL": "Pare-feu",
+      "LOAD_BALANCER": "Répartiteur de charge",
+      "STORAGE_ARRAY": "Baie de stockage",
+      "PDU": "PDU",
+      "UPS": "Onduleur",
+      "COOLING_UNIT": "Unité de climatisation",
+      "OTHER": "Autre"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Hors service",
+      "SPARE": "En réserve"
+    }
+  },
+  "networkRoles": {
+    "pageTitle": "Rôles réseau",
+    "addNew": "Ajouter un rôle réseau",
+    "createTitle": "Nouveau rôle réseau",
+    "editTitle": "Modifier le rôle réseau",
+    "deleteTitle": "Supprimer le rôle réseau",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et que l'équipement n'a pas déjà un rôle assigné.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "device": "Équipement",
+      "roleType": "Rôle fabric",
+      "asn": "ASN",
+      "status": "Statut"
+    },
+    "fields": {
+      "device": "Équipement",
+      "name": "Nom",
+      "code": "Code",
+      "roleType": "Rôle fabric",
+      "asn": "ASN BGP",
+      "loopbackIp": "IP loopback",
+      "podNumber": "Numéro de pod",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "roleType": {
+      "SUPER_SPINE": "Super Spine",
+      "SPINE": "Spine",
+      "LEAF": "Leaf",
+      "BORDER_LEAF": "Border Leaf",
+      "TOR_SWITCH": "Commutateur Top-of-Rack",
+      "ROUTE_REFLECTOR": "Route Reflector"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Hors service",
+      "PLANNED": "Planifié"
+    }
+  },
+  "overlayNetworks": {
+    "pageTitle": "Réseaux overlay VXLAN/EVPN",
+    "addNew": "Ajouter un réseau overlay",
+    "createTitle": "Nouveau réseau overlay",
+    "editTitle": "Modifier le réseau overlay",
+    "deleteTitle": "Supprimer le réseau overlay",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code et le VNI sont uniques et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "datacenter": "Centre de données",
+      "vni": "VNI",
+      "overlayType": "Type d'overlay",
+      "status": "Statut"
+    },
+    "fields": {
+      "datacenter": "Centre de données",
+      "name": "Nom",
+      "code": "Code",
+      "vni": "VNI",
+      "overlayType": "Type d'overlay",
+      "vlanId": "ID VLAN",
+      "vrfName": "Nom VRF",
+      "routeDistinguisher": "Route Distinguisher",
+      "routeTargets": "Route Targets",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "overlayType": {
+      "L2_EVPN": "L2 EVPN (Overlay ponté)",
+      "L3_EVPN": "L3 EVPN (Overlay routé / VRF)",
+      "ANYCAST_GATEWAY": "Passerelle Anycast"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Hors service",
+      "PLANNED": "Planifié"
+    }
+  },
+  "topologyLinks": {
+    "pageTitle": "Vue de topologie interactive",
+    "addNew": "Ajouter un lien de topologie",
+    "createTitle": "Nouveau lien de topologie",
+    "editTitle": "Modifier le lien de topologie",
+    "deleteTitle": "Supprimer le lien de topologie",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et que la source/cible sont différentes.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "source": "Source",
+      "target": "Cible",
+      "linkType": "Type de lien",
+      "speedGbps": "Débit",
+      "status": "Statut"
+    },
+    "fields": {
+      "source": "Rôle source",
+      "target": "Rôle cible",
+      "name": "Nom",
+      "code": "Code",
+      "linkType": "Type de lien",
+      "speedGbps": "Débit (Gbps)",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "linkType": {
+      "FABRIC_UPLINK": "Liaison montante fabric",
+      "FABRIC_DOWNLINK": "Liaison descendante fabric",
+      "INTER_POD": "Inter-pod",
+      "DCI": "Interconnexion de centres de données",
+      "PEER_LINK": "Liaison de peering"
+    },
+    "status": {
+      "UP": "Actif",
+      "DOWN": "Inactif",
+      "DEGRADED": "Dégradé",
+      "PLANNED": "Planifié"
+    }
   }
 }

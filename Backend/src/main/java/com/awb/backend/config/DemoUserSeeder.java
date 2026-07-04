@@ -6,6 +6,7 @@ import com.awb.backend.core.repository.UserRepository;
 import java.time.Instant;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
  * only - do not rely on this for production user provisioning.
  */
 @Component
+@Order(0)
 public class DemoUserSeeder implements CommandLineRunner {
 
   private final UserRepository userRepository;

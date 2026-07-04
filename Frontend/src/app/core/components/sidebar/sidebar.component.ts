@@ -32,4 +32,11 @@ export class SidebarComponent {
   protected isGroupActive(section: NavSection): boolean {
     return (section.children ?? []).some((leaf) => this.router.url.includes(`/${leaf.path}`));
   }
+
+  // An empty-string routerLink command resolves to the app's absolute root instead of staying
+  // relative to the current route (a documented Angular Router quirk) — '.' is the correct way
+  // to link to the shell's own index route (Dashboard).
+  protected resolveLink(path: string): string {
+    return path === '' ? '.' : path;
+  }
 }

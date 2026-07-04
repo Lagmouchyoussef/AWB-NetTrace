@@ -1,0 +1,99 @@
+<h2 mat-dialog-title>
+  {{ (isEdit ? 'devices.editTitle' : 'devices.createTitle') | translate }}
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'devices.fields.rack' | translate }}</mat-label>
+        <mat-select formControlName="rackId">
+          @for (rack of racks(); track rack.id) {
+            <mat-option [value]="rack.id">{{ rack.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'devices.fields.name' | translate }}</mat-label>
+        <input matInput formControlName="name" required />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <mat-error>{{ 'devices.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'devices.fields.serialNumber' | translate }}</mat-label>
+        <input matInput formControlName="serialNumber" required />
+        @if (form.controls.serialNumber.invalid && form.controls.serialNumber.touched) {
+          <mat-error>{{ 'devices.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'devices.fields.deviceType' | translate }}</mat-label>
+        <mat-select formControlName="deviceType">
+          @for (type of deviceTypes; track type) {
+            <mat-option [value]="type">{{ 'devices.deviceType.' + type | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'devices.fields.status' | translate }}</mat-label>
+        <mat-select formControlName="status">
+          @for (status of statuses; track status) {
+            <mat-option [value]="status">{{ 'devices.status.' + status | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'devices.fields.manufacturer' | translate }}</mat-label>
+        <input matInput formControlName="manufacturer" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'devices.fields.model' | translate }}</mat-label>
+        <input matInput formControlName="model" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'devices.fields.positionUStart' | translate }}</mat-label>
+        <input matInput type="number" formControlName="positionUStart" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'devices.fields.heightU' | translate }}</mat-label>
+        <input matInput type="number" formControlName="heightU" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'devices.fields.powerConsumptionW' | translate }}</mat-label>
+        <input matInput type="number" formControlName="powerConsumptionW" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'devices.fields.managementIp' | translate }}</mat-label>
+        <input matInput formControlName="managementIp" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'devices.fields.notes' | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+
+    @if (errorKey()) {
+      <p class="form-error">{{ errorKey() | translate }}</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" class="dialog-button dialog-button-cancel" (click)="cancel()">
+      {{ 'common.cancel' | translate }}
+    </button>
+    <button type="submit" class="dialog-button dialog-button-confirm" [disabled]="saving()">
+      {{ (saving() ? 'common.saving' : 'common.save') | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>

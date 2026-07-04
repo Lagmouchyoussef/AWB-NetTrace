@@ -75,31 +75,42 @@
     </mat-menu>
 
     <button type="button" class="icon-button" [matMenuTriggerFor]="languageMenu">
-      <mat-icon fontSet="material-symbols-outlined">language</mat-icon>
+      <app-flag-icon [language]="language()" />
       <mat-icon fontSet="material-symbols-outlined" class="dropdown-chevron">expand_more</mat-icon>
     </button>
     <mat-menu #languageMenu="matMenu">
       <button mat-menu-item (click)="setLanguage('en')">
+        <app-flag-icon language="en" />
         English
         @if (language() === 'en') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
       <button mat-menu-item (click)="setLanguage('fr')">
+        <app-flag-icon language="fr" />
         Français
         @if (language() === 'fr') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
       <button mat-menu-item (click)="setLanguage('ar')">
+        <app-flag-icon language="ar" />
         العربية
         @if (language() === 'ar') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
       <button mat-menu-item (click)="setLanguage('es')">
+        <app-flag-icon language="es" />
         Español
         @if (language() === 'es') {
+          <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
+        }
+      </button>
+      <button mat-menu-item (click)="setLanguage('zh')">
+        <app-flag-icon language="zh" />
+        中文
+        @if (language() === 'zh') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>

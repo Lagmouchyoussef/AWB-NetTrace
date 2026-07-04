@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'datacenters.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'datacenters.fields.city' | translate }}</dt>
+    <dd>{{ data.city }}</dd>
+
+    <dt>{{ 'datacenters.fields.country' | translate }}</dt>
+    <dd>{{ data.country }}</dd>
+
+    @if (data.address) {
+      <dt>{{ 'datacenters.fields.address' | translate }}</dt>
+      <dd>{{ data.address }}</dd>
+    }
+
+    <dt>{{ 'datacenters.fields.tier' | translate }}</dt>
+    <dd>{{ 'datacenters.tier.' + data.tier | translate }}</dd>
+
+    <dt>{{ 'datacenters.fields.status' | translate }}</dt>
+    <dd>{{ 'datacenters.status.' + data.status | translate }}</dd>
+
+    @if (data.totalPowerKw !== null) {
+      <dt>{{ 'datacenters.fields.totalPowerKw' | translate }}</dt>
+      <dd>{{ data.totalPowerKw }} kW</dd>
+    }
+
+    @if (data.totalSpaceSqm !== null) {
+      <dt>{{ 'datacenters.fields.totalSpaceSqm' | translate }}</dt>
+      <dd>{{ data.totalSpaceSqm }} m²</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'datacenters.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

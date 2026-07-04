@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'overlayNetworks.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'overlayNetworks.fields.datacenter' | translate }}</dt>
+    <dd>{{ data.datacenterName }}</dd>
+
+    <dt>{{ 'overlayNetworks.fields.vni' | translate }}</dt>
+    <dd>{{ data.vni }}</dd>
+
+    <dt>{{ 'overlayNetworks.fields.overlayType' | translate }}</dt>
+    <dd>{{ 'overlayNetworks.overlayType.' + data.overlayType | translate }}</dd>
+
+    <dt>{{ 'overlayNetworks.fields.status' | translate }}</dt>
+    <dd>{{ 'overlayNetworks.status.' + data.status | translate }}</dd>
+
+    @if (data.vlanId !== null) {
+      <dt>{{ 'overlayNetworks.fields.vlanId' | translate }}</dt>
+      <dd>{{ data.vlanId }}</dd>
+    }
+
+    @if (data.vrfName) {
+      <dt>{{ 'overlayNetworks.fields.vrfName' | translate }}</dt>
+      <dd>{{ data.vrfName }}</dd>
+    }
+
+    @if (data.routeDistinguisher) {
+      <dt>{{ 'overlayNetworks.fields.routeDistinguisher' | translate }}</dt>
+      <dd>{{ data.routeDistinguisher }}</dd>
+    }
+
+    @if (data.routeTargets) {
+      <dt>{{ 'overlayNetworks.fields.routeTargets' | translate }}</dt>
+      <dd>{{ data.routeTargets }}</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'overlayNetworks.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

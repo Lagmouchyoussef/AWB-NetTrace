@@ -69,5 +69,347 @@
     "welcome": "مرحبًا، {{user}} — يؤكد الخادم الخلفي الدور {{role}}.",
     "unableToReach": "تعذر الوصول إلى الخادم الخلفي لهذا الدور.",
     "loading": "جارٍ التحميل..."
+  },
+  "common": {
+    "search": "بحث...",
+    "exportCsv": "تصدير CSV",
+    "view": "عرض",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "noResults": "لم يتم العثور على نتائج.",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "save": "حفظ",
+    "saving": "جارٍ الحفظ...",
+    "close": "إغلاق",
+    "itemsPerPage": "عناصر لكل صفحة:",
+    "nextPage": "الصفحة التالية",
+    "previousPage": "الصفحة السابقة",
+    "firstPage": "الصفحة الأولى",
+    "lastPage": "الصفحة الأخيرة",
+    "of": "من"
+  },
+  "datacenters": {
+    "pageTitle": "مراكز البيانات",
+    "addNew": "إضافة مركز بيانات",
+    "createTitle": "مركز بيانات جديد",
+    "editTitle": "تعديل مركز البيانات",
+    "deleteTitle": "حذف مركز البيانات",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "city": "المدينة",
+      "tier": "المستوى",
+      "status": "الحالة"
+    },
+    "fields": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "city": "المدينة",
+      "country": "البلد",
+      "address": "العنوان",
+      "tier": "المستوى",
+      "status": "الحالة",
+      "totalPowerKw": "إجمالي الطاقة (كيلوواط)",
+      "totalSpaceSqm": "إجمالي المساحة (م²)",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "tier": {
+      "TIER_I": "المستوى الأول",
+      "TIER_II": "المستوى الثاني",
+      "TIER_III": "المستوى الثالث",
+      "TIER_IV": "المستوى الرابع"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "MAINTENANCE": "قيد الصيانة",
+      "DECOMMISSIONED": "خارج الخدمة"
+    }
+  },
+  "rooms": {
+    "pageTitle": "الغرف",
+    "addNew": "إضافة غرفة",
+    "createTitle": "غرفة جديدة",
+    "editTitle": "تعديل الغرفة",
+    "deleteTitle": "حذف الغرفة",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "datacenter": "مركز البيانات",
+      "roomType": "نوع الغرفة",
+      "coolingType": "نوع التبريد",
+      "status": "الحالة"
+    },
+    "fields": {
+      "datacenter": "مركز البيانات",
+      "name": "الاسم",
+      "code": "الرمز",
+      "roomType": "نوع الغرفة",
+      "floor": "الطابق",
+      "areaSqm": "المساحة (م²)",
+      "maxPowerKw": "الحد الأقصى للطاقة (كيلوواط)",
+      "coolingType": "نوع التبريد",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "roomType": {
+      "SERVER_ROOM": "غرفة الخوادم",
+      "NETWORK_ROOM": "غرفة الشبكات",
+      "STORAGE_ROOM": "غرفة التخزين",
+      "UPS_ROOM": "غرفة مزودات الطاقة",
+      "COOLING_PLANT": "محطة التبريد",
+      "ELECTRICAL_ROOM": "الغرفة الكهربائية"
+    },
+    "coolingType": {
+      "CRAC": "CRAC (تكييف دقيق)",
+      "CRAH": "CRAH (معالج هواء)",
+      "IN_ROW": "تبريد داخل الصف",
+      "REAR_DOOR_HEAT_EXCHANGER": "مبادل حراري بالباب الخلفي",
+      "DIRECT_LIQUID_COOLING": "تبريد سائل مباشر",
+      "IMMERSION_COOLING": "التبريد بالغمر"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "MAINTENANCE": "قيد الصيانة",
+      "DECOMMISSIONED": "خارج الخدمة"
+    }
+  },
+  "racks": {
+    "pageTitle": "الخزائن",
+    "addNew": "إضافة خزانة",
+    "createTitle": "خزانة جديدة",
+    "editTitle": "تعديل الخزانة",
+    "deleteTitle": "حذف الخزانة",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "room": "الغرفة",
+      "heightU": "الارتفاع",
+      "containment": "الاحتواء",
+      "status": "الحالة"
+    },
+    "fields": {
+      "room": "الغرفة",
+      "name": "الاسم",
+      "code": "الرمز",
+      "heightU": "الارتفاع (وحدة)",
+      "powerCapacityKw": "سعة الطاقة (كيلوواط)",
+      "currentPowerDrawKw": "استهلاك الطاقة الحالي (كيلوواط)",
+      "maxWeightKg": "الحد الأقصى للوزن (كجم)",
+      "containment": "الاحتواء",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "containment": {
+      "HOT_AISLE": "الممر الساخن",
+      "COLD_AISLE": "الممر البارد",
+      "NONE": "بدون"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "MAINTENANCE": "قيد الصيانة",
+      "DECOMMISSIONED": "خارج الخدمة",
+      "RESERVED": "محجوز"
+    }
+  },
+  "devices": {
+    "pageTitle": "الأجهزة",
+    "addNew": "إضافة جهاز",
+    "createTitle": "جهاز جديد",
+    "editTitle": "تعديل الجهاز",
+    "deleteTitle": "حذف الجهاز",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرقم التسلسلي فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "serialNumber": "الرقم التسلسلي",
+      "rack": "الخزانة",
+      "deviceType": "النوع",
+      "status": "الحالة"
+    },
+    "fields": {
+      "rack": "الخزانة",
+      "name": "الاسم",
+      "serialNumber": "الرقم التسلسلي",
+      "deviceType": "نوع الجهاز",
+      "manufacturer": "الشركة المصنعة",
+      "model": "الطراز",
+      "positionUStart": "موضع البداية (وحدة)",
+      "heightU": "الارتفاع (وحدة)",
+      "powerConsumptionW": "استهلاك الطاقة (واط)",
+      "managementIp": "عنوان IP للإدارة",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "deviceType": {
+      "SERVER": "خادم",
+      "GPU_AI_NODE": "عقدة GPU / ذكاء اصطناعي",
+      "SWITCH": "محول",
+      "ROUTER": "موجه",
+      "FIREWALL": "جدار حماية",
+      "LOAD_BALANCER": "موازن الحمل",
+      "STORAGE_ARRAY": "مصفوفة تخزين",
+      "PDU": "وحدة توزيع الطاقة",
+      "UPS": "مزود طاقة لا انقطاعي",
+      "COOLING_UNIT": "وحدة تبريد",
+      "OTHER": "أخرى"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "MAINTENANCE": "قيد الصيانة",
+      "DECOMMISSIONED": "خارج الخدمة",
+      "SPARE": "احتياطي"
+    }
+  },
+  "networkRoles": {
+    "pageTitle": "أدوار الشبكة",
+    "addNew": "إضافة دور شبكة",
+    "createTitle": "دور شبكة جديد",
+    "editTitle": "تعديل دور الشبكة",
+    "deleteTitle": "حذف دور الشبكة",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وأن الجهاز لا يملك دورًا مسندًا بالفعل.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "device": "الجهاز",
+      "roleType": "دور الشبكة",
+      "asn": "ASN",
+      "status": "الحالة"
+    },
+    "fields": {
+      "device": "الجهاز",
+      "name": "الاسم",
+      "code": "الرمز",
+      "roleType": "دور الشبكة",
+      "asn": "ASN BGP",
+      "loopbackIp": "عنوان Loopback",
+      "podNumber": "رقم الوحدة (Pod)",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "roleType": {
+      "SUPER_SPINE": "سوبر سباين",
+      "SPINE": "سباين",
+      "LEAF": "ليف",
+      "BORDER_LEAF": "ليف حدودي",
+      "TOR_SWITCH": "مفتاح أعلى الخزانة",
+      "ROUTE_REFLECTOR": "عاكس المسارات"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "MAINTENANCE": "قيد الصيانة",
+      "DECOMMISSIONED": "خارج الخدمة",
+      "PLANNED": "مخطط له"
+    }
+  },
+  "overlayNetworks": {
+    "pageTitle": "شبكات Overlay VXLAN/EVPN",
+    "addNew": "إضافة شبكة Overlay",
+    "createTitle": "شبكة Overlay جديدة",
+    "editTitle": "تعديل شبكة Overlay",
+    "deleteTitle": "حذف شبكة Overlay",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز و VNI فريدان وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "datacenter": "مركز البيانات",
+      "vni": "VNI",
+      "overlayType": "نوع Overlay",
+      "status": "الحالة"
+    },
+    "fields": {
+      "datacenter": "مركز البيانات",
+      "name": "الاسم",
+      "code": "الرمز",
+      "vni": "VNI",
+      "overlayType": "نوع Overlay",
+      "vlanId": "معرّف VLAN",
+      "vrfName": "اسم VRF",
+      "routeDistinguisher": "Route Distinguisher",
+      "routeTargets": "Route Targets",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "overlayType": {
+      "L2_EVPN": "L2 EVPN (Overlay جسري)",
+      "L3_EVPN": "L3 EVPN (Overlay موجّه / VRF)",
+      "ANYCAST_GATEWAY": "بوابة Anycast"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "MAINTENANCE": "قيد الصيانة",
+      "DECOMMISSIONED": "خارج الخدمة",
+      "PLANNED": "مخطط له"
+    }
+  },
+  "topologyLinks": {
+    "pageTitle": "عرض الطوبولوجيا التفاعلي",
+    "addNew": "إضافة رابط طوبولوجيا",
+    "createTitle": "رابط طوبولوجيا جديد",
+    "editTitle": "تعديل رابط الطوبولوجيا",
+    "deleteTitle": "حذف رابط الطوبولوجيا",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وأن المصدر والهدف مختلفان.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "source": "المصدر",
+      "target": "الهدف",
+      "linkType": "نوع الرابط",
+      "speedGbps": "السرعة",
+      "status": "الحالة"
+    },
+    "fields": {
+      "source": "الدور المصدر",
+      "target": "الدور الهدف",
+      "name": "الاسم",
+      "code": "الرمز",
+      "linkType": "نوع الرابط",
+      "speedGbps": "السرعة (جيجابت/ث)",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "linkType": {
+      "FABRIC_UPLINK": "رابط صاعد للنسيج",
+      "FABRIC_DOWNLINK": "رابط هابط للنسيج",
+      "INTER_POD": "بين الوحدات (Pods)",
+      "DCI": "ربط مراكز البيانات",
+      "PEER_LINK": "رابط نظير"
+    },
+    "status": {
+      "UP": "متصل",
+      "DOWN": "منقطع",
+      "DEGRADED": "متدهور",
+      "PLANNED": "مخطط له"
+    }
   }
 }

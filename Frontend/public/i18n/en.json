@@ -69,5 +69,347 @@
     "welcome": "Welcome, {{user}} — backend confirms role {{role}}.",
     "unableToReach": "Unable to reach the backend for this role.",
     "loading": "Loading..."
+  },
+  "common": {
+    "search": "Search...",
+    "exportCsv": "Export CSV",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "noResults": "No results found.",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "saving": "Saving...",
+    "close": "Close",
+    "itemsPerPage": "Items per page:",
+    "nextPage": "Next page",
+    "previousPage": "Previous page",
+    "firstPage": "First page",
+    "lastPage": "Last page",
+    "of": "of"
+  },
+  "datacenters": {
+    "pageTitle": "Datacenters",
+    "addNew": "Add Datacenter",
+    "createTitle": "New Datacenter",
+    "editTitle": "Edit Datacenter",
+    "deleteTitle": "Delete Datacenter",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "city": "City",
+      "tier": "Tier",
+      "status": "Status"
+    },
+    "fields": {
+      "name": "Name",
+      "code": "Code",
+      "city": "City",
+      "country": "Country",
+      "address": "Address",
+      "tier": "Tier",
+      "status": "Status",
+      "totalPowerKw": "Total Power (kW)",
+      "totalSpaceSqm": "Total Space (m²)",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "tier": {
+      "TIER_I": "Tier I",
+      "TIER_II": "Tier II",
+      "TIER_III": "Tier III",
+      "TIER_IV": "Tier IV"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Decommissioned"
+    }
+  },
+  "rooms": {
+    "pageTitle": "Rooms",
+    "addNew": "Add Room",
+    "createTitle": "New Room",
+    "editTitle": "Edit Room",
+    "deleteTitle": "Delete Room",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "datacenter": "Datacenter",
+      "roomType": "Room Type",
+      "coolingType": "Cooling Type",
+      "status": "Status"
+    },
+    "fields": {
+      "datacenter": "Datacenter",
+      "name": "Name",
+      "code": "Code",
+      "roomType": "Room Type",
+      "floor": "Floor",
+      "areaSqm": "Area (m²)",
+      "maxPowerKw": "Max Power (kW)",
+      "coolingType": "Cooling Type",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "roomType": {
+      "SERVER_ROOM": "Server Room",
+      "NETWORK_ROOM": "Network Room",
+      "STORAGE_ROOM": "Storage Room",
+      "UPS_ROOM": "UPS Room",
+      "COOLING_PLANT": "Cooling Plant",
+      "ELECTRICAL_ROOM": "Electrical Room"
+    },
+    "coolingType": {
+      "CRAC": "CRAC (Computer Room AC)",
+      "CRAH": "CRAH (Computer Room Air Handler)",
+      "IN_ROW": "In-Row Cooling",
+      "REAR_DOOR_HEAT_EXCHANGER": "Rear-Door Heat Exchanger",
+      "DIRECT_LIQUID_COOLING": "Direct Liquid Cooling",
+      "IMMERSION_COOLING": "Immersion Cooling"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Decommissioned"
+    }
+  },
+  "racks": {
+    "pageTitle": "Racks",
+    "addNew": "Add Rack",
+    "createTitle": "New Rack",
+    "editTitle": "Edit Rack",
+    "deleteTitle": "Delete Rack",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "room": "Room",
+      "heightU": "Height",
+      "containment": "Containment",
+      "status": "Status"
+    },
+    "fields": {
+      "room": "Room",
+      "name": "Name",
+      "code": "Code",
+      "heightU": "Height (U)",
+      "powerCapacityKw": "Power Capacity (kW)",
+      "currentPowerDrawKw": "Current Power Draw (kW)",
+      "maxWeightKg": "Max Weight (kg)",
+      "containment": "Containment",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "containment": {
+      "HOT_AISLE": "Hot Aisle",
+      "COLD_AISLE": "Cold Aisle",
+      "NONE": "None"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Decommissioned",
+      "RESERVED": "Reserved"
+    }
+  },
+  "devices": {
+    "pageTitle": "Devices",
+    "addNew": "Add Device",
+    "createTitle": "New Device",
+    "editTitle": "Edit Device",
+    "deleteTitle": "Delete Device",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the serial number is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "serialNumber": "Serial Number",
+      "rack": "Rack",
+      "deviceType": "Type",
+      "status": "Status"
+    },
+    "fields": {
+      "rack": "Rack",
+      "name": "Name",
+      "serialNumber": "Serial Number",
+      "deviceType": "Device Type",
+      "manufacturer": "Manufacturer",
+      "model": "Model",
+      "positionUStart": "Start Position (U)",
+      "heightU": "Height (U)",
+      "powerConsumptionW": "Power Consumption (W)",
+      "managementIp": "Management IP",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "deviceType": {
+      "SERVER": "Server",
+      "GPU_AI_NODE": "GPU / AI Node",
+      "SWITCH": "Switch",
+      "ROUTER": "Router",
+      "FIREWALL": "Firewall",
+      "LOAD_BALANCER": "Load Balancer",
+      "STORAGE_ARRAY": "Storage Array",
+      "PDU": "PDU",
+      "UPS": "UPS",
+      "COOLING_UNIT": "Cooling Unit",
+      "OTHER": "Other"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Decommissioned",
+      "SPARE": "Spare"
+    }
+  },
+  "networkRoles": {
+    "pageTitle": "Network Roles",
+    "addNew": "Add Network Role",
+    "createTitle": "New Network Role",
+    "editTitle": "Edit Network Role",
+    "deleteTitle": "Delete Network Role",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and the device does not already have a role assigned.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "device": "Device",
+      "roleType": "Fabric Role",
+      "asn": "ASN",
+      "status": "Status"
+    },
+    "fields": {
+      "device": "Device",
+      "name": "Name",
+      "code": "Code",
+      "roleType": "Fabric Role",
+      "asn": "BGP ASN",
+      "loopbackIp": "Loopback IP",
+      "podNumber": "Pod Number",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "roleType": {
+      "SUPER_SPINE": "Super Spine",
+      "SPINE": "Spine",
+      "LEAF": "Leaf",
+      "BORDER_LEAF": "Border Leaf",
+      "TOR_SWITCH": "Top-of-Rack Switch",
+      "ROUTE_REFLECTOR": "Route Reflector"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Decommissioned",
+      "PLANNED": "Planned"
+    }
+  },
+  "overlayNetworks": {
+    "pageTitle": "VXLAN/EVPN Overlay Networks",
+    "addNew": "Add Overlay Network",
+    "createTitle": "New Overlay Network",
+    "editTitle": "Edit Overlay Network",
+    "deleteTitle": "Delete Overlay Network",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code and VNI are unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "datacenter": "Datacenter",
+      "vni": "VNI",
+      "overlayType": "Overlay Type",
+      "status": "Status"
+    },
+    "fields": {
+      "datacenter": "Datacenter",
+      "name": "Name",
+      "code": "Code",
+      "vni": "VNI",
+      "overlayType": "Overlay Type",
+      "vlanId": "VLAN ID",
+      "vrfName": "VRF Name",
+      "routeDistinguisher": "Route Distinguisher",
+      "routeTargets": "Route Targets",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "overlayType": {
+      "L2_EVPN": "L2 EVPN (Bridged Overlay)",
+      "L3_EVPN": "L3 EVPN (Routed Overlay / VRF)",
+      "ANYCAST_GATEWAY": "Anycast Gateway"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Decommissioned",
+      "PLANNED": "Planned"
+    }
+  },
+  "topologyLinks": {
+    "pageTitle": "Interactive Topology View",
+    "addNew": "Add Topology Link",
+    "createTitle": "New Topology Link",
+    "editTitle": "Edit Topology Link",
+    "deleteTitle": "Delete Topology Link",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and the source/target are different.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "source": "Source",
+      "target": "Target",
+      "linkType": "Link Type",
+      "speedGbps": "Speed",
+      "status": "Status"
+    },
+    "fields": {
+      "source": "Source Role",
+      "target": "Target Role",
+      "name": "Name",
+      "code": "Code",
+      "linkType": "Link Type",
+      "speedGbps": "Speed (Gbps)",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "linkType": {
+      "FABRIC_UPLINK": "Fabric Uplink",
+      "FABRIC_DOWNLINK": "Fabric Downlink",
+      "INTER_POD": "Inter-Pod",
+      "DCI": "Data Center Interconnect",
+      "PEER_LINK": "Peer Link"
+    },
+    "status": {
+      "UP": "Up",
+      "DOWN": "Down",
+      "DEGRADED": "Degraded",
+      "PLANNED": "Planned"
+    }
   }
 }

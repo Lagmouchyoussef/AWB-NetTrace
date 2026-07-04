@@ -44,7 +44,7 @@
       } @else {
         <a
           class="sidebar-link sidebar-direct"
-          [routerLink]="section.path"
+          [routerLink]="resolveLink(section.path ?? '')"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{ exact: true }"
           [matTooltip]="collapsed() ? (section.labelKey | translate) : ''"
