@@ -34,13 +34,23 @@ services:
 
   frontend:
     build: ./Frontend
-    ports:
-      - "4200:4200"
+    expose:
+      - "4201"
     volumes:
       - ./Frontend:/app
       - frontend-node-modules:/app/node_modules
     depends_on:
       - backend
+
+  frontend-proxy:
+    image: nginx:1.27-alpine
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./Frontend/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./Frontend/certs:/etc/nginx/certs:ro
+    depends_on:
+      - frontend
 
 volumes:
   db-data:

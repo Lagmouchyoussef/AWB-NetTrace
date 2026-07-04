@@ -1,17 +1,51 @@
 .login-page {
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: max(1.5rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('/login-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* iOS Safari zooms in on input focus when its font-size is below 16px. */
+@media (max-width: 480px) {
+  .login-page {
+    background-attachment: scroll;
+  }
+
+  .login-field input {
+    font-size: 16px;
+  }
+
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-logo img {
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-card-border {
+    max-width: 100%;
+  }
+
+  .login-card {
+    padding: 1.75rem 1.25rem;
+  }
 }
 
 @property --border-angle {
