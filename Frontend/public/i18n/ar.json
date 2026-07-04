@@ -411,5 +411,134 @@
       "DEGRADED": "متدهور",
       "PLANNED": "مخطط له"
     }
+  },
+  "cables": {
+    "pageTitle": "الكابلات",
+    "addNew": "إضافة كابل",
+    "createTitle": "كابل جديد",
+    "editTitle": "تعديل الكابل",
+    "deleteTitle": "حذف الكابل",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وأن المصدر والهدف مختلفان.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "source": "المصدر",
+      "target": "الهدف",
+      "cableType": "نوع الكابل",
+      "status": "الحالة"
+    },
+    "fields": {
+      "source": "الجهاز المصدر",
+      "target": "الجهاز الهدف",
+      "name": "الاسم",
+      "code": "الرمز",
+      "cableType": "نوع الكابل",
+      "lengthMeters": "الطول (م)",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "cableType": {
+      "FIBER_OM3": "ألياف OM3 (متعدد الأنماط)",
+      "FIBER_OM4": "ألياف OM4 (متعدد الأنماط)",
+      "FIBER_OM5": "ألياف OM5 (متعدد الأنماط)",
+      "FIBER_OS2": "ألياف OS2 (أحادي النمط)",
+      "COPPER_CAT6A": "نحاس Cat6A",
+      "DAC_COPPER": "DAC (نحاس اتصال مباشر)",
+      "AOC": "AOC (كابل بصري نشط)"
+    },
+    "status": {
+      "CONNECTED": "متصل",
+      "DISCONNECTED": "غير متصل",
+      "FAULTY": "معطل",
+      "PLANNED": "مخطط له"
+    }
+  },
+  "connectors": {
+    "pageTitle": "الموصلات والمحولات الضوئية",
+    "addNew": "إضافة موصل",
+    "createTitle": "موصل جديد",
+    "editTitle": "تعديل الموصل",
+    "deleteTitle": "حذف الموصل",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "device": "الجهاز",
+      "formFactor": "الشكل",
+      "speedGbps": "السرعة",
+      "status": "الحالة"
+    },
+    "fields": {
+      "device": "الجهاز",
+      "name": "الاسم",
+      "code": "الرمز",
+      "formFactor": "الشكل",
+      "connectorType": "نوع الموصل",
+      "speedGbps": "السرعة (جيجابت/ث)",
+      "wavelengthNm": "الطول الموجي (نانومتر)",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "formFactor": {
+      "SFP_PLUS": "SFP+ (10 جيجا)",
+      "SFP28": "SFP28 (25 جيجا)",
+      "QSFP28": "QSFP28 (100 جيجا)",
+      "QSFP_DD": "QSFP-DD (400 جيجا)",
+      "OSFP": "OSFP (800 جيجا)"
+    },
+    "connectorType": {
+      "LC": "LC",
+      "MPO_MTP": "MPO/MTP",
+      "RJ45": "RJ45"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "SPARE": "احتياطي",
+      "FAULTY": "معطل",
+      "DECOMMISSIONED": "خارج الخدمة"
+    }
+  },
+  "pathTraces": {
+    "pageTitle": "تتبع المسار",
+    "addNew": "إضافة تتبع مسار",
+    "createTitle": "تتبع مسار جديد",
+    "editTitle": "تعديل تتبع المسار",
+    "deleteTitle": "حذف تتبع المسار",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وأن المصدر والهدف مختلفان.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "source": "المصدر",
+      "target": "الهدف",
+      "hopCount": "عدد القفزات",
+      "status": "الحالة"
+    },
+    "fields": {
+      "source": "الجهاز المصدر",
+      "target": "الجهاز الهدف",
+      "name": "الاسم",
+      "code": "الرمز",
+      "hopCount": "عدد القفزات",
+      "totalLengthMeters": "الطول الإجمالي (م)",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "status": {
+      "TRACED": "تم التتبع",
+      "PENDING": "قيد الانتظار",
+      "FAILED": "فشل"
+    }
   }
 }

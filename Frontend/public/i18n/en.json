@@ -411,5 +411,134 @@
       "DEGRADED": "Degraded",
       "PLANNED": "Planned"
     }
+  },
+  "cables": {
+    "pageTitle": "Cables",
+    "addNew": "Add Cable",
+    "createTitle": "New Cable",
+    "editTitle": "Edit Cable",
+    "deleteTitle": "Delete Cable",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and the source/target are different.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "source": "Source",
+      "target": "Target",
+      "cableType": "Cable Type",
+      "status": "Status"
+    },
+    "fields": {
+      "source": "Source Device",
+      "target": "Target Device",
+      "name": "Name",
+      "code": "Code",
+      "cableType": "Cable Type",
+      "lengthMeters": "Length (m)",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "cableType": {
+      "FIBER_OM3": "Fiber OM3 (Multimode)",
+      "FIBER_OM4": "Fiber OM4 (Multimode)",
+      "FIBER_OM5": "Fiber OM5 (Multimode)",
+      "FIBER_OS2": "Fiber OS2 (Singlemode)",
+      "COPPER_CAT6A": "Copper Cat6A",
+      "DAC_COPPER": "DAC (Direct Attach Copper)",
+      "AOC": "AOC (Active Optical Cable)"
+    },
+    "status": {
+      "CONNECTED": "Connected",
+      "DISCONNECTED": "Disconnected",
+      "FAULTY": "Faulty",
+      "PLANNED": "Planned"
+    }
+  },
+  "connectors": {
+    "pageTitle": "Connectors & Transceivers",
+    "addNew": "Add Connector",
+    "createTitle": "New Connector",
+    "editTitle": "Edit Connector",
+    "deleteTitle": "Delete Connector",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "device": "Device",
+      "formFactor": "Form Factor",
+      "speedGbps": "Speed",
+      "status": "Status"
+    },
+    "fields": {
+      "device": "Device",
+      "name": "Name",
+      "code": "Code",
+      "formFactor": "Form Factor",
+      "connectorType": "Connector Type",
+      "speedGbps": "Speed (Gbps)",
+      "wavelengthNm": "Wavelength (nm)",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "formFactor": {
+      "SFP_PLUS": "SFP+ (10G)",
+      "SFP28": "SFP28 (25G)",
+      "QSFP28": "QSFP28 (100G)",
+      "QSFP_DD": "QSFP-DD (400G)",
+      "OSFP": "OSFP (800G)"
+    },
+    "connectorType": {
+      "LC": "LC",
+      "MPO_MTP": "MPO/MTP",
+      "RJ45": "RJ45"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "SPARE": "Spare",
+      "FAULTY": "Faulty",
+      "DECOMMISSIONED": "Decommissioned"
+    }
+  },
+  "pathTraces": {
+    "pageTitle": "Path Tracing",
+    "addNew": "Add Path Trace",
+    "createTitle": "New Path Trace",
+    "editTitle": "Edit Path Trace",
+    "deleteTitle": "Delete Path Trace",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and the source/target are different.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "source": "Source",
+      "target": "Target",
+      "hopCount": "Hops",
+      "status": "Status"
+    },
+    "fields": {
+      "source": "Source Device",
+      "target": "Target Device",
+      "name": "Name",
+      "code": "Code",
+      "hopCount": "Hop Count",
+      "totalLengthMeters": "Total Length (m)",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "status": {
+      "TRACED": "Traced",
+      "PENDING": "Pending",
+      "FAILED": "Failed"
+    }
   }
 }

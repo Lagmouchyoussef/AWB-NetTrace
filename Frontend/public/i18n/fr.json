@@ -411,5 +411,134 @@
       "DEGRADED": "Dégradé",
       "PLANNED": "Planifié"
     }
+  },
+  "cables": {
+    "pageTitle": "Câbles",
+    "addNew": "Ajouter un câble",
+    "createTitle": "Nouveau câble",
+    "editTitle": "Modifier le câble",
+    "deleteTitle": "Supprimer le câble",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et que la source/cible sont différentes.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "source": "Source",
+      "target": "Cible",
+      "cableType": "Type de câble",
+      "status": "Statut"
+    },
+    "fields": {
+      "source": "Équipement source",
+      "target": "Équipement cible",
+      "name": "Nom",
+      "code": "Code",
+      "cableType": "Type de câble",
+      "lengthMeters": "Longueur (m)",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "cableType": {
+      "FIBER_OM3": "Fibre OM3 (multimode)",
+      "FIBER_OM4": "Fibre OM4 (multimode)",
+      "FIBER_OM5": "Fibre OM5 (multimode)",
+      "FIBER_OS2": "Fibre OS2 (monomode)",
+      "COPPER_CAT6A": "Cuivre Cat6A",
+      "DAC_COPPER": "DAC (cuivre à connexion directe)",
+      "AOC": "AOC (câble optique actif)"
+    },
+    "status": {
+      "CONNECTED": "Connecté",
+      "DISCONNECTED": "Déconnecté",
+      "FAULTY": "Défectueux",
+      "PLANNED": "Planifié"
+    }
+  },
+  "connectors": {
+    "pageTitle": "Connecteurs & transceivers",
+    "addNew": "Ajouter un connecteur",
+    "createTitle": "Nouveau connecteur",
+    "editTitle": "Modifier le connecteur",
+    "deleteTitle": "Supprimer le connecteur",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "device": "Équipement",
+      "formFactor": "Format",
+      "speedGbps": "Débit",
+      "status": "Statut"
+    },
+    "fields": {
+      "device": "Équipement",
+      "name": "Nom",
+      "code": "Code",
+      "formFactor": "Format",
+      "connectorType": "Type de connecteur",
+      "speedGbps": "Débit (Gbps)",
+      "wavelengthNm": "Longueur d'onde (nm)",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "formFactor": {
+      "SFP_PLUS": "SFP+ (10G)",
+      "SFP28": "SFP28 (25G)",
+      "QSFP28": "QSFP28 (100G)",
+      "QSFP_DD": "QSFP-DD (400G)",
+      "OSFP": "OSFP (800G)"
+    },
+    "connectorType": {
+      "LC": "LC",
+      "MPO_MTP": "MPO/MTP",
+      "RJ45": "RJ45"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "SPARE": "En réserve",
+      "FAULTY": "Défectueux",
+      "DECOMMISSIONED": "Hors service"
+    }
+  },
+  "pathTraces": {
+    "pageTitle": "Traçage de chemin",
+    "addNew": "Ajouter un traçage",
+    "createTitle": "Nouveau traçage",
+    "editTitle": "Modifier le traçage",
+    "deleteTitle": "Supprimer le traçage",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et que la source/cible sont différentes.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "source": "Source",
+      "target": "Cible",
+      "hopCount": "Sauts",
+      "status": "Statut"
+    },
+    "fields": {
+      "source": "Équipement source",
+      "target": "Équipement cible",
+      "name": "Nom",
+      "code": "Code",
+      "hopCount": "Nombre de sauts",
+      "totalLengthMeters": "Longueur totale (m)",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "status": {
+      "TRACED": "Tracé",
+      "PENDING": "En attente",
+      "FAILED": "Échoué"
+    }
   }
 }

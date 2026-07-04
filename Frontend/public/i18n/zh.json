@@ -411,5 +411,134 @@
       "DEGRADED": "降级",
       "PLANNED": "已规划"
     }
+  },
+  "cables": {
+    "pageTitle": "线缆",
+    "addNew": "添加线缆",
+    "createTitle": "新建线缆",
+    "editTitle": "编辑线缆",
+    "deleteTitle": "删除线缆",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，且源与目标不同。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "source": "源",
+      "target": "目标",
+      "cableType": "线缆类型",
+      "status": "状态"
+    },
+    "fields": {
+      "source": "源设备",
+      "target": "目标设备",
+      "name": "名称",
+      "code": "代码",
+      "cableType": "线缆类型",
+      "lengthMeters": "长度（米）",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "cableType": {
+      "FIBER_OM3": "OM3光纤（多模）",
+      "FIBER_OM4": "OM4光纤（多模）",
+      "FIBER_OM5": "OM5光纤（多模）",
+      "FIBER_OS2": "OS2光纤（单模）",
+      "COPPER_CAT6A": "Cat6A铜缆",
+      "DAC_COPPER": "DAC（直连铜缆）",
+      "AOC": "AOC（有源光缆）"
+    },
+    "status": {
+      "CONNECTED": "已连接",
+      "DISCONNECTED": "已断开",
+      "FAULTY": "故障",
+      "PLANNED": "已规划"
+    }
+  },
+  "connectors": {
+    "pageTitle": "连接器与光模块",
+    "addNew": "添加连接器",
+    "createTitle": "新建连接器",
+    "editTitle": "编辑连接器",
+    "deleteTitle": "删除连接器",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "device": "设备",
+      "formFactor": "封装形式",
+      "speedGbps": "速率",
+      "status": "状态"
+    },
+    "fields": {
+      "device": "设备",
+      "name": "名称",
+      "code": "代码",
+      "formFactor": "封装形式",
+      "connectorType": "连接器类型",
+      "speedGbps": "速率（Gbps）",
+      "wavelengthNm": "波长（纳米）",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "formFactor": {
+      "SFP_PLUS": "SFP+（10G）",
+      "SFP28": "SFP28（25G）",
+      "QSFP28": "QSFP28（100G）",
+      "QSFP_DD": "QSFP-DD（400G）",
+      "OSFP": "OSFP（800G）"
+    },
+    "connectorType": {
+      "LC": "LC",
+      "MPO_MTP": "MPO/MTP",
+      "RJ45": "RJ45"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "SPARE": "备用",
+      "FAULTY": "故障",
+      "DECOMMISSIONED": "已停用"
+    }
+  },
+  "pathTraces": {
+    "pageTitle": "路径追踪",
+    "addNew": "添加路径追踪",
+    "createTitle": "新建路径追踪",
+    "editTitle": "编辑路径追踪",
+    "deleteTitle": "删除路径追踪",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，且源与目标不同。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "source": "源",
+      "target": "目标",
+      "hopCount": "跳数",
+      "status": "状态"
+    },
+    "fields": {
+      "source": "源设备",
+      "target": "目标设备",
+      "name": "名称",
+      "code": "代码",
+      "hopCount": "跳数",
+      "totalLengthMeters": "总长度（米）",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "status": {
+      "TRACED": "已追踪",
+      "PENDING": "待处理",
+      "FAILED": "失败"
+    }
   }
 }

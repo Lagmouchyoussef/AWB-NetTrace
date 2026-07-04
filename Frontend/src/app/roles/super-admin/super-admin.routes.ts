@@ -15,6 +15,9 @@ const REAL_PAGE_PATHS = new Set([
   'fabric/network-roles',
   'fabric/overlay-networks',
   'fabric/topology',
+  'cabling/cables',
+  'cabling/connectors',
+  'cabling/path-tracing',
 ]);
 
 function toPlaceholderRoutes(section: NavSection): Routes {
@@ -88,6 +91,28 @@ export const superAdminRoutes: Routes = [
             (m) => m.TopologyLinksListComponent,
           ),
         data: { titleKey: 'nav.interactiveTopologyView', sectionKey: 'nav.fabricTopology' },
+      },
+      {
+        path: 'cabling/cables',
+        loadComponent: () =>
+          import('./pages/cables/cables-list.component').then((m) => m.CablesListComponent),
+        data: { titleKey: 'nav.cables', sectionKey: 'nav.cabling' },
+      },
+      {
+        path: 'cabling/connectors',
+        loadComponent: () =>
+          import('./pages/connectors/connectors-list.component').then(
+            (m) => m.ConnectorsListComponent,
+          ),
+        data: { titleKey: 'nav.connectorsTransceivers', sectionKey: 'nav.cabling' },
+      },
+      {
+        path: 'cabling/path-tracing',
+        loadComponent: () =>
+          import('./pages/path-traces/path-traces-list.component').then(
+            (m) => m.PathTracesListComponent,
+          ),
+        data: { titleKey: 'nav.pathTracing', sectionKey: 'nav.cabling' },
       },
       ...placeholderRoutes,
     ],

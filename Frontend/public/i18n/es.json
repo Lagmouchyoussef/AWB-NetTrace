@@ -411,5 +411,134 @@
       "DEGRADED": "Degradado",
       "PLANNED": "Planificado"
     }
+  },
+  "cables": {
+    "pageTitle": "Cables",
+    "addNew": "Añadir cable",
+    "createTitle": "Nuevo cable",
+    "editTitle": "Editar cable",
+    "deleteTitle": "Eliminar cable",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único y que el origen y destino sean diferentes.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "source": "Origen",
+      "target": "Destino",
+      "cableType": "Tipo de cable",
+      "status": "Estado"
+    },
+    "fields": {
+      "source": "Dispositivo de origen",
+      "target": "Dispositivo de destino",
+      "name": "Nombre",
+      "code": "Código",
+      "cableType": "Tipo de cable",
+      "lengthMeters": "Longitud (m)",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "cableType": {
+      "FIBER_OM3": "Fibra OM3 (multimodo)",
+      "FIBER_OM4": "Fibra OM4 (multimodo)",
+      "FIBER_OM5": "Fibra OM5 (multimodo)",
+      "FIBER_OS2": "Fibra OS2 (monomodo)",
+      "COPPER_CAT6A": "Cobre Cat6A",
+      "DAC_COPPER": "DAC (cobre de conexión directa)",
+      "AOC": "AOC (cable óptico activo)"
+    },
+    "status": {
+      "CONNECTED": "Conectado",
+      "DISCONNECTED": "Desconectado",
+      "FAULTY": "Defectuoso",
+      "PLANNED": "Planificado"
+    }
+  },
+  "connectors": {
+    "pageTitle": "Conectores y transceptores",
+    "addNew": "Añadir conector",
+    "createTitle": "Nuevo conector",
+    "editTitle": "Editar conector",
+    "deleteTitle": "Eliminar conector",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "device": "Dispositivo",
+      "formFactor": "Formato",
+      "speedGbps": "Velocidad",
+      "status": "Estado"
+    },
+    "fields": {
+      "device": "Dispositivo",
+      "name": "Nombre",
+      "code": "Código",
+      "formFactor": "Formato",
+      "connectorType": "Tipo de conector",
+      "speedGbps": "Velocidad (Gbps)",
+      "wavelengthNm": "Longitud de onda (nm)",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "formFactor": {
+      "SFP_PLUS": "SFP+ (10G)",
+      "SFP28": "SFP28 (25G)",
+      "QSFP28": "QSFP28 (100G)",
+      "QSFP_DD": "QSFP-DD (400G)",
+      "OSFP": "OSFP (800G)"
+    },
+    "connectorType": {
+      "LC": "LC",
+      "MPO_MTP": "MPO/MTP",
+      "RJ45": "RJ45"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "SPARE": "De repuesto",
+      "FAULTY": "Defectuoso",
+      "DECOMMISSIONED": "Fuera de servicio"
+    }
+  },
+  "pathTraces": {
+    "pageTitle": "Trazado de rutas",
+    "addNew": "Añadir trazado",
+    "createTitle": "Nuevo trazado",
+    "editTitle": "Editar trazado",
+    "deleteTitle": "Eliminar trazado",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único y que el origen y destino sean diferentes.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "source": "Origen",
+      "target": "Destino",
+      "hopCount": "Saltos",
+      "status": "Estado"
+    },
+    "fields": {
+      "source": "Dispositivo de origen",
+      "target": "Dispositivo de destino",
+      "name": "Nombre",
+      "code": "Código",
+      "hopCount": "Número de saltos",
+      "totalLengthMeters": "Longitud total (m)",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "status": {
+      "TRACED": "Trazado",
+      "PENDING": "Pendiente",
+      "FAILED": "Fallido"
+    }
   }
 }

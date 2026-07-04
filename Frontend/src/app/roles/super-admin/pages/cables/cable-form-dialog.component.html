@@ -1,0 +1,83 @@
+<h2 mat-dialog-title>
+  {{ (isEdit ? 'cables.editTitle' : 'cables.createTitle') | translate }}
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'cables.fields.source' | translate }}</mat-label>
+        <mat-select formControlName="sourceDeviceId">
+          @for (device of devices(); track device.id) {
+            <mat-option [value]="device.id">{{ device.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'cables.fields.target' | translate }}</mat-label>
+        <mat-select formControlName="targetDeviceId">
+          @for (device of devices(); track device.id) {
+            <mat-option [value]="device.id">{{ device.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'cables.fields.name' | translate }}</mat-label>
+        <input matInput formControlName="name" required />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <mat-error>{{ 'cables.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'cables.fields.code' | translate }}</mat-label>
+        <input matInput formControlName="code" required />
+        @if (form.controls.code.invalid && form.controls.code.touched) {
+          <mat-error>{{ 'cables.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'cables.fields.cableType' | translate }}</mat-label>
+        <mat-select formControlName="cableType">
+          @for (type of cableTypes; track type) {
+            <mat-option [value]="type">{{ 'cables.cableType.' + type | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'cables.fields.status' | translate }}</mat-label>
+        <mat-select formControlName="status">
+          @for (status of statuses; track status) {
+            <mat-option [value]="status">{{ 'cables.status.' + status | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'cables.fields.lengthMeters' | translate }}</mat-label>
+        <input matInput type="number" formControlName="lengthMeters" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'cables.fields.notes' | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+
+    @if (errorKey()) {
+      <p class="form-error">{{ errorKey() | translate }}</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" class="dialog-button dialog-button-cancel" (click)="cancel()">
+      {{ 'common.cancel' | translate }}
+    </button>
+    <button type="submit" class="dialog-button dialog-button-confirm" [disabled]="saving()">
+      {{ (saving() ? 'common.saving' : 'common.save') | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>
