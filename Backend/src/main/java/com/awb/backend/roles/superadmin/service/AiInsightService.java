@@ -24,14 +24,19 @@ public class AiInsightService {
   private final AiInsightRepository aiInsightRepository;
   private final AiActionExecutor aiActionExecutor;
 
-  public AiInsightService(AiInsightRepository aiInsightRepository, AiActionExecutor aiActionExecutor) {
+  public AiInsightService(
+      AiInsightRepository aiInsightRepository, AiActionExecutor aiActionExecutor) {
     this.aiInsightRepository = aiInsightRepository;
     this.aiActionExecutor = aiActionExecutor;
   }
 
   @Transactional(readOnly = true)
   public Page<AiInsightResponse> list(
-      String search, AiInsightStatus status, AiInsightSeverity severity, AiInsightType type, Pageable pageable) {
+      String search,
+      AiInsightStatus status,
+      AiInsightSeverity severity,
+      AiInsightType type,
+      Pageable pageable) {
     Specification<AiInsight> spec =
         Specification.where(AiInsightSpecifications.notDeleted())
             .and(AiInsightSpecifications.search(search))
@@ -67,35 +72,45 @@ public class AiInsightService {
   @Transactional
   public AiInsightResponse apply(Long id, String note, String actorUsername) {
     AiInsight insight = findActiveOrThrow(id);
-    if (insight.getStatus() != AiInsightStatus.NEW && insight.getStatus() != AiInsightStatus.ACKNOWLEDGED) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Only new or acknowledged insights can be applied.");
+    if (insight.getStatus() != AiInsightStatus.NEW
+        && insight.getStatus() != AiInsightStatus.ACKNOWLEDGED) {
+      throw new ResponseStatusException(
+          HttpStatus.BAD_REQUEST, "Only new or acknowledged insights can be applied.");
+    }
+    String pending = insight.getActionDetails();
+    if (pending == null || !pending.startsWith("PENDING_REMEDIATION:")) {
+      throw new ResponseStatusException(
+          HttpStatus.BAD_REQUEST, "This insight has no pending action to apply.");
     }
 
     // Human-approval path: forceApply=true bypasses the autonomous-actions toggle, since a
     // human clicking "Apply" is supervised, not autonomous, by definition.
     AiActionOutcome outcome;
-    if ("INTERVENTION".equalsIgnoreCase(String.valueOf(insight.getEntityType()))
-        || insight.getEntityType() == null) {
+    if (AiActionExecutor.PENDING_CREATE_INTERVENTION.equals(pending)) {
       outcome =
           aiActionExecutor.createUrgentIntervention(
-              insight.getEntityId(),
-              insight.getTitle(),
-              insight.getSummary(),
-              actorUsername,
-              true);
-    } else {
+              insight.getEntityId(), insight.getTitle(), insight.getSummary(), actorUsername, true);
+    } else if (pending.startsWith(AiActionExecutor.PENDING_SET_STATUS_PREFIX)) {
+      String newStatus = pending.substring(AiActionExecutor.PENDING_SET_STATUS_PREFIX.length());
       outcome =
           aiActionExecutor.setEntityStatus(
               insight.getEntityType(),
               insight.getEntityId(),
-              "MAINTENANCE",
-              insight.getRecommendedAction() == null ? insight.getSummary() : insight.getRecommendedAction(),
+              newStatus,
+              insight.getRecommendedAction() == null
+                  ? insight.getSummary()
+                  : insight.getRecommendedAction(),
               actorUsername,
               true);
+    } else {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unrecognized pending action.");
     }
 
+    // aiActionExecutor writes its own new AiInsight row for the applied action; mark this
+    // original recommendation resolved so it doesn't linger as a duplicate NEW item.
     insight.setStatus(AiInsightStatus.APPLIED);
     insight.setActionDetails(outcome.getMessage());
+    insight.setResolvedAt(Instant.now());
     applyNote(insight, note);
     insight.setUpdatedAt(Instant.now());
     return toResponse(aiInsightRepository.save(insight));
@@ -111,7 +126,8 @@ public class AiInsightService {
     AiInsight insight =
         aiInsightRepository
             .findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Insight not found."));
+            .orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Insight not found."));
     if (insight.isDeleted()) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Insight not found.");
     }

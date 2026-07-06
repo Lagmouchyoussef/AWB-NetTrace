@@ -56,7 +56,8 @@ public class AiSettingsService {
     if (request.getAutonomousActionsEnabled() != null) {
       writeBoolean(AUTONOMOUS_ACTIONS_ENABLED_KEY, request.getAutonomousActionsEnabled());
     }
-    auditLogWriter.log(actorUsername, AuditAction.CONFIG_CHANGE, "AI_SETTINGS", null, "Updated AI settings.");
+    auditLogWriter.log(
+        actorUsername, AuditAction.CONFIG_CHANGE, "AI_SETTINGS", null, "Updated AI settings.");
     return get();
   }
 
@@ -68,7 +69,8 @@ public class AiSettingsService {
   }
 
   private void writeBoolean(String key, boolean value) {
-    SystemSetting setting = systemSettingRepository.findBySettingKeyIgnoreCase(key).orElseGet(SystemSetting::new);
+    SystemSetting setting =
+        systemSettingRepository.findBySettingKeyIgnoreCase(key).orElseGet(SystemSetting::new);
     boolean isNew = setting.getId() == null;
     setting.setSettingKey(key);
     setting.setSettingValue(Boolean.toString(value));

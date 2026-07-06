@@ -96,4 +96,12 @@ export const SUPER_ADMIN_NAV: NavSection[] = [
   },
   { labelKey: 'nav.auditCompliance', icon: 'fact_check', path: 'audit-compliance' },
   { labelKey: 'nav.reports', icon: 'description', path: 'reports' },
+  {
+    labelKey: 'nav.aiOperations',
+    icon: 'smart_toy',
+    children: [
+      { labelKey: 'nav.aiInsights', icon: 'psychology', path: 'ai/insights' },
+      { labelKey: 'nav.aiSettings', icon: 'tune', path: 'ai/settings' },
+    ],
+  },
 ];

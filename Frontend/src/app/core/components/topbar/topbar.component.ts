@@ -75,7 +75,7 @@ export class TopbarComponent {
       case 'dark':
         return 'dark_mode';
       default:
-        return 'brightness_auto';
+        return 'desktop_windows';
     }
   });
 
@@ -87,6 +87,7 @@ export class TopbarComponent {
     return name ? name.slice(0, 2).toUpperCase() : '?';
   });
   protected readonly role = computed(() => {
+    this.currentLang(); // recompute the translated label whenever the active language changes
     const role = this.authService.currentRole();
     if (role === 'SUPER_ADMIN') {
       return this.translateService.instant('roles.superAdmin');

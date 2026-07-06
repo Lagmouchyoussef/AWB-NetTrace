@@ -53,16 +53,23 @@
     "syncDrift": "المزامنة والانحراف",
     "auditCompliance": "التدقيق والامتثال",
     "reports": "التقارير",
-    "myAccount": "حسابي"
+    "myAccount": "حسابي",
+    "aiOperations": "عمليات الذكاء الاصطناعي",
+    "aiInsights": "رؤى الذكاء الاصطناعي",
+    "aiSettings": "إعدادات الذكاء الاصطناعي"
   },
   "topbar": {
     "searchPlaceholder": "بحث...",
+    "notifications": "الإشعارات",
     "noNotifications": "لا توجد إشعارات بعد",
+    "appearance": "المظهر",
+    "language": "اللغة",
     "light": "فاتح",
     "dark": "داكن",
     "system": "النظام",
     "myAccount": "حسابي",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "logoutConfirm": "تسجيل الخروج من جلستك الحالية"
   },
   "placeholder": {
     "notBuiltYet": "هذه الصفحة لم تُبنَ بعد — ستتوفر في مرحلة لاحقة من وحدة المسؤول العام."
@@ -71,11 +78,38 @@
     "title": "مساحة المسؤول العام",
     "welcome": "مرحبًا، {{user}} — يؤكد الخادم الخلفي الدور {{role}}.",
     "unableToReach": "تعذر الوصول إلى الخادم الخلفي لهذا الدور.",
-    "loading": "جارٍ التحميل..."
+    "loading": "جارٍ التحميل...",
+    "stats": {
+      "datacenters": "مراكز البيانات",
+      "rooms": "الغرف",
+      "racks": "الحوامل",
+      "devices": "الأجهزة",
+      "openAnomalies": "الحالات الشاذة المفتوحة",
+      "activeInterventions": "التدخلات النشطة"
+    },
+    "panels": {
+      "aiInsights": "رؤى الذكاء الاصطناعي",
+      "aiNotConfigured": "مساعد الذكاء الاصطناعي غير مُهيأ بعد.",
+      "noInsights": "لا توجد رؤى ذكاء اصطناعي بعد.",
+      "recentInterventions": "التدخلات الأخيرة",
+      "noInterventions": "لا توجد تدخلات حديثة.",
+      "activityFeed": "موجز النشاط المباشر",
+      "noActivity": "لا يوجد نشاط حديث."
+    },
+    "activityActions": {
+      "CREATE": "أنشأ",
+      "UPDATE": "حدّث",
+      "DELETE": "حذف",
+      "LOGIN": "سجل الدخول",
+      "LOGOUT": "سجل الخروج",
+      "EXPORT": "صدّر",
+      "CONFIG_CHANGE": "غيّر الإعدادات لـ"
+    }
   },
   "common": {
     "search": "بحث...",
     "exportCsv": "تصدير CSV",
+    "actions": "الإجراءات",
     "view": "عرض",
     "edit": "تعديل",
     "delete": "حذف",
@@ -91,7 +125,9 @@
     "previousPage": "الصفحة السابقة",
     "firstPage": "الصفحة الأولى",
     "lastPage": "الصفحة الأخيرة",
-    "of": "من"
+    "of": "من",
+    "yes": "نعم",
+    "no": "لا"
   },
   "datacenters": {
     "pageTitle": "مراكز البيانات",
@@ -1260,5 +1296,75 @@
       "email": "عنوان بريد إلكتروني غير صالح.",
       "passwordLength": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل."
     }
+  },
+  "aiChat": {
+    "title": "مساعد الذكاء الاصطناعي",
+    "placeholder": "اسأل عن بنية مركز البيانات الخاصة بك...",
+    "inputPlaceholder": "اكتب رسالة...",
+    "loading": "الذكاء الاصطناعي يتحقق من البيانات المباشرة...",
+    "toolsUsed": "الأدوات المستخدمة",
+    "error": "حدث خطأ أثناء التواصل مع مساعد الذكاء الاصطناعي. يرجى المحاولة مرة أخرى."
+  },
+  "aiInsights": {
+    "pageTitle": "رؤى الذكاء الاصطناعي",
+    "columns": {
+      "title": "العنوان",
+      "type": "النوع",
+      "severity": "الخطورة",
+      "status": "الحالة",
+      "entity": "الكيان",
+      "createdAt": "تاريخ الإنشاء"
+    },
+    "type": {
+      "RISK_PREDICTION": "توقع مخاطر",
+      "RECOMMENDATION": "توصية",
+      "AUTONOMOUS_ACTION": "إجراء ذاتي"
+    },
+    "severity": {
+      "CRITICAL": "حرجة",
+      "HIGH": "عالية",
+      "MEDIUM": "متوسطة",
+      "LOW": "منخفضة",
+      "INFO": "معلومة"
+    },
+    "status": {
+      "NEW": "جديد",
+      "ACKNOWLEDGED": "تم الاطلاع",
+      "APPLIED": "تم التطبيق",
+      "DISMISSED": "مرفوض"
+    },
+    "fields": {
+      "severity": "الخطورة",
+      "status": "الحالة",
+      "entity": "الكيان",
+      "summary": "الملخص",
+      "recommendedAction": "الإجراء الموصى به",
+      "actionTaken": "الإجراء المتخذ",
+      "createdAt": "تاريخ الإنشاء"
+    },
+    "acknowledge": "الاطلاع",
+    "dismiss": "رفض",
+    "apply": "تطبيق",
+    "dismissTitle": "رفض الرؤية",
+    "dismissMessage": "هل أنت متأكد من رفض \"{{title}}\"؟",
+    "applyTitle": "تطبيق التوصية",
+    "applyMessage": "هل أنت متأكد من تطبيق الإجراء الموصى به لـ \"{{title}}\"؟ سيؤدي هذا إلى تغيير حقيقي في المنصة.",
+    "actionError": "حدث خطأ أثناء تنفيذ هذا الإجراء. يرجى المحاولة مرة أخرى."
+  },
+  "aiSettings": {
+    "pageTitle": "إعدادات الذكاء الاصطناعي",
+    "assistantEnabled": "مساعد الدردشة بالذكاء الاصطناعي",
+    "assistantEnabledDescription": "يتيح لكبار المسؤولين طرح الأسئلة والتصرف بناءً على بيانات مركز البيانات المباشرة عبر أداة الدردشة بالذكاء الاصطناعي.",
+    "predictiveAnalysisEnabled": "التحليل التنبؤي",
+    "predictiveAnalysisEnabledDescription": "يشغّل مهمة مجدولة تحلل بيانات البنية التحتية للإشارة إلى المخاطر قبل أن تتحول إلى أعطال.",
+    "autonomousActionsEnabled": "الإجراءات الذاتية",
+    "autonomousActionsEnabledDescription": "يسمح للذكاء الاصطناعي بتطبيق إجراءات علاجية (تغيير الحالة، تدخلات عاجلة) من تلقاء نفسه، دون انتظار موافقة بشرية. معطل افتراضيًا.",
+    "apiKeyConfigured": "تم تكوين مفتاح واجهة برمجة تطبيقات Anthropic",
+    "confirmAutonomousTitle": "تفعيل الإجراءات الذاتية؟",
+    "confirmAutonomousMessage": "سيتمكن الذكاء الاصطناعي من تغيير حالة المعدات وإنشاء تدخلات عاجلة تلقائيًا، دون موافقة بشرية. يبقى كل إجراء مسجلاً وقابلاً للتدقيق. هل تريد المتابعة؟",
+    "confirmAutonomousEnable": "تفعيل",
+    "saveSuccess": "تم حفظ الإعدادات بنجاح.",
+    "saveError": "حدث خطأ أثناء الحفظ. يرجى المحاولة مرة أخرى.",
+    "loadError": "تعذر تحميل إعدادات الذكاء الاصطناعي. يرجى التحقق من اتصالك والمحاولة مرة أخرى."
   }
 }

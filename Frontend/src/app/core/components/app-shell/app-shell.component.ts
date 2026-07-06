@@ -6,12 +6,19 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TopbarComponent } from '../topbar/topbar.component';
 import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
+import { AiChatWidgetComponent } from '../ai-chat-widget/ai-chat-widget.component';
 import { NavSection } from '../../types/nav';
 
 @Component({
   selector: 'app-app-shell',
   standalone: true,
-  imports: [MatSidenavModule, SidebarComponent, TopbarComponent, BreadcrumbsComponent],
+  imports: [
+    MatSidenavModule,
+    SidebarComponent,
+    TopbarComponent,
+    BreadcrumbsComponent,
+    AiChatWidgetComponent,
+  ],
   templateUrl: './app-shell.component.html',
   styleUrl: './app-shell.component.css',
 })

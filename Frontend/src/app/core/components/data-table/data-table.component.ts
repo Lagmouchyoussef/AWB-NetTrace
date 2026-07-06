@@ -3,6 +3,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatPaginatorModule, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DataTableColumn } from './data-table.model';
 import { TranslatedPaginatorIntl } from './translated-paginator-intl';
@@ -10,7 +11,14 @@ import { TranslatedPaginatorIntl } from './translated-paginator-intl';
 @Component({
   selector: 'app-data-table',
   standalone: true,
-  imports: [MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, TranslatePipe],
+  imports: [
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatTooltipModule,
+    TranslatePipe,
+  ],
   providers: [{ provide: MatPaginatorIntl, useClass: TranslatedPaginatorIntl }],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.css',

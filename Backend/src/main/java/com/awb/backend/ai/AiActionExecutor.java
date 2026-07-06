@@ -24,9 +24,9 @@ import com.awb.backend.core.repository.RoomRepository;
 import com.awb.backend.core.repository.SystemSettingRepository;
 import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.http.HttpStatus;
 
 // The single safety-gate choke point for AI-driven mutations, used identically by the chat
 // tool executor and the scheduled predictive-analysis job. When ai.autonomous_actions.enabled
@@ -37,6 +37,12 @@ import org.springframework.http.HttpStatus;
 public class AiActionExecutor {
 
   private static final String AUTONOMOUS_ACTIONS_SETTING_KEY = "ai.autonomous_actions.enabled";
+
+  // Machine-readable markers stashed in a pending (not-yet-applied) insight's actionDetails,
+  // so AiInsightService#apply() knows which action to execute without re-parsing free text.
+  public static final String PENDING_CREATE_INTERVENTION =
+      "PENDING_REMEDIATION:CREATE_INTERVENTION";
+  public static final String PENDING_SET_STATUS_PREFIX = "PENDING_REMEDIATION:SET_STATUS:";
 
   private final SystemSettingRepository systemSettingRepository;
   private final DeviceRepository deviceRepository;
@@ -76,7 +82,8 @@ public class AiActionExecutor {
     Device device =
         deviceRepository
             .findById(deviceId)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Device not found."));
+            .orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Device not found."));
 
     if (!shouldApply) {
       AiInsight insight =
@@ -90,10 +97,11 @@ public class AiActionExecutor {
               description,
               "Create a CRITICAL intervention for device " + device.getName(),
               false,
-              null);
+              PENDING_CREATE_INTERVENTION);
       return AiActionOutcome.loggedAsRecommendation(
           insight.getId(),
-          "Autonomous actions are disabled; logged as recommendation #" + insight.getId()
+          "Autonomous actions are disabled; logged as recommendation #"
+              + insight.getId()
               + " for human review.");
     }
 
@@ -110,7 +118,8 @@ public class AiActionExecutor {
     intervention.setUpdatedAt(now);
     Intervention saved = interventionRepository.save(intervention);
 
-    String actionDetails = "Created intervention #" + saved.getId() + " for device " + device.getName();
+    String actionDetails =
+        "Created intervention #" + saved.getId() + " for device " + device.getName();
     AiInsight insight =
         logInsight(
             AiInsightType.AUTONOMOUS_ACTION,
@@ -151,10 +160,11 @@ public class AiActionExecutor {
               reason,
               title,
               false,
-              null);
+              PENDING_SET_STATUS_PREFIX + newStatus);
       return AiActionOutcome.loggedAsRecommendation(
           insight.getId(),
-          "Autonomous actions are disabled; logged as recommendation #" + insight.getId()
+          "Autonomous actions are disabled; logged as recommendation #"
+              + insight.getId()
               + " for human review.");
     }
 
@@ -172,7 +182,8 @@ public class AiActionExecutor {
             null,
             true,
             actionDetails);
-    auditLogWriter.log(actorLabel, AuditAction.UPDATE, entityType, entityId.toString(), actionDetails);
+    auditLogWriter.log(
+        actorLabel, AuditAction.UPDATE, entityType, entityId.toString(), actionDetails);
     return AiActionOutcome.applied(insight.getId(), "Action executed: " + actionDetails);
   }
 
@@ -182,18 +193,23 @@ public class AiActionExecutor {
           deviceRepository
               .findById(entityId)
               .map(Device::getName)
-              .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Device not found."));
+              .orElseThrow(
+                  () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Device not found."));
       case "RACK" ->
           rackRepository
               .findById(entityId)
               .map(Rack::getName)
-              .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Rack not found."));
+              .orElseThrow(
+                  () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Rack not found."));
       case "ROOM" ->
           roomRepository
               .findById(entityId)
               .map(Room::getName)
-              .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Room not found."));
-      default -> throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unknown entity type: " + entityType);
+              .orElseThrow(
+                  () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Room not found."));
+      default ->
+          throw new ResponseStatusException(
+              HttpStatus.BAD_REQUEST, "Unknown entity type: " + entityType);
     };
   }
 
@@ -204,7 +220,8 @@ public class AiActionExecutor {
         Device device =
             deviceRepository
                 .findById(entityId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Device not found."));
+                .orElseThrow(
+                    () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Device not found."));
         device.setStatus(DeviceStatus.valueOf(newStatus));
         device.setUpdatedAt(now);
         deviceRepository.save(device);
@@ -213,7 +230,8 @@ public class AiActionExecutor {
         Rack rack =
             rackRepository
                 .findById(entityId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Rack not found."));
+                .orElseThrow(
+                    () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Rack not found."));
         rack.setStatus(RackStatus.valueOf(newStatus));
         rack.setUpdatedAt(now);
         rackRepository.save(rack);
@@ -222,12 +240,15 @@ public class AiActionExecutor {
         Room room =
             roomRepository
                 .findById(entityId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Room not found."));
+                .orElseThrow(
+                    () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Room not found."));
         room.setStatus(RoomStatus.valueOf(newStatus));
         room.setUpdatedAt(now);
         roomRepository.save(room);
       }
-      default -> throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unknown entity type: " + entityType);
+      default ->
+          throw new ResponseStatusException(
+              HttpStatus.BAD_REQUEST, "Unknown entity type: " + entityType);
     }
   }
 

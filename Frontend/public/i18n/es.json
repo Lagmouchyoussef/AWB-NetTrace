@@ -53,16 +53,23 @@
     "syncDrift": "Sincronización y drift",
     "auditCompliance": "Auditoría y cumplimiento",
     "reports": "Informes",
-    "myAccount": "Mi cuenta"
+    "myAccount": "Mi cuenta",
+    "aiOperations": "Operaciones de IA",
+    "aiInsights": "Perspectivas de IA",
+    "aiSettings": "Configuración de IA"
   },
   "topbar": {
     "searchPlaceholder": "Buscar...",
+    "notifications": "Notificaciones",
     "noNotifications": "Sin notificaciones por ahora",
+    "appearance": "Apariencia",
+    "language": "Idioma",
     "light": "Claro",
     "dark": "Oscuro",
     "system": "Sistema",
     "myAccount": "Mi cuenta",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "logoutConfirm": "Cerrar tu sesión actual"
   },
   "placeholder": {
     "notBuiltYet": "Esta página aún no está construida — llegará en una etapa posterior del módulo Super Admin."
@@ -71,11 +78,38 @@
     "title": "Espacio de Superadministrador",
     "welcome": "Bienvenido, {{user}} — el backend confirma el rol {{role}}.",
     "unableToReach": "No se pudo contactar con el backend para este rol.",
-    "loading": "Cargando..."
+    "loading": "Cargando...",
+    "stats": {
+      "datacenters": "Centros de datos",
+      "rooms": "Salas",
+      "racks": "Racks",
+      "devices": "Equipos",
+      "openAnomalies": "Anomalías abiertas",
+      "activeInterventions": "Intervenciones activas"
+    },
+    "panels": {
+      "aiInsights": "Perspectivas de IA",
+      "aiNotConfigured": "El asistente de IA aún no está configurado.",
+      "noInsights": "Todavía no hay perspectivas de IA.",
+      "recentInterventions": "Intervenciones recientes",
+      "noInterventions": "No hay intervenciones recientes.",
+      "activityFeed": "Flujo de actividad en vivo",
+      "noActivity": "No hay actividad reciente."
+    },
+    "activityActions": {
+      "CREATE": "creó",
+      "UPDATE": "actualizó",
+      "DELETE": "eliminó",
+      "LOGIN": "inició sesión",
+      "LOGOUT": "cerró sesión",
+      "EXPORT": "exportó",
+      "CONFIG_CHANGE": "cambió la configuración de"
+    }
   },
   "common": {
     "search": "Buscar...",
     "exportCsv": "Exportar CSV",
+    "actions": "Acciones",
     "view": "Ver",
     "edit": "Editar",
     "delete": "Eliminar",
@@ -91,7 +125,9 @@
     "previousPage": "Página anterior",
     "firstPage": "Primera página",
     "lastPage": "Última página",
-    "of": "de"
+    "of": "de",
+    "yes": "Sí",
+    "no": "No"
   },
   "datacenters": {
     "pageTitle": "Centros de datos",
@@ -1260,5 +1296,75 @@
       "email": "Dirección de correo inválida.",
       "passwordLength": "La contraseña debe tener al menos 8 caracteres."
     }
+  },
+  "aiChat": {
+    "title": "Asistente de IA",
+    "placeholder": "Pregunte sobre su infraestructura de datacenter...",
+    "inputPlaceholder": "Escriba un mensaje...",
+    "loading": "La IA está revisando datos en vivo...",
+    "toolsUsed": "Herramientas usadas",
+    "error": "Ocurrió un error al contactar al asistente de IA. Inténtelo de nuevo."
+  },
+  "aiInsights": {
+    "pageTitle": "Perspectivas de IA",
+    "columns": {
+      "title": "Título",
+      "type": "Tipo",
+      "severity": "Gravedad",
+      "status": "Estado",
+      "entity": "Entidad",
+      "createdAt": "Creado el"
+    },
+    "type": {
+      "RISK_PREDICTION": "Predicción de riesgo",
+      "RECOMMENDATION": "Recomendación",
+      "AUTONOMOUS_ACTION": "Acción autónoma"
+    },
+    "severity": {
+      "CRITICAL": "Crítica",
+      "HIGH": "Alta",
+      "MEDIUM": "Media",
+      "LOW": "Baja",
+      "INFO": "Info"
+    },
+    "status": {
+      "NEW": "Nuevo",
+      "ACKNOWLEDGED": "Reconocido",
+      "APPLIED": "Aplicado",
+      "DISMISSED": "Descartado"
+    },
+    "fields": {
+      "severity": "Gravedad",
+      "status": "Estado",
+      "entity": "Entidad",
+      "summary": "Resumen",
+      "recommendedAction": "Acción recomendada",
+      "actionTaken": "Acción realizada",
+      "createdAt": "Creado el"
+    },
+    "acknowledge": "Reconocer",
+    "dismiss": "Descartar",
+    "apply": "Aplicar",
+    "dismissTitle": "Descartar perspectiva",
+    "dismissMessage": "¿Seguro que desea descartar \"{{title}}\"?",
+    "applyTitle": "Aplicar recomendación",
+    "applyMessage": "¿Seguro que desea aplicar la acción recomendada para \"{{title}}\"? Esto hará un cambio real en la plataforma.",
+    "actionError": "Ocurrió un error al realizar esta acción. Inténtelo de nuevo."
+  },
+  "aiSettings": {
+    "pageTitle": "Configuración de IA",
+    "assistantEnabled": "Asistente de chat IA",
+    "assistantEnabledDescription": "Permite a los superadministradores hacer preguntas y actuar sobre datos en vivo del datacenter mediante el widget de chat IA.",
+    "predictiveAnalysisEnabled": "Análisis predictivo",
+    "predictiveAnalysisEnabledDescription": "Ejecuta una tarea programada que analiza los datos de infraestructura para señalar riesgos antes de que se conviertan en fallas.",
+    "autonomousActionsEnabled": "Acciones autónomas",
+    "autonomousActionsEnabledDescription": "Permite que la IA aplique acciones correctivas (cambios de estado, intervenciones urgentes) por sí sola, sin esperar aprobación humana. Desactivado de forma predeterminada.",
+    "apiKeyConfigured": "Clave API de Anthropic configurada",
+    "confirmAutonomousTitle": "¿Habilitar acciones autónomas?",
+    "confirmAutonomousMessage": "La IA podrá cambiar el estado de los equipos y crear intervenciones urgentes automáticamente, sin aprobación humana. Cada acción sigue quedando registrada y auditable. ¿Desea continuar?",
+    "confirmAutonomousEnable": "Habilitar",
+    "saveSuccess": "Configuración guardada con éxito.",
+    "saveError": "Ocurrió un error al guardar. Inténtelo de nuevo.",
+    "loadError": "No se pudo cargar la configuración de IA. Verifique su conexión e inténtelo de nuevo."
   }
 }

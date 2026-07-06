@@ -9,8 +9,7 @@ public class AiChatMessage {
   @Pattern(regexp = "user|assistant")
   private String role;
 
-  @NotBlank
-  private String content;
+  @NotBlank private String content;
 
   public String getRole() {
     return role;

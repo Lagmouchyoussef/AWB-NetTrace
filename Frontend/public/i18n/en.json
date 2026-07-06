@@ -53,16 +53,23 @@
     "syncDrift": "Sync & Drift",
     "auditCompliance": "Audit & Compliance",
     "reports": "Reports",
-    "myAccount": "My Account"
+    "myAccount": "My Account",
+    "aiOperations": "AI Operations",
+    "aiInsights": "AI Insights",
+    "aiSettings": "AI Settings"
   },
   "topbar": {
     "searchPlaceholder": "Search...",
+    "notifications": "Notifications",
     "noNotifications": "No notifications yet",
+    "appearance": "Appearance",
+    "language": "Language",
     "light": "Light",
     "dark": "Dark",
     "system": "System",
     "myAccount": "My Account",
-    "logout": "Logout"
+    "logout": "Logout",
+    "logoutConfirm": "Sign out of your current session"
   },
   "placeholder": {
     "notBuiltYet": "This page is not built yet — it will arrive in a later step of the Super Admin module."
@@ -71,11 +78,38 @@
     "title": "Super Administrator Space",
     "welcome": "Welcome, {{user}} — backend confirms role {{role}}.",
     "unableToReach": "Unable to reach the backend for this role.",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "stats": {
+      "datacenters": "Datacenters",
+      "rooms": "Rooms",
+      "racks": "Racks",
+      "devices": "Devices",
+      "openAnomalies": "Open Anomalies",
+      "activeInterventions": "Active Interventions"
+    },
+    "panels": {
+      "aiInsights": "AI Insights",
+      "aiNotConfigured": "The AI assistant is not configured yet.",
+      "noInsights": "No AI insights yet.",
+      "recentInterventions": "Recent Interventions",
+      "noInterventions": "No recent interventions.",
+      "activityFeed": "Live Activity Feed",
+      "noActivity": "No recent activity."
+    },
+    "activityActions": {
+      "CREATE": "created",
+      "UPDATE": "updated",
+      "DELETE": "deleted",
+      "LOGIN": "logged in",
+      "LOGOUT": "logged out",
+      "EXPORT": "exported",
+      "CONFIG_CHANGE": "changed configuration for"
+    }
   },
   "common": {
     "search": "Search...",
     "exportCsv": "Export CSV",
+    "actions": "Actions",
     "view": "View",
     "edit": "Edit",
     "delete": "Delete",
@@ -91,7 +125,9 @@
     "previousPage": "Previous page",
     "firstPage": "First page",
     "lastPage": "Last page",
-    "of": "of"
+    "of": "of",
+    "yes": "Yes",
+    "no": "No"
   },
   "datacenters": {
     "pageTitle": "Datacenters",
@@ -1260,5 +1296,75 @@
       "email": "Invalid email address.",
       "passwordLength": "Password must be at least 8 characters long."
     }
+  },
+  "aiChat": {
+    "title": "AI Assistant",
+    "placeholder": "Ask about your datacenter infrastructure...",
+    "inputPlaceholder": "Type a message...",
+    "loading": "AI is checking live data...",
+    "toolsUsed": "Tools used",
+    "error": "Something went wrong while contacting the AI assistant. Please try again."
+  },
+  "aiInsights": {
+    "pageTitle": "AI Insights",
+    "columns": {
+      "title": "Title",
+      "type": "Type",
+      "severity": "Severity",
+      "status": "Status",
+      "entity": "Entity",
+      "createdAt": "Created at"
+    },
+    "type": {
+      "RISK_PREDICTION": "Risk Prediction",
+      "RECOMMENDATION": "Recommendation",
+      "AUTONOMOUS_ACTION": "Autonomous Action"
+    },
+    "severity": {
+      "CRITICAL": "Critical",
+      "HIGH": "High",
+      "MEDIUM": "Medium",
+      "LOW": "Low",
+      "INFO": "Info"
+    },
+    "status": {
+      "NEW": "New",
+      "ACKNOWLEDGED": "Acknowledged",
+      "APPLIED": "Applied",
+      "DISMISSED": "Dismissed"
+    },
+    "fields": {
+      "severity": "Severity",
+      "status": "Status",
+      "entity": "Entity",
+      "summary": "Summary",
+      "recommendedAction": "Recommended action",
+      "actionTaken": "Action taken",
+      "createdAt": "Created at"
+    },
+    "acknowledge": "Acknowledge",
+    "dismiss": "Dismiss",
+    "apply": "Apply",
+    "dismissTitle": "Dismiss insight",
+    "dismissMessage": "Are you sure you want to dismiss \"{{title}}\"?",
+    "applyTitle": "Apply recommendation",
+    "applyMessage": "Are you sure you want to apply the recommended action for \"{{title}}\"? This will make a real change to the platform.",
+    "actionError": "Something went wrong while performing this action. Please try again."
+  },
+  "aiSettings": {
+    "pageTitle": "AI Settings",
+    "assistantEnabled": "AI chat assistant",
+    "assistantEnabledDescription": "Lets super-admins ask questions and act on live datacenter data via the AI chat widget.",
+    "predictiveAnalysisEnabled": "Predictive analysis",
+    "predictiveAnalysisEnabledDescription": "Runs a scheduled job that reasons over infrastructure data to flag risks before they become failures.",
+    "autonomousActionsEnabled": "Autonomous actions",
+    "autonomousActionsEnabledDescription": "Allows the AI to apply remediation actions (status changes, urgent interventions) on its own, without waiting for human approval. Off by default.",
+    "apiKeyConfigured": "Anthropic API key configured",
+    "confirmAutonomousTitle": "Enable autonomous actions?",
+    "confirmAutonomousMessage": "The AI will be able to change equipment status and create urgent interventions automatically, without human approval. Every action is still logged and auditable. Do you want to proceed?",
+    "confirmAutonomousEnable": "Enable",
+    "saveSuccess": "Settings saved successfully.",
+    "saveError": "Something went wrong while saving. Please try again.",
+    "loadError": "Unable to load AI settings. Please check your connection and try again."
   }
 }

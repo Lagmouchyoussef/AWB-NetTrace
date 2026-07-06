@@ -34,6 +34,8 @@ const REAL_PAGE_PATHS = new Set([
   'integrations/sync-drift',
   'audit-compliance',
   'reports',
+  'ai/insights',
+  'ai/settings',
 ]);
 
 function toPlaceholderRoutes(section: NavSection): Routes {
@@ -259,6 +261,20 @@ export const superAdminRoutes: Routes = [
         loadComponent: () =>
           import('./pages/my-account/my-account.component').then((m) => m.MyAccountComponent),
         data: { titleKey: 'nav.myAccount' },
+      },
+      {
+        path: 'ai/insights',
+        loadComponent: () =>
+          import('./pages/ai-insights/ai-insights-list.component').then(
+            (m) => m.AiInsightsListComponent,
+          ),
+        data: { titleKey: 'nav.aiInsights', sectionKey: 'nav.aiOperations' },
+      },
+      {
+        path: 'ai/settings',
+        loadComponent: () =>
+          import('./pages/ai-settings/ai-settings.component').then((m) => m.AiSettingsComponent),
+        data: { titleKey: 'nav.aiSettings', sectionKey: 'nav.aiOperations' },
       },
       ...placeholderRoutes,
     ],

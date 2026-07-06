@@ -53,16 +53,23 @@
     "syncDrift": "同步与偏差检测",
     "auditCompliance": "审计与合规",
     "reports": "报表",
-    "myAccount": "我的账户"
+    "myAccount": "我的账户",
+    "aiOperations": "AI 运营",
+    "aiInsights": "AI 洞察",
+    "aiSettings": "AI 设置"
   },
   "topbar": {
     "searchPlaceholder": "搜索...",
+    "notifications": "通知",
     "noNotifications": "暂无通知",
+    "appearance": "外观",
+    "language": "语言",
     "light": "浅色",
     "dark": "深色",
     "system": "跟随系统",
     "myAccount": "我的账户",
-    "logout": "退出登录"
+    "logout": "退出登录",
+    "logoutConfirm": "退出当前登录会话"
   },
   "placeholder": {
     "notBuiltYet": "此页面尚未构建 — 将在超级管理员模块的后续阶段推出。"
@@ -71,11 +78,38 @@
     "title": "超级管理员空间",
     "welcome": "欢迎，{{user}} — 后端已确认角色 {{role}}。",
     "unableToReach": "无法连接到该角色对应的后端服务。",
-    "loading": "加载中..."
+    "loading": "加载中...",
+    "stats": {
+      "datacenters": "数据中心",
+      "rooms": "机房",
+      "racks": "机柜",
+      "devices": "设备",
+      "openAnomalies": "未解决的异常",
+      "activeInterventions": "进行中的干预"
+    },
+    "panels": {
+      "aiInsights": "AI 洞察",
+      "aiNotConfigured": "AI 助手尚未配置。",
+      "noInsights": "暂无 AI 洞察。",
+      "recentInterventions": "最近的干预",
+      "noInterventions": "暂无最近的干预。",
+      "activityFeed": "实时活动动态",
+      "noActivity": "暂无最近活动。"
+    },
+    "activityActions": {
+      "CREATE": "创建了",
+      "UPDATE": "更新了",
+      "DELETE": "删除了",
+      "LOGIN": "登录了",
+      "LOGOUT": "退出了登录",
+      "EXPORT": "导出了",
+      "CONFIG_CHANGE": "更改了配置："
+    }
   },
   "common": {
     "search": "搜索...",
     "exportCsv": "导出CSV",
+    "actions": "操作",
     "view": "查看",
     "edit": "编辑",
     "delete": "删除",
@@ -91,7 +125,9 @@
     "previousPage": "上一页",
     "firstPage": "首页",
     "lastPage": "末页",
-    "of": "共"
+    "of": "共",
+    "yes": "是",
+    "no": "否"
   },
   "datacenters": {
     "pageTitle": "数据中心",
@@ -1260,5 +1296,75 @@
       "email": "邮箱地址无效。",
       "passwordLength": "密码至少需要8个字符。"
     }
+  },
+  "aiChat": {
+    "title": "AI 助手",
+    "placeholder": "询问有关您的数据中心基础设施的问题...",
+    "inputPlaceholder": "输入消息...",
+    "loading": "AI 正在检查实时数据...",
+    "toolsUsed": "已使用的工具",
+    "error": "联系 AI 助手时出错，请重试。"
+  },
+  "aiInsights": {
+    "pageTitle": "AI 洞察",
+    "columns": {
+      "title": "标题",
+      "type": "类型",
+      "severity": "严重程度",
+      "status": "状态",
+      "entity": "实体",
+      "createdAt": "创建时间"
+    },
+    "type": {
+      "RISK_PREDICTION": "风险预测",
+      "RECOMMENDATION": "建议",
+      "AUTONOMOUS_ACTION": "自主操作"
+    },
+    "severity": {
+      "CRITICAL": "严重",
+      "HIGH": "高",
+      "MEDIUM": "中",
+      "LOW": "低",
+      "INFO": "信息"
+    },
+    "status": {
+      "NEW": "新建",
+      "ACKNOWLEDGED": "已确认",
+      "APPLIED": "已应用",
+      "DISMISSED": "已忽略"
+    },
+    "fields": {
+      "severity": "严重程度",
+      "status": "状态",
+      "entity": "实体",
+      "summary": "摘要",
+      "recommendedAction": "建议操作",
+      "actionTaken": "已采取的操作",
+      "createdAt": "创建时间"
+    },
+    "acknowledge": "确认",
+    "dismiss": "忽略",
+    "apply": "应用",
+    "dismissTitle": "忽略洞察",
+    "dismissMessage": "确定要忽略\"{{title}}\"吗？",
+    "applyTitle": "应用建议",
+    "applyMessage": "确定要应用针对\"{{title}}\"的建议操作吗？这将对平台进行实际更改。",
+    "actionError": "执行此操作时出错，请重试。"
+  },
+  "aiSettings": {
+    "pageTitle": "AI 设置",
+    "assistantEnabled": "AI 聊天助手",
+    "assistantEnabledDescription": "允许超级管理员通过 AI 聊天小部件询问问题并对实时数据中心数据采取操作。",
+    "predictiveAnalysisEnabled": "预测性分析",
+    "predictiveAnalysisEnabledDescription": "运行一项计划任务，对基础设施数据进行推理，以在风险变成故障之前发出警示。",
+    "autonomousActionsEnabled": "自主操作",
+    "autonomousActionsEnabledDescription": "允许 AI 自行应用补救措施（状态更改、紧急干预），无需等待人工批准。默认关闭。",
+    "apiKeyConfigured": "已配置 Anthropic API 密钥",
+    "confirmAutonomousTitle": "启用自主操作？",
+    "confirmAutonomousMessage": "AI 将能够自动更改设备状态并创建紧急干预，无需人工批准。每项操作仍会被记录并可审计。是否继续？",
+    "confirmAutonomousEnable": "启用",
+    "saveSuccess": "设置已成功保存。",
+    "saveError": "保存时出错，请重试。",
+    "loadError": "无法加载 AI 设置，请检查您的网络连接并重试。"
   }
 }

@@ -59,12 +59,16 @@ public class AiChatOrchestrator {
     List<MessageParam> transcript = new ArrayList<>();
     for (AiChatMessage message : history) {
       MessageParam.Role role =
-          "assistant".equals(message.getRole()) ? MessageParam.Role.ASSISTANT : MessageParam.Role.USER;
+          "assistant".equals(message.getRole())
+              ? MessageParam.Role.ASSISTANT
+              : MessageParam.Role.USER;
       transcript.add(
           MessageParam.builder()
               .role(role)
               .contentOfBlockParams(
-                  List.of(ContentBlockParam.ofText(TextBlockParam.builder().text(message.getContent()).build())))
+                  List.of(
+                      ContentBlockParam.ofText(
+                          TextBlockParam.builder().text(message.getContent()).build())))
               .build());
     }
 
@@ -86,11 +90,15 @@ public class AiChatOrchestrator {
         for (var block : response.content()) {
           if (block.toolUse().isPresent()) {
             ToolUseBlock toolUse = block.toolUse().get();
-            String resultJson = aiToolExecutor.execute(toolUse.name(), toolUse._input(), actorUsername);
+            String resultJson =
+                aiToolExecutor.execute(toolUse.name(), toolUse._input(), actorUsername);
             toolCallSummaries.add(toolUse.name());
             toolResults.add(
                 ContentBlockParam.ofToolResult(
-                    ToolResultBlockParam.builder().toolUseId(toolUse.id()).content(resultJson).build()));
+                    ToolResultBlockParam.builder()
+                        .toolUseId(toolUse.id())
+                        .content(resultJson)
+                        .build()));
           }
         }
         transcript.add(
@@ -99,7 +107,10 @@ public class AiChatOrchestrator {
                 .contentOfBlockParams(toBlockParams(response))
                 .build());
         transcript.add(
-            MessageParam.builder().role(MessageParam.Role.USER).contentOfBlockParams(toolResults).build());
+            MessageParam.builder()
+                .role(MessageParam.Role.USER)
+                .contentOfBlockParams(toolResults)
+                .build());
       } else {
         String reply =
             response.content().stream()
@@ -117,8 +128,14 @@ public class AiChatOrchestrator {
   private List<ContentBlockParam> toBlockParams(Message response) {
     List<ContentBlockParam> blocks = new ArrayList<>();
     for (var block : response.content()) {
-      block.text().ifPresent(t -> blocks.add(ContentBlockParam.ofText(TextBlockParam.builder().text(t.text()).build())));
-      block.toolUse()
+      block
+          .text()
+          .ifPresent(
+              t ->
+                  blocks.add(
+                      ContentBlockParam.ofText(TextBlockParam.builder().text(t.text()).build())));
+      block
+          .toolUse()
           .ifPresent(
               tu ->
                   blocks.add(
@@ -134,8 +151,10 @@ public class AiChatOrchestrator {
 
   private List<com.anthropic.models.messages.ToolUnion> buildToolUnions() {
     List<com.anthropic.models.messages.ToolUnion> unions = new ArrayList<>();
-    AiToolDefinitions.readTools().forEach(t -> unions.add(com.anthropic.models.messages.ToolUnion.ofTool(t)));
-    AiToolDefinitions.actionTools().forEach(t -> unions.add(com.anthropic.models.messages.ToolUnion.ofTool(t)));
+    AiToolDefinitions.readTools()
+        .forEach(t -> unions.add(com.anthropic.models.messages.ToolUnion.ofTool(t)));
+    AiToolDefinitions.actionTools()
+        .forEach(t -> unions.add(com.anthropic.models.messages.ToolUnion.ofTool(t)));
     return unions;
   }
 }

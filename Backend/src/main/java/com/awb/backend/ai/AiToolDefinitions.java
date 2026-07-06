@@ -13,7 +13,10 @@ public final class AiToolDefinitions {
 
   public static List<Tool> readTools() {
     return List.of(
-        tool("list_datacenters", "List all datacenters with their status, tier, and location.", Map.of()),
+        tool(
+            "list_datacenters",
+            "List all datacenters with their status, tier, and location.",
+            Map.of()),
         tool(
             "list_rooms",
             "List rooms, optionally filtered by datacenter id.",
@@ -46,7 +49,10 @@ public final class AiToolDefinitions {
             "search_audit_log",
             "Search recent audit log entries describing what changed in the platform.",
             Map.of("search", stringProp("Optional free-text search term."))),
-        tool("get_dashboard_summary", "Get an aggregate summary of overall datacenter health.", Map.of()));
+        tool(
+            "get_dashboard_summary",
+            "Get an aggregate summary of overall datacenter health.",
+            Map.of()));
   }
 
   public static List<Tool> actionTools() {
@@ -81,11 +87,11 @@ public final class AiToolDefinitions {
                 Tool.InputSchema.builder()
                     .properties(
                         Tool.InputSchema.Properties.builder()
-                            .putAdditionalProperty(
-                                "entityType", enumProp("DEVICE", "RACK", "ROOM"))
+                            .putAdditionalProperty("entityType", enumProp("DEVICE", "RACK", "ROOM"))
                             .putAdditionalProperty("entityId", stringProp("The id of the entity."))
                             .putAdditionalProperty("newStatus", stringProp("The new status value."))
-                            .putAdditionalProperty("reason", stringProp("Why this change is needed."))
+                            .putAdditionalProperty(
+                                "reason", stringProp("Why this change is needed."))
                             .build())
                     .required(List.of("entityType", "entityId", "newStatus", "reason"))
                     .build())
@@ -107,8 +113,10 @@ public final class AiToolDefinitions {
                                 "entityName", Map.of("type", "string"),
                                 "severity",
                                     Map.of(
-                                        "type", "string",
-                                        "enum", List.of("CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO")),
+                                        "type",
+                                        "string",
+                                        "enum",
+                                        List.of("CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO")),
                                 "title", Map.of("type", "string"),
                                 "summary", Map.of("type", "string"),
                                 "recommendedAction", Map.of("type", "string"),

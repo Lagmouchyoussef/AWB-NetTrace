@@ -29,44 +29,67 @@
   </div>
 
   <div class="topbar-actions">
-    <button type="button" class="icon-button" [matMenuTriggerFor]="notifMenu">
+    <button
+      type="button"
+      class="icon-button"
+      [matMenuTriggerFor]="notifMenu"
+      [attr.aria-label]="'topbar.notifications' | translate"
+    >
       <mat-icon fontSet="material-symbols-outlined">notifications</mat-icon>
       <mat-icon fontSet="material-symbols-outlined" class="dropdown-chevron">expand_more</mat-icon>
       @if (unreadCount() > 0) {
         <span class="badge">{{ unreadCount() }}</span>
       }
     </button>
-    <mat-menu #notifMenu="matMenu">
+    <mat-menu #notifMenu="matMenu" class="topbar-menu notif-menu">
+      <div class="menu-header">
+        <span>{{ 'topbar.notifications' | translate }}</span>
+        @if (unreadCount() > 0) {
+          <span class="menu-header-badge">{{ unreadCount() }}</span>
+        }
+      </div>
       @if (notifications().length === 0) {
-        <div class="empty-menu-item">{{ 'topbar.noNotifications' | translate }}</div>
+        <div class="empty-menu-item">
+          <mat-icon fontSet="material-symbols-outlined">notifications_none</mat-icon>
+          <span>{{ 'topbar.noNotifications' | translate }}</span>
+        </div>
       } @else {
         @for (notification of notifications(); track notification.id) {
-          <button mat-menu-item>{{ notification.message }}</button>
+          <button mat-menu-item class="notif-item" [class.unread]="!notification.read">
+            <span class="notif-dot"></span>
+            <span class="notif-message">{{ notification.message }}</span>
+          </button>
         }
       }
     </mat-menu>
 
-    <button type="button" class="icon-button" [matMenuTriggerFor]="themeMenu">
+    <button
+      type="button"
+      class="icon-button"
+      [matMenuTriggerFor]="themeMenu"
+      [attr.aria-label]="'topbar.appearance' | translate"
+    >
       <mat-icon fontSet="material-symbols-outlined">{{ themeIcon() }}</mat-icon>
       <mat-icon fontSet="material-symbols-outlined" class="dropdown-chevron">expand_more</mat-icon>
     </button>
-    <mat-menu #themeMenu="matMenu">
-      <button mat-menu-item (click)="setTheme('light')">
+    <mat-menu #themeMenu="matMenu" class="topbar-menu">
+      <div class="menu-header">{{ 'topbar.appearance' | translate }}</div>
+      <button mat-menu-item class="option-item" [class.selected]="themePreference() === 'light'" (click)="setTheme('light')">
         <mat-icon fontSet="material-symbols-outlined">light_mode</mat-icon>
         {{ 'topbar.light' | translate }}
         @if (themePreference() === 'light') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item (click)="setTheme('dark')">
+      <button mat-menu-item class="option-item" [class.selected]="themePreference() === 'dark'" (click)="setTheme('dark')">
         <mat-icon fontSet="material-symbols-outlined">dark_mode</mat-icon>
         {{ 'topbar.dark' | translate }}
         @if (themePreference() === 'dark') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item (click)="setTheme('system')">
-        <mat-icon fontSet="material-symbols-outlined">brightness_auto</mat-icon>
+      <button mat-menu-item class="option-item" [class.selected]="themePreference() === 'system'" (click)="setTheme('system')">
+        <mat-icon fontSet="material-symbols-outlined">desktop_windows</mat-icon>
         {{ 'topbar.system' | translate }}
         @if (themePreference() === 'system') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
@@ -74,40 +97,46 @@
       </button>
     </mat-menu>
 
-    <button type="button" class="icon-button" [matMenuTriggerFor]="languageMenu">
+    <button
+      type="button"
+      class="icon-button"
+      [matMenuTriggerFor]="languageMenu"
+      [attr.aria-label]="'topbar.language' | translate"
+    >
       <app-flag-icon [language]="language()" />
       <mat-icon fontSet="material-symbols-outlined" class="dropdown-chevron">expand_more</mat-icon>
     </button>
-    <mat-menu #languageMenu="matMenu">
-      <button mat-menu-item (click)="setLanguage('en')">
+    <mat-menu #languageMenu="matMenu" class="topbar-menu">
+      <div class="menu-header">{{ 'topbar.language' | translate }}</div>
+      <button mat-menu-item class="option-item" [class.selected]="language() === 'en'" (click)="setLanguage('en')">
         <app-flag-icon language="en" />
         English
         @if (language() === 'en') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item (click)="setLanguage('fr')">
+      <button mat-menu-item class="option-item" [class.selected]="language() === 'fr'" (click)="setLanguage('fr')">
         <app-flag-icon language="fr" />
         Français
         @if (language() === 'fr') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item (click)="setLanguage('ar')">
+      <button mat-menu-item class="option-item" [class.selected]="language() === 'ar'" (click)="setLanguage('ar')">
         <app-flag-icon language="ar" />
         العربية
         @if (language() === 'ar') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item (click)="setLanguage('es')">
+      <button mat-menu-item class="option-item" [class.selected]="language() === 'es'" (click)="setLanguage('es')">
         <app-flag-icon language="es" />
         Español
         @if (language() === 'es') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item (click)="setLanguage('zh')">
+      <button mat-menu-item class="option-item" [class.selected]="language() === 'zh'" (click)="setLanguage('zh')">
         <app-flag-icon language="zh" />
         中文
         @if (language() === 'zh') {
@@ -120,18 +149,22 @@
       <span class="avatar">{{ initials() }}</span>
       <mat-icon fontSet="material-symbols-outlined" class="dropdown-chevron">expand_more</mat-icon>
     </button>
-    <mat-menu #profileMenu="matMenu">
+    <mat-menu #profileMenu="matMenu" class="topbar-menu profile-menu">
       <div class="profile-header">
-        <div class="profile-name">{{ username() }}</div>
-        <div class="profile-role">{{ role() }}</div>
+        <span class="profile-avatar-lg">{{ initials() }}</span>
+        <div class="profile-header-text">
+          <div class="profile-name">{{ username() }}</div>
+          <div class="profile-role">{{ role() }}</div>
+        </div>
       </div>
       @if (myAccountPath(); as accountPath) {
-        <button mat-menu-item (click)="goToMyAccount(accountPath)">
+        <button mat-menu-item class="option-item" (click)="goToMyAccount(accountPath)">
           <mat-icon fontSet="material-symbols-outlined">account_circle</mat-icon>
           {{ 'topbar.myAccount' | translate }}
         </button>
       }
-      <button mat-menu-item (click)="onLogout()">
+      <div class="menu-divider"></div>
+      <button mat-menu-item class="option-item logout-item" (click)="onLogout()">
         <mat-icon fontSet="material-symbols-outlined">logout</mat-icon>
         {{ 'topbar.logout' | translate }}
       </button>

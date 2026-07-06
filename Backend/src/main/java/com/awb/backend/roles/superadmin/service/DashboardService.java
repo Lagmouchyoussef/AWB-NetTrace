@@ -82,7 +82,8 @@ public class DashboardService {
     response.setAiConfigured(anthropicGateway.isConfigured());
     response.setRecentInsights(
         aiInsightRepository
-            .findAll(PageRequest.of(0, RECENT_ITEMS_LIMIT, Sort.by(Sort.Direction.DESC, "createdAt")))
+            .findAll(
+                PageRequest.of(0, RECENT_ITEMS_LIMIT, Sort.by(Sort.Direction.DESC, "createdAt")))
             .map(
                 insight -> {
                   DashboardSummaryResponse.InsightSummary summary =
@@ -97,7 +98,8 @@ public class DashboardService {
             .getContent());
     response.setRecentInterventions(
         interventionRepository
-            .findAll(PageRequest.of(0, RECENT_ITEMS_LIMIT, Sort.by(Sort.Direction.DESC, "createdAt")))
+            .findAll(
+                PageRequest.of(0, RECENT_ITEMS_LIMIT, Sort.by(Sort.Direction.DESC, "createdAt")))
             .map(
                 intervention -> {
                   DashboardSummaryResponse.InterventionSummary summary =
@@ -112,10 +114,12 @@ public class DashboardService {
             .getContent());
     response.setRecentActivity(
         auditLogRepository
-            .findAll(PageRequest.of(0, RECENT_ITEMS_LIMIT, Sort.by(Sort.Direction.DESC, "occurredAt")))
+            .findAll(
+                PageRequest.of(0, RECENT_ITEMS_LIMIT, Sort.by(Sort.Direction.DESC, "occurredAt")))
             .map(
                 entry -> {
-                  DashboardSummaryResponse.ActivityItem item = new DashboardSummaryResponse.ActivityItem();
+                  DashboardSummaryResponse.ActivityItem item =
+                      new DashboardSummaryResponse.ActivityItem();
                   item.setId(entry.getId());
                   item.setActorUsername(entry.getActorUsername());
                   item.setAction(entry.getAction().name());
@@ -132,8 +136,10 @@ public class DashboardService {
     DashboardSummaryResponse.InfraCounts counts = new DashboardSummaryResponse.InfraCounts();
     java.util.List<Datacenter> datacenters =
         datacenterRepository.findAll().stream().filter(d -> !d.isDeleted()).toList();
-    java.util.List<Room> rooms = roomRepository.findAll().stream().filter(r -> !r.isDeleted()).toList();
-    java.util.List<Rack> racks = rackRepository.findAll().stream().filter(r -> !r.isDeleted()).toList();
+    java.util.List<Room> rooms =
+        roomRepository.findAll().stream().filter(r -> !r.isDeleted()).toList();
+    java.util.List<Rack> racks =
+        rackRepository.findAll().stream().filter(r -> !r.isDeleted()).toList();
     java.util.List<Device> devices =
         deviceRepository.findAll().stream().filter(d -> !d.isDeleted()).toList();
 
@@ -145,7 +151,8 @@ public class DashboardService {
         datacenters.stream().filter(d -> d.getStatus() == DatacenterStatus.ACTIVE).count());
     counts.setRoomsActive(rooms.stream().filter(r -> r.getStatus() == RoomStatus.ACTIVE).count());
     counts.setRacksActive(racks.stream().filter(r -> r.getStatus() == RackStatus.ACTIVE).count());
-    counts.setDevicesActive(devices.stream().filter(d -> d.getStatus() == DeviceStatus.ACTIVE).count());
+    counts.setDevicesActive(
+        devices.stream().filter(d -> d.getStatus() == DeviceStatus.ACTIVE).count());
     return counts;
   }
 }

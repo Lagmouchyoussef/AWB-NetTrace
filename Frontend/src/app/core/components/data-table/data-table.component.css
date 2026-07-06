@@ -87,6 +87,7 @@
 table {
   width: 100%;
   background: transparent;
+  border-collapse: collapse;
 }
 
 th.mat-mdc-header-cell {
@@ -95,17 +96,41 @@ th.mat-mdc-header-cell {
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--awb-border);
 }
 
 td.mat-mdc-cell {
   color: var(--awb-on-surface);
   font-size: 0.85rem;
+  padding: 0.85rem 1.25rem;
+  vertical-align: middle;
+}
+
+tr.mat-mdc-row {
+  transition: background 0.12s ease;
+}
+
+tr.mat-mdc-row:hover {
+  background: var(--awb-hover);
+}
+
+.actions-header {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
 }
 
 .actions-cell {
-  display: flex;
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.actions-group {
+  display: inline-flex;
+  align-items: center;
   gap: 0.25rem;
-  justify-content: flex-end;
 }
 
 .row-action {
@@ -115,7 +140,7 @@ td.mat-mdc-cell {
   background: none;
   border: none;
   border-radius: 6px;
-  padding: 0.35rem;
+  padding: 0.4rem;
   color: var(--awb-on-surface-muted);
   cursor: pointer;
   transition:
@@ -126,6 +151,11 @@ td.mat-mdc-cell {
 .row-action:hover {
   background: var(--awb-hover);
   color: #f47920;
+}
+
+.row-action-danger:hover {
+  background: light-dark(rgba(198, 40, 40, 0.1), rgba(255, 107, 107, 0.14));
+  color: light-dark(#c62828, #ff6b6b);
 }
 
 .row-action mat-icon {

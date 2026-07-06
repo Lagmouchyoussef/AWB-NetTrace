@@ -27,7 +27,8 @@ public class AiSettingsSeeder implements CommandLineRunner {
 
   @Override
   public void run(String... args) {
-    if (systemSettingRepository.existsBySettingKeyIgnoreCase(AiSettingsService.ASSISTANT_ENABLED_KEY)) {
+    if (systemSettingRepository.existsBySettingKeyIgnoreCase(
+        AiSettingsService.ASSISTANT_ENABLED_KEY)) {
       return;
     }
 

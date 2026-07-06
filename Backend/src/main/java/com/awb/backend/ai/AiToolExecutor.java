@@ -1,15 +1,15 @@
 package com.awb.backend.ai;
 
 import com.anthropic.core.JsonValue;
+import com.awb.backend.core.entity.AiInsightStatus;
 import com.awb.backend.core.entity.AnomalyDetectionStatus;
 import com.awb.backend.core.entity.InterventionStatus;
-import com.awb.backend.core.entity.AiInsightStatus;
+import com.awb.backend.core.repository.AiInsightRepository;
 import com.awb.backend.core.repository.AnomalyDetectionRepository;
 import com.awb.backend.core.repository.AuditLogRepository;
 import com.awb.backend.core.repository.DatacenterRepository;
 import com.awb.backend.core.repository.DeviceRepository;
 import com.awb.backend.core.repository.InterventionRepository;
-import com.awb.backend.core.repository.AiInsightRepository;
 import com.awb.backend.core.repository.RackRepository;
 import com.awb.backend.core.repository.RoomRepository;
 import com.awb.backend.roles.superadmin.service.DashboardService;
@@ -123,7 +123,8 @@ public class AiToolExecutor {
   private List<Map<String, Object>> listRooms(String datacenterId) {
     return roomRepository.findAll().stream()
         .filter(r -> !r.isDeleted())
-        .filter(r -> datacenterId == null || r.getDatacenter().getId().toString().equals(datacenterId))
+        .filter(
+            r -> datacenterId == null || r.getDatacenter().getId().toString().equals(datacenterId))
         .map(
             r ->
                 Map.<String, Object>of(

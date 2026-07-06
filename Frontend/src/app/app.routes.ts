@@ -4,6 +4,11 @@ import { roleGuard } from './core/guards/role.guard';
 
 export const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'super-admin-login',
+  },
+  {
     path: 'super-admin-login',
     data: { expectedRole: 'SUPER_ADMIN' },
     loadComponent: () => import('./auth/login/login.component').then((m) => m.LoginComponent),

@@ -21,7 +21,8 @@ public class AiChatController {
   }
 
   @PostMapping("/messages")
-  public AiChatResponse sendMessage(@Valid @RequestBody AiChatRequest request, Principal principal) {
+  public AiChatResponse sendMessage(
+      @Valid @RequestBody AiChatRequest request, Principal principal) {
     return aiChatService.send(request, principal.getName());
   }
 }

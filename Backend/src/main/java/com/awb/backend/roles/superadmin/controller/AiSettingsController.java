@@ -26,7 +26,8 @@ public class AiSettingsController {
   }
 
   @PutMapping
-  public AiSettingsResponse update(@RequestBody AiSettingsUpdateRequest request, Principal principal) {
+  public AiSettingsResponse update(
+      @RequestBody AiSettingsUpdateRequest request, Principal principal) {
     return aiSettingsService.update(request, principal.getName());
   }
 }
