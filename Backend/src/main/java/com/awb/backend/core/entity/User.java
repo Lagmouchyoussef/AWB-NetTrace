@@ -37,6 +37,21 @@ public class User {
   @Column(name = "ip_restriction_enabled", nullable = false)
   private boolean ipRestrictionEnabled;
 
+  @Column(name = "full_name")
+  private String fullName;
+
+  @Column(name = "email")
+  private String email;
+
+  @Column(name = "phone")
+  private String phone;
+
+  @Column(name = "matricule")
+  private String matricule;
+
+  @Column(name = "profile_photo", columnDefinition = "TEXT")
+  private String profilePhoto;
+
   public Long getId() {
     return id;
   }
@@ -87,5 +102,45 @@ public class User {
 
   public void setIpRestrictionEnabled(boolean ipRestrictionEnabled) {
     this.ipRestrictionEnabled = ipRestrictionEnabled;
+  }
+
+  public String getFullName() {
+    return fullName;
+  }
+
+  public void setFullName(String fullName) {
+    this.fullName = fullName;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  public String getMatricule() {
+    return matricule;
+  }
+
+  public void setMatricule(String matricule) {
+    this.matricule = matricule;
+  }
+
+  public String getProfilePhoto() {
+    return profilePhoto;
+  }
+
+  public void setProfilePhoto(String profilePhoto) {
+    this.profilePhoto = profilePhoto;
   }
 }

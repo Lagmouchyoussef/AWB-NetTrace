@@ -8,6 +8,7 @@
     "logIn": "Se connecter",
     "loggingIn": "Connexion en cours...",
     "invalidCredentials": "Nom d'utilisateur ou mot de passe incorrect.",
+    "sessionExpired": "Votre session a expiré. Veuillez vous reconnecter.",
     "backToLogin": "Retour à la connexion",
     "forgotIntro": "Saisissez votre nom d'utilisateur et votre administrateur système sera notifié pour vous aider à réinitialiser votre mot de passe.",
     "sendRequest": "Envoyer la demande",
@@ -51,7 +52,8 @@
     "snmpNetconfGnmiConnectors": "Connecteurs SNMP/NETCONF/gNMI",
     "syncDrift": "Synchronisation et dérive",
     "auditCompliance": "Audit et conformité",
-    "reports": "Rapports"
+    "reports": "Rapports",
+    "myAccount": "Mon compte"
   },
   "topbar": {
     "searchPlaceholder": "Rechercher...",
@@ -59,6 +61,7 @@
     "light": "Clair",
     "dark": "Sombre",
     "system": "Système",
+    "myAccount": "Mon compte",
     "logout": "Déconnexion"
   },
   "placeholder": {
@@ -81,6 +84,7 @@
     "confirm": "Confirmer",
     "save": "Enregistrer",
     "saving": "Enregistrement...",
+    "loading": "Chargement...",
     "close": "Fermer",
     "itemsPerPage": "Éléments par page :",
     "nextPage": "Page suivante",
@@ -539,6 +543,722 @@
       "TRACED": "Tracé",
       "PENDING": "En attente",
       "FAILED": "Échoué"
+    }
+  },
+  "sdwanEdges": {
+    "pageTitle": "Edges SD-WAN",
+    "addNew": "Ajouter un edge SD-WAN",
+    "createTitle": "Nouvel edge SD-WAN",
+    "editTitle": "Modifier l'edge SD-WAN",
+    "deleteTitle": "Supprimer l'edge SD-WAN",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "datacenter": "Centre de données",
+      "vendor": "Fournisseur",
+      "status": "Statut"
+    },
+    "fields": {
+      "datacenter": "Centre de données",
+      "name": "Nom",
+      "code": "Code",
+      "vendor": "Fournisseur",
+      "model": "Modèle",
+      "wanLinkCount": "Nombre de liens WAN",
+      "managementIp": "IP de gestion",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Hors service",
+      "PROVISIONING": "En cours de provisionnement"
+    }
+  },
+  "overlayTunnels": {
+    "pageTitle": "Tunnels overlay",
+    "addNew": "Ajouter un tunnel overlay",
+    "createTitle": "Nouveau tunnel overlay",
+    "editTitle": "Modifier le tunnel overlay",
+    "deleteTitle": "Supprimer le tunnel overlay",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et que la source/cible sont différentes.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "source": "Source",
+      "target": "Cible",
+      "tunnelType": "Type de tunnel",
+      "status": "Statut"
+    },
+    "fields": {
+      "source": "Edge source",
+      "target": "Edge cible",
+      "name": "Nom",
+      "code": "Code",
+      "tunnelType": "Type de tunnel",
+      "bandwidthMbps": "Bande passante (Mbps)",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "tunnelType": {
+      "IPSEC": "IPsec",
+      "GRE": "GRE",
+      "DTLS": "DTLS",
+      "VXLAN": "VXLAN"
+    },
+    "status": {
+      "UP": "Actif",
+      "DOWN": "Inactif",
+      "DEGRADED": "Dégradé",
+      "PLANNED": "Planifié"
+    }
+  },
+  "carrierCircuits": {
+    "pageTitle": "Circuits opérateurs",
+    "addNew": "Ajouter un circuit opérateur",
+    "createTitle": "Nouveau circuit opérateur",
+    "editTitle": "Modifier le circuit opérateur",
+    "deleteTitle": "Supprimer le circuit opérateur",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "edge": "Edge SD-WAN",
+      "circuitType": "Type de circuit",
+      "provider": "Opérateur",
+      "status": "Statut"
+    },
+    "fields": {
+      "edge": "Edge SD-WAN",
+      "name": "Nom",
+      "code": "Code",
+      "circuitType": "Type de circuit",
+      "provider": "Opérateur",
+      "bandwidthMbps": "Bande passante (Mbps)",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "circuitType": {
+      "MPLS": "MPLS",
+      "BROADBAND": "Internet haut débit",
+      "LTE_5G": "LTE/5G",
+      "DARK_FIBER": "Fibre noire",
+      "SATELLITE": "Satellite"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Hors service",
+      "PLANNED": "Planifié"
+    }
+  },
+  "telemetryConnectors": {
+    "pageTitle": "Connecteurs de télémétrie",
+    "addNew": "Ajouter un connecteur de télémétrie",
+    "createTitle": "Nouveau connecteur de télémétrie",
+    "editTitle": "Modifier le connecteur de télémétrie",
+    "deleteTitle": "Supprimer le connecteur de télémétrie",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "device": "Équipement",
+      "protocol": "Protocole",
+      "status": "Statut"
+    },
+    "fields": {
+      "device": "Équipement",
+      "name": "Nom",
+      "code": "Code",
+      "protocol": "Protocole",
+      "pollIntervalSeconds": "Intervalle d'interrogation (s)",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "protocol": {
+      "SNMP_V2C": "SNMP v2c",
+      "SNMP_V3": "SNMP v3",
+      "GNMI_STREAMING": "Télémétrie en flux gNMI",
+      "NETCONF": "NETCONF",
+      "PROMETHEUS_EXPORTER": "Exportateur Prometheus",
+      "OPENTELEMETRY": "OpenTelemetry"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "PAUSED": "En pause",
+      "ERROR": "Erreur",
+      "DECOMMISSIONED": "Hors service"
+    }
+  },
+  "realTimeDashboards": {
+    "pageTitle": "Tableaux de bord temps réel",
+    "addNew": "Ajouter un tableau de bord",
+    "createTitle": "Nouveau tableau de bord",
+    "editTitle": "Modifier le tableau de bord",
+    "deleteTitle": "Supprimer le tableau de bord",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "description": "Description",
+      "refreshIntervalSeconds": "Intervalle de rafraîchissement",
+      "widgetCount": "Widgets",
+      "status": "Statut"
+    },
+    "fields": {
+      "name": "Nom",
+      "code": "Code",
+      "description": "Description",
+      "refreshIntervalSeconds": "Intervalle de rafraîchissement (s)",
+      "widgetCount": "Nombre de widgets",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "DRAFT": "Brouillon",
+      "ARCHIVED": "Archivé"
+    }
+  },
+  "anomalyDetections": {
+    "pageTitle": "Détection d'anomalies",
+    "addNew": "Signaler une anomalie",
+    "createTitle": "Nouvelle anomalie",
+    "editTitle": "Modifier l'anomalie",
+    "deleteTitle": "Supprimer l'anomalie",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez les champs et réessayez.",
+    "columns": {
+      "title": "Titre",
+      "device": "Équipement",
+      "anomalyType": "Type",
+      "severity": "Sévérité",
+      "status": "Statut",
+      "detectedAt": "Détectée le"
+    },
+    "fields": {
+      "device": "Équipement",
+      "title": "Titre",
+      "description": "Description",
+      "anomalyType": "Type d'anomalie",
+      "severity": "Sévérité",
+      "status": "Statut",
+      "detectedAt": "Détectée le",
+      "resolvedAt": "Résolue le",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "anomalyType": {
+      "THRESHOLD_BREACH": "Dépassement de seuil",
+      "TRAFFIC_SPIKE": "Pic de trafic",
+      "FLAPPING_LINK": "Lien instable (flapping)",
+      "CONFIG_DRIFT": "Dérive de configuration",
+      "UNAUTHORIZED_ACCESS": "Accès non autorisé",
+      "PACKET_LOSS": "Perte de paquets",
+      "LATENCY_DEGRADATION": "Dégradation de latence"
+    },
+    "severity": {
+      "CRITICAL": "Critique",
+      "HIGH": "Élevée",
+      "MEDIUM": "Moyenne",
+      "LOW": "Faible",
+      "INFO": "Information"
+    },
+    "status": {
+      "OPEN": "Ouverte",
+      "ACKNOWLEDGED": "Acquittée",
+      "RESOLVED": "Résolue",
+      "FALSE_POSITIVE": "Faux positif"
+    }
+  },
+  "interventions": {
+    "pageTitle": "Interventions",
+    "addNew": "Nouvelle intervention",
+    "createTitle": "Nouvelle intervention",
+    "editTitle": "Modifier l'intervention",
+    "deleteTitle": "Supprimer l'intervention",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez les champs et réessayez.",
+    "columns": {
+      "title": "Titre",
+      "device": "Équipement",
+      "interventionType": "Type",
+      "priority": "Priorité",
+      "status": "Statut",
+      "scheduledAt": "Planifiée le"
+    },
+    "fields": {
+      "device": "Équipement",
+      "title": "Titre",
+      "description": "Description",
+      "interventionType": "Type d'intervention",
+      "priority": "Priorité",
+      "status": "Statut",
+      "assignedTechnician": "Technicien assigné",
+      "scheduledAt": "Planifiée le",
+      "completedAt": "Terminée le",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "interventionType": {
+      "PREVENTIVE_MAINTENANCE": "Maintenance préventive",
+      "CORRECTIVE_MAINTENANCE": "Maintenance corrective",
+      "INCIDENT_RESPONSE": "Réponse à incident",
+      "INSTALLATION": "Installation",
+      "DECOMMISSIONING": "Mise hors service",
+      "INSPECTION": "Inspection"
+    },
+    "priority": {
+      "CRITICAL": "Critique",
+      "HIGH": "Élevée",
+      "MEDIUM": "Moyenne",
+      "LOW": "Faible"
+    },
+    "status": {
+      "SCHEDULED": "Planifiée",
+      "IN_PROGRESS": "En cours",
+      "ON_HOLD": "En attente",
+      "COMPLETED": "Terminée",
+      "CANCELLED": "Annulée"
+    }
+  },
+  "equipmentTypes": {
+    "pageTitle": "Types d'équipements",
+    "addNew": "Ajouter un type",
+    "createTitle": "Nouveau type d'équipement",
+    "editTitle": "Modifier le type d'équipement",
+    "deleteTitle": "Supprimer le type d'équipement",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "category": "Catégorie",
+      "manufacturer": "Fabricant",
+      "status": "Statut"
+    },
+    "fields": {
+      "name": "Nom",
+      "code": "Code",
+      "category": "Catégorie",
+      "manufacturer": "Fabricant",
+      "defaultRackUnits": "Hauteur par défaut (U)",
+      "defaultPowerWatts": "Puissance par défaut (W)",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "category": {
+      "SERVER": "Serveur",
+      "NETWORKING": "Réseau",
+      "STORAGE": "Stockage",
+      "POWER": "Énergie",
+      "COOLING": "Refroidissement",
+      "SECURITY": "Sécurité"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "DEPRECATED": "Obsolète"
+    }
+  },
+  "technologyCatalog": {
+    "pageTitle": "Catalogue des technologies réseau",
+    "addNew": "Ajouter une technologie",
+    "createTitle": "Nouvelle technologie",
+    "editTitle": "Modifier la technologie",
+    "deleteTitle": "Supprimer la technologie",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "category": "Catégorie",
+      "vendor": "Fournisseur",
+      "status": "Statut"
+    },
+    "fields": {
+      "name": "Nom",
+      "code": "Code",
+      "category": "Catégorie",
+      "vendor": "Fournisseur",
+      "version": "Version",
+      "description": "Description",
+      "status": "Statut",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "category": {
+      "NETWORKING_PROTOCOL": "Protocole réseau",
+      "SECURITY": "Sécurité",
+      "VIRTUALIZATION": "Virtualisation",
+      "MONITORING": "Supervision",
+      "STORAGE": "Stockage",
+      "CLOUD": "Cloud"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "EVALUATION": "En évaluation",
+      "DEPRECATED": "Obsolète"
+    }
+  },
+  "users": {
+    "pageTitle": "Utilisateurs",
+    "addNew": "Ajouter un utilisateur",
+    "createTitle": "Nouvel utilisateur",
+    "editTitle": "Modifier l'utilisateur",
+    "deleteTitle": "Supprimer l'utilisateur",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action est définitive.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le nom d'utilisateur est unique et réessayez.",
+    "enabledYes": "Oui",
+    "enabledNo": "Non",
+    "columns": {
+      "username": "Nom d'utilisateur",
+      "role": "Rôle",
+      "enabled": "Actif",
+      "ipRestrictionEnabled": "Restriction IP"
+    },
+    "fields": {
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "newPassword": "Nouveau mot de passe (laisser vide pour ne pas changer)",
+      "role": "Rôle",
+      "enabled": "Compte actif",
+      "ipRestrictionEnabled": "Restriction par adresse IP",
+      "createdAt": "Créé le"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "role": {
+      "SUPER_ADMIN": "Super administrateur",
+      "DC_ADMIN": "Administrateur datacenter",
+      "NETWORK_ENGINEER": "Ingénieur réseau",
+      "TECHNICIAN": "Technicien",
+      "APPROVER": "Approbateur",
+      "REQUESTER": "Demandeur",
+      "AUDITOR": "Auditeur"
+    }
+  },
+  "rolePermissions": {
+    "pageTitle": "Rôles et permissions",
+    "addNew": "Assigner une permission",
+    "createTitle": "Nouvelle assignation",
+    "editTitle": "Modifier l'assignation",
+    "deleteTitle": "Supprimer l'assignation",
+    "deleteMessage": "Voulez-vous vraiment supprimer l'assignation « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Ce rôle a peut-être déjà cette permission.",
+    "columns": {
+      "role": "Rôle",
+      "permission": "Permission",
+      "granted": "Accordée"
+    },
+    "fields": {
+      "role": "Rôle",
+      "permission": "Permission",
+      "granted": "Permission accordée",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    }
+  },
+  "systemSettings": {
+    "pageTitle": "Paramètres système",
+    "addNew": "Ajouter un paramètre",
+    "createTitle": "Nouveau paramètre",
+    "editTitle": "Modifier le paramètre",
+    "deleteTitle": "Supprimer le paramètre",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que la clé est unique et réessayez.",
+    "columns": {
+      "settingKey": "Clé",
+      "settingValue": "Valeur",
+      "category": "Catégorie",
+      "dataType": "Type de donnée"
+    },
+    "fields": {
+      "settingKey": "Clé",
+      "settingValue": "Valeur",
+      "category": "Catégorie",
+      "dataType": "Type de donnée",
+      "description": "Description",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "category": {
+      "GENERAL": "Général",
+      "SECURITY": "Sécurité",
+      "NOTIFICATIONS": "Notifications",
+      "INTEGRATIONS": "Intégrations",
+      "MONITORING": "Supervision"
+    },
+    "dataType": {
+      "STRING": "Texte",
+      "NUMBER": "Nombre",
+      "BOOLEAN": "Booléen",
+      "JSON": "JSON"
+    }
+  },
+  "integrationConnectors": {
+    "pageTitle": "Connecteurs SNMP/NETCONF/gNMI",
+    "addNew": "Ajouter un connecteur",
+    "createTitle": "Nouveau connecteur d'intégration",
+    "editTitle": "Modifier le connecteur",
+    "deleteTitle": "Supprimer le connecteur",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "device": "Équipement",
+      "protocol": "Protocole",
+      "automationType": "Type d'automatisation",
+      "status": "Statut"
+    },
+    "fields": {
+      "device": "Équipement",
+      "name": "Nom",
+      "code": "Code",
+      "protocol": "Protocole",
+      "automationType": "Type d'automatisation",
+      "status": "Statut",
+      "lastSyncAt": "Dernière synchronisation",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "protocol": {
+      "SNMP_V2C": "SNMP v2c",
+      "SNMP_V3": "SNMP v3",
+      "NETCONF": "NETCONF",
+      "RESTCONF": "RESTCONF",
+      "GNMI": "gNMI"
+    },
+    "automationType": {
+      "CONFIG_BACKUP": "Sauvegarde de configuration",
+      "CONFIG_PUSH": "Déploiement de configuration",
+      "COMPLIANCE_CHECK": "Vérification de conformité",
+      "ZERO_TOUCH_PROVISIONING": "Provisionnement Zero-Touch"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "PAUSED": "En pause",
+      "ERROR": "Erreur",
+      "DECOMMISSIONED": "Hors service"
+    }
+  },
+  "syncDrifts": {
+    "pageTitle": "Synchronisation et dérive",
+    "addNew": "Signaler une dérive",
+    "createTitle": "Nouvelle dérive",
+    "editTitle": "Modifier la dérive",
+    "deleteTitle": "Supprimer la dérive",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez les champs et réessayez.",
+    "columns": {
+      "title": "Titre",
+      "device": "Équipement",
+      "driftType": "Type",
+      "severity": "Sévérité",
+      "status": "Statut",
+      "detectedAt": "Détectée le"
+    },
+    "fields": {
+      "device": "Équipement",
+      "title": "Titre",
+      "description": "Description",
+      "driftType": "Type de dérive",
+      "severity": "Sévérité",
+      "status": "Statut",
+      "detectedAt": "Détectée le",
+      "remediatedAt": "Corrigée le",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "driftType": {
+      "CONFIG_MISMATCH": "Écart de configuration",
+      "FIRMWARE_VERSION": "Version de firmware",
+      "ACL_CHANGE": "Modification ACL",
+      "VLAN_CHANGE": "Changement de VLAN",
+      "UNAUTHORIZED_CHANGE": "Changement non autorisé"
+    },
+    "severity": {
+      "CRITICAL": "Critique",
+      "HIGH": "Élevée",
+      "MEDIUM": "Moyenne",
+      "LOW": "Faible"
+    },
+    "status": {
+      "DETECTED": "Détectée",
+      "ACKNOWLEDGED": "Acquittée",
+      "REMEDIATED": "Corrigée",
+      "IGNORED": "Ignorée"
+    }
+  },
+  "auditLogs": {
+    "pageTitle": "Audit et conformité",
+    "addNew": "Ajouter une entrée",
+    "createTitle": "Nouvelle entrée d'audit",
+    "editTitle": "Modifier l'entrée",
+    "deleteTitle": "Supprimer l'entrée",
+    "deleteMessage": "Voulez-vous vraiment supprimer cette entrée d'audit sur « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez les champs et réessayez.",
+    "columns": {
+      "occurredAt": "Survenue le",
+      "actorUsername": "Acteur",
+      "action": "Action",
+      "entityType": "Type d'entité",
+      "entityReference": "Référence"
+    },
+    "fields": {
+      "actorUsername": "Nom d'utilisateur de l'acteur",
+      "action": "Action",
+      "entityType": "Type d'entité",
+      "entityReference": "Référence de l'entité",
+      "description": "Description",
+      "ipAddress": "Adresse IP",
+      "occurredAt": "Survenue le",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "action": {
+      "CREATE": "Création",
+      "UPDATE": "Modification",
+      "DELETE": "Suppression",
+      "LOGIN": "Connexion",
+      "LOGOUT": "Déconnexion",
+      "EXPORT": "Export",
+      "CONFIG_CHANGE": "Changement de configuration"
+    }
+  },
+  "reports": {
+    "pageTitle": "Rapports",
+    "addNew": "Ajouter un rapport",
+    "createTitle": "Nouveau rapport",
+    "editTitle": "Modifier le rapport",
+    "deleteTitle": "Supprimer le rapport",
+    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
+    "columns": {
+      "name": "Nom",
+      "code": "Code",
+      "reportType": "Type",
+      "format": "Format",
+      "schedule": "Fréquence",
+      "status": "Statut"
+    },
+    "fields": {
+      "name": "Nom",
+      "code": "Code",
+      "reportType": "Type de rapport",
+      "format": "Format",
+      "schedule": "Fréquence",
+      "status": "Statut",
+      "lastGeneratedAt": "Dernière génération",
+      "description": "Description",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire."
+    },
+    "reportType": {
+      "INVENTORY": "Inventaire",
+      "CAPACITY": "Capacité",
+      "COMPLIANCE": "Conformité",
+      "AVAILABILITY": "Disponibilité",
+      "SECURITY": "Sécurité",
+      "CUSTOM": "Personnalisé"
+    },
+    "format": {
+      "PDF": "PDF",
+      "CSV": "CSV",
+      "XLSX": "XLSX"
+    },
+    "schedule": {
+      "ON_DEMAND": "À la demande",
+      "DAILY": "Quotidien",
+      "WEEKLY": "Hebdomadaire",
+      "MONTHLY": "Mensuel"
+    },
+    "status": {
+      "ACTIVE": "Actif",
+      "DRAFT": "Brouillon",
+      "ARCHIVED": "Archivé"
+    }
+  },
+  "myAccount": {
+    "pageTitle": "Mon compte",
+    "profileSection": "Profil",
+    "passwordSection": "Mot de passe",
+    "securitySection": "Sécurité",
+    "changePhoto": "Changer la photo",
+    "removePhoto": "Supprimer la photo",
+    "changePassword": "Changer le mot de passe",
+    "saveSuccess": "Profil enregistré avec succès.",
+    "loadError": "Impossible de charger votre compte. Vérifiez votre connexion et réessayez.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le nom d'utilisateur est unique.",
+    "passwordSaveSuccess": "Mot de passe modifié avec succès.",
+    "passwordError": "Une erreur est survenue. Vérifiez votre mot de passe actuel.",
+    "passwordMismatch": "Les mots de passe ne correspondent pas.",
+    "ipRestrictionEnabled": "Restreindre la connexion aux adresses IP autorisées",
+    "allowedIps": "Adresses IP autorisées",
+    "newIpAddress": "Nouvelle adresse IP",
+    "addIp": "Ajouter",
+    "noAllowedIps": "Aucune adresse IP autorisée pour le moment.",
+    "deleteIpTitle": "Supprimer l'adresse IP",
+    "deleteIpMessage": "Voulez-vous vraiment supprimer l'adresse IP « {{name}} » de la liste autorisée ?",
+    "ipSaveError": "Une erreur est survenue lors de l'ajout de l'adresse IP.",
+    "fields": {
+      "username": "Nom d'utilisateur",
+      "fullName": "Nom complet",
+      "matricule": "Matricule",
+      "email": "Email",
+      "phone": "Téléphone",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le mot de passe"
+    },
+    "validation": {
+      "required": "Ce champ est obligatoire.",
+      "email": "Adresse email invalide.",
+      "passwordLength": "Le mot de passe doit contenir au moins 8 caractères."
     }
   }
 }

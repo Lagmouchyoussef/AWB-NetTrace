@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>
+  {{ (isEdit ? 'systemSettings.editTitle' : 'systemSettings.createTitle') | translate }}
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'systemSettings.fields.settingKey' | translate }}</mat-label>
+        <input matInput formControlName="settingKey" required />
+        @if (form.controls.settingKey.invalid && form.controls.settingKey.touched) {
+          <mat-error>{{ 'systemSettings.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'systemSettings.fields.settingValue' | translate }}</mat-label>
+        <input matInput formControlName="settingValue" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'systemSettings.fields.category' | translate }}</mat-label>
+        <mat-select formControlName="category">
+          @for (category of categories; track category) {
+            <mat-option [value]="category">{{
+              'systemSettings.category.' + category | translate
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'systemSettings.fields.dataType' | translate }}</mat-label>
+        <mat-select formControlName="dataType">
+          @for (dataType of dataTypes; track dataType) {
+            <mat-option [value]="dataType">{{
+              'systemSettings.dataType.' + dataType | translate
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'systemSettings.fields.description' | translate }}</mat-label>
+        <textarea matInput formControlName="description" rows="2"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'systemSettings.fields.notes' | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+
+    @if (errorKey()) {
+      <p class="form-error">{{ errorKey() | translate }}</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" class="dialog-button dialog-button-cancel" (click)="cancel()">
+      {{ 'common.cancel' | translate }}
+    </button>
+    <button type="submit" class="dialog-button dialog-button-confirm" [disabled]="saving()">
+      {{ (saving() ? 'common.saving' : 'common.save') | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>

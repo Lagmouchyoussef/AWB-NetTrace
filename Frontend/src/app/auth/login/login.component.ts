@@ -29,6 +29,12 @@ export class LoginComponent {
   protected readonly borderState = signal<BorderState>('idle');
   protected readonly showPassword = signal(false);
 
+  constructor() {
+    if (this.route.snapshot.queryParamMap.get('sessionExpired') === '1') {
+      this.errorMessage.set(this.translateService.instant('auth.sessionExpired'));
+    }
+  }
+
   togglePasswordVisibility(): void {
     this.showPassword.update((value) => !value);
   }

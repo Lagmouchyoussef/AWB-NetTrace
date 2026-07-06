@@ -1,0 +1,39 @@
+package com.awb.backend.core.repository;
+
+import com.awb.backend.core.entity.Intervention;
+import com.awb.backend.core.entity.InterventionPriority;
+import com.awb.backend.core.entity.InterventionStatus;
+import org.springframework.data.jpa.domain.Specification;
+
+public final class InterventionSpecifications {
+
+  private InterventionSpecifications() {}
+
+  // Each filter returns an always-true predicate when its criterion is absent, rather than null:
+  // this Spring Data JPA version's Specification#and rejects a null argument outright.
+  public static Specification<Intervention> notDeleted() {
+    return (root, query, cb) -> cb.isFalse(root.get("deleted"));
+  }
+
+  public static Specification<Intervention> search(String search) {
+    if (search == null || search.isBlank()) {
+      return (root, query, cb) -> cb.conjunction();
+    }
+    String pattern = "%" + search.toLowerCase() + "%";
+    return (root, query, cb) -> cb.like(cb.lower(root.get("title")), pattern);
+  }
+
+  public static Specification<Intervention> hasStatus(InterventionStatus status) {
+    if (status == null) {
+      return (root, query, cb) -> cb.conjunction();
+    }
+    return (root, query, cb) -> cb.equal(root.get("status"), status);
+  }
+
+  public static Specification<Intervention> hasPriority(InterventionPriority priority) {
+    if (priority == null) {
+      return (root, query, cb) -> cb.conjunction();
+    }
+    return (root, query, cb) -> cb.equal(root.get("priority"), priority);
+  }
+}

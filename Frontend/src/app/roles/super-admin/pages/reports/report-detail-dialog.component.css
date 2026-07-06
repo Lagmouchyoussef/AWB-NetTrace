@@ -1,0 +1,40 @@
+h2[mat-dialog-title] {
+  color: var(--awb-on-surface);
+}
+
+.detail-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem 1rem;
+  margin: 0;
+  min-width: 360px;
+}
+
+.detail-list dt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--awb-on-surface-muted);
+}
+
+.detail-list dd {
+  margin: 0;
+  color: var(--awb-on-surface);
+  font-size: 0.9rem;
+}
+
+.dialog-button {
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--awb-border);
+  background: none;
+  color: var(--awb-on-surface);
+}
+
+.dialog-button:hover {
+  background: var(--awb-hover);
+}

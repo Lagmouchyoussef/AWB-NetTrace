@@ -8,6 +8,7 @@
     "logIn": "Log in",
     "loggingIn": "Logging in...",
     "invalidCredentials": "Incorrect username or password.",
+    "sessionExpired": "Your session has expired. Please log in again.",
     "backToLogin": "Back to login",
     "forgotIntro": "Enter your username and your system administrator will be notified to help you reset your password.",
     "sendRequest": "Send request",
@@ -51,7 +52,8 @@
     "snmpNetconfGnmiConnectors": "SNMP/NETCONF/gNMI Connectors",
     "syncDrift": "Sync & Drift",
     "auditCompliance": "Audit & Compliance",
-    "reports": "Reports"
+    "reports": "Reports",
+    "myAccount": "My Account"
   },
   "topbar": {
     "searchPlaceholder": "Search...",
@@ -59,6 +61,7 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System",
+    "myAccount": "My Account",
     "logout": "Logout"
   },
   "placeholder": {
@@ -81,6 +84,7 @@
     "confirm": "Confirm",
     "save": "Save",
     "saving": "Saving...",
+    "loading": "Loading...",
     "close": "Close",
     "itemsPerPage": "Items per page:",
     "nextPage": "Next page",
@@ -539,6 +543,722 @@
       "TRACED": "Traced",
       "PENDING": "Pending",
       "FAILED": "Failed"
+    }
+  },
+  "sdwanEdges": {
+    "pageTitle": "SD-WAN Edges",
+    "addNew": "Add SD-WAN Edge",
+    "createTitle": "New SD-WAN Edge",
+    "editTitle": "Edit SD-WAN Edge",
+    "deleteTitle": "Delete SD-WAN Edge",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "datacenter": "Datacenter",
+      "vendor": "Vendor",
+      "status": "Status"
+    },
+    "fields": {
+      "datacenter": "Datacenter",
+      "name": "Name",
+      "code": "Code",
+      "vendor": "Vendor",
+      "model": "Model",
+      "wanLinkCount": "WAN Link Count",
+      "managementIp": "Management IP",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Decommissioned",
+      "PROVISIONING": "Provisioning"
+    }
+  },
+  "overlayTunnels": {
+    "pageTitle": "Overlay Tunnels",
+    "addNew": "Add Overlay Tunnel",
+    "createTitle": "New Overlay Tunnel",
+    "editTitle": "Edit Overlay Tunnel",
+    "deleteTitle": "Delete Overlay Tunnel",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and the source/target are different.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "source": "Source",
+      "target": "Target",
+      "tunnelType": "Tunnel Type",
+      "status": "Status"
+    },
+    "fields": {
+      "source": "Source Edge",
+      "target": "Target Edge",
+      "name": "Name",
+      "code": "Code",
+      "tunnelType": "Tunnel Type",
+      "bandwidthMbps": "Bandwidth (Mbps)",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "tunnelType": {
+      "IPSEC": "IPsec",
+      "GRE": "GRE",
+      "DTLS": "DTLS",
+      "VXLAN": "VXLAN"
+    },
+    "status": {
+      "UP": "Up",
+      "DOWN": "Down",
+      "DEGRADED": "Degraded",
+      "PLANNED": "Planned"
+    }
+  },
+  "carrierCircuits": {
+    "pageTitle": "Carrier Circuits",
+    "addNew": "Add Carrier Circuit",
+    "createTitle": "New Carrier Circuit",
+    "editTitle": "Edit Carrier Circuit",
+    "deleteTitle": "Delete Carrier Circuit",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "edge": "SD-WAN Edge",
+      "circuitType": "Circuit Type",
+      "provider": "Provider",
+      "status": "Status"
+    },
+    "fields": {
+      "edge": "SD-WAN Edge",
+      "name": "Name",
+      "code": "Code",
+      "circuitType": "Circuit Type",
+      "provider": "Provider",
+      "bandwidthMbps": "Bandwidth (Mbps)",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "circuitType": {
+      "MPLS": "MPLS",
+      "BROADBAND": "Broadband Internet",
+      "LTE_5G": "LTE/5G",
+      "DARK_FIBER": "Dark Fiber",
+      "SATELLITE": "Satellite"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "MAINTENANCE": "Maintenance",
+      "DECOMMISSIONED": "Decommissioned",
+      "PLANNED": "Planned"
+    }
+  },
+  "telemetryConnectors": {
+    "pageTitle": "Telemetry Connectors",
+    "addNew": "Add Telemetry Connector",
+    "createTitle": "New Telemetry Connector",
+    "editTitle": "Edit Telemetry Connector",
+    "deleteTitle": "Delete Telemetry Connector",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "device": "Device",
+      "protocol": "Protocol",
+      "status": "Status"
+    },
+    "fields": {
+      "device": "Device",
+      "name": "Name",
+      "code": "Code",
+      "protocol": "Protocol",
+      "pollIntervalSeconds": "Poll Interval (s)",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "protocol": {
+      "SNMP_V2C": "SNMP v2c",
+      "SNMP_V3": "SNMP v3",
+      "GNMI_STREAMING": "gNMI Streaming Telemetry",
+      "NETCONF": "NETCONF",
+      "PROMETHEUS_EXPORTER": "Prometheus Exporter",
+      "OPENTELEMETRY": "OpenTelemetry"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "PAUSED": "Paused",
+      "ERROR": "Error",
+      "DECOMMISSIONED": "Decommissioned"
+    }
+  },
+  "realTimeDashboards": {
+    "pageTitle": "Real-Time Dashboards",
+    "addNew": "Add Dashboard",
+    "createTitle": "New Dashboard",
+    "editTitle": "Edit Dashboard",
+    "deleteTitle": "Delete Dashboard",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "description": "Description",
+      "refreshIntervalSeconds": "Refresh Interval",
+      "widgetCount": "Widgets",
+      "status": "Status"
+    },
+    "fields": {
+      "name": "Name",
+      "code": "Code",
+      "description": "Description",
+      "refreshIntervalSeconds": "Refresh Interval (s)",
+      "widgetCount": "Widget Count",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "DRAFT": "Draft",
+      "ARCHIVED": "Archived"
+    }
+  },
+  "anomalyDetections": {
+    "pageTitle": "Anomaly Detection",
+    "addNew": "Report Anomaly",
+    "createTitle": "New Anomaly",
+    "editTitle": "Edit Anomaly",
+    "deleteTitle": "Delete Anomaly",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the fields and try again.",
+    "columns": {
+      "title": "Title",
+      "device": "Device",
+      "anomalyType": "Type",
+      "severity": "Severity",
+      "status": "Status",
+      "detectedAt": "Detected At"
+    },
+    "fields": {
+      "device": "Device",
+      "title": "Title",
+      "description": "Description",
+      "anomalyType": "Anomaly Type",
+      "severity": "Severity",
+      "status": "Status",
+      "detectedAt": "Detected At",
+      "resolvedAt": "Resolved At",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "anomalyType": {
+      "THRESHOLD_BREACH": "Threshold Breach",
+      "TRAFFIC_SPIKE": "Traffic Spike",
+      "FLAPPING_LINK": "Flapping Link",
+      "CONFIG_DRIFT": "Configuration Drift",
+      "UNAUTHORIZED_ACCESS": "Unauthorized Access",
+      "PACKET_LOSS": "Packet Loss",
+      "LATENCY_DEGRADATION": "Latency Degradation"
+    },
+    "severity": {
+      "CRITICAL": "Critical",
+      "HIGH": "High",
+      "MEDIUM": "Medium",
+      "LOW": "Low",
+      "INFO": "Info"
+    },
+    "status": {
+      "OPEN": "Open",
+      "ACKNOWLEDGED": "Acknowledged",
+      "RESOLVED": "Resolved",
+      "FALSE_POSITIVE": "False Positive"
+    }
+  },
+  "interventions": {
+    "pageTitle": "Interventions",
+    "addNew": "New Intervention",
+    "createTitle": "New Intervention",
+    "editTitle": "Edit Intervention",
+    "deleteTitle": "Delete Intervention",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the fields and try again.",
+    "columns": {
+      "title": "Title",
+      "device": "Device",
+      "interventionType": "Type",
+      "priority": "Priority",
+      "status": "Status",
+      "scheduledAt": "Scheduled At"
+    },
+    "fields": {
+      "device": "Device",
+      "title": "Title",
+      "description": "Description",
+      "interventionType": "Intervention Type",
+      "priority": "Priority",
+      "status": "Status",
+      "assignedTechnician": "Assigned Technician",
+      "scheduledAt": "Scheduled At",
+      "completedAt": "Completed At",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "interventionType": {
+      "PREVENTIVE_MAINTENANCE": "Preventive Maintenance",
+      "CORRECTIVE_MAINTENANCE": "Corrective Maintenance",
+      "INCIDENT_RESPONSE": "Incident Response",
+      "INSTALLATION": "Installation",
+      "DECOMMISSIONING": "Decommissioning",
+      "INSPECTION": "Inspection"
+    },
+    "priority": {
+      "CRITICAL": "Critical",
+      "HIGH": "High",
+      "MEDIUM": "Medium",
+      "LOW": "Low"
+    },
+    "status": {
+      "SCHEDULED": "Scheduled",
+      "IN_PROGRESS": "In Progress",
+      "ON_HOLD": "On Hold",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled"
+    }
+  },
+  "equipmentTypes": {
+    "pageTitle": "Equipment Types",
+    "addNew": "Add Type",
+    "createTitle": "New Equipment Type",
+    "editTitle": "Edit Equipment Type",
+    "deleteTitle": "Delete Equipment Type",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "category": "Category",
+      "manufacturer": "Manufacturer",
+      "status": "Status"
+    },
+    "fields": {
+      "name": "Name",
+      "code": "Code",
+      "category": "Category",
+      "manufacturer": "Manufacturer",
+      "defaultRackUnits": "Default Height (U)",
+      "defaultPowerWatts": "Default Power (W)",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "category": {
+      "SERVER": "Server",
+      "NETWORKING": "Networking",
+      "STORAGE": "Storage",
+      "POWER": "Power",
+      "COOLING": "Cooling",
+      "SECURITY": "Security"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "DEPRECATED": "Deprecated"
+    }
+  },
+  "technologyCatalog": {
+    "pageTitle": "Network Technology Catalog",
+    "addNew": "Add Technology",
+    "createTitle": "New Technology",
+    "editTitle": "Edit Technology",
+    "deleteTitle": "Delete Technology",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "category": "Category",
+      "vendor": "Vendor",
+      "status": "Status"
+    },
+    "fields": {
+      "name": "Name",
+      "code": "Code",
+      "category": "Category",
+      "vendor": "Vendor",
+      "version": "Version",
+      "description": "Description",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "category": {
+      "NETWORKING_PROTOCOL": "Networking Protocol",
+      "SECURITY": "Security",
+      "VIRTUALIZATION": "Virtualization",
+      "MONITORING": "Monitoring",
+      "STORAGE": "Storage",
+      "CLOUD": "Cloud"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "EVALUATION": "Evaluation",
+      "DEPRECATED": "Deprecated"
+    }
+  },
+  "users": {
+    "pageTitle": "Users",
+    "addNew": "Add User",
+    "createTitle": "New User",
+    "editTitle": "Edit User",
+    "deleteTitle": "Delete User",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This action is permanent.",
+    "saveError": "Something went wrong while saving. Please check the username is unique and try again.",
+    "enabledYes": "Yes",
+    "enabledNo": "No",
+    "columns": {
+      "username": "Username",
+      "role": "Role",
+      "enabled": "Enabled",
+      "ipRestrictionEnabled": "IP Restriction"
+    },
+    "fields": {
+      "username": "Username",
+      "password": "Password",
+      "newPassword": "New Password (leave blank to keep unchanged)",
+      "role": "Role",
+      "enabled": "Account Enabled",
+      "ipRestrictionEnabled": "Restrict by IP Address",
+      "createdAt": "Created At"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "role": {
+      "SUPER_ADMIN": "Super Admin",
+      "DC_ADMIN": "Datacenter Admin",
+      "NETWORK_ENGINEER": "Network Engineer",
+      "TECHNICIAN": "Technician",
+      "APPROVER": "Approver",
+      "REQUESTER": "Requester",
+      "AUDITOR": "Auditor"
+    }
+  },
+  "rolePermissions": {
+    "pageTitle": "Roles & Permissions",
+    "addNew": "Assign Permission",
+    "createTitle": "New Assignment",
+    "editTitle": "Edit Assignment",
+    "deleteTitle": "Delete Assignment",
+    "deleteMessage": "Are you sure you want to delete the assignment \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. This role may already have this permission.",
+    "columns": {
+      "role": "Role",
+      "permission": "Permission",
+      "granted": "Granted"
+    },
+    "fields": {
+      "role": "Role",
+      "permission": "Permission",
+      "granted": "Permission Granted",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    }
+  },
+  "systemSettings": {
+    "pageTitle": "System Settings",
+    "addNew": "Add Setting",
+    "createTitle": "New Setting",
+    "editTitle": "Edit Setting",
+    "deleteTitle": "Delete Setting",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the key is unique and try again.",
+    "columns": {
+      "settingKey": "Key",
+      "settingValue": "Value",
+      "category": "Category",
+      "dataType": "Data Type"
+    },
+    "fields": {
+      "settingKey": "Key",
+      "settingValue": "Value",
+      "category": "Category",
+      "dataType": "Data Type",
+      "description": "Description",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "category": {
+      "GENERAL": "General",
+      "SECURITY": "Security",
+      "NOTIFICATIONS": "Notifications",
+      "INTEGRATIONS": "Integrations",
+      "MONITORING": "Monitoring"
+    },
+    "dataType": {
+      "STRING": "String",
+      "NUMBER": "Number",
+      "BOOLEAN": "Boolean",
+      "JSON": "JSON"
+    }
+  },
+  "integrationConnectors": {
+    "pageTitle": "SNMP/NETCONF/gNMI Connectors",
+    "addNew": "Add Connector",
+    "createTitle": "New Integration Connector",
+    "editTitle": "Edit Connector",
+    "deleteTitle": "Delete Connector",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "device": "Device",
+      "protocol": "Protocol",
+      "automationType": "Automation Type",
+      "status": "Status"
+    },
+    "fields": {
+      "device": "Device",
+      "name": "Name",
+      "code": "Code",
+      "protocol": "Protocol",
+      "automationType": "Automation Type",
+      "status": "Status",
+      "lastSyncAt": "Last Sync At",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "protocol": {
+      "SNMP_V2C": "SNMP v2c",
+      "SNMP_V3": "SNMP v3",
+      "NETCONF": "NETCONF",
+      "RESTCONF": "RESTCONF",
+      "GNMI": "gNMI"
+    },
+    "automationType": {
+      "CONFIG_BACKUP": "Configuration Backup",
+      "CONFIG_PUSH": "Configuration Push",
+      "COMPLIANCE_CHECK": "Compliance Check",
+      "ZERO_TOUCH_PROVISIONING": "Zero-Touch Provisioning"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "PAUSED": "Paused",
+      "ERROR": "Error",
+      "DECOMMISSIONED": "Decommissioned"
+    }
+  },
+  "syncDrifts": {
+    "pageTitle": "Synchronization & Drift",
+    "addNew": "Report Drift",
+    "createTitle": "New Drift",
+    "editTitle": "Edit Drift",
+    "deleteTitle": "Delete Drift",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the fields and try again.",
+    "columns": {
+      "title": "Title",
+      "device": "Device",
+      "driftType": "Type",
+      "severity": "Severity",
+      "status": "Status",
+      "detectedAt": "Detected At"
+    },
+    "fields": {
+      "device": "Device",
+      "title": "Title",
+      "description": "Description",
+      "driftType": "Drift Type",
+      "severity": "Severity",
+      "status": "Status",
+      "detectedAt": "Detected At",
+      "remediatedAt": "Remediated At",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "driftType": {
+      "CONFIG_MISMATCH": "Configuration Mismatch",
+      "FIRMWARE_VERSION": "Firmware Version",
+      "ACL_CHANGE": "ACL Change",
+      "VLAN_CHANGE": "VLAN Change",
+      "UNAUTHORIZED_CHANGE": "Unauthorized Change"
+    },
+    "severity": {
+      "CRITICAL": "Critical",
+      "HIGH": "High",
+      "MEDIUM": "Medium",
+      "LOW": "Low"
+    },
+    "status": {
+      "DETECTED": "Detected",
+      "ACKNOWLEDGED": "Acknowledged",
+      "REMEDIATED": "Remediated",
+      "IGNORED": "Ignored"
+    }
+  },
+  "auditLogs": {
+    "pageTitle": "Audit & Compliance",
+    "addNew": "Add Entry",
+    "createTitle": "New Audit Entry",
+    "editTitle": "Edit Entry",
+    "deleteTitle": "Delete Entry",
+    "deleteMessage": "Are you sure you want to delete this audit entry on \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the fields and try again.",
+    "columns": {
+      "occurredAt": "Occurred At",
+      "actorUsername": "Actor",
+      "action": "Action",
+      "entityType": "Entity Type",
+      "entityReference": "Reference"
+    },
+    "fields": {
+      "actorUsername": "Actor Username",
+      "action": "Action",
+      "entityType": "Entity Type",
+      "entityReference": "Entity Reference",
+      "description": "Description",
+      "ipAddress": "IP Address",
+      "occurredAt": "Occurred At",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "action": {
+      "CREATE": "Create",
+      "UPDATE": "Update",
+      "DELETE": "Delete",
+      "LOGIN": "Login",
+      "LOGOUT": "Logout",
+      "EXPORT": "Export",
+      "CONFIG_CHANGE": "Configuration Change"
+    }
+  },
+  "reports": {
+    "pageTitle": "Reports",
+    "addNew": "Add Report",
+    "createTitle": "New Report",
+    "editTitle": "Edit Report",
+    "deleteTitle": "Delete Report",
+    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
+    "columns": {
+      "name": "Name",
+      "code": "Code",
+      "reportType": "Type",
+      "format": "Format",
+      "schedule": "Schedule",
+      "status": "Status"
+    },
+    "fields": {
+      "name": "Name",
+      "code": "Code",
+      "reportType": "Report Type",
+      "format": "Format",
+      "schedule": "Schedule",
+      "status": "Status",
+      "lastGeneratedAt": "Last Generated At",
+      "description": "Description",
+      "notes": "Notes"
+    },
+    "validation": {
+      "required": "This field is required."
+    },
+    "reportType": {
+      "INVENTORY": "Inventory",
+      "CAPACITY": "Capacity",
+      "COMPLIANCE": "Compliance",
+      "AVAILABILITY": "Availability",
+      "SECURITY": "Security",
+      "CUSTOM": "Custom"
+    },
+    "format": {
+      "PDF": "PDF",
+      "CSV": "CSV",
+      "XLSX": "XLSX"
+    },
+    "schedule": {
+      "ON_DEMAND": "On Demand",
+      "DAILY": "Daily",
+      "WEEKLY": "Weekly",
+      "MONTHLY": "Monthly"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "DRAFT": "Draft",
+      "ARCHIVED": "Archived"
+    }
+  },
+  "myAccount": {
+    "pageTitle": "My Account",
+    "profileSection": "Profile",
+    "passwordSection": "Password",
+    "securitySection": "Security",
+    "changePhoto": "Change Photo",
+    "removePhoto": "Remove Photo",
+    "changePassword": "Change Password",
+    "saveSuccess": "Profile saved successfully.",
+    "loadError": "Unable to load your account. Please check your connection and try again.",
+    "saveError": "Something went wrong while saving. Please check the username is unique.",
+    "passwordSaveSuccess": "Password changed successfully.",
+    "passwordError": "Something went wrong. Please check your current password.",
+    "passwordMismatch": "Passwords do not match.",
+    "ipRestrictionEnabled": "Restrict login to allowed IP addresses",
+    "allowedIps": "Allowed IP Addresses",
+    "newIpAddress": "New IP Address",
+    "addIp": "Add",
+    "noAllowedIps": "No allowed IP addresses yet.",
+    "deleteIpTitle": "Delete IP Address",
+    "deleteIpMessage": "Are you sure you want to remove \"{{name}}\" from the allowed list?",
+    "ipSaveError": "Something went wrong while adding the IP address.",
+    "fields": {
+      "username": "Username",
+      "fullName": "Full Name",
+      "matricule": "Employee ID",
+      "email": "Email",
+      "phone": "Phone",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "validation": {
+      "required": "This field is required.",
+      "email": "Invalid email address.",
+      "passwordLength": "Password must be at least 8 characters long."
     }
   }
 }

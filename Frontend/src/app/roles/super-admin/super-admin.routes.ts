@@ -18,6 +18,22 @@ const REAL_PAGE_PATHS = new Set([
   'cabling/cables',
   'cabling/connectors',
   'cabling/path-tracing',
+  'sdwan/edges',
+  'sdwan/tunnels',
+  'sdwan/circuits',
+  'telemetry/connectors',
+  'telemetry/dashboards',
+  'telemetry/anomaly-detection',
+  'interventions',
+  'library/equipment-types',
+  'library/technology-catalog',
+  'administration/users',
+  'administration/roles-permissions',
+  'administration/settings',
+  'integrations/connectors',
+  'integrations/sync-drift',
+  'audit-compliance',
+  'reports',
 ]);
 
 function toPlaceholderRoutes(section: NavSection): Routes {
@@ -113,6 +129,136 @@ export const superAdminRoutes: Routes = [
             (m) => m.PathTracesListComponent,
           ),
         data: { titleKey: 'nav.pathTracing', sectionKey: 'nav.cabling' },
+      },
+      {
+        path: 'sdwan/edges',
+        loadComponent: () =>
+          import('./pages/sdwan-edges/sdwan-edges-list.component').then(
+            (m) => m.SdwanEdgesListComponent,
+          ),
+        data: { titleKey: 'nav.sdwanEdges', sectionKey: 'nav.sdwanConnectivity' },
+      },
+      {
+        path: 'sdwan/tunnels',
+        loadComponent: () =>
+          import('./pages/overlay-tunnels/overlay-tunnels-list.component').then(
+            (m) => m.OverlayTunnelsListComponent,
+          ),
+        data: { titleKey: 'nav.overlayTunnels', sectionKey: 'nav.sdwanConnectivity' },
+      },
+      {
+        path: 'sdwan/circuits',
+        loadComponent: () =>
+          import('./pages/carrier-circuits/carrier-circuits-list.component').then(
+            (m) => m.CarrierCircuitsListComponent,
+          ),
+        data: { titleKey: 'nav.carrierCircuits', sectionKey: 'nav.sdwanConnectivity' },
+      },
+      {
+        path: 'telemetry/connectors',
+        loadComponent: () =>
+          import('./pages/telemetry-connectors/telemetry-connectors-list.component').then(
+            (m) => m.TelemetryConnectorsListComponent,
+          ),
+        data: { titleKey: 'nav.telemetryConnectors', sectionKey: 'nav.telemetryMonitoring' },
+      },
+      {
+        path: 'telemetry/dashboards',
+        loadComponent: () =>
+          import('./pages/real-time-dashboards/real-time-dashboards-list.component').then(
+            (m) => m.RealTimeDashboardsListComponent,
+          ),
+        data: { titleKey: 'nav.realTimeDashboards', sectionKey: 'nav.telemetryMonitoring' },
+      },
+      {
+        path: 'telemetry/anomaly-detection',
+        loadComponent: () =>
+          import('./pages/anomaly-detections/anomaly-detections-list.component').then(
+            (m) => m.AnomalyDetectionsListComponent,
+          ),
+        data: { titleKey: 'nav.anomalyDetection', sectionKey: 'nav.telemetryMonitoring' },
+      },
+      {
+        path: 'interventions',
+        loadComponent: () =>
+          import('./pages/interventions/interventions-list.component').then(
+            (m) => m.InterventionsListComponent,
+          ),
+        data: { titleKey: 'nav.interventions' },
+      },
+      {
+        path: 'library/equipment-types',
+        loadComponent: () =>
+          import('./pages/equipment-types/equipment-types-list.component').then(
+            (m) => m.EquipmentTypesListComponent,
+          ),
+        data: { titleKey: 'nav.equipmentTypes', sectionKey: 'nav.technicalLibrary' },
+      },
+      {
+        path: 'library/technology-catalog',
+        loadComponent: () =>
+          import('./pages/technology-catalog/technology-catalog-list.component').then(
+            (m) => m.TechnologyCatalogListComponent,
+          ),
+        data: { titleKey: 'nav.networkTechnologyCatalog', sectionKey: 'nav.technicalLibrary' },
+      },
+      {
+        path: 'administration/users',
+        loadComponent: () =>
+          import('./pages/users/users-list.component').then((m) => m.UsersListComponent),
+        data: { titleKey: 'nav.users', sectionKey: 'nav.administration' },
+      },
+      {
+        path: 'administration/roles-permissions',
+        loadComponent: () =>
+          import('./pages/role-permissions/role-permissions-list.component').then(
+            (m) => m.RolePermissionsListComponent,
+          ),
+        data: { titleKey: 'nav.rolesPermissions', sectionKey: 'nav.administration' },
+      },
+      {
+        path: 'administration/settings',
+        loadComponent: () =>
+          import('./pages/system-settings/system-settings-list.component').then(
+            (m) => m.SystemSettingsListComponent,
+          ),
+        data: { titleKey: 'nav.systemSettings', sectionKey: 'nav.administration' },
+      },
+      {
+        path: 'integrations/connectors',
+        loadComponent: () =>
+          import('./pages/integration-connectors/integration-connectors-list.component').then(
+            (m) => m.IntegrationConnectorsListComponent,
+          ),
+        data: { titleKey: 'nav.snmpNetconfGnmiConnectors', sectionKey: 'nav.integrations' },
+      },
+      {
+        path: 'integrations/sync-drift',
+        loadComponent: () =>
+          import('./pages/sync-drifts/sync-drifts-list.component').then(
+            (m) => m.SyncDriftsListComponent,
+          ),
+        data: { titleKey: 'nav.syncDrift', sectionKey: 'nav.integrations' },
+      },
+      {
+        path: 'audit-compliance',
+        loadComponent: () =>
+          import('./pages/audit-logs/audit-logs-list.component').then(
+            (m) => m.AuditLogsListComponent,
+          ),
+        data: { titleKey: 'nav.auditCompliance' },
+      },
+      {
+        path: 'reports',
+        loadComponent: () =>
+          import('./pages/reports/reports-list.component').then((m) => m.ReportsListComponent),
+        data: { titleKey: 'nav.reports' },
+      },
+      {
+        path: 'my-account',
+        loadComponent: () =>
+          import('./pages/my-account/my-account.component').then((m) => m.MyAccountComponent),
+        data: { titleKey: 'nav.myAccount' },
       },
       ...placeholderRoutes,
     ],

@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'interventions.fields.device' | translate }}</dt>
+    <dd>{{ data.deviceName }}</dd>
+
+    @if (data.description) {
+      <dt>{{ 'interventions.fields.description' | translate }}</dt>
+      <dd>{{ data.description }}</dd>
+    }
+
+    <dt>{{ 'interventions.fields.interventionType' | translate }}</dt>
+    <dd>{{ 'interventions.interventionType.' + data.interventionType | translate }}</dd>
+
+    <dt>{{ 'interventions.fields.priority' | translate }}</dt>
+    <dd>{{ 'interventions.priority.' + data.priority | translate }}</dd>
+
+    <dt>{{ 'interventions.fields.status' | translate }}</dt>
+    <dd>{{ 'interventions.status.' + data.status | translate }}</dd>
+
+    @if (data.assignedTechnician) {
+      <dt>{{ 'interventions.fields.assignedTechnician' | translate }}</dt>
+      <dd>{{ data.assignedTechnician }}</dd>
+    }
+
+    <dt>{{ 'interventions.fields.scheduledAt' | translate }}</dt>
+    <dd>{{ data.scheduledAt | date: 'medium' }}</dd>
+
+    @if (data.completedAt) {
+      <dt>{{ 'interventions.fields.completedAt' | translate }}</dt>
+      <dd>{{ data.completedAt | date: 'medium' }}</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'interventions.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

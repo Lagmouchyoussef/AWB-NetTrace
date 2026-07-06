@@ -8,6 +8,7 @@
     "logIn": "登录",
     "loggingIn": "正在登录...",
     "invalidCredentials": "用户名或密码不正确。",
+    "sessionExpired": "您的会话已过期，请重新登录。",
     "backToLogin": "返回登录",
     "forgotIntro": "请输入您的用户名，系统管理员将收到通知以帮助您重置密码。",
     "sendRequest": "发送请求",
@@ -51,7 +52,8 @@
     "snmpNetconfGnmiConnectors": "SNMP/NETCONF/gNMI 连接器",
     "syncDrift": "同步与偏差检测",
     "auditCompliance": "审计与合规",
-    "reports": "报表"
+    "reports": "报表",
+    "myAccount": "我的账户"
   },
   "topbar": {
     "searchPlaceholder": "搜索...",
@@ -59,6 +61,7 @@
     "light": "浅色",
     "dark": "深色",
     "system": "跟随系统",
+    "myAccount": "我的账户",
     "logout": "退出登录"
   },
   "placeholder": {
@@ -81,6 +84,7 @@
     "confirm": "确认",
     "save": "保存",
     "saving": "正在保存...",
+    "loading": "正在加载...",
     "close": "关闭",
     "itemsPerPage": "每页项数：",
     "nextPage": "下一页",
@@ -539,6 +543,722 @@
       "TRACED": "已追踪",
       "PENDING": "待处理",
       "FAILED": "失败"
+    }
+  },
+  "sdwanEdges": {
+    "pageTitle": "SD-WAN 边缘设备",
+    "addNew": "添加SD-WAN边缘设备",
+    "createTitle": "新建SD-WAN边缘设备",
+    "editTitle": "编辑SD-WAN边缘设备",
+    "deleteTitle": "删除SD-WAN边缘设备",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "datacenter": "数据中心",
+      "vendor": "厂商",
+      "status": "状态"
+    },
+    "fields": {
+      "datacenter": "数据中心",
+      "name": "名称",
+      "code": "代码",
+      "vendor": "厂商",
+      "model": "型号",
+      "wanLinkCount": "WAN链路数量",
+      "managementIp": "管理IP",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "MAINTENANCE": "维护中",
+      "DECOMMISSIONED": "已停用",
+      "PROVISIONING": "配置中"
+    }
+  },
+  "overlayTunnels": {
+    "pageTitle": "叠加隧道",
+    "addNew": "添加叠加隧道",
+    "createTitle": "新建叠加隧道",
+    "editTitle": "编辑叠加隧道",
+    "deleteTitle": "删除叠加隧道",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，且源与目标不同。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "source": "源",
+      "target": "目标",
+      "tunnelType": "隧道类型",
+      "status": "状态"
+    },
+    "fields": {
+      "source": "源边缘设备",
+      "target": "目标边缘设备",
+      "name": "名称",
+      "code": "代码",
+      "tunnelType": "隧道类型",
+      "bandwidthMbps": "带宽（Mbps）",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "tunnelType": {
+      "IPSEC": "IPsec",
+      "GRE": "GRE",
+      "DTLS": "DTLS",
+      "VXLAN": "VXLAN"
+    },
+    "status": {
+      "UP": "正常",
+      "DOWN": "中断",
+      "DEGRADED": "降级",
+      "PLANNED": "已规划"
+    }
+  },
+  "carrierCircuits": {
+    "pageTitle": "运营商线路",
+    "addNew": "添加运营商线路",
+    "createTitle": "新建运营商线路",
+    "editTitle": "编辑运营商线路",
+    "deleteTitle": "删除运营商线路",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "edge": "SD-WAN边缘设备",
+      "circuitType": "线路类型",
+      "provider": "运营商",
+      "status": "状态"
+    },
+    "fields": {
+      "edge": "SD-WAN边缘设备",
+      "name": "名称",
+      "code": "代码",
+      "circuitType": "线路类型",
+      "provider": "运营商",
+      "bandwidthMbps": "带宽（Mbps）",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "circuitType": {
+      "MPLS": "MPLS",
+      "BROADBAND": "宽带互联网",
+      "LTE_5G": "LTE/5G",
+      "DARK_FIBER": "暗光纤",
+      "SATELLITE": "卫星"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "MAINTENANCE": "维护中",
+      "DECOMMISSIONED": "已停用",
+      "PLANNED": "已规划"
+    }
+  },
+  "telemetryConnectors": {
+    "pageTitle": "遥测连接器",
+    "addNew": "添加遥测连接器",
+    "createTitle": "新建遥测连接器",
+    "editTitle": "编辑遥测连接器",
+    "deleteTitle": "删除遥测连接器",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "device": "设备",
+      "protocol": "协议",
+      "status": "状态"
+    },
+    "fields": {
+      "device": "设备",
+      "name": "名称",
+      "code": "代码",
+      "protocol": "协议",
+      "pollIntervalSeconds": "轮询间隔（秒）",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "protocol": {
+      "SNMP_V2C": "SNMP v2c",
+      "SNMP_V3": "SNMP v3",
+      "GNMI_STREAMING": "gNMI流式遥测",
+      "NETCONF": "NETCONF",
+      "PROMETHEUS_EXPORTER": "Prometheus导出器",
+      "OPENTELEMETRY": "OpenTelemetry"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "PAUSED": "已暂停",
+      "ERROR": "错误",
+      "DECOMMISSIONED": "已停用"
+    }
+  },
+  "realTimeDashboards": {
+    "pageTitle": "实时仪表盘",
+    "addNew": "添加仪表盘",
+    "createTitle": "新建仪表盘",
+    "editTitle": "编辑仪表盘",
+    "deleteTitle": "删除仪表盘",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "description": "描述",
+      "refreshIntervalSeconds": "刷新间隔",
+      "widgetCount": "小部件数量",
+      "status": "状态"
+    },
+    "fields": {
+      "name": "名称",
+      "code": "代码",
+      "description": "描述",
+      "refreshIntervalSeconds": "刷新间隔（秒）",
+      "widgetCount": "小部件数量",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "DRAFT": "草稿",
+      "ARCHIVED": "已归档"
+    }
+  },
+  "anomalyDetections": {
+    "pageTitle": "异常检测",
+    "addNew": "报告异常",
+    "createTitle": "新建异常",
+    "editTitle": "编辑异常",
+    "deleteTitle": "删除异常",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请检查字段后重试。",
+    "columns": {
+      "title": "标题",
+      "device": "设备",
+      "anomalyType": "类型",
+      "severity": "严重程度",
+      "status": "状态",
+      "detectedAt": "检测时间"
+    },
+    "fields": {
+      "device": "设备",
+      "title": "标题",
+      "description": "描述",
+      "anomalyType": "异常类型",
+      "severity": "严重程度",
+      "status": "状态",
+      "detectedAt": "检测时间",
+      "resolvedAt": "解决时间",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "anomalyType": {
+      "THRESHOLD_BREACH": "阈值突破",
+      "TRAFFIC_SPIKE": "流量激增",
+      "FLAPPING_LINK": "链路抖动",
+      "CONFIG_DRIFT": "配置漂移",
+      "UNAUTHORIZED_ACCESS": "未授权访问",
+      "PACKET_LOSS": "丢包",
+      "LATENCY_DEGRADATION": "延迟劣化"
+    },
+    "severity": {
+      "CRITICAL": "严重",
+      "HIGH": "高",
+      "MEDIUM": "中",
+      "LOW": "低",
+      "INFO": "信息"
+    },
+    "status": {
+      "OPEN": "待处理",
+      "ACKNOWLEDGED": "已确认",
+      "RESOLVED": "已解决",
+      "FALSE_POSITIVE": "误报"
+    }
+  },
+  "interventions": {
+    "pageTitle": "维护干预",
+    "addNew": "新建干预",
+    "createTitle": "新建干预",
+    "editTitle": "编辑干预",
+    "deleteTitle": "删除干预",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请检查字段后重试。",
+    "columns": {
+      "title": "标题",
+      "device": "设备",
+      "interventionType": "类型",
+      "priority": "优先级",
+      "status": "状态",
+      "scheduledAt": "计划时间"
+    },
+    "fields": {
+      "device": "设备",
+      "title": "标题",
+      "description": "描述",
+      "interventionType": "干预类型",
+      "priority": "优先级",
+      "status": "状态",
+      "assignedTechnician": "指派技术员",
+      "scheduledAt": "计划时间",
+      "completedAt": "完成时间",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "interventionType": {
+      "PREVENTIVE_MAINTENANCE": "预防性维护",
+      "CORRECTIVE_MAINTENANCE": "纠正性维护",
+      "INCIDENT_RESPONSE": "事件响应",
+      "INSTALLATION": "安装",
+      "DECOMMISSIONING": "停用",
+      "INSPECTION": "检查"
+    },
+    "priority": {
+      "CRITICAL": "严重",
+      "HIGH": "高",
+      "MEDIUM": "中",
+      "LOW": "低"
+    },
+    "status": {
+      "SCHEDULED": "已计划",
+      "IN_PROGRESS": "进行中",
+      "ON_HOLD": "暂停",
+      "COMPLETED": "已完成",
+      "CANCELLED": "已取消"
+    }
+  },
+  "equipmentTypes": {
+    "pageTitle": "设备类型",
+    "addNew": "添加类型",
+    "createTitle": "新建设备类型",
+    "editTitle": "编辑设备类型",
+    "deleteTitle": "删除设备类型",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "category": "类别",
+      "manufacturer": "制造商",
+      "status": "状态"
+    },
+    "fields": {
+      "name": "名称",
+      "code": "代码",
+      "category": "类别",
+      "manufacturer": "制造商",
+      "defaultRackUnits": "默认高度（U）",
+      "defaultPowerWatts": "默认功率（瓦）",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "category": {
+      "SERVER": "服务器",
+      "NETWORKING": "网络",
+      "STORAGE": "存储",
+      "POWER": "电力",
+      "COOLING": "制冷",
+      "SECURITY": "安全"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "DEPRECATED": "已弃用"
+    }
+  },
+  "technologyCatalog": {
+    "pageTitle": "网络技术目录",
+    "addNew": "添加技术",
+    "createTitle": "新建技术",
+    "editTitle": "编辑技术",
+    "deleteTitle": "删除技术",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "category": "类别",
+      "vendor": "供应商",
+      "status": "状态"
+    },
+    "fields": {
+      "name": "名称",
+      "code": "代码",
+      "category": "类别",
+      "vendor": "供应商",
+      "version": "版本",
+      "description": "描述",
+      "status": "状态",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "category": {
+      "NETWORKING_PROTOCOL": "网络协议",
+      "SECURITY": "安全",
+      "VIRTUALIZATION": "虚拟化",
+      "MONITORING": "监控",
+      "STORAGE": "存储",
+      "CLOUD": "云"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "EVALUATION": "评估中",
+      "DEPRECATED": "已弃用"
+    }
+  },
+  "users": {
+    "pageTitle": "用户",
+    "addNew": "添加用户",
+    "createTitle": "新建用户",
+    "editTitle": "编辑用户",
+    "deleteTitle": "删除用户",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？此操作不可撤销。",
+    "saveError": "保存时出错。请确认用户名是唯一的，然后重试。",
+    "enabledYes": "是",
+    "enabledNo": "否",
+    "columns": {
+      "username": "用户名",
+      "role": "角色",
+      "enabled": "启用",
+      "ipRestrictionEnabled": "IP 限制"
+    },
+    "fields": {
+      "username": "用户名",
+      "password": "密码",
+      "newPassword": "新密码（留空则不修改）",
+      "role": "角色",
+      "enabled": "账户已启用",
+      "ipRestrictionEnabled": "按 IP 地址限制",
+      "createdAt": "创建时间"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "role": {
+      "SUPER_ADMIN": "超级管理员",
+      "DC_ADMIN": "数据中心管理员",
+      "NETWORK_ENGINEER": "网络工程师",
+      "TECHNICIAN": "技术员",
+      "APPROVER": "审批人",
+      "REQUESTER": "申请人",
+      "AUDITOR": "审计员"
+    }
+  },
+  "rolePermissions": {
+    "pageTitle": "角色与权限",
+    "addNew": "分配权限",
+    "createTitle": "新建分配",
+    "editTitle": "编辑分配",
+    "deleteTitle": "删除分配",
+    "deleteMessage": "确定要删除分配\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。该角色可能已拥有此权限。",
+    "columns": {
+      "role": "角色",
+      "permission": "权限",
+      "granted": "已授予"
+    },
+    "fields": {
+      "role": "角色",
+      "permission": "权限",
+      "granted": "已授予权限",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    }
+  },
+  "systemSettings": {
+    "pageTitle": "系统设置",
+    "addNew": "添加设置",
+    "createTitle": "新建设置",
+    "editTitle": "编辑设置",
+    "deleteTitle": "删除设置",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认键是唯一的，然后重试。",
+    "columns": {
+      "settingKey": "键",
+      "settingValue": "值",
+      "category": "类别",
+      "dataType": "数据类型"
+    },
+    "fields": {
+      "settingKey": "键",
+      "settingValue": "值",
+      "category": "类别",
+      "dataType": "数据类型",
+      "description": "描述",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "category": {
+      "GENERAL": "通用",
+      "SECURITY": "安全",
+      "NOTIFICATIONS": "通知",
+      "INTEGRATIONS": "集成",
+      "MONITORING": "监控"
+    },
+    "dataType": {
+      "STRING": "字符串",
+      "NUMBER": "数字",
+      "BOOLEAN": "布尔值",
+      "JSON": "JSON"
+    }
+  },
+  "integrationConnectors": {
+    "pageTitle": "SNMP/NETCONF/gNMI 连接器",
+    "addNew": "添加连接器",
+    "createTitle": "新建集成连接器",
+    "editTitle": "编辑连接器",
+    "deleteTitle": "删除连接器",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "device": "设备",
+      "protocol": "协议",
+      "automationType": "自动化类型",
+      "status": "状态"
+    },
+    "fields": {
+      "device": "设备",
+      "name": "名称",
+      "code": "代码",
+      "protocol": "协议",
+      "automationType": "自动化类型",
+      "status": "状态",
+      "lastSyncAt": "最后同步时间",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "protocol": {
+      "SNMP_V2C": "SNMP v2c",
+      "SNMP_V3": "SNMP v3",
+      "NETCONF": "NETCONF",
+      "RESTCONF": "RESTCONF",
+      "GNMI": "gNMI"
+    },
+    "automationType": {
+      "CONFIG_BACKUP": "配置备份",
+      "CONFIG_PUSH": "配置推送",
+      "COMPLIANCE_CHECK": "合规检查",
+      "ZERO_TOUCH_PROVISIONING": "零接触配置"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "PAUSED": "已暂停",
+      "ERROR": "错误",
+      "DECOMMISSIONED": "已停用"
+    }
+  },
+  "syncDrifts": {
+    "pageTitle": "同步与偏差",
+    "addNew": "报告偏差",
+    "createTitle": "新建偏差",
+    "editTitle": "编辑偏差",
+    "deleteTitle": "删除偏差",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请检查字段后重试。",
+    "columns": {
+      "title": "标题",
+      "device": "设备",
+      "driftType": "类型",
+      "severity": "严重程度",
+      "status": "状态",
+      "detectedAt": "检测时间"
+    },
+    "fields": {
+      "device": "设备",
+      "title": "标题",
+      "description": "描述",
+      "driftType": "偏差类型",
+      "severity": "严重程度",
+      "status": "状态",
+      "detectedAt": "检测时间",
+      "remediatedAt": "修复时间",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "driftType": {
+      "CONFIG_MISMATCH": "配置不匹配",
+      "FIRMWARE_VERSION": "固件版本",
+      "ACL_CHANGE": "ACL 变更",
+      "VLAN_CHANGE": "VLAN 变更",
+      "UNAUTHORIZED_CHANGE": "未授权变更"
+    },
+    "severity": {
+      "CRITICAL": "严重",
+      "HIGH": "高",
+      "MEDIUM": "中",
+      "LOW": "低"
+    },
+    "status": {
+      "DETECTED": "已检测",
+      "ACKNOWLEDGED": "已确认",
+      "REMEDIATED": "已修复",
+      "IGNORED": "已忽略"
+    }
+  },
+  "auditLogs": {
+    "pageTitle": "审计与合规",
+    "addNew": "添加条目",
+    "createTitle": "新建审计条目",
+    "editTitle": "编辑条目",
+    "deleteTitle": "删除条目",
+    "deleteMessage": "确定要删除关于\"{{name}}\"的此审计条目吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请检查字段后重试。",
+    "columns": {
+      "occurredAt": "发生时间",
+      "actorUsername": "操作者",
+      "action": "操作",
+      "entityType": "实体类型",
+      "entityReference": "引用"
+    },
+    "fields": {
+      "actorUsername": "操作者用户名",
+      "action": "操作",
+      "entityType": "实体类型",
+      "entityReference": "实体引用",
+      "description": "描述",
+      "ipAddress": "IP 地址",
+      "occurredAt": "发生时间",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "action": {
+      "CREATE": "创建",
+      "UPDATE": "更新",
+      "DELETE": "删除",
+      "LOGIN": "登录",
+      "LOGOUT": "登出",
+      "EXPORT": "导出",
+      "CONFIG_CHANGE": "配置变更"
+    }
+  },
+  "reports": {
+    "pageTitle": "报告",
+    "addNew": "添加报告",
+    "createTitle": "新建报告",
+    "editTitle": "编辑报告",
+    "deleteTitle": "删除报告",
+    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
+    "columns": {
+      "name": "名称",
+      "code": "代码",
+      "reportType": "类型",
+      "format": "格式",
+      "schedule": "频率",
+      "status": "状态"
+    },
+    "fields": {
+      "name": "名称",
+      "code": "代码",
+      "reportType": "报告类型",
+      "format": "格式",
+      "schedule": "频率",
+      "status": "状态",
+      "lastGeneratedAt": "最后生成时间",
+      "description": "描述",
+      "notes": "备注"
+    },
+    "validation": {
+      "required": "此字段为必填项。"
+    },
+    "reportType": {
+      "INVENTORY": "清单",
+      "CAPACITY": "容量",
+      "COMPLIANCE": "合规性",
+      "AVAILABILITY": "可用性",
+      "SECURITY": "安全",
+      "CUSTOM": "自定义"
+    },
+    "format": {
+      "PDF": "PDF",
+      "CSV": "CSV",
+      "XLSX": "XLSX"
+    },
+    "schedule": {
+      "ON_DEMAND": "按需",
+      "DAILY": "每日",
+      "WEEKLY": "每周",
+      "MONTHLY": "每月"
+    },
+    "status": {
+      "ACTIVE": "使用中",
+      "DRAFT": "草稿",
+      "ARCHIVED": "已归档"
+    }
+  },
+  "myAccount": {
+    "pageTitle": "我的账户",
+    "profileSection": "个人资料",
+    "passwordSection": "密码",
+    "securitySection": "安全",
+    "changePhoto": "更换照片",
+    "removePhoto": "移除照片",
+    "changePassword": "修改密码",
+    "saveSuccess": "个人资料保存成功。",
+    "loadError": "无法加载您的账户。请检查网络连接后重试。",
+    "saveError": "保存时出错。请确认用户名是唯一的。",
+    "passwordSaveSuccess": "密码修改成功。",
+    "passwordError": "发生错误。请检查您的当前密码。",
+    "passwordMismatch": "两次输入的密码不一致。",
+    "ipRestrictionEnabled": "仅允许从已授权的 IP 地址登录",
+    "allowedIps": "已授权的 IP 地址",
+    "newIpAddress": "新 IP 地址",
+    "addIp": "添加",
+    "noAllowedIps": "暂无已授权的 IP 地址。",
+    "deleteIpTitle": "删除 IP 地址",
+    "deleteIpMessage": "确定要从授权列表中删除\"{{name}}\"吗？",
+    "ipSaveError": "添加 IP 地址时出错。",
+    "fields": {
+      "username": "用户名",
+      "fullName": "姓名",
+      "matricule": "工号",
+      "email": "电子邮箱",
+      "phone": "电话",
+      "currentPassword": "当前密码",
+      "newPassword": "新密码",
+      "confirmPassword": "确认密码"
+    },
+    "validation": {
+      "required": "此字段为必填项。",
+      "email": "邮箱地址无效。",
+      "passwordLength": "密码至少需要8个字符。"
     }
   }
 }

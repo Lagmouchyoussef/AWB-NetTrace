@@ -1,0 +1,74 @@
+<h2 mat-dialog-title>
+  {{ (isEdit ? 'auditLogs.editTitle' : 'auditLogs.createTitle') | translate }}
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'auditLogs.fields.actorUsername' | translate }}</mat-label>
+        <input matInput formControlName="actorUsername" required />
+        @if (form.controls.actorUsername.invalid && form.controls.actorUsername.touched) {
+          <mat-error>{{ 'auditLogs.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'auditLogs.fields.action' | translate }}</mat-label>
+        <mat-select formControlName="action">
+          @for (action of actions; track action) {
+            <mat-option [value]="action">{{ 'auditLogs.action.' + action | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'auditLogs.fields.entityType' | translate }}</mat-label>
+        <input matInput formControlName="entityType" required />
+        @if (form.controls.entityType.invalid && form.controls.entityType.touched) {
+          <mat-error>{{ 'auditLogs.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'auditLogs.fields.entityReference' | translate }}</mat-label>
+        <input matInput formControlName="entityReference" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'auditLogs.fields.ipAddress' | translate }}</mat-label>
+        <input matInput formControlName="ipAddress" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'auditLogs.fields.occurredAt' | translate }}</mat-label>
+        <input matInput type="datetime-local" formControlName="occurredAt" required />
+        @if (form.controls.occurredAt.invalid && form.controls.occurredAt.touched) {
+          <mat-error>{{ 'auditLogs.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'auditLogs.fields.description' | translate }}</mat-label>
+        <textarea matInput formControlName="description" rows="2"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'auditLogs.fields.notes' | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+
+    @if (errorKey()) {
+      <p class="form-error">{{ errorKey() | translate }}</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" class="dialog-button dialog-button-cancel" (click)="cancel()">
+      {{ 'common.cancel' | translate }}
+    </button>
+    <button type="submit" class="dialog-button dialog-button-confirm" [disabled]="saving()">
+      {{ (saving() ? 'common.saving' : 'common.save') | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -8,6 +8,7 @@
     "logIn": "تسجيل الدخول",
     "loggingIn": "جارٍ تسجيل الدخول...",
     "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة.",
+    "sessionExpired": "انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى.",
     "backToLogin": "العودة إلى تسجيل الدخول",
     "forgotIntro": "أدخل اسم المستخدم الخاص بك وسيتم إخطار مسؤول النظام لمساعدتك في إعادة تعيين كلمة المرور.",
     "sendRequest": "إرسال الطلب",
@@ -51,7 +52,8 @@
     "snmpNetconfGnmiConnectors": "موصلات SNMP/NETCONF/gNMI",
     "syncDrift": "المزامنة والانحراف",
     "auditCompliance": "التدقيق والامتثال",
-    "reports": "التقارير"
+    "reports": "التقارير",
+    "myAccount": "حسابي"
   },
   "topbar": {
     "searchPlaceholder": "بحث...",
@@ -59,6 +61,7 @@
     "light": "فاتح",
     "dark": "داكن",
     "system": "النظام",
+    "myAccount": "حسابي",
     "logout": "تسجيل الخروج"
   },
   "placeholder": {
@@ -81,6 +84,7 @@
     "confirm": "تأكيد",
     "save": "حفظ",
     "saving": "جارٍ الحفظ...",
+    "loading": "جارٍ التحميل...",
     "close": "إغلاق",
     "itemsPerPage": "عناصر لكل صفحة:",
     "nextPage": "الصفحة التالية",
@@ -539,6 +543,722 @@
       "TRACED": "تم التتبع",
       "PENDING": "قيد الانتظار",
       "FAILED": "فشل"
+    }
+  },
+  "sdwanEdges": {
+    "pageTitle": "أطراف SD-WAN",
+    "addNew": "إضافة طرف SD-WAN",
+    "createTitle": "طرف SD-WAN جديد",
+    "editTitle": "تعديل طرف SD-WAN",
+    "deleteTitle": "حذف طرف SD-WAN",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "datacenter": "مركز البيانات",
+      "vendor": "المورّد",
+      "status": "الحالة"
+    },
+    "fields": {
+      "datacenter": "مركز البيانات",
+      "name": "الاسم",
+      "code": "الرمز",
+      "vendor": "المورّد",
+      "model": "الطراز",
+      "wanLinkCount": "عدد روابط WAN",
+      "managementIp": "عنوان IP للإدارة",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "MAINTENANCE": "قيد الصيانة",
+      "DECOMMISSIONED": "خارج الخدمة",
+      "PROVISIONING": "قيد التهيئة"
+    }
+  },
+  "overlayTunnels": {
+    "pageTitle": "أنفاق Overlay",
+    "addNew": "إضافة نفق overlay",
+    "createTitle": "نفق overlay جديد",
+    "editTitle": "تعديل نفق overlay",
+    "deleteTitle": "حذف نفق overlay",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وأن المصدر والهدف مختلفان.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "source": "المصدر",
+      "target": "الهدف",
+      "tunnelType": "نوع النفق",
+      "status": "الحالة"
+    },
+    "fields": {
+      "source": "الطرف المصدر",
+      "target": "الطرف الهدف",
+      "name": "الاسم",
+      "code": "الرمز",
+      "tunnelType": "نوع النفق",
+      "bandwidthMbps": "عرض النطاق (ميجابت/ث)",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "tunnelType": {
+      "IPSEC": "IPsec",
+      "GRE": "GRE",
+      "DTLS": "DTLS",
+      "VXLAN": "VXLAN"
+    },
+    "status": {
+      "UP": "متصل",
+      "DOWN": "منقطع",
+      "DEGRADED": "متدهور",
+      "PLANNED": "مخطط له"
+    }
+  },
+  "carrierCircuits": {
+    "pageTitle": "دوائر المشغلين",
+    "addNew": "إضافة دائرة مشغل",
+    "createTitle": "دائرة مشغل جديدة",
+    "editTitle": "تعديل دائرة المشغل",
+    "deleteTitle": "حذف دائرة المشغل",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "edge": "طرف SD-WAN",
+      "circuitType": "نوع الدائرة",
+      "provider": "المزوّد",
+      "status": "الحالة"
+    },
+    "fields": {
+      "edge": "طرف SD-WAN",
+      "name": "الاسم",
+      "code": "الرمز",
+      "circuitType": "نوع الدائرة",
+      "provider": "المزوّد",
+      "bandwidthMbps": "عرض النطاق (ميجابت/ث)",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "circuitType": {
+      "MPLS": "MPLS",
+      "BROADBAND": "إنترنت عريض النطاق",
+      "LTE_5G": "LTE/5G",
+      "DARK_FIBER": "ألياف داكنة",
+      "SATELLITE": "قمر صناعي"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "MAINTENANCE": "قيد الصيانة",
+      "DECOMMISSIONED": "خارج الخدمة",
+      "PLANNED": "مخطط له"
+    }
+  },
+  "telemetryConnectors": {
+    "pageTitle": "موصلات القياس عن بُعد",
+    "addNew": "إضافة موصل قياس عن بُعد",
+    "createTitle": "موصل قياس عن بُعد جديد",
+    "editTitle": "تعديل موصل القياس عن بُعد",
+    "deleteTitle": "حذف موصل القياس عن بُعد",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "device": "الجهاز",
+      "protocol": "البروتوكول",
+      "status": "الحالة"
+    },
+    "fields": {
+      "device": "الجهاز",
+      "name": "الاسم",
+      "code": "الرمز",
+      "protocol": "البروتوكول",
+      "pollIntervalSeconds": "فاصل الاستطلاع (ث)",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "protocol": {
+      "SNMP_V2C": "SNMP v2c",
+      "SNMP_V3": "SNMP v3",
+      "GNMI_STREAMING": "بث gNMI للقياس عن بُعد",
+      "NETCONF": "NETCONF",
+      "PROMETHEUS_EXPORTER": "مصدّر Prometheus",
+      "OPENTELEMETRY": "OpenTelemetry"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "PAUSED": "متوقف مؤقتًا",
+      "ERROR": "خطأ",
+      "DECOMMISSIONED": "خارج الخدمة"
+    }
+  },
+  "realTimeDashboards": {
+    "pageTitle": "لوحات المعلومات في الوقت الفعلي",
+    "addNew": "إضافة لوحة معلومات",
+    "createTitle": "لوحة معلومات جديدة",
+    "editTitle": "تعديل لوحة المعلومات",
+    "deleteTitle": "حذف لوحة المعلومات",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "description": "الوصف",
+      "refreshIntervalSeconds": "فاصل التحديث",
+      "widgetCount": "عدد الودجات",
+      "status": "الحالة"
+    },
+    "fields": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "description": "الوصف",
+      "refreshIntervalSeconds": "فاصل التحديث (ث)",
+      "widgetCount": "عدد الودجات",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "DRAFT": "مسودة",
+      "ARCHIVED": "مؤرشف"
+    }
+  },
+  "anomalyDetections": {
+    "pageTitle": "كشف الشذوذ",
+    "addNew": "الإبلاغ عن شذوذ",
+    "createTitle": "شذوذ جديد",
+    "editTitle": "تعديل الشذوذ",
+    "deleteTitle": "حذف الشذوذ",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تحقق من الحقول وحاول مرة أخرى.",
+    "columns": {
+      "title": "العنوان",
+      "device": "الجهاز",
+      "anomalyType": "النوع",
+      "severity": "الخطورة",
+      "status": "الحالة",
+      "detectedAt": "تاريخ الاكتشاف"
+    },
+    "fields": {
+      "device": "الجهاز",
+      "title": "العنوان",
+      "description": "الوصف",
+      "anomalyType": "نوع الشذوذ",
+      "severity": "الخطورة",
+      "status": "الحالة",
+      "detectedAt": "تاريخ الاكتشاف",
+      "resolvedAt": "تاريخ الحل",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "anomalyType": {
+      "THRESHOLD_BREACH": "تجاوز الحد",
+      "TRAFFIC_SPIKE": "ارتفاع مفاجئ في حركة المرور",
+      "FLAPPING_LINK": "رابط متذبذب",
+      "CONFIG_DRIFT": "انحراف في الإعداد",
+      "UNAUTHORIZED_ACCESS": "وصول غير مصرح به",
+      "PACKET_LOSS": "فقدان الحزم",
+      "LATENCY_DEGRADATION": "تدهور زمن الاستجابة"
+    },
+    "severity": {
+      "CRITICAL": "حرجة",
+      "HIGH": "عالية",
+      "MEDIUM": "متوسطة",
+      "LOW": "منخفضة",
+      "INFO": "معلوماتية"
+    },
+    "status": {
+      "OPEN": "مفتوحة",
+      "ACKNOWLEDGED": "مقرّة",
+      "RESOLVED": "محلولة",
+      "FALSE_POSITIVE": "إيجابية كاذبة"
+    }
+  },
+  "interventions": {
+    "pageTitle": "التدخلات",
+    "addNew": "تدخل جديد",
+    "createTitle": "تدخل جديد",
+    "editTitle": "تعديل التدخل",
+    "deleteTitle": "حذف التدخل",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تحقق من الحقول وحاول مرة أخرى.",
+    "columns": {
+      "title": "العنوان",
+      "device": "الجهاز",
+      "interventionType": "النوع",
+      "priority": "الأولوية",
+      "status": "الحالة",
+      "scheduledAt": "مجدولة في"
+    },
+    "fields": {
+      "device": "الجهاز",
+      "title": "العنوان",
+      "description": "الوصف",
+      "interventionType": "نوع التدخل",
+      "priority": "الأولوية",
+      "status": "الحالة",
+      "assignedTechnician": "الفني المكلف",
+      "scheduledAt": "مجدولة في",
+      "completedAt": "اكتملت في",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "interventionType": {
+      "PREVENTIVE_MAINTENANCE": "صيانة وقائية",
+      "CORRECTIVE_MAINTENANCE": "صيانة تصحيحية",
+      "INCIDENT_RESPONSE": "الاستجابة للحوادث",
+      "INSTALLATION": "تركيب",
+      "DECOMMISSIONING": "إخراج من الخدمة",
+      "INSPECTION": "تفتيش"
+    },
+    "priority": {
+      "CRITICAL": "حرجة",
+      "HIGH": "عالية",
+      "MEDIUM": "متوسطة",
+      "LOW": "منخفضة"
+    },
+    "status": {
+      "SCHEDULED": "مجدولة",
+      "IN_PROGRESS": "قيد التنفيذ",
+      "ON_HOLD": "معلّقة",
+      "COMPLETED": "مكتملة",
+      "CANCELLED": "ملغاة"
+    }
+  },
+  "equipmentTypes": {
+    "pageTitle": "أنواع المعدات",
+    "addNew": "إضافة نوع",
+    "createTitle": "نوع معدات جديد",
+    "editTitle": "تعديل نوع المعدات",
+    "deleteTitle": "حذف نوع المعدات",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "category": "الفئة",
+      "manufacturer": "الشركة المصنعة",
+      "status": "الحالة"
+    },
+    "fields": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "category": "الفئة",
+      "manufacturer": "الشركة المصنعة",
+      "defaultRackUnits": "الارتفاع الافتراضي (U)",
+      "defaultPowerWatts": "الطاقة الافتراضية (واط)",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "category": {
+      "SERVER": "خادم",
+      "NETWORKING": "شبكات",
+      "STORAGE": "تخزين",
+      "POWER": "طاقة",
+      "COOLING": "تبريد",
+      "SECURITY": "أمن"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "DEPRECATED": "قديم"
+    }
+  },
+  "technologyCatalog": {
+    "pageTitle": "كتالوج تقنيات الشبكة",
+    "addNew": "إضافة تقنية",
+    "createTitle": "تقنية جديدة",
+    "editTitle": "تعديل التقنية",
+    "deleteTitle": "حذف التقنية",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "category": "الفئة",
+      "vendor": "المورّد",
+      "status": "الحالة"
+    },
+    "fields": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "category": "الفئة",
+      "vendor": "المورّد",
+      "version": "الإصدار",
+      "description": "الوصف",
+      "status": "الحالة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "category": {
+      "NETWORKING_PROTOCOL": "بروتوكول شبكة",
+      "SECURITY": "أمن",
+      "VIRTUALIZATION": "المحاكاة الافتراضية",
+      "MONITORING": "المراقبة",
+      "STORAGE": "تخزين",
+      "CLOUD": "سحابة"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "EVALUATION": "قيد التقييم",
+      "DEPRECATED": "قديم"
+    }
+  },
+  "users": {
+    "pageTitle": "المستخدمون",
+    "addNew": "إضافة مستخدم",
+    "createTitle": "مستخدم جديد",
+    "editTitle": "تعديل المستخدم",
+    "deleteTitle": "حذف المستخدم",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ هذا الإجراء نهائي.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن اسم المستخدم فريد وحاول مرة أخرى.",
+    "enabledYes": "نعم",
+    "enabledNo": "لا",
+    "columns": {
+      "username": "اسم المستخدم",
+      "role": "الدور",
+      "enabled": "نشط",
+      "ipRestrictionEnabled": "تقييد عنوان IP"
+    },
+    "fields": {
+      "username": "اسم المستخدم",
+      "password": "كلمة المرور",
+      "newPassword": "كلمة مرور جديدة (اتركها فارغة للإبقاء عليها)",
+      "role": "الدور",
+      "enabled": "الحساب نشط",
+      "ipRestrictionEnabled": "التقييد حسب عنوان IP",
+      "createdAt": "أُنشئ في"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "role": {
+      "SUPER_ADMIN": "مسؤول عام",
+      "DC_ADMIN": "مسؤول مركز البيانات",
+      "NETWORK_ENGINEER": "مهندس شبكات",
+      "TECHNICIAN": "فني",
+      "APPROVER": "معتمِد",
+      "REQUESTER": "طالب",
+      "AUDITOR": "مدقق"
+    }
+  },
+  "rolePermissions": {
+    "pageTitle": "الأدوار والصلاحيات",
+    "addNew": "تعيين صلاحية",
+    "createTitle": "تعيين جديد",
+    "editTitle": "تعديل التعيين",
+    "deleteTitle": "حذف التعيين",
+    "deleteMessage": "هل أنت متأكد من حذف التعيين \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. قد يكون هذا الدور يمتلك هذه الصلاحية بالفعل.",
+    "columns": {
+      "role": "الدور",
+      "permission": "الصلاحية",
+      "granted": "ممنوحة"
+    },
+    "fields": {
+      "role": "الدور",
+      "permission": "الصلاحية",
+      "granted": "الصلاحية ممنوحة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    }
+  },
+  "systemSettings": {
+    "pageTitle": "إعدادات النظام",
+    "addNew": "إضافة إعداد",
+    "createTitle": "إعداد جديد",
+    "editTitle": "تعديل الإعداد",
+    "deleteTitle": "حذف الإعداد",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن المفتاح فريد وحاول مرة أخرى.",
+    "columns": {
+      "settingKey": "المفتاح",
+      "settingValue": "القيمة",
+      "category": "الفئة",
+      "dataType": "نوع البيانات"
+    },
+    "fields": {
+      "settingKey": "المفتاح",
+      "settingValue": "القيمة",
+      "category": "الفئة",
+      "dataType": "نوع البيانات",
+      "description": "الوصف",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "category": {
+      "GENERAL": "عام",
+      "SECURITY": "أمن",
+      "NOTIFICATIONS": "الإشعارات",
+      "INTEGRATIONS": "عمليات التكامل",
+      "MONITORING": "المراقبة"
+    },
+    "dataType": {
+      "STRING": "نص",
+      "NUMBER": "رقم",
+      "BOOLEAN": "منطقي",
+      "JSON": "JSON"
+    }
+  },
+  "integrationConnectors": {
+    "pageTitle": "موصلات SNMP/NETCONF/gNMI",
+    "addNew": "إضافة موصل",
+    "createTitle": "موصل تكامل جديد",
+    "editTitle": "تعديل الموصل",
+    "deleteTitle": "حذف الموصل",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "device": "الجهاز",
+      "protocol": "البروتوكول",
+      "automationType": "نوع الأتمتة",
+      "status": "الحالة"
+    },
+    "fields": {
+      "device": "الجهاز",
+      "name": "الاسم",
+      "code": "الرمز",
+      "protocol": "البروتوكول",
+      "automationType": "نوع الأتمتة",
+      "status": "الحالة",
+      "lastSyncAt": "آخر مزامنة",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "protocol": {
+      "SNMP_V2C": "SNMP v2c",
+      "SNMP_V3": "SNMP v3",
+      "NETCONF": "NETCONF",
+      "RESTCONF": "RESTCONF",
+      "GNMI": "gNMI"
+    },
+    "automationType": {
+      "CONFIG_BACKUP": "نسخ احتياطي للإعداد",
+      "CONFIG_PUSH": "نشر الإعداد",
+      "COMPLIANCE_CHECK": "فحص الامتثال",
+      "ZERO_TOUCH_PROVISIONING": "التزويد بدون تدخل يدوي"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "PAUSED": "متوقف مؤقتًا",
+      "ERROR": "خطأ",
+      "DECOMMISSIONED": "خارج الخدمة"
+    }
+  },
+  "syncDrifts": {
+    "pageTitle": "المزامنة والانحراف",
+    "addNew": "الإبلاغ عن انحراف",
+    "createTitle": "انحراف جديد",
+    "editTitle": "تعديل الانحراف",
+    "deleteTitle": "حذف الانحراف",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تحقق من الحقول وحاول مرة أخرى.",
+    "columns": {
+      "title": "العنوان",
+      "device": "الجهاز",
+      "driftType": "النوع",
+      "severity": "الخطورة",
+      "status": "الحالة",
+      "detectedAt": "تاريخ الاكتشاف"
+    },
+    "fields": {
+      "device": "الجهاز",
+      "title": "العنوان",
+      "description": "الوصف",
+      "driftType": "نوع الانحراف",
+      "severity": "الخطورة",
+      "status": "الحالة",
+      "detectedAt": "تاريخ الاكتشاف",
+      "remediatedAt": "تاريخ الإصلاح",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "driftType": {
+      "CONFIG_MISMATCH": "عدم تطابق الإعداد",
+      "FIRMWARE_VERSION": "إصدار البرنامج الثابت",
+      "ACL_CHANGE": "تغيير قائمة التحكم بالوصول",
+      "VLAN_CHANGE": "تغيير VLAN",
+      "UNAUTHORIZED_CHANGE": "تغيير غير مصرح به"
+    },
+    "severity": {
+      "CRITICAL": "حرجة",
+      "HIGH": "عالية",
+      "MEDIUM": "متوسطة",
+      "LOW": "منخفضة"
+    },
+    "status": {
+      "DETECTED": "مكتشفة",
+      "ACKNOWLEDGED": "مقرّة",
+      "REMEDIATED": "تم الإصلاح",
+      "IGNORED": "متجاهلة"
+    }
+  },
+  "auditLogs": {
+    "pageTitle": "التدقيق والامتثال",
+    "addNew": "إضافة إدخال",
+    "createTitle": "إدخال تدقيق جديد",
+    "editTitle": "تعديل الإدخال",
+    "deleteTitle": "حذف الإدخال",
+    "deleteMessage": "هل أنت متأكد من حذف إدخال التدقيق هذا حول \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تحقق من الحقول وحاول مرة أخرى.",
+    "columns": {
+      "occurredAt": "تاريخ الحدوث",
+      "actorUsername": "الفاعل",
+      "action": "الإجراء",
+      "entityType": "نوع الكيان",
+      "entityReference": "المرجع"
+    },
+    "fields": {
+      "actorUsername": "اسم مستخدم الفاعل",
+      "action": "الإجراء",
+      "entityType": "نوع الكيان",
+      "entityReference": "مرجع الكيان",
+      "description": "الوصف",
+      "ipAddress": "عنوان IP",
+      "occurredAt": "تاريخ الحدوث",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "action": {
+      "CREATE": "إنشاء",
+      "UPDATE": "تعديل",
+      "DELETE": "حذف",
+      "LOGIN": "تسجيل الدخول",
+      "LOGOUT": "تسجيل الخروج",
+      "EXPORT": "تصدير",
+      "CONFIG_CHANGE": "تغيير الإعداد"
+    }
+  },
+  "reports": {
+    "pageTitle": "التقارير",
+    "addNew": "إضافة تقرير",
+    "createTitle": "تقرير جديد",
+    "editTitle": "تعديل التقرير",
+    "deleteTitle": "حذف التقرير",
+    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
+    "columns": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "reportType": "النوع",
+      "format": "الصيغة",
+      "schedule": "الجدولة",
+      "status": "الحالة"
+    },
+    "fields": {
+      "name": "الاسم",
+      "code": "الرمز",
+      "reportType": "نوع التقرير",
+      "format": "الصيغة",
+      "schedule": "الجدولة",
+      "status": "الحالة",
+      "lastGeneratedAt": "آخر إنشاء",
+      "description": "الوصف",
+      "notes": "ملاحظات"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب."
+    },
+    "reportType": {
+      "INVENTORY": "الجرد",
+      "CAPACITY": "السعة",
+      "COMPLIANCE": "الامتثال",
+      "AVAILABILITY": "التوفر",
+      "SECURITY": "الأمن",
+      "CUSTOM": "مخصص"
+    },
+    "format": {
+      "PDF": "PDF",
+      "CSV": "CSV",
+      "XLSX": "XLSX"
+    },
+    "schedule": {
+      "ON_DEMAND": "عند الطلب",
+      "DAILY": "يومي",
+      "WEEKLY": "أسبوعي",
+      "MONTHLY": "شهري"
+    },
+    "status": {
+      "ACTIVE": "نشط",
+      "DRAFT": "مسودة",
+      "ARCHIVED": "مؤرشف"
+    }
+  },
+  "myAccount": {
+    "pageTitle": "حسابي",
+    "profileSection": "الملف الشخصي",
+    "passwordSection": "كلمة المرور",
+    "securitySection": "الأمان",
+    "changePhoto": "تغيير الصورة",
+    "removePhoto": "إزالة الصورة",
+    "changePassword": "تغيير كلمة المرور",
+    "saveSuccess": "تم حفظ الملف الشخصي بنجاح.",
+    "loadError": "تعذّر تحميل حسابك. تحقق من اتصالك وحاول مرة أخرى.",
+    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن اسم المستخدم فريد.",
+    "passwordSaveSuccess": "تم تغيير كلمة المرور بنجاح.",
+    "passwordError": "حدث خطأ. تحقق من كلمة المرور الحالية.",
+    "passwordMismatch": "كلمتا المرور غير متطابقتين.",
+    "ipRestrictionEnabled": "تقييد تسجيل الدخول إلى عناوين IP المصرح بها",
+    "allowedIps": "عناوين IP المصرح بها",
+    "newIpAddress": "عنوان IP جديد",
+    "addIp": "إضافة",
+    "noAllowedIps": "لا توجد عناوين IP مصرح بها بعد.",
+    "deleteIpTitle": "حذف عنوان IP",
+    "deleteIpMessage": "هل أنت متأكد من إزالة \"{{name}}\" من القائمة المصرح بها؟",
+    "ipSaveError": "حدث خطأ أثناء إضافة عنوان IP.",
+    "fields": {
+      "username": "اسم المستخدم",
+      "fullName": "الاسم الكامل",
+      "matricule": "الرقم الوظيفي",
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب.",
+      "email": "عنوان بريد إلكتروني غير صالح.",
+      "passwordLength": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل."
     }
   }
 }

@@ -1,0 +1,10 @@
+package com.awb.backend.core.entity;
+
+public enum InterventionType {
+  PREVENTIVE_MAINTENANCE,
+  CORRECTIVE_MAINTENANCE,
+  INCIDENT_RESPONSE,
+  INSTALLATION,
+  DECOMMISSIONING,
+  INSPECTION
+}

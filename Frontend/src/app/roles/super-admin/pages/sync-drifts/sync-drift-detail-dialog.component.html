@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'syncDrifts.fields.device' | translate }}</dt>
+    <dd>{{ data.deviceName }}</dd>
+
+    @if (data.description) {
+      <dt>{{ 'syncDrifts.fields.description' | translate }}</dt>
+      <dd>{{ data.description }}</dd>
+    }
+
+    <dt>{{ 'syncDrifts.fields.driftType' | translate }}</dt>
+    <dd>{{ 'syncDrifts.driftType.' + data.driftType | translate }}</dd>
+
+    <dt>{{ 'syncDrifts.fields.severity' | translate }}</dt>
+    <dd>{{ 'syncDrifts.severity.' + data.severity | translate }}</dd>
+
+    <dt>{{ 'syncDrifts.fields.status' | translate }}</dt>
+    <dd>{{ 'syncDrifts.status.' + data.status | translate }}</dd>
+
+    <dt>{{ 'syncDrifts.fields.detectedAt' | translate }}</dt>
+    <dd>{{ data.detectedAt | date: 'medium' }}</dd>
+
+    @if (data.remediatedAt) {
+      <dt>{{ 'syncDrifts.fields.remediatedAt' | translate }}</dt>
+      <dd>{{ data.remediatedAt | date: 'medium' }}</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'syncDrifts.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

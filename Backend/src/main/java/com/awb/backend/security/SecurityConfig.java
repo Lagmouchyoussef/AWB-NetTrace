@@ -1,8 +1,11 @@
 package com.awb.backend.security;
 
 import com.awb.backend.core.repository.UserRepository;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -56,6 +59,17 @@ public class SecurityConfig {
         .csrf(csrf -> csrf.disable()) // stateless bearer-token API, no cookies/session in play
         .sessionManagement(
             session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .exceptionHandling(
+            exceptions ->
+                exceptions
+                    // No/invalid/expired JWT: 401, so the frontend can tell "not logged in"
+                    // apart from "logged in but wrong role" (403) and redirect to login.
+                    .authenticationEntryPoint(
+                        (request, response, authException) ->
+                            writeJsonError(response, 401, "Authentication required"))
+                    .accessDeniedHandler(
+                        (request, response, accessDeniedException) ->
+                            writeJsonError(response, 403, "Access denied")))
         .authorizeHttpRequests(
             auth ->
                 auth.requestMatchers("/api/auth/login", "/error")
@@ -80,5 +94,12 @@ public class SecurityConfig {
             new JwtAuthenticationFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
 
     return http.build();
+  }
+
+  private static void writeJsonError(HttpServletResponse response, int status, String message)
+      throws IOException {
+    response.setStatus(status);
+    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+    response.getWriter().write("{\"error\":\"" + message + "\"}");
   }
 }

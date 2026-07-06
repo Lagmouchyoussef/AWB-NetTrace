@@ -8,6 +8,7 @@
     "logIn": "Iniciar sesión",
     "loggingIn": "Iniciando sesión...",
     "invalidCredentials": "Usuario o contraseña incorrectos.",
+    "sessionExpired": "Su sesión ha expirado. Vuelva a iniciar sesión.",
     "backToLogin": "Volver al inicio de sesión",
     "forgotIntro": "Introduzca su usuario y su administrador del sistema será notificado para ayudarle a restablecer su contraseña.",
     "sendRequest": "Enviar solicitud",
@@ -51,7 +52,8 @@
     "snmpNetconfGnmiConnectors": "Conectores SNMP/NETCONF/gNMI",
     "syncDrift": "Sincronización y drift",
     "auditCompliance": "Auditoría y cumplimiento",
-    "reports": "Informes"
+    "reports": "Informes",
+    "myAccount": "Mi cuenta"
   },
   "topbar": {
     "searchPlaceholder": "Buscar...",
@@ -59,6 +61,7 @@
     "light": "Claro",
     "dark": "Oscuro",
     "system": "Sistema",
+    "myAccount": "Mi cuenta",
     "logout": "Cerrar sesión"
   },
   "placeholder": {
@@ -81,6 +84,7 @@
     "confirm": "Confirmar",
     "save": "Guardar",
     "saving": "Guardando...",
+    "loading": "Cargando...",
     "close": "Cerrar",
     "itemsPerPage": "Elementos por página:",
     "nextPage": "Página siguiente",
@@ -539,6 +543,722 @@
       "TRACED": "Trazado",
       "PENDING": "Pendiente",
       "FAILED": "Fallido"
+    }
+  },
+  "sdwanEdges": {
+    "pageTitle": "Edges SD-WAN",
+    "addNew": "Añadir edge SD-WAN",
+    "createTitle": "Nuevo edge SD-WAN",
+    "editTitle": "Editar edge SD-WAN",
+    "deleteTitle": "Eliminar edge SD-WAN",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "datacenter": "Centro de datos",
+      "vendor": "Proveedor",
+      "status": "Estado"
+    },
+    "fields": {
+      "datacenter": "Centro de datos",
+      "name": "Nombre",
+      "code": "Código",
+      "vendor": "Proveedor",
+      "model": "Modelo",
+      "wanLinkCount": "Número de enlaces WAN",
+      "managementIp": "IP de gestión",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "MAINTENANCE": "Mantenimiento",
+      "DECOMMISSIONED": "Fuera de servicio",
+      "PROVISIONING": "Aprovisionando"
+    }
+  },
+  "overlayTunnels": {
+    "pageTitle": "Túneles overlay",
+    "addNew": "Añadir túnel overlay",
+    "createTitle": "Nuevo túnel overlay",
+    "editTitle": "Editar túnel overlay",
+    "deleteTitle": "Eliminar túnel overlay",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único y que el origen y destino sean diferentes.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "source": "Origen",
+      "target": "Destino",
+      "tunnelType": "Tipo de túnel",
+      "status": "Estado"
+    },
+    "fields": {
+      "source": "Edge de origen",
+      "target": "Edge de destino",
+      "name": "Nombre",
+      "code": "Código",
+      "tunnelType": "Tipo de túnel",
+      "bandwidthMbps": "Ancho de banda (Mbps)",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "tunnelType": {
+      "IPSEC": "IPsec",
+      "GRE": "GRE",
+      "DTLS": "DTLS",
+      "VXLAN": "VXLAN"
+    },
+    "status": {
+      "UP": "Activo",
+      "DOWN": "Inactivo",
+      "DEGRADED": "Degradado",
+      "PLANNED": "Planificado"
+    }
+  },
+  "carrierCircuits": {
+    "pageTitle": "Circuitos de operador",
+    "addNew": "Añadir circuito de operador",
+    "createTitle": "Nuevo circuito de operador",
+    "editTitle": "Editar circuito de operador",
+    "deleteTitle": "Eliminar circuito de operador",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "edge": "Edge SD-WAN",
+      "circuitType": "Tipo de circuito",
+      "provider": "Operador",
+      "status": "Estado"
+    },
+    "fields": {
+      "edge": "Edge SD-WAN",
+      "name": "Nombre",
+      "code": "Código",
+      "circuitType": "Tipo de circuito",
+      "provider": "Operador",
+      "bandwidthMbps": "Ancho de banda (Mbps)",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "circuitType": {
+      "MPLS": "MPLS",
+      "BROADBAND": "Internet de banda ancha",
+      "LTE_5G": "LTE/5G",
+      "DARK_FIBER": "Fibra oscura",
+      "SATELLITE": "Satélite"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "MAINTENANCE": "Mantenimiento",
+      "DECOMMISSIONED": "Fuera de servicio",
+      "PLANNED": "Planificado"
+    }
+  },
+  "telemetryConnectors": {
+    "pageTitle": "Conectores de telemetría",
+    "addNew": "Añadir conector de telemetría",
+    "createTitle": "Nuevo conector de telemetría",
+    "editTitle": "Editar conector de telemetría",
+    "deleteTitle": "Eliminar conector de telemetría",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "device": "Dispositivo",
+      "protocol": "Protocolo",
+      "status": "Estado"
+    },
+    "fields": {
+      "device": "Dispositivo",
+      "name": "Nombre",
+      "code": "Código",
+      "protocol": "Protocolo",
+      "pollIntervalSeconds": "Intervalo de sondeo (s)",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "protocol": {
+      "SNMP_V2C": "SNMP v2c",
+      "SNMP_V3": "SNMP v3",
+      "GNMI_STREAMING": "Telemetría en streaming gNMI",
+      "NETCONF": "NETCONF",
+      "PROMETHEUS_EXPORTER": "Exportador Prometheus",
+      "OPENTELEMETRY": "OpenTelemetry"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "PAUSED": "Pausado",
+      "ERROR": "Error",
+      "DECOMMISSIONED": "Fuera de servicio"
+    }
+  },
+  "realTimeDashboards": {
+    "pageTitle": "Tableros en tiempo real",
+    "addNew": "Añadir tablero",
+    "createTitle": "Nuevo tablero",
+    "editTitle": "Editar tablero",
+    "deleteTitle": "Eliminar tablero",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "description": "Descripción",
+      "refreshIntervalSeconds": "Intervalo de actualización",
+      "widgetCount": "Widgets",
+      "status": "Estado"
+    },
+    "fields": {
+      "name": "Nombre",
+      "code": "Código",
+      "description": "Descripción",
+      "refreshIntervalSeconds": "Intervalo de actualización (s)",
+      "widgetCount": "Cantidad de widgets",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "DRAFT": "Borrador",
+      "ARCHIVED": "Archivado"
+    }
+  },
+  "anomalyDetections": {
+    "pageTitle": "Detección de anomalías",
+    "addNew": "Reportar anomalía",
+    "createTitle": "Nueva anomalía",
+    "editTitle": "Editar anomalía",
+    "deleteTitle": "Eliminar anomalía",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique los campos e inténtelo de nuevo.",
+    "columns": {
+      "title": "Título",
+      "device": "Equipo",
+      "anomalyType": "Tipo",
+      "severity": "Severidad",
+      "status": "Estado",
+      "detectedAt": "Detectada el"
+    },
+    "fields": {
+      "device": "Equipo",
+      "title": "Título",
+      "description": "Descripción",
+      "anomalyType": "Tipo de anomalía",
+      "severity": "Severidad",
+      "status": "Estado",
+      "detectedAt": "Detectada el",
+      "resolvedAt": "Resuelta el",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "anomalyType": {
+      "THRESHOLD_BREACH": "Umbral superado",
+      "TRAFFIC_SPIKE": "Pico de tráfico",
+      "FLAPPING_LINK": "Enlace inestable",
+      "CONFIG_DRIFT": "Deriva de configuración",
+      "UNAUTHORIZED_ACCESS": "Acceso no autorizado",
+      "PACKET_LOSS": "Pérdida de paquetes",
+      "LATENCY_DEGRADATION": "Degradación de latencia"
+    },
+    "severity": {
+      "CRITICAL": "Crítica",
+      "HIGH": "Alta",
+      "MEDIUM": "Media",
+      "LOW": "Baja",
+      "INFO": "Información"
+    },
+    "status": {
+      "OPEN": "Abierta",
+      "ACKNOWLEDGED": "Reconocida",
+      "RESOLVED": "Resuelta",
+      "FALSE_POSITIVE": "Falso positivo"
+    }
+  },
+  "interventions": {
+    "pageTitle": "Intervenciones",
+    "addNew": "Nueva intervención",
+    "createTitle": "Nueva intervención",
+    "editTitle": "Editar intervención",
+    "deleteTitle": "Eliminar intervención",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique los campos e inténtelo de nuevo.",
+    "columns": {
+      "title": "Título",
+      "device": "Equipo",
+      "interventionType": "Tipo",
+      "priority": "Prioridad",
+      "status": "Estado",
+      "scheduledAt": "Programada el"
+    },
+    "fields": {
+      "device": "Equipo",
+      "title": "Título",
+      "description": "Descripción",
+      "interventionType": "Tipo de intervención",
+      "priority": "Prioridad",
+      "status": "Estado",
+      "assignedTechnician": "Técnico asignado",
+      "scheduledAt": "Programada el",
+      "completedAt": "Completada el",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "interventionType": {
+      "PREVENTIVE_MAINTENANCE": "Mantenimiento preventivo",
+      "CORRECTIVE_MAINTENANCE": "Mantenimiento correctivo",
+      "INCIDENT_RESPONSE": "Respuesta a incidentes",
+      "INSTALLATION": "Instalación",
+      "DECOMMISSIONING": "Retiro de servicio",
+      "INSPECTION": "Inspección"
+    },
+    "priority": {
+      "CRITICAL": "Crítica",
+      "HIGH": "Alta",
+      "MEDIUM": "Media",
+      "LOW": "Baja"
+    },
+    "status": {
+      "SCHEDULED": "Programada",
+      "IN_PROGRESS": "En curso",
+      "ON_HOLD": "En espera",
+      "COMPLETED": "Completada",
+      "CANCELLED": "Cancelada"
+    }
+  },
+  "equipmentTypes": {
+    "pageTitle": "Tipos de equipo",
+    "addNew": "Añadir tipo",
+    "createTitle": "Nuevo tipo de equipo",
+    "editTitle": "Editar tipo de equipo",
+    "deleteTitle": "Eliminar tipo de equipo",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "category": "Categoría",
+      "manufacturer": "Fabricante",
+      "status": "Estado"
+    },
+    "fields": {
+      "name": "Nombre",
+      "code": "Código",
+      "category": "Categoría",
+      "manufacturer": "Fabricante",
+      "defaultRackUnits": "Altura predeterminada (U)",
+      "defaultPowerWatts": "Potencia predeterminada (W)",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "category": {
+      "SERVER": "Servidor",
+      "NETWORKING": "Red",
+      "STORAGE": "Almacenamiento",
+      "POWER": "Energía",
+      "COOLING": "Refrigeración",
+      "SECURITY": "Seguridad"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "DEPRECATED": "Obsoleto"
+    }
+  },
+  "technologyCatalog": {
+    "pageTitle": "Catálogo de tecnologías de red",
+    "addNew": "Añadir tecnología",
+    "createTitle": "Nueva tecnología",
+    "editTitle": "Editar tecnología",
+    "deleteTitle": "Eliminar tecnología",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "category": "Categoría",
+      "vendor": "Proveedor",
+      "status": "Estado"
+    },
+    "fields": {
+      "name": "Nombre",
+      "code": "Código",
+      "category": "Categoría",
+      "vendor": "Proveedor",
+      "version": "Versión",
+      "description": "Descripción",
+      "status": "Estado",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "category": {
+      "NETWORKING_PROTOCOL": "Protocolo de red",
+      "SECURITY": "Seguridad",
+      "VIRTUALIZATION": "Virtualización",
+      "MONITORING": "Supervisión",
+      "STORAGE": "Almacenamiento",
+      "CLOUD": "Nube"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "EVALUATION": "En evaluación",
+      "DEPRECATED": "Obsoleto"
+    }
+  },
+  "users": {
+    "pageTitle": "Usuarios",
+    "addNew": "Añadir usuario",
+    "createTitle": "Nuevo usuario",
+    "editTitle": "Editar usuario",
+    "deleteTitle": "Eliminar usuario",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Esta acción es permanente.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el nombre de usuario sea único e inténtelo de nuevo.",
+    "enabledYes": "Sí",
+    "enabledNo": "No",
+    "columns": {
+      "username": "Nombre de usuario",
+      "role": "Rol",
+      "enabled": "Activo",
+      "ipRestrictionEnabled": "Restricción IP"
+    },
+    "fields": {
+      "username": "Nombre de usuario",
+      "password": "Contraseña",
+      "newPassword": "Nueva contraseña (dejar en blanco para no cambiar)",
+      "role": "Rol",
+      "enabled": "Cuenta activa",
+      "ipRestrictionEnabled": "Restringir por dirección IP",
+      "createdAt": "Creado el"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "role": {
+      "SUPER_ADMIN": "Superadministrador",
+      "DC_ADMIN": "Administrador de datacenter",
+      "NETWORK_ENGINEER": "Ingeniero de red",
+      "TECHNICIAN": "Técnico",
+      "APPROVER": "Aprobador",
+      "REQUESTER": "Solicitante",
+      "AUDITOR": "Auditor"
+    }
+  },
+  "rolePermissions": {
+    "pageTitle": "Roles y permisos",
+    "addNew": "Asignar permiso",
+    "createTitle": "Nueva asignación",
+    "editTitle": "Editar asignación",
+    "deleteTitle": "Eliminar asignación",
+    "deleteMessage": "¿Seguro que desea eliminar la asignación \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Es posible que este rol ya tenga este permiso.",
+    "columns": {
+      "role": "Rol",
+      "permission": "Permiso",
+      "granted": "Concedido"
+    },
+    "fields": {
+      "role": "Rol",
+      "permission": "Permiso",
+      "granted": "Permiso concedido",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    }
+  },
+  "systemSettings": {
+    "pageTitle": "Configuración del sistema",
+    "addNew": "Añadir parámetro",
+    "createTitle": "Nuevo parámetro",
+    "editTitle": "Editar parámetro",
+    "deleteTitle": "Eliminar parámetro",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que la clave sea única e inténtelo de nuevo.",
+    "columns": {
+      "settingKey": "Clave",
+      "settingValue": "Valor",
+      "category": "Categoría",
+      "dataType": "Tipo de dato"
+    },
+    "fields": {
+      "settingKey": "Clave",
+      "settingValue": "Valor",
+      "category": "Categoría",
+      "dataType": "Tipo de dato",
+      "description": "Descripción",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "category": {
+      "GENERAL": "General",
+      "SECURITY": "Seguridad",
+      "NOTIFICATIONS": "Notificaciones",
+      "INTEGRATIONS": "Integraciones",
+      "MONITORING": "Supervisión"
+    },
+    "dataType": {
+      "STRING": "Texto",
+      "NUMBER": "Número",
+      "BOOLEAN": "Booleano",
+      "JSON": "JSON"
+    }
+  },
+  "integrationConnectors": {
+    "pageTitle": "Conectores SNMP/NETCONF/gNMI",
+    "addNew": "Añadir conector",
+    "createTitle": "Nuevo conector de integración",
+    "editTitle": "Editar conector",
+    "deleteTitle": "Eliminar conector",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "device": "Equipo",
+      "protocol": "Protocolo",
+      "automationType": "Tipo de automatización",
+      "status": "Estado"
+    },
+    "fields": {
+      "device": "Equipo",
+      "name": "Nombre",
+      "code": "Código",
+      "protocol": "Protocolo",
+      "automationType": "Tipo de automatización",
+      "status": "Estado",
+      "lastSyncAt": "Última sincronización",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "protocol": {
+      "SNMP_V2C": "SNMP v2c",
+      "SNMP_V3": "SNMP v3",
+      "NETCONF": "NETCONF",
+      "RESTCONF": "RESTCONF",
+      "GNMI": "gNMI"
+    },
+    "automationType": {
+      "CONFIG_BACKUP": "Respaldo de configuración",
+      "CONFIG_PUSH": "Despliegue de configuración",
+      "COMPLIANCE_CHECK": "Verificación de cumplimiento",
+      "ZERO_TOUCH_PROVISIONING": "Aprovisionamiento Zero-Touch"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "PAUSED": "Pausado",
+      "ERROR": "Error",
+      "DECOMMISSIONED": "Fuera de servicio"
+    }
+  },
+  "syncDrifts": {
+    "pageTitle": "Sincronización y desviación",
+    "addNew": "Reportar desviación",
+    "createTitle": "Nueva desviación",
+    "editTitle": "Editar desviación",
+    "deleteTitle": "Eliminar desviación",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique los campos e inténtelo de nuevo.",
+    "columns": {
+      "title": "Título",
+      "device": "Equipo",
+      "driftType": "Tipo",
+      "severity": "Severidad",
+      "status": "Estado",
+      "detectedAt": "Detectada el"
+    },
+    "fields": {
+      "device": "Equipo",
+      "title": "Título",
+      "description": "Descripción",
+      "driftType": "Tipo de desviación",
+      "severity": "Severidad",
+      "status": "Estado",
+      "detectedAt": "Detectada el",
+      "remediatedAt": "Corregida el",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "driftType": {
+      "CONFIG_MISMATCH": "Discrepancia de configuración",
+      "FIRMWARE_VERSION": "Versión de firmware",
+      "ACL_CHANGE": "Cambio de ACL",
+      "VLAN_CHANGE": "Cambio de VLAN",
+      "UNAUTHORIZED_CHANGE": "Cambio no autorizado"
+    },
+    "severity": {
+      "CRITICAL": "Crítica",
+      "HIGH": "Alta",
+      "MEDIUM": "Media",
+      "LOW": "Baja"
+    },
+    "status": {
+      "DETECTED": "Detectada",
+      "ACKNOWLEDGED": "Reconocida",
+      "REMEDIATED": "Corregida",
+      "IGNORED": "Ignorada"
+    }
+  },
+  "auditLogs": {
+    "pageTitle": "Auditoría y cumplimiento",
+    "addNew": "Añadir entrada",
+    "createTitle": "Nueva entrada de auditoría",
+    "editTitle": "Editar entrada",
+    "deleteTitle": "Eliminar entrada",
+    "deleteMessage": "¿Seguro que desea eliminar esta entrada de auditoría sobre \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique los campos e inténtelo de nuevo.",
+    "columns": {
+      "occurredAt": "Ocurrió el",
+      "actorUsername": "Actor",
+      "action": "Acción",
+      "entityType": "Tipo de entidad",
+      "entityReference": "Referencia"
+    },
+    "fields": {
+      "actorUsername": "Nombre de usuario del actor",
+      "action": "Acción",
+      "entityType": "Tipo de entidad",
+      "entityReference": "Referencia de la entidad",
+      "description": "Descripción",
+      "ipAddress": "Dirección IP",
+      "occurredAt": "Ocurrió el",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "action": {
+      "CREATE": "Creación",
+      "UPDATE": "Modificación",
+      "DELETE": "Eliminación",
+      "LOGIN": "Inicio de sesión",
+      "LOGOUT": "Cierre de sesión",
+      "EXPORT": "Exportación",
+      "CONFIG_CHANGE": "Cambio de configuración"
+    }
+  },
+  "reports": {
+    "pageTitle": "Informes",
+    "addNew": "Añadir informe",
+    "createTitle": "Nuevo informe",
+    "editTitle": "Editar informe",
+    "deleteTitle": "Eliminar informe",
+    "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el código sea único e inténtelo de nuevo.",
+    "columns": {
+      "name": "Nombre",
+      "code": "Código",
+      "reportType": "Tipo",
+      "format": "Formato",
+      "schedule": "Frecuencia",
+      "status": "Estado"
+    },
+    "fields": {
+      "name": "Nombre",
+      "code": "Código",
+      "reportType": "Tipo de informe",
+      "format": "Formato",
+      "schedule": "Frecuencia",
+      "status": "Estado",
+      "lastGeneratedAt": "Última generación",
+      "description": "Descripción",
+      "notes": "Notas"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio."
+    },
+    "reportType": {
+      "INVENTORY": "Inventario",
+      "CAPACITY": "Capacidad",
+      "COMPLIANCE": "Cumplimiento",
+      "AVAILABILITY": "Disponibilidad",
+      "SECURITY": "Seguridad",
+      "CUSTOM": "Personalizado"
+    },
+    "format": {
+      "PDF": "PDF",
+      "CSV": "CSV",
+      "XLSX": "XLSX"
+    },
+    "schedule": {
+      "ON_DEMAND": "Bajo demanda",
+      "DAILY": "Diario",
+      "WEEKLY": "Semanal",
+      "MONTHLY": "Mensual"
+    },
+    "status": {
+      "ACTIVE": "Activo",
+      "DRAFT": "Borrador",
+      "ARCHIVED": "Archivado"
+    }
+  },
+  "myAccount": {
+    "pageTitle": "Mi cuenta",
+    "profileSection": "Perfil",
+    "passwordSection": "Contraseña",
+    "securitySection": "Seguridad",
+    "changePhoto": "Cambiar foto",
+    "removePhoto": "Eliminar foto",
+    "changePassword": "Cambiar contraseña",
+    "saveSuccess": "Perfil guardado con éxito.",
+    "loadError": "No se pudo cargar su cuenta. Verifique su conexión e inténtelo de nuevo.",
+    "saveError": "Ocurrió un error al guardar. Verifique que el nombre de usuario sea único.",
+    "passwordSaveSuccess": "Contraseña cambiada con éxito.",
+    "passwordError": "Ocurrió un error. Verifique su contraseña actual.",
+    "passwordMismatch": "Las contraseñas no coinciden.",
+    "ipRestrictionEnabled": "Restringir el acceso a direcciones IP autorizadas",
+    "allowedIps": "Direcciones IP autorizadas",
+    "newIpAddress": "Nueva dirección IP",
+    "addIp": "Añadir",
+    "noAllowedIps": "Aún no hay direcciones IP autorizadas.",
+    "deleteIpTitle": "Eliminar dirección IP",
+    "deleteIpMessage": "¿Seguro que desea eliminar \"{{name}}\" de la lista autorizada?",
+    "ipSaveError": "Ocurrió un error al añadir la dirección IP.",
+    "fields": {
+      "username": "Nombre de usuario",
+      "fullName": "Nombre completo",
+      "matricule": "Número de empleado",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "currentPassword": "Contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "confirmPassword": "Confirmar contraseña"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio.",
+      "email": "Dirección de correo inválida.",
+      "passwordLength": "La contraseña debe tener al menos 8 caracteres."
     }
   }
 }

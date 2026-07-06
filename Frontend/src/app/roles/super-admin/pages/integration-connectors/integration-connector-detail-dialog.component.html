@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'integrationConnectors.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'integrationConnectors.fields.device' | translate }}</dt>
+    <dd>{{ data.deviceName }}</dd>
+
+    <dt>{{ 'integrationConnectors.fields.protocol' | translate }}</dt>
+    <dd>{{ 'integrationConnectors.protocol.' + data.protocol | translate }}</dd>
+
+    <dt>{{ 'integrationConnectors.fields.automationType' | translate }}</dt>
+    <dd>{{ 'integrationConnectors.automationType.' + data.automationType | translate }}</dd>
+
+    <dt>{{ 'integrationConnectors.fields.status' | translate }}</dt>
+    <dd>{{ 'integrationConnectors.status.' + data.status | translate }}</dd>
+
+    @if (data.lastSyncAt) {
+      <dt>{{ 'integrationConnectors.fields.lastSyncAt' | translate }}</dt>
+      <dd>{{ data.lastSyncAt | date: 'medium' }}</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'integrationConnectors.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

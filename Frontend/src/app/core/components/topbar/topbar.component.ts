@@ -111,6 +111,15 @@ export class TopbarComponent {
     this.languageService.setLanguage(language);
   }
 
+  protected readonly myAccountPath = computed(() => {
+    const role = this.authService.currentRole();
+    return role === 'SUPER_ADMIN' ? '/super-admin/my-account' : null;
+  });
+
+  protected goToMyAccount(path: string): void {
+    this.router.navigateByUrl(path);
+  }
+
   protected onLogout(): void {
     this.authService.logout();
     this.router.navigate(['/']);

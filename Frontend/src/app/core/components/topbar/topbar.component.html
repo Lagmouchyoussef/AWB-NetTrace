@@ -125,6 +125,12 @@
         <div class="profile-name">{{ username() }}</div>
         <div class="profile-role">{{ role() }}</div>
       </div>
+      @if (myAccountPath(); as accountPath) {
+        <button mat-menu-item (click)="goToMyAccount(accountPath)">
+          <mat-icon fontSet="material-symbols-outlined">account_circle</mat-icon>
+          {{ 'topbar.myAccount' | translate }}
+        </button>
+      }
       <button mat-menu-item (click)="onLogout()">
         <mat-icon fontSet="material-symbols-outlined">logout</mat-icon>
         {{ 'topbar.logout' | translate }}

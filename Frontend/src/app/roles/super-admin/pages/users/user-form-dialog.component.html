@@ -1,0 +1,57 @@
+<h2 mat-dialog-title>
+  {{ (isEdit ? 'users.editTitle' : 'users.createTitle') | translate }}
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'users.fields.username' | translate }}</mat-label>
+        <input matInput formControlName="username" required />
+        @if (form.controls.username.invalid && form.controls.username.touched) {
+          <mat-error>{{ 'users.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{
+          (isEdit ? 'users.fields.newPassword' : 'users.fields.password') | translate
+        }}</mat-label>
+        <input matInput type="password" formControlName="password" />
+        @if (form.controls.password.invalid && form.controls.password.touched) {
+          <mat-error>{{ 'users.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'users.fields.role' | translate }}</mat-label>
+        <mat-select formControlName="role">
+          @for (role of roles; track role) {
+            <mat-option [value]="role">{{ 'users.role.' + role | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <div class="checkbox-row full-width">
+        <mat-checkbox formControlName="enabled">{{
+          'users.fields.enabled' | translate
+        }}</mat-checkbox>
+        <mat-checkbox formControlName="ipRestrictionEnabled">{{
+          'users.fields.ipRestrictionEnabled' | translate
+        }}</mat-checkbox>
+      </div>
+    </div>
+
+    @if (errorKey()) {
+      <p class="form-error">{{ errorKey() | translate }}</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" class="dialog-button dialog-button-cancel" (click)="cancel()">
+      {{ 'common.cancel' | translate }}
+    </button>
+    <button type="submit" class="dialog-button dialog-button-confirm" [disabled]="saving()">
+      {{ (saving() ? 'common.saving' : 'common.save') | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>

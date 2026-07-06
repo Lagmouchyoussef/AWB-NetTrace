@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'anomalyDetections.fields.device' | translate }}</dt>
+    <dd>{{ data.deviceName }}</dd>
+
+    @if (data.description) {
+      <dt>{{ 'anomalyDetections.fields.description' | translate }}</dt>
+      <dd>{{ data.description }}</dd>
+    }
+
+    <dt>{{ 'anomalyDetections.fields.anomalyType' | translate }}</dt>
+    <dd>{{ 'anomalyDetections.anomalyType.' + data.anomalyType | translate }}</dd>
+
+    <dt>{{ 'anomalyDetections.fields.severity' | translate }}</dt>
+    <dd>{{ 'anomalyDetections.severity.' + data.severity | translate }}</dd>
+
+    <dt>{{ 'anomalyDetections.fields.status' | translate }}</dt>
+    <dd>{{ 'anomalyDetections.status.' + data.status | translate }}</dd>
+
+    <dt>{{ 'anomalyDetections.fields.detectedAt' | translate }}</dt>
+    <dd>{{ data.detectedAt | date: 'medium' }}</dd>
+
+    @if (data.resolvedAt) {
+      <dt>{{ 'anomalyDetections.fields.resolvedAt' | translate }}</dt>
+      <dd>{{ data.resolvedAt | date: 'medium' }}</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'anomalyDetections.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

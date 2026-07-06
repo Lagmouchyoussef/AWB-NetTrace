@@ -6,12 +6,13 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app.routes';
 import { authInterceptor } from './core/services/auth.interceptor';
+import { sessionExpiryInterceptor } from './core/services/session-expiry.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, sessionExpiryInterceptor])),
     provideTranslateService({
       lang: 'en',
       fallbackLang: 'en',
