@@ -66,6 +66,8 @@
     "searchPlaceholder": "بحث...",
     "notifications": "الإشعارات",
     "noNotifications": "لا توجد إشعارات بعد",
+    "clearAll": "مسح الكل",
+    "dismissNotification": "إخفاء الإشعار",
     "appearance": "المظهر",
     "language": "اللغة",
     "light": "فاتح",
@@ -921,6 +923,21 @@
       "ON_HOLD": "معلّقة",
       "COMPLETED": "مكتملة",
       "CANCELLED": "ملغاة"
+    },
+    "approvalQueue": {
+      "pageTitle": "قائمة الموافقات",
+      "subtitle": "طلبات التدخل بانتظار موافقتك، ضمن مراكز البيانات المخصصة لك.",
+      "empty": "لا توجد طلبات بانتظار الموافقة.",
+      "requestedBy": "طلب بواسطة",
+      "scheduledFor": "مجدول في",
+      "approve": "الموافقة",
+      "reject": "الرفض",
+      "cannotApproveOwnRequest": "لا يمكنك الموافقة على طلبك الخاص أو رفضه.",
+      "actionError": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+      "rejectDialogTitle": "رفض طلب التدخل",
+      "rejectCommentLabel": "سبب الرفض",
+      "rejectCommentRequired": "التعليق مطلوب لرفض الطلب.",
+      "rejectConfirm": "تأكيد الرفض"
     }
   },
   "equipmentTypes": {
@@ -1042,6 +1059,32 @@
       "APPROVER": "معتمِد",
       "REQUESTER": "طالب",
       "AUDITOR": "مدقق"
+    }
+  },
+  "userPermissions": {
+    "manageButton": "إدارة الصلاحيات",
+    "dialogTitle": "الصلاحيات — {{username}}",
+    "dialogSubtitle": "امنح أو احظر وصول هذا المستخدم إلى أي وحدة، بغض النظر عن دوره. تُطبَّق التغييرات فورًا وتُسجَّل في سجل التدقيق.",
+    "saveError": "حدث خطأ أثناء الحفظ. يرجى المحاولة مرة أخرى.",
+    "effectiveAllowed": "مسموح",
+    "effectiveBlocked": "محظور",
+    "mode": {
+      "inherit": "وراثة من الدور",
+      "grant": "منح الوصول",
+      "block": "حظر الوصول"
+    },
+    "module": {
+      "INFRASTRUCTURE": "البنية التحتية الفيزيائية",
+      "FABRIC": "الشبكة والطوبولوجيا",
+      "CABLING": "الكابلات",
+      "SDWAN": "SD-WAN والاتصال",
+      "TELEMETRY": "القياس عن بعد والمراقبة",
+      "LIBRARY": "المكتبة التقنية",
+      "ADMINISTRATION": "الإدارة",
+      "INTEGRATIONS": "عمليات التكامل",
+      "AUDIT": "التدقيق والامتثال",
+      "REPORTS": "التقارير",
+      "INTERVENTIONS": "التدخلات"
     }
   },
   "rolePermissions": {

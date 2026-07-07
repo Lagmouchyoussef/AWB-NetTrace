@@ -66,6 +66,8 @@
     "searchPlaceholder": "搜索...",
     "notifications": "通知",
     "noNotifications": "暂无通知",
+    "clearAll": "清除全部",
+    "dismissNotification": "关闭此通知",
     "appearance": "外观",
     "language": "语言",
     "light": "浅色",
@@ -921,6 +923,21 @@
       "ON_HOLD": "暂停",
       "COMPLETED": "已完成",
       "CANCELLED": "已取消"
+    },
+    "approvalQueue": {
+      "pageTitle": "审批队列",
+      "subtitle": "在您分配的数据中心范围内,等待您审批的维护干预请求。",
+      "empty": "暂无待审批的请求。",
+      "requestedBy": "申请人",
+      "scheduledFor": "计划时间",
+      "approve": "批准",
+      "reject": "拒绝",
+      "cannotApproveOwnRequest": "您不能批准或拒绝自己提交的请求。",
+      "actionError": "出现错误,请重试。",
+      "rejectDialogTitle": "拒绝维护干预请求",
+      "rejectCommentLabel": "拒绝原因",
+      "rejectCommentRequired": "拒绝请求需要填写备注。",
+      "rejectConfirm": "确认拒绝"
     }
   },
   "equipmentTypes": {
@@ -1042,6 +1059,32 @@
       "APPROVER": "审批人",
       "REQUESTER": "申请人",
       "AUDITOR": "审计员"
+    }
+  },
+  "userPermissions": {
+    "manageButton": "管理权限",
+    "dialogTitle": "权限 — {{username}}",
+    "dialogSubtitle": "无论该用户的角色如何,您都可以授予或阻止其对任意模块的访问权限。更改会立即生效,并记录在审计日志中。",
+    "saveError": "保存时出现问题,请重试。",
+    "effectiveAllowed": "允许",
+    "effectiveBlocked": "已阻止",
+    "mode": {
+      "inherit": "继承角色设置",
+      "grant": "授予访问权限",
+      "block": "阻止访问"
+    },
+    "module": {
+      "INFRASTRUCTURE": "物理基础设施",
+      "FABRIC": "网络结构与拓扑",
+      "CABLING": "布线",
+      "SDWAN": "SD-WAN 与连接",
+      "TELEMETRY": "遥测与监控",
+      "LIBRARY": "技术库",
+      "ADMINISTRATION": "系统管理",
+      "INTEGRATIONS": "集成",
+      "AUDIT": "审计与合规",
+      "REPORTS": "报表",
+      "INTERVENTIONS": "维护干预"
     }
   },
   "rolePermissions": {

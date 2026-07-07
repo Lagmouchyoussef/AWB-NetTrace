@@ -66,6 +66,8 @@
     "searchPlaceholder": "Buscar...",
     "notifications": "Notificaciones",
     "noNotifications": "Sin notificaciones por ahora",
+    "clearAll": "Borrar todo",
+    "dismissNotification": "Descartar notificación",
     "appearance": "Apariencia",
     "language": "Idioma",
     "light": "Claro",
@@ -921,6 +923,21 @@
       "ON_HOLD": "En espera",
       "COMPLETED": "Completada",
       "CANCELLED": "Cancelada"
+    },
+    "approvalQueue": {
+      "pageTitle": "Cola de aprobación",
+      "subtitle": "Solicitudes de intervención pendientes de tu aprobación, dentro de tus centros de datos asignados.",
+      "empty": "No hay solicitudes pendientes de aprobación.",
+      "requestedBy": "Solicitado por",
+      "scheduledFor": "Programado para",
+      "approve": "Aprobar",
+      "reject": "Rechazar",
+      "cannotApproveOwnRequest": "No puedes aprobar ni rechazar tu propia solicitud.",
+      "actionError": "Algo salió mal. Inténtalo de nuevo.",
+      "rejectDialogTitle": "Rechazar solicitud de intervención",
+      "rejectCommentLabel": "Motivo del rechazo",
+      "rejectCommentRequired": "Se requiere un comentario para rechazar una solicitud.",
+      "rejectConfirm": "Confirmar rechazo"
     }
   },
   "equipmentTypes": {
@@ -1042,6 +1059,32 @@
       "APPROVER": "Aprobador",
       "REQUESTER": "Solicitante",
       "AUDITOR": "Auditor"
+    }
+  },
+  "userPermissions": {
+    "manageButton": "Gestionar permisos",
+    "dialogTitle": "Permisos — {{username}}",
+    "dialogSubtitle": "Concede o bloquea el acceso de este usuario a cualquier módulo, independientemente de su rol. Los cambios se aplican de inmediato y quedan registrados en el registro de auditoría.",
+    "saveError": "Algo salió mal al guardar. Inténtalo de nuevo.",
+    "effectiveAllowed": "Permitido",
+    "effectiveBlocked": "Bloqueado",
+    "mode": {
+      "inherit": "Heredar del rol",
+      "grant": "Conceder acceso",
+      "block": "Bloquear acceso"
+    },
+    "module": {
+      "INFRASTRUCTURE": "Infraestructura física",
+      "FABRIC": "Fabric y topología",
+      "CABLING": "Cableado",
+      "SDWAN": "SD-WAN y conectividad",
+      "TELEMETRY": "Telemetría y monitoreo",
+      "LIBRARY": "Biblioteca técnica",
+      "ADMINISTRATION": "Administración",
+      "INTEGRATIONS": "Integraciones",
+      "AUDIT": "Auditoría y cumplimiento",
+      "REPORTS": "Informes",
+      "INTERVENTIONS": "Intervenciones"
     }
   },
   "rolePermissions": {

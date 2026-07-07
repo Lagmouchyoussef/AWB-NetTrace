@@ -251,6 +251,26 @@
   padding: 0.05rem 0.5rem;
 }
 
+.menu-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.clear-all-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #f47920;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.3rem;
+}
+
+.clear-all-button:hover {
+  text-decoration: underline;
+}
+
 .menu-divider {
   height: 1px;
   background: var(--awb-border);
@@ -339,6 +359,39 @@
 .notif-message {
   font-size: 0.82rem;
   color: var(--awb-on-surface);
+  flex: 1;
+  min-width: 0;
+}
+
+.notif-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0.2rem;
+  margin-top: -0.1rem;
+  border-radius: 6px;
+  color: var(--awb-on-surface-muted);
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.notif-item:hover .notif-dismiss {
+  opacity: 1;
+}
+
+.notif-dismiss:hover {
+  background: var(--awb-border);
+  color: var(--awb-on-surface);
+}
+
+.notif-dismiss mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .profile-header {

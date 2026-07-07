@@ -1,0 +1,180 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'myAccount.pageTitle' | translate }}</h1>
+  </div>
+
+  @if (loading()) {
+    <p class="loading-message">{{ 'common.loading' | translate }}</p>
+  } @else if (loadErrorKey()) {
+    <p class="form-error">{{ loadErrorKey() | translate }}</p>
+  } @else if (account(); as acc) {
+    <div class="cards-grid">
+      <!-- Profile card -->
+      <section class="card">
+        <h2>{{ 'myAccount.profileSection' | translate }}</h2>
+
+        <div class="photo-row">
+          <div class="photo-preview">
+            @if (photoPreview()) {
+              <img [src]="photoPreview()" alt="" />
+            } @else {
+              <mat-icon fontSet="material-symbols-outlined">person</mat-icon>
+            }
+          </div>
+          <div class="photo-actions">
+            <label class="upload-button">
+              <mat-icon fontSet="material-symbols-outlined">photo_camera</mat-icon>
+              {{ 'myAccount.changePhoto' | translate }}
+              <input type="file" accept="image/*" hidden (change)="onPhotoSelected($event)" />
+            </label>
+            @if (photoPreview()) {
+              <button type="button" class="remove-photo-button" (click)="onRemovePhoto()">
+                <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+                {{ 'myAccount.removePhoto' | translate }}
+              </button>
+            }
+            <span class="role-badge">{{ roleLabel() }}</span>
+          </div>
+        </div>
+
+        <form [formGroup]="profileForm" (ngSubmit)="onSaveProfile()">
+          <div class="form-grid">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'myAccount.fields.username' | translate }}</mat-label>
+              <input matInput formControlName="username" required />
+              @if (profileForm.controls.username.invalid && profileForm.controls.username.touched) {
+                <mat-error>{{ 'myAccount.validation.required' | translate }}</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'myAccount.fields.fullName' | translate }}</mat-label>
+              <input matInput formControlName="fullName" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'myAccount.fields.matricule' | translate }}</mat-label>
+              <input matInput formControlName="matricule" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'myAccount.fields.email' | translate }}</mat-label>
+              <input matInput type="email" formControlName="email" />
+              @if (profileForm.controls.email.invalid && profileForm.controls.email.touched) {
+                <mat-error>{{ 'myAccount.validation.email' | translate }}</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'myAccount.fields.phone' | translate }}</mat-label>
+              <input matInput formControlName="phone" />
+            </mat-form-field>
+          </div>
+
+          @if (profileErrorKey()) {
+            <p class="form-error">{{ profileErrorKey() | translate }}</p>
+          }
+          @if (profileSavedMessage()) {
+            <p class="form-success">{{ 'myAccount.saveSuccess' | translate }}</p>
+          }
+
+          <button type="submit" class="save-button" [disabled]="profileSaving()">
+            {{ (profileSaving() ? 'common.saving' : 'common.save') | translate }}
+          </button>
+        </form>
+      </section>
+
+      <!-- Password card -->
+      <section class="card">
+        <h2>{{ 'myAccount.passwordSection' | translate }}</h2>
+        <form [formGroup]="passwordForm" (ngSubmit)="onChangePassword()">
+          <div class="form-grid">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'myAccount.fields.currentPassword' | translate }}</mat-label>
+              <input matInput type="password" formControlName="currentPassword" required />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'myAccount.fields.newPassword' | translate }}</mat-label>
+              <input matInput type="password" formControlName="newPassword" required />
+              @if (
+                passwordForm.controls.newPassword.invalid &&
+                passwordForm.controls.newPassword.touched
+              ) {
+                <mat-error>{{ 'myAccount.validation.passwordLength' | translate }}</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'myAccount.fields.confirmPassword' | translate }}</mat-label>
+              <input matInput type="password" formControlName="confirmPassword" required />
+            </mat-form-field>
+          </div>
+
+          @if (passwordErrorKey()) {
+            <p class="form-error">{{ passwordErrorKey() | translate }}</p>
+          }
+          @if (passwordSavedMessage()) {
+            <p class="form-success">{{ 'myAccount.passwordSaveSuccess' | translate }}</p>
+          }
+
+          <button type="submit" class="save-button" [disabled]="passwordSaving()">
+            {{ (passwordSaving() ? 'common.saving' : 'myAccount.changePassword') | translate }}
+          </button>
+        </form>
+      </section>
+
+      <!-- Security card -->
+      <section class="card full-width-card">
+        <h2>{{ 'myAccount.securitySection' | translate }}</h2>
+
+        <mat-checkbox [checked]="acc.ipRestrictionEnabled" (change)="onToggleIpRestriction()">
+          {{ 'myAccount.ipRestrictionEnabled' | translate }}
+        </mat-checkbox>
+
+        <div class="allowed-ips">
+          <h3>{{ 'myAccount.allowedIps' | translate }}</h3>
+
+          <div class="add-ip-row">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'myAccount.newIpAddress' | translate }}</mat-label>
+              <input
+                matInput
+                [value]="newIpAddress()"
+                (input)="onNewIpAddressChange($any($event.target).value)"
+              />
+            </mat-form-field>
+            <button type="button" class="save-button" (click)="onAddAllowedIp()">
+              <mat-icon fontSet="material-symbols-outlined">add</mat-icon>
+              {{ 'myAccount.addIp' | translate }}
+            </button>
+          </div>
+
+          @if (ipErrorKey()) {
+            <p class="form-error">{{ ipErrorKey() | translate }}</p>
+          }
+
+          @if (allowedIps().length === 0) {
+            <p class="empty-message">{{ 'myAccount.noAllowedIps' | translate }}</p>
+          } @else {
+            <ul class="ip-list">
+              @for (ip of allowedIps(); track ip.id) {
+                <li>
+                  <span>{{ ip.ipAddress }}</span>
+                  <button
+                    type="button"
+                    class="icon-button-delete"
+                    (click)="onDeleteAllowedIp(ip)"
+                    [attr.aria-label]="'common.delete' | translate"
+                  >
+                    <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+                  </button>
+                </li>
+              }
+            </ul>
+          }
+        </div>
+      </section>
+    </div>
+  }
+</div>

@@ -1,0 +1,92 @@
+h2[mat-dialog-title] {
+  color: var(--awb-on-surface);
+}
+
+.dialog-subtitle {
+  margin: 0 0 1rem;
+  font-size: 0.83rem;
+  color: var(--awb-on-surface-muted);
+  min-width: 480px;
+}
+
+.loading-message {
+  color: var(--awb-on-surface-muted);
+  font-size: 0.85rem;
+}
+
+.permissions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.permission-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--awb-border);
+  border-radius: 8px;
+}
+
+.module-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.module-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--awb-on-surface);
+}
+
+.module-effective {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--chart-good);
+}
+
+.module-effective.blocked {
+  color: var(--chart-critical);
+}
+
+.mode-select {
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.mode-select ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.form-error {
+  margin: 0.75rem 0 0;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(238, 91, 65, 0.12);
+  border: 1px solid rgba(238, 91, 65, 0.35);
+  color: #c62828;
+  font-size: 0.85rem;
+}
+
+.dialog-button {
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--awb-border);
+  background: none;
+  color: var(--awb-on-surface);
+}
+
+.dialog-button:hover {
+  background: var(--awb-hover);
+}

@@ -1,0 +1,86 @@
+<h2 mat-dialog-title>
+  {{ (isEdit ? 'carrierCircuits.editTitle' : 'carrierCircuits.createTitle') | translate }}
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'carrierCircuits.fields.edge' | translate }}</mat-label>
+        <mat-select formControlName="edgeId">
+          @for (edge of edges(); track edge.id) {
+            <mat-option [value]="edge.id">{{ edge.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'carrierCircuits.fields.name' | translate }}</mat-label>
+        <input matInput formControlName="name" required />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <mat-error>{{ 'carrierCircuits.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'carrierCircuits.fields.code' | translate }}</mat-label>
+        <input matInput formControlName="code" required />
+        @if (form.controls.code.invalid && form.controls.code.touched) {
+          <mat-error>{{ 'carrierCircuits.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'carrierCircuits.fields.circuitType' | translate }}</mat-label>
+        <mat-select formControlName="circuitType">
+          @for (type of circuitTypes; track type) {
+            <mat-option [value]="type">{{
+              'carrierCircuits.circuitType.' + type | translate
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'carrierCircuits.fields.provider' | translate }}</mat-label>
+        <input matInput formControlName="provider" required />
+        @if (form.controls.provider.invalid && form.controls.provider.touched) {
+          <mat-error>{{ 'carrierCircuits.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'carrierCircuits.fields.status' | translate }}</mat-label>
+        <mat-select formControlName="status">
+          @for (status of statuses; track status) {
+            <mat-option [value]="status">{{
+              'carrierCircuits.status.' + status | translate
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'carrierCircuits.fields.bandwidthMbps' | translate }}</mat-label>
+        <input matInput type="number" formControlName="bandwidthMbps" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'carrierCircuits.fields.notes' | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+
+    @if (errorKey()) {
+      <p class="form-error">{{ errorKey() | translate }}</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" class="dialog-button dialog-button-cancel" (click)="cancel()">
+      {{ 'common.cancel' | translate }}
+    </button>
+    <button type="submit" class="dialog-button dialog-button-confirm" [disabled]="saving()">
+      {{ (saving() ? 'common.saving' : 'common.save') | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -15,6 +15,9 @@
   </dl>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="openPermissions()">
+    {{ 'userPermissions.manageButton' | translate }}
+  </button>
   <button type="button" class="dialog-button" (click)="close()">
     {{ 'common.close' | translate }}
   </button>

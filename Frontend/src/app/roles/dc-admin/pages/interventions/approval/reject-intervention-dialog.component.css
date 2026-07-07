@@ -1,0 +1,36 @@
+.dialog-subject {
+  margin: 0 0 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--awb-on-surface);
+}
+
+.full-width {
+  width: 100%;
+  min-width: 400px;
+}
+
+.dialog-button {
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--awb-border);
+  background: none;
+  color: var(--awb-on-surface);
+}
+
+.dialog-button-cancel:hover {
+  background: var(--awb-hover);
+}
+
+.dialog-button-danger {
+  border: none;
+  background: #c62828;
+  color: #fff;
+}
+
+.dialog-button-danger:hover {
+  filter: brightness(1.08);
+}

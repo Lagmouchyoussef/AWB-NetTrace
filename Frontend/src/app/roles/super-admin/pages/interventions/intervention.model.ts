@@ -35,6 +35,8 @@ export const INTERVENTION_STATUSES: InterventionStatus[] = [
   'CANCELLED',
 ];
 
+export type ApprovalStatus = 'PENDING' | 'APPROVED' | 'REJECTED';
+
 export interface Intervention {
   id: number;
   deviceId: number;
@@ -48,6 +50,13 @@ export interface Intervention {
   scheduledAt: string;
   completedAt: string | null;
   notes: string | null;
+  requestedById: number | null;
+  requestedByUsername: string | null;
+  approvedById: number | null;
+  approvedByUsername: string | null;
+  approvalStatus: ApprovalStatus;
+  approvalComment: string | null;
+  decidedAt: string | null;
   createdAt: string;
   updatedAt: string;
 }

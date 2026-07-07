@@ -55,6 +55,24 @@ public class Intervention {
   @Column(name = "notes")
   private String notes;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "requested_by")
+  private User requestedBy;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "approved_by")
+  private User approvedBy;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "approval_status", nullable = false)
+  private ApprovalStatus approvalStatus = ApprovalStatus.APPROVED;
+
+  @Column(name = "approval_comment")
+  private String approvalComment;
+
+  @Column(name = "decided_at")
+  private Instant decidedAt;
+
   @Column(name = "deleted", nullable = false)
   private boolean deleted;
 
@@ -146,6 +164,46 @@ public class Intervention {
 
   public void setNotes(String notes) {
     this.notes = notes;
+  }
+
+  public User getRequestedBy() {
+    return requestedBy;
+  }
+
+  public void setRequestedBy(User requestedBy) {
+    this.requestedBy = requestedBy;
+  }
+
+  public User getApprovedBy() {
+    return approvedBy;
+  }
+
+  public void setApprovedBy(User approvedBy) {
+    this.approvedBy = approvedBy;
+  }
+
+  public ApprovalStatus getApprovalStatus() {
+    return approvalStatus;
+  }
+
+  public void setApprovalStatus(ApprovalStatus approvalStatus) {
+    this.approvalStatus = approvalStatus;
+  }
+
+  public String getApprovalComment() {
+    return approvalComment;
+  }
+
+  public void setApprovalComment(String approvalComment) {
+    this.approvalComment = approvalComment;
+  }
+
+  public Instant getDecidedAt() {
+    return decidedAt;
+  }
+
+  public void setDecidedAt(Instant decidedAt) {
+    this.decidedAt = decidedAt;
   }
 
   public boolean isDeleted() {

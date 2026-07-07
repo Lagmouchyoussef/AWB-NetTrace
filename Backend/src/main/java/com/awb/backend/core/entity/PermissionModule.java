@@ -10,5 +10,6 @@ public enum PermissionModule {
   ADMINISTRATION,
   INTEGRATIONS,
   AUDIT,
-  REPORTS
+  REPORTS,
+  INTERVENTIONS
 }

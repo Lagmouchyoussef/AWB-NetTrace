@@ -13,8 +13,24 @@ const REAL_PAGE_PATHS = new Set([
   'infrastructure/rooms',
   'infrastructure/racks',
   'infrastructure/devices',
+  'fabric/network-roles',
+  'fabric/overlay-networks',
+  'fabric/topology',
+  'cabling/cables',
+  'cabling/connectors',
+  'cabling/path-tracing',
+  'sdwan/edges',
+  'sdwan/tunnels',
+  'sdwan/circuits',
+  'telemetry/connectors',
+  'telemetry/dashboards',
   'interventions',
+  'interventions/approval-queue',
   'anomaly-detections',
+  'library/equipment-types',
+  'library/technology-catalog',
+  'audit-compliance',
+  'reports',
 ]);
 
 function toPlaceholderRoutes(section: NavSection): Routes {
@@ -68,6 +84,94 @@ export const dcAdminRoutes: Routes = [
         data: { titleKey: 'nav.devices', sectionKey: 'nav.physicalInfrastructure' },
       },
       {
+        path: 'fabric/network-roles',
+        loadComponent: () =>
+          import('./pages/network-roles/network-roles-list.component').then(
+            (m) => m.DcAdminNetworkRolesListComponent,
+          ),
+        data: { titleKey: 'nav.networkRoles', sectionKey: 'nav.fabricTopology' },
+      },
+      {
+        path: 'fabric/overlay-networks',
+        loadComponent: () =>
+          import('./pages/overlay-networks/overlay-networks-list.component').then(
+            (m) => m.DcAdminOverlayNetworksListComponent,
+          ),
+        data: { titleKey: 'nav.vxlanEvpnOverlay', sectionKey: 'nav.fabricTopology' },
+      },
+      {
+        path: 'fabric/topology',
+        loadComponent: () =>
+          import('./pages/topology-links/topology-links-list.component').then(
+            (m) => m.DcAdminTopologyLinksListComponent,
+          ),
+        data: { titleKey: 'nav.interactiveTopologyView', sectionKey: 'nav.fabricTopology' },
+      },
+      {
+        path: 'cabling/cables',
+        loadComponent: () =>
+          import('./pages/cables/cables-list.component').then(
+            (m) => m.DcAdminCablesListComponent,
+          ),
+        data: { titleKey: 'nav.cables', sectionKey: 'nav.cabling' },
+      },
+      {
+        path: 'cabling/connectors',
+        loadComponent: () =>
+          import('./pages/connectors/connectors-list.component').then(
+            (m) => m.DcAdminConnectorsListComponent,
+          ),
+        data: { titleKey: 'nav.connectorsTransceivers', sectionKey: 'nav.cabling' },
+      },
+      {
+        path: 'cabling/path-tracing',
+        loadComponent: () =>
+          import('./pages/path-traces/path-traces-list.component').then(
+            (m) => m.DcAdminPathTracesListComponent,
+          ),
+        data: { titleKey: 'nav.pathTracing', sectionKey: 'nav.cabling' },
+      },
+      {
+        path: 'sdwan/edges',
+        loadComponent: () =>
+          import('./pages/sdwan-edges/sdwan-edges-list.component').then(
+            (m) => m.DcAdminSdwanEdgesListComponent,
+          ),
+        data: { titleKey: 'nav.sdwanEdges', sectionKey: 'nav.sdwanConnectivity' },
+      },
+      {
+        path: 'sdwan/tunnels',
+        loadComponent: () =>
+          import('./pages/overlay-tunnels/overlay-tunnels-list.component').then(
+            (m) => m.DcAdminOverlayTunnelsListComponent,
+          ),
+        data: { titleKey: 'nav.overlayTunnels', sectionKey: 'nav.sdwanConnectivity' },
+      },
+      {
+        path: 'sdwan/circuits',
+        loadComponent: () =>
+          import('./pages/carrier-circuits/carrier-circuits-list.component').then(
+            (m) => m.DcAdminCarrierCircuitsListComponent,
+          ),
+        data: { titleKey: 'nav.carrierCircuits', sectionKey: 'nav.sdwanConnectivity' },
+      },
+      {
+        path: 'telemetry/connectors',
+        loadComponent: () =>
+          import('./pages/telemetry-connectors/telemetry-connectors-list.component').then(
+            (m) => m.DcAdminTelemetryConnectorsListComponent,
+          ),
+        data: { titleKey: 'nav.telemetryConnectors', sectionKey: 'nav.telemetryMonitoring' },
+      },
+      {
+        path: 'telemetry/dashboards',
+        loadComponent: () =>
+          import('./pages/real-time-dashboards/real-time-dashboards-list.component').then(
+            (m) => m.DcAdminRealTimeDashboardsListComponent,
+          ),
+        data: { titleKey: 'nav.realTimeDashboards', sectionKey: 'nav.telemetryMonitoring' },
+      },
+      {
         path: 'interventions',
         loadComponent: () =>
           import('./pages/interventions/interventions-list.component').then(
@@ -76,12 +180,60 @@ export const dcAdminRoutes: Routes = [
         data: { titleKey: 'nav.allInterventions', sectionKey: 'nav.interventions' },
       },
       {
+        path: 'interventions/approval-queue',
+        loadComponent: () =>
+          import('./pages/interventions/approval/approval-queue.component').then(
+            (m) => m.DcAdminApprovalQueueComponent,
+          ),
+        data: { titleKey: 'nav.approvalQueue', sectionKey: 'nav.interventions' },
+      },
+      {
         path: 'anomaly-detections',
         loadComponent: () =>
           import('./pages/anomaly-detections/anomaly-detections-list.component').then(
             (m) => m.DcAdminAnomalyDetectionsListComponent,
           ),
         data: { titleKey: 'nav.anomalyDetection', sectionKey: 'nav.telemetryMonitoring' },
+      },
+      {
+        path: 'library/equipment-types',
+        loadComponent: () =>
+          import('./pages/equipment-types/equipment-types-list.component').then(
+            (m) => m.DcAdminEquipmentTypesListComponent,
+          ),
+        data: { titleKey: 'nav.equipmentTypes', sectionKey: 'nav.technicalLibrary' },
+      },
+      {
+        path: 'library/technology-catalog',
+        loadComponent: () =>
+          import('./pages/technology-catalog/technology-catalog-list.component').then(
+            (m) => m.DcAdminTechnologyCatalogListComponent,
+          ),
+        data: { titleKey: 'nav.networkTechnologyCatalog', sectionKey: 'nav.technicalLibrary' },
+      },
+      {
+        path: 'audit-compliance',
+        loadComponent: () =>
+          import('./pages/audit-logs/audit-logs-list.component').then(
+            (m) => m.DcAdminAuditLogsListComponent,
+          ),
+        data: { titleKey: 'nav.auditCompliance' },
+      },
+      {
+        path: 'reports',
+        loadComponent: () =>
+          import('./pages/reports/reports-list.component').then(
+            (m) => m.DcAdminReportsListComponent,
+          ),
+        data: { titleKey: 'nav.reports' },
+      },
+      {
+        path: 'my-account',
+        loadComponent: () =>
+          import('./pages/my-account/my-account.component').then(
+            (m) => m.DcAdminMyAccountComponent,
+          ),
+        data: { titleKey: 'nav.myAccount' },
       },
       ...placeholderRoutes,
     ],

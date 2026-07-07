@@ -66,6 +66,8 @@
     "searchPlaceholder": "Search...",
     "notifications": "Notifications",
     "noNotifications": "No notifications yet",
+    "clearAll": "Clear all",
+    "dismissNotification": "Dismiss notification",
     "appearance": "Appearance",
     "language": "Language",
     "light": "Light",
@@ -921,6 +923,21 @@
       "ON_HOLD": "On Hold",
       "COMPLETED": "Completed",
       "CANCELLED": "Cancelled"
+    },
+    "approvalQueue": {
+      "pageTitle": "Approval Queue",
+      "subtitle": "Intervention requests awaiting your approval, within your assigned datacenters.",
+      "empty": "No requests are awaiting approval.",
+      "requestedBy": "Requested by",
+      "scheduledFor": "Scheduled for",
+      "approve": "Approve",
+      "reject": "Reject",
+      "cannotApproveOwnRequest": "You cannot approve or reject your own request.",
+      "actionError": "Something went wrong. Please try again.",
+      "rejectDialogTitle": "Reject intervention request",
+      "rejectCommentLabel": "Reason for rejection",
+      "rejectCommentRequired": "A comment is required to reject a request.",
+      "rejectConfirm": "Confirm rejection"
     }
   },
   "equipmentTypes": {
@@ -1042,6 +1059,32 @@
       "APPROVER": "Approver",
       "REQUESTER": "Requester",
       "AUDITOR": "Auditor"
+    }
+  },
+  "userPermissions": {
+    "manageButton": "Manage permissions",
+    "dialogTitle": "Permissions — {{username}}",
+    "dialogSubtitle": "Grant or block this user's access to any module, independently of their role. Changes take effect immediately and are recorded in the audit log.",
+    "saveError": "Something went wrong while saving. Please try again.",
+    "effectiveAllowed": "Allowed",
+    "effectiveBlocked": "Blocked",
+    "mode": {
+      "inherit": "Inherit from role",
+      "grant": "Grant access",
+      "block": "Block access"
+    },
+    "module": {
+      "INFRASTRUCTURE": "Physical Infrastructure",
+      "FABRIC": "Fabric & Topology",
+      "CABLING": "Cabling",
+      "SDWAN": "SD-WAN & Connectivity",
+      "TELEMETRY": "Telemetry & Monitoring",
+      "LIBRARY": "Technical Library",
+      "ADMINISTRATION": "Administration",
+      "INTEGRATIONS": "Integrations",
+      "AUDIT": "Audit & Compliance",
+      "REPORTS": "Reports",
+      "INTERVENTIONS": "Interventions"
     }
   },
   "rolePermissions": {

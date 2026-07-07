@@ -1,6 +1,8 @@
 package com.awb.backend.security;
 
 import com.awb.backend.core.repository.UserRepository;
+import com.awb.backend.core.util.PermissionDecisionService;
+import com.awb.backend.core.util.PermissionModuleResolver;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.springframework.context.annotation.Bean;
@@ -53,7 +55,12 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain securityFilterChain(
-      HttpSecurity http, JwtService jwtService, CorsConfigurationSource corsConfigurationSource)
+      HttpSecurity http,
+      JwtService jwtService,
+      UserRepository userRepository,
+      PermissionModuleResolver permissionModuleResolver,
+      PermissionDecisionService permissionDecisionService,
+      CorsConfigurationSource corsConfigurationSource)
       throws Exception {
     http.cors(cors -> cors.configurationSource(corsConfigurationSource))
         .csrf(csrf -> csrf.disable()) // stateless bearer-token API, no cookies/session in play
@@ -74,24 +81,21 @@ public class SecurityConfig {
             auth ->
                 auth.requestMatchers("/api/auth/login", "/error")
                     .permitAll()
-                    .requestMatchers("/api/roles/super-admin/**")
-                    .hasRole("SUPER_ADMIN")
-                    .requestMatchers("/api/roles/dc-admin/**")
-                    .hasRole("DC_ADMIN")
-                    .requestMatchers("/api/roles/network-engineer/**")
-                    .hasRole("NETWORK_ENGINEER")
-                    .requestMatchers("/api/roles/technician/**")
-                    .hasRole("TECHNICIAN")
-                    .requestMatchers("/api/roles/approver/**")
-                    .hasRole("APPROVER")
-                    .requestMatchers("/api/roles/requester/**")
-                    .hasRole("REQUESTER")
-                    .requestMatchers("/api/roles/auditor/**")
-                    .hasRole("AUDITOR")
+                    // Each /api/roles/{role}/** prefix used to be hard-gated per role here
+                    // (hasRole(...)). That per-role wall is now just "authenticated" -
+                    // ModulePermissionFilter below makes the real per-module decision, factoring
+                    // in per-user overrides and per-role permissions a Super Admin configures,
+                    // including deliberately letting a grant cross role boundaries.
+                    .requestMatchers("/api/roles/**")
+                    .authenticated()
                     .anyRequest()
                     .authenticated())
         .addFilterBefore(
-            new JwtAuthenticationFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
+            new JwtAuthenticationFilter(jwtService), UsernamePasswordAuthenticationFilter.class)
+        .addFilterAfter(
+            new ModulePermissionFilter(
+                userRepository, permissionModuleResolver, permissionDecisionService),
+            JwtAuthenticationFilter.class);
 
     return http.build();
   }

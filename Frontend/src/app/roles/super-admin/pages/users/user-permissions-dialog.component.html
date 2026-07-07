@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>
+  {{ 'userPermissions.dialogTitle' | translate: { username: data.username } }}
+</h2>
+<mat-dialog-content>
+  <p class="dialog-subtitle">{{ 'userPermissions.dialogSubtitle' | translate }}</p>
+
+  @if (loading()) {
+    <p class="loading-message">{{ 'common.loading' | translate }}</p>
+  } @else {
+    <div class="permissions-grid">
+      @for (row of rows(); track row.module) {
+        <div class="permission-row">
+          <div class="module-info">
+            <span class="module-name">{{ 'userPermissions.module.' + row.module | translate }}</span>
+            <span class="module-effective" [class.blocked]="!row.effective">
+              {{
+                (row.effective ? 'userPermissions.effectiveAllowed' : 'userPermissions.effectiveBlocked')
+                  | translate
+              }}
+            </span>
+          </div>
+          <mat-form-field appearance="outline" class="mode-select">
+            <mat-select
+              [value]="modeFor(row)"
+              [disabled]="isSaving(row.module)"
+              (selectionChange)="onModeChange(row, $event)"
+            >
+              <mat-option value="INHERIT">{{ 'userPermissions.mode.inherit' | translate }}</mat-option>
+              <mat-option value="GRANT">{{ 'userPermissions.mode.grant' | translate }}</mat-option>
+              <mat-option value="BLOCK">{{ 'userPermissions.mode.block' | translate }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      }
+    </div>
+  }
+
+  @if (errorKey()) {
+    <p class="form-error">{{ errorKey() | translate }}</p>
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

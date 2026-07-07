@@ -1,9 +1,11 @@
 package com.awb.backend.roles.dcadmin.controller;
 
+import com.awb.backend.core.dto.InterventionRejectRequest;
 import com.awb.backend.core.dto.InterventionRequest;
 import com.awb.backend.core.dto.InterventionResponse;
 import com.awb.backend.core.entity.InterventionPriority;
 import com.awb.backend.core.entity.InterventionStatus;
+import com.awb.backend.roles.dcadmin.service.DcAdminScopeService;
 import com.awb.backend.roles.superadmin.service.InterventionService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -22,14 +24,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 // Delegates to the same InterventionService Super Admin uses - see DcAdminDatacenterController.
+// Interventions created here start PENDING approval (createPendingApproval) rather than
+// auto-approved, and this controller adds the approval-queue/approve/reject endpoints backing
+// the Approval Queue screen.
 @RestController
 @RequestMapping("/api/roles/dc-admin/interventions")
 public class DcAdminInterventionController {
 
   private final InterventionService interventionService;
+  private final DcAdminScopeService scopeService;
 
-  public DcAdminInterventionController(InterventionService interventionService) {
+  public DcAdminInterventionController(
+      InterventionService interventionService, DcAdminScopeService scopeService) {
     this.interventionService = interventionService;
+    this.scopeService = scopeService;
   }
 
   @GetMapping
@@ -37,8 +45,16 @@ public class DcAdminInterventionController {
       @RequestParam(required = false) String search,
       @RequestParam(required = false) InterventionStatus status,
       @RequestParam(required = false) InterventionPriority priority,
-      Pageable pageable) {
-    return interventionService.list(search, status, priority, pageable);
+      Pageable pageable,
+      Authentication authentication) {
+    return interventionService.listScoped(
+        search, status, priority, scopeService.getAssignedDatacenterIds(authentication), pageable);
+  }
+
+  @GetMapping("/approval-queue")
+  public Page<InterventionResponse> approvalQueue(Pageable pageable, Authentication authentication) {
+    return interventionService.getApprovalQueue(
+        scopeService.getAssignedDatacenterIds(authentication), pageable);
   }
 
   @GetMapping("/{id}")
@@ -50,7 +66,25 @@ public class DcAdminInterventionController {
   public ResponseEntity<InterventionResponse> create(
       @Valid @RequestBody InterventionRequest request, Authentication authentication) {
     return ResponseEntity.status(HttpStatus.CREATED)
-        .body(interventionService.create(request, authentication.getName()));
+        .body(interventionService.createPendingApproval(request, authentication.getName()));
+  }
+
+  @PostMapping("/{id}/approve")
+  public InterventionResponse approve(@PathVariable Long id, Authentication authentication) {
+    return interventionService.approve(
+        id, authentication.getName(), scopeService.getAssignedDatacenterIds(authentication));
+  }
+
+  @PostMapping("/{id}/reject")
+  public InterventionResponse reject(
+      @PathVariable Long id,
+      @Valid @RequestBody InterventionRejectRequest request,
+      Authentication authentication) {
+    return interventionService.reject(
+        id,
+        authentication.getName(),
+        request.getComment(),
+        scopeService.getAssignedDatacenterIds(authentication));
   }
 
   @PutMapping("/{id}")

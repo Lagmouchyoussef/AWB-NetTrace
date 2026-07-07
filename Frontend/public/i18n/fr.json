@@ -66,6 +66,8 @@
     "searchPlaceholder": "Rechercher...",
     "notifications": "Notifications",
     "noNotifications": "Aucune notification pour le moment",
+    "clearAll": "Tout effacer",
+    "dismissNotification": "Ignorer la notification",
     "appearance": "Apparence",
     "language": "Langue",
     "light": "Clair",
@@ -921,6 +923,21 @@
       "ON_HOLD": "En attente",
       "COMPLETED": "Terminée",
       "CANCELLED": "Annulée"
+    },
+    "approvalQueue": {
+      "pageTitle": "File d'approbation",
+      "subtitle": "Demandes d'intervention en attente de votre approbation, au sein de vos datacenters assignés.",
+      "empty": "Aucune demande en attente d'approbation.",
+      "requestedBy": "Demandé par",
+      "scheduledFor": "Prévu pour",
+      "approve": "Approuver",
+      "reject": "Rejeter",
+      "cannotApproveOwnRequest": "Vous ne pouvez pas approuver ou rejeter votre propre demande.",
+      "actionError": "Une erreur est survenue. Veuillez réessayer.",
+      "rejectDialogTitle": "Rejeter la demande d'intervention",
+      "rejectCommentLabel": "Motif du rejet",
+      "rejectCommentRequired": "Un commentaire est requis pour rejeter une demande.",
+      "rejectConfirm": "Confirmer le rejet"
     }
   },
   "equipmentTypes": {
@@ -1042,6 +1059,32 @@
       "APPROVER": "Approbateur",
       "REQUESTER": "Demandeur",
       "AUDITOR": "Auditeur"
+    }
+  },
+  "userPermissions": {
+    "manageButton": "Gérer les permissions",
+    "dialogTitle": "Permissions — {{username}}",
+    "dialogSubtitle": "Accordez ou bloquez l'accès de cet utilisateur à n'importe quel module, indépendamment de son rôle. Les changements prennent effet immédiatement et sont enregistrés dans le journal d'audit.",
+    "saveError": "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer.",
+    "effectiveAllowed": "Autorisé",
+    "effectiveBlocked": "Bloqué",
+    "mode": {
+      "inherit": "Hériter du rôle",
+      "grant": "Accorder l'accès",
+      "block": "Bloquer l'accès"
+    },
+    "module": {
+      "INFRASTRUCTURE": "Infrastructure physique",
+      "FABRIC": "Fabric & Topologie",
+      "CABLING": "Câblage",
+      "SDWAN": "SD-WAN & Connectivité",
+      "TELEMETRY": "Télémétrie & Supervision",
+      "LIBRARY": "Bibliothèque technique",
+      "ADMINISTRATION": "Administration",
+      "INTEGRATIONS": "Intégrations",
+      "AUDIT": "Audit & Conformité",
+      "REPORTS": "Rapports",
+      "INTERVENTIONS": "Interventions"
     }
   },
   "rolePermissions": {

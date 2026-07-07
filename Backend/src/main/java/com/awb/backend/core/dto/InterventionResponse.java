@@ -1,5 +1,6 @@
 package com.awb.backend.core.dto;
 
+import com.awb.backend.core.entity.ApprovalStatus;
 import com.awb.backend.core.entity.InterventionPriority;
 import com.awb.backend.core.entity.InterventionStatus;
 import com.awb.backend.core.entity.InterventionType;
@@ -19,6 +20,13 @@ public class InterventionResponse {
   private Instant scheduledAt;
   private Instant completedAt;
   private String notes;
+  private Long requestedById;
+  private String requestedByUsername;
+  private Long approvedById;
+  private String approvedByUsername;
+  private ApprovalStatus approvalStatus;
+  private String approvalComment;
+  private Instant decidedAt;
   private Instant createdAt;
   private Instant updatedAt;
 
@@ -116,6 +124,62 @@ public class InterventionResponse {
 
   public void setNotes(String notes) {
     this.notes = notes;
+  }
+
+  public Long getRequestedById() {
+    return requestedById;
+  }
+
+  public void setRequestedById(Long requestedById) {
+    this.requestedById = requestedById;
+  }
+
+  public String getRequestedByUsername() {
+    return requestedByUsername;
+  }
+
+  public void setRequestedByUsername(String requestedByUsername) {
+    this.requestedByUsername = requestedByUsername;
+  }
+
+  public Long getApprovedById() {
+    return approvedById;
+  }
+
+  public void setApprovedById(Long approvedById) {
+    this.approvedById = approvedById;
+  }
+
+  public String getApprovedByUsername() {
+    return approvedByUsername;
+  }
+
+  public void setApprovedByUsername(String approvedByUsername) {
+    this.approvedByUsername = approvedByUsername;
+  }
+
+  public ApprovalStatus getApprovalStatus() {
+    return approvalStatus;
+  }
+
+  public void setApprovalStatus(ApprovalStatus approvalStatus) {
+    this.approvalStatus = approvalStatus;
+  }
+
+  public String getApprovalComment() {
+    return approvalComment;
+  }
+
+  public void setApprovalComment(String approvalComment) {
+    this.approvalComment = approvalComment;
+  }
+
+  public Instant getDecidedAt() {
+    return decidedAt;
+  }
+
+  public void setDecidedAt(Instant decidedAt) {
+    this.decidedAt = decidedAt;
   }
 
   public Instant getCreatedAt() {

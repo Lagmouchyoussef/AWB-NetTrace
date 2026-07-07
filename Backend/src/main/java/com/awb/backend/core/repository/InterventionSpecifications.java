@@ -1,8 +1,10 @@
 package com.awb.backend.core.repository;
 
+import com.awb.backend.core.entity.ApprovalStatus;
 import com.awb.backend.core.entity.Intervention;
 import com.awb.backend.core.entity.InterventionPriority;
 import com.awb.backend.core.entity.InterventionStatus;
+import java.util.Collection;
 import org.springframework.data.jpa.domain.Specification;
 
 public final class InterventionSpecifications {
@@ -35,5 +37,22 @@ public final class InterventionSpecifications {
       return (root, query, cb) -> cb.conjunction();
     }
     return (root, query, cb) -> cb.equal(root.get("priority"), priority);
+  }
+
+  public static Specification<Intervention> hasApprovalStatus(ApprovalStatus approvalStatus) {
+    if (approvalStatus == null) {
+      return (root, query, cb) -> cb.conjunction();
+    }
+    return (root, query, cb) -> cb.equal(root.get("approvalStatus"), approvalStatus);
+  }
+
+  // Interventions have no direct datacenter FK - scoped through device -> rack -> room ->
+  // datacenter, same multi-hop join pattern used for other DC-Admin-scoped entities.
+  public static Specification<Intervention> hasDatacenterIdIn(Collection<Long> datacenterIds) {
+    if (datacenterIds == null || datacenterIds.isEmpty()) {
+      return (root, query, cb) -> cb.conjunction();
+    }
+    return (root, query, cb) ->
+        root.get("device").get("rack").get("room").get("datacenter").get("id").in(datacenterIds);
   }
 }

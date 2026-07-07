@@ -101,6 +101,16 @@ export class TopbarComponent {
     this.notificationService.markAllRead();
   }
 
+  protected onDismissNotification(id: string, event: Event): void {
+    event.stopPropagation();
+    this.notificationService.dismiss(id);
+  }
+
+  protected onClearAllNotifications(event: Event): void {
+    event.stopPropagation();
+    this.notificationService.clearAll();
+  }
+
   protected onSearchInput(value: string): void {
     this.searchQuery.set(value);
   }
@@ -120,7 +130,13 @@ export class TopbarComponent {
 
   protected readonly myAccountPath = computed(() => {
     const role = this.authService.currentRole();
-    return role === 'SUPER_ADMIN' ? '/super-admin/my-account' : null;
+    if (role === 'SUPER_ADMIN') {
+      return '/super-admin/my-account';
+    }
+    if (role === 'DC_ADMIN') {
+      return '/dc-admin/my-account';
+    }
+    return null;
   });
 
   protected goToMyAccount(path: string): void {

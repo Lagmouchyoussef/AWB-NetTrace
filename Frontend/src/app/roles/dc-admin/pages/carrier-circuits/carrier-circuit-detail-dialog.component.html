@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'carrierCircuits.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'carrierCircuits.fields.edge' | translate }}</dt>
+    <dd>{{ data.edgeName }}</dd>
+
+    <dt>{{ 'carrierCircuits.fields.circuitType' | translate }}</dt>
+    <dd>{{ 'carrierCircuits.circuitType.' + data.circuitType | translate }}</dd>
+
+    <dt>{{ 'carrierCircuits.fields.provider' | translate }}</dt>
+    <dd>{{ data.provider }}</dd>
+
+    <dt>{{ 'carrierCircuits.fields.status' | translate }}</dt>
+    <dd>{{ 'carrierCircuits.status.' + data.status | translate }}</dd>
+
+    <dt>{{ 'carrierCircuits.fields.bandwidthMbps' | translate }}</dt>
+    <dd>{{ data.bandwidthMbps }} Mbps</dd>
+
+    @if (data.notes) {
+      <dt>{{ 'carrierCircuits.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

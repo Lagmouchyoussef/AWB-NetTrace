@@ -8,7 +8,22 @@ export type PermissionModule =
   | 'ADMINISTRATION'
   | 'INTEGRATIONS'
   | 'AUDIT'
-  | 'REPORTS';
+  | 'REPORTS'
+  | 'INTERVENTIONS';
+
+export const PERMISSION_MODULES: PermissionModule[] = [
+  'INFRASTRUCTURE',
+  'FABRIC',
+  'CABLING',
+  'SDWAN',
+  'TELEMETRY',
+  'LIBRARY',
+  'ADMINISTRATION',
+  'INTEGRATIONS',
+  'AUDIT',
+  'REPORTS',
+  'INTERVENTIONS',
+];
 
 export interface Permission {
   id: number;

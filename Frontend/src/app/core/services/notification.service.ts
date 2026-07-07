@@ -72,6 +72,14 @@ export class NotificationService {
     this.notifications$.next(this.notifications$.value.map((n) => ({ ...n, read: true })));
   }
 
+  dismiss(id: string): void {
+    this.notifications$.next(this.notifications$.value.filter((n) => n.id !== id));
+  }
+
+  clearAll(): void {
+    this.notifications$.next([]);
+  }
+
   private toAppNotification(payload: NotificationEventPayload): AppNotification {
     const actionLabel = this.translateService.instant(`dashboard.activityActions.${payload.action}`);
     const message = payload.description
