@@ -1,0 +1,98 @@
+<h2 mat-dialog-title>
+  {{ (isEdit ? 'overlayNetworks.editTitle' : 'overlayNetworks.createTitle') | translate }}
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'overlayNetworks.fields.datacenter' | translate }}</mat-label>
+        <mat-select formControlName="datacenterId">
+          @for (datacenter of datacenters(); track datacenter.id) {
+            <mat-option [value]="datacenter.id">{{ datacenter.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'overlayNetworks.fields.name' | translate }}</mat-label>
+        <input matInput formControlName="name" required />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <mat-error>{{ 'overlayNetworks.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'overlayNetworks.fields.code' | translate }}</mat-label>
+        <input matInput formControlName="code" required />
+        @if (form.controls.code.invalid && form.controls.code.touched) {
+          <mat-error>{{ 'overlayNetworks.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'overlayNetworks.fields.vni' | translate }}</mat-label>
+        <input matInput type="number" formControlName="vni" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'overlayNetworks.fields.overlayType' | translate }}</mat-label>
+        <mat-select formControlName="overlayType">
+          @for (type of overlayTypes; track type) {
+            <mat-option [value]="type">{{
+              'overlayNetworks.overlayType.' + type | translate
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'overlayNetworks.fields.status' | translate }}</mat-label>
+        <mat-select formControlName="status">
+          @for (status of statuses; track status) {
+            <mat-option [value]="status">{{
+              'overlayNetworks.status.' + status | translate
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'overlayNetworks.fields.vlanId' | translate }}</mat-label>
+        <input matInput type="number" formControlName="vlanId" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'overlayNetworks.fields.vrfName' | translate }}</mat-label>
+        <input matInput formControlName="vrfName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'overlayNetworks.fields.routeDistinguisher' | translate }}</mat-label>
+        <input matInput formControlName="routeDistinguisher" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'overlayNetworks.fields.routeTargets' | translate }}</mat-label>
+        <input matInput formControlName="routeTargets" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'overlayNetworks.fields.notes' | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+
+    @if (errorKey()) {
+      <p class="form-error">{{ errorKey() | translate }}</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" class="dialog-button dialog-button-cancel" (click)="cancel()">
+      {{ 'common.cancel' | translate }}
+    </button>
+    <button type="submit" class="dialog-button dialog-button-confirm" [disabled]="saving()">
+      {{ (saving() ? 'common.saving' : 'common.save') | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>

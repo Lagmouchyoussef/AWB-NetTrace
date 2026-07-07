@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,18 +46,21 @@ public class ReportController {
   }
 
   @PostMapping
-  public ResponseEntity<ReportResponse> create(@Valid @RequestBody ReportRequest request) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(reportService.create(request));
+  public ResponseEntity<ReportResponse> create(
+      @Valid @RequestBody ReportRequest request, Authentication authentication) {
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(reportService.create(request, authentication.getName()));
   }
 
   @PutMapping("/{id}")
-  public ReportResponse update(@PathVariable Long id, @Valid @RequestBody ReportRequest request) {
-    return reportService.update(id, request);
+  public ReportResponse update(
+      @PathVariable Long id, @Valid @RequestBody ReportRequest request, Authentication authentication) {
+    return reportService.update(id, request, authentication.getName());
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> delete(@PathVariable Long id) {
-    reportService.delete(id);
+  public ResponseEntity<Void> delete(@PathVariable Long id, Authentication authentication) {
+    reportService.delete(id, authentication.getName());
     return ResponseEntity.noContent().build();
   }
 }

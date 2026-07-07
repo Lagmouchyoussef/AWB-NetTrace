@@ -2,10 +2,12 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.SystemSettingRequest;
 import com.awb.backend.core.dto.SystemSettingResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.SystemSetting;
 import com.awb.backend.core.entity.SystemSettingCategory;
 import com.awb.backend.core.repository.SystemSettingRepository;
 import com.awb.backend.core.repository.SystemSettingSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,9 +21,12 @@ import org.springframework.web.server.ResponseStatusException;
 public class SystemSettingService {
 
   private final SystemSettingRepository systemSettingRepository;
+  private final AuditLogWriter auditLogWriter;
 
-  public SystemSettingService(SystemSettingRepository systemSettingRepository) {
+  public SystemSettingService(
+      SystemSettingRepository systemSettingRepository, AuditLogWriter auditLogWriter) {
     this.systemSettingRepository = systemSettingRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -40,7 +45,7 @@ public class SystemSettingService {
   }
 
   @Transactional
-  public SystemSettingResponse create(SystemSettingRequest request) {
+  public SystemSettingResponse create(SystemSettingRequest request, String actorUsername) {
     if (systemSettingRepository.existsBySettingKeyIgnoreCase(request.getSettingKey())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A setting with this key already exists.");
@@ -51,11 +56,14 @@ public class SystemSettingService {
     Instant now = Instant.now();
     setting.setCreatedAt(now);
     setting.setUpdatedAt(now);
-    return toResponse(systemSettingRepository.save(setting));
+    SystemSettingResponse response = toResponse(systemSettingRepository.save(setting));
+    auditLogWriter.log(
+        actorUsername, AuditAction.CREATE, "SystemSetting", response.getSettingKey(), null);
+    return response;
   }
 
   @Transactional
-  public SystemSettingResponse update(Long id, SystemSettingRequest request) {
+  public SystemSettingResponse update(Long id, SystemSettingRequest request, String actorUsername) {
     SystemSetting setting = findActiveOrThrow(id);
     if (systemSettingRepository.existsBySettingKeyIgnoreCaseAndIdNot(request.getSettingKey(), id)) {
       throw new ResponseStatusException(
@@ -64,15 +72,20 @@ public class SystemSettingService {
 
     applyRequest(setting, request);
     setting.setUpdatedAt(Instant.now());
-    return toResponse(systemSettingRepository.save(setting));
+    SystemSettingResponse response = toResponse(systemSettingRepository.save(setting));
+    auditLogWriter.log(
+        actorUsername, AuditAction.UPDATE, "SystemSetting", response.getSettingKey(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     SystemSetting setting = findActiveOrThrow(id);
     setting.setDeleted(true);
     setting.setUpdatedAt(Instant.now());
     systemSettingRepository.save(setting);
+    auditLogWriter.log(
+        actorUsername, AuditAction.DELETE, "SystemSetting", setting.getSettingKey(), null);
   }
 
   private SystemSetting findActiveOrThrow(Long id) {

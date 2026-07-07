@@ -2,11 +2,13 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.EquipmentTypeRequest;
 import com.awb.backend.core.dto.EquipmentTypeResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.EquipmentCategory;
 import com.awb.backend.core.entity.EquipmentType;
 import com.awb.backend.core.entity.EquipmentTypeStatus;
 import com.awb.backend.core.repository.EquipmentTypeRepository;
 import com.awb.backend.core.repository.EquipmentTypeSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,9 +22,12 @@ import org.springframework.web.server.ResponseStatusException;
 public class EquipmentTypeService {
 
   private final EquipmentTypeRepository equipmentTypeRepository;
+  private final AuditLogWriter auditLogWriter;
 
-  public EquipmentTypeService(EquipmentTypeRepository equipmentTypeRepository) {
+  public EquipmentTypeService(
+      EquipmentTypeRepository equipmentTypeRepository, AuditLogWriter auditLogWriter) {
     this.equipmentTypeRepository = equipmentTypeRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -42,7 +47,7 @@ public class EquipmentTypeService {
   }
 
   @Transactional
-  public EquipmentTypeResponse create(EquipmentTypeRequest request) {
+  public EquipmentTypeResponse create(EquipmentTypeRequest request, String actorUsername) {
     if (equipmentTypeRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "An equipment type with this code already exists.");
@@ -53,11 +58,13 @@ public class EquipmentTypeService {
     Instant now = Instant.now();
     equipmentType.setCreatedAt(now);
     equipmentType.setUpdatedAt(now);
-    return toResponse(equipmentTypeRepository.save(equipmentType));
+    EquipmentTypeResponse response = toResponse(equipmentTypeRepository.save(equipmentType));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "EquipmentType", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public EquipmentTypeResponse update(Long id, EquipmentTypeRequest request) {
+  public EquipmentTypeResponse update(Long id, EquipmentTypeRequest request, String actorUsername) {
     EquipmentType equipmentType = findActiveOrThrow(id);
     if (equipmentTypeRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -66,15 +73,18 @@ public class EquipmentTypeService {
 
     applyRequest(equipmentType, request);
     equipmentType.setUpdatedAt(Instant.now());
-    return toResponse(equipmentTypeRepository.save(equipmentType));
+    EquipmentTypeResponse response = toResponse(equipmentTypeRepository.save(equipmentType));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "EquipmentType", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     EquipmentType equipmentType = findActiveOrThrow(id);
     equipmentType.setDeleted(true);
     equipmentType.setUpdatedAt(Instant.now());
     equipmentTypeRepository.save(equipmentType);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "EquipmentType", equipmentType.getName(), null);
   }
 
   private EquipmentType findActiveOrThrow(Long id) {

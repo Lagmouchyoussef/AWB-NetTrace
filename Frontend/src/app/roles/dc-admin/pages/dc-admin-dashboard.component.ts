@@ -1,38 +1,117 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
+import { DatePipe } from '@angular/common';
+import { Component, computed, effect, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { StatChartComponent } from '../../../core/components/charts/stat-chart/stat-chart.component';
+import { ChartDatum } from '../../../core/components/charts/chart-data.model';
+import { DcAdminDashboardService } from '../../../core/services/dc-admin-dashboard.service';
+import { DashboardSummary } from '../../../core/models/dashboard-summary.model';
 
-interface PingResponse {
-  message: string;
-  role: string;
-  user: string;
-}
+const PRIORITY_COLOR_ROLES: Record<string, string> = {
+  CRITICAL: 'critical',
+  HIGH: 'serious',
+  MEDIUM: 'warning',
+  LOW: 'good',
+};
 
+const SEVERITY_COLOR_ROLES: Record<string, string> = {
+  CRITICAL: 'ordinal-5',
+  HIGH: 'ordinal-4',
+  MEDIUM: 'ordinal-3',
+  LOW: 'ordinal-2',
+  INFO: 'ordinal-1',
+};
+
+// Mirrors SuperAdminDashboardComponent exactly, pointed at the DC Admin-gated dashboard
+// endpoint - same live KPIs/charts/activity feed, "connected" to Super Admin by sharing the
+// same underlying DashboardService and notification stream.
 @Component({
   selector: 'app-dc-admin-dashboard',
   standalone: true,
-  template: `
-    <div style="padding: 2rem; font-family: sans-serif">
-      <h1>Datacenter Administrator Space</h1>
-      @if (response()) {
-        <p>Welcome, {{ response()!.user }} — backend confirms role {{ response()!.role }}.</p>
-      } @else if (error()) {
-        <p style="color: red">{{ error() }}</p>
-      } @else {
-        <p>Loading...</p>
-      }
-    </div>
-  `,
+  imports: [DatePipe, TranslatePipe, StatChartComponent],
+  templateUrl: './dc-admin-dashboard.component.html',
+  styleUrl: './dc-admin-dashboard.component.css',
 })
-export class DcAdminDashboardComponent implements OnInit {
-  private readonly http = inject(HttpClient);
-  protected readonly response = signal<PingResponse | null>(null);
-  protected readonly error = signal<string | null>(null);
+export class DcAdminDashboardComponent {
+  private readonly dashboardService = inject(DcAdminDashboardService);
+  private readonly translateService = inject(TranslateService);
 
-  ngOnInit(): void {
-    this.http.get<PingResponse>(`${environment.apiBaseUrl}/api/roles/dc-admin/ping`).subscribe({
-      next: (res) => this.response.set(res),
-      error: () => this.error.set('Unable to reach the backend for this role.'),
+  protected readonly summary = toSignal(this.dashboardService.summary$, { initialValue: null });
+
+  protected readonly daysRange = signal(14);
+  private readonly rangedSummary = signal<DashboardSummary | null>(null);
+
+  constructor() {
+    effect((onCleanup) => {
+      const days = this.daysRange();
+      let cancelled = false;
+      this.dashboardService.getSummary(days).then((result) => {
+        if (!cancelled) {
+          this.rangedSummary.set(result);
+        }
+      });
+      onCleanup(() => {
+        cancelled = true;
+      });
     });
+  }
+
+  protected setDaysRange(days: number): void {
+    this.daysRange.set(days);
+  }
+
+  protected readonly activityTrendData = computed<ChartDatum[]>(() =>
+    (this.rangedSummary()?.activityTimeSeries ?? []).map((point) => ({
+      label: point.label,
+      count: point.count,
+    })),
+  );
+
+  protected readonly activityByEntityTypeData = computed<ChartDatum[]>(() =>
+    (this.rangedSummary()?.activityByEntityType ?? []).map((point) => ({
+      label: point.label === 'OTHER' ? this.translateService.instant('dashboard.entityType.OTHER') : point.label,
+      count: point.count,
+    })),
+  );
+
+  protected readonly interventionsByPriorityData = computed<ChartDatum[]>(() =>
+    (this.summary()?.interventionsByPriority ?? []).map((point) => ({
+      label: this.priorityLabel(point.label),
+      count: point.count,
+      colorRole: PRIORITY_COLOR_ROLES[point.label],
+    })),
+  );
+
+  protected readonly anomaliesBySeverityData = computed<ChartDatum[]>(() =>
+    (this.summary()?.anomaliesBySeverity ?? []).map((point) => ({
+      label: this.severityLabel(point.label),
+      count: point.count,
+      colorRole: SEVERITY_COLOR_ROLES[point.label],
+    })),
+  );
+
+  protected readonly infraHealthData = computed<ChartDatum[]>(() => {
+    const infra = this.summary()?.infra;
+    if (!infra) {
+      return [];
+    }
+    return [
+      { label: this.translateService.instant('dashboard.stats.datacenters'), count: infra.datacentersActive, colorRole: 'good' },
+      { label: this.translateService.instant('dashboard.stats.rooms'), count: infra.roomsActive, colorRole: 'good' },
+      { label: this.translateService.instant('dashboard.stats.racks'), count: infra.racksActive, colorRole: 'good' },
+      { label: this.translateService.instant('dashboard.stats.devices'), count: infra.devicesActive, colorRole: 'good' },
+    ];
+  });
+
+  protected severityLabel(severity: string): string {
+    return this.translateService.instant(`aiInsights.severity.${severity}`);
+  }
+
+  protected priorityLabel(priority: string): string {
+    return this.translateService.instant(`interventions.priority.${priority}`);
+  }
+
+  protected actionLabel(action: string): string {
+    return this.translateService.instant(`dashboard.activityActions.${action}`);
   }
 }

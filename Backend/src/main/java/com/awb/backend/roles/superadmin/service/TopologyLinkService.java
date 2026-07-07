@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.TopologyLinkRequest;
 import com.awb.backend.core.dto.TopologyLinkResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.NetworkRole;
 import com.awb.backend.core.entity.TopologyLink;
 import com.awb.backend.core.entity.TopologyLinkStatus;
 import com.awb.backend.core.repository.NetworkRoleRepository;
 import com.awb.backend.core.repository.TopologyLinkRepository;
 import com.awb.backend.core.repository.TopologyLinkSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,11 +24,15 @@ public class TopologyLinkService {
 
   private final TopologyLinkRepository topologyLinkRepository;
   private final NetworkRoleRepository networkRoleRepository;
+  private final AuditLogWriter auditLogWriter;
 
   public TopologyLinkService(
-      TopologyLinkRepository topologyLinkRepository, NetworkRoleRepository networkRoleRepository) {
+      TopologyLinkRepository topologyLinkRepository,
+      NetworkRoleRepository networkRoleRepository,
+      AuditLogWriter auditLogWriter) {
     this.topologyLinkRepository = topologyLinkRepository;
     this.networkRoleRepository = networkRoleRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -45,7 +51,7 @@ public class TopologyLinkService {
   }
 
   @Transactional
-  public TopologyLinkResponse create(TopologyLinkRequest request) {
+  public TopologyLinkResponse create(TopologyLinkRequest request, String actorUsername) {
     if (topologyLinkRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A topology link with this code already exists.");
@@ -59,11 +65,13 @@ public class TopologyLinkService {
     Instant now = Instant.now();
     link.setCreatedAt(now);
     link.setUpdatedAt(now);
-    return toResponse(topologyLinkRepository.save(link));
+    TopologyLinkResponse response = toResponse(topologyLinkRepository.save(link));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "TopologyLink", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public TopologyLinkResponse update(Long id, TopologyLinkRequest request) {
+  public TopologyLinkResponse update(Long id, TopologyLinkRequest request, String actorUsername) {
     TopologyLink link = findActiveOrThrow(id);
     if (topologyLinkRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -75,15 +83,18 @@ public class TopologyLinkService {
     link.setTargetRole(findActiveRoleOrThrow(request.getTargetRoleId()));
     applyRequest(link, request);
     link.setUpdatedAt(Instant.now());
-    return toResponse(topologyLinkRepository.save(link));
+    TopologyLinkResponse response = toResponse(topologyLinkRepository.save(link));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "TopologyLink", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     TopologyLink link = findActiveOrThrow(id);
     link.setDeleted(true);
     link.setUpdatedAt(Instant.now());
     topologyLinkRepository.save(link);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "TopologyLink", link.getName(), null);
   }
 
   private void validateEndpoints(Long sourceRoleId, Long targetRoleId) {

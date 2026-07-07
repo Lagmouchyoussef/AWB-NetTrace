@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,19 +44,23 @@ public class PathTraceController {
   }
 
   @PostMapping
-  public ResponseEntity<PathTraceResponse> create(@Valid @RequestBody PathTraceRequest request) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(pathTraceService.create(request));
+  public ResponseEntity<PathTraceResponse> create(
+      @Valid @RequestBody PathTraceRequest request, Authentication authentication) {
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(pathTraceService.create(request, authentication.getName()));
   }
 
   @PutMapping("/{id}")
   public PathTraceResponse update(
-      @PathVariable Long id, @Valid @RequestBody PathTraceRequest request) {
-    return pathTraceService.update(id, request);
+      @PathVariable Long id,
+      @Valid @RequestBody PathTraceRequest request,
+      Authentication authentication) {
+    return pathTraceService.update(id, request, authentication.getName());
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> delete(@PathVariable Long id) {
-    pathTraceService.delete(id);
+  public ResponseEntity<Void> delete(@PathVariable Long id, Authentication authentication) {
+    pathTraceService.delete(id, authentication.getName());
     return ResponseEntity.noContent().build();
   }
 }

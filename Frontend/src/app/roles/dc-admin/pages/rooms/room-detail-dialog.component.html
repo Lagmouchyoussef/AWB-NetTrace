@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'rooms.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'rooms.fields.datacenter' | translate }}</dt>
+    <dd>{{ data.datacenterName }}</dd>
+
+    <dt>{{ 'rooms.fields.roomType' | translate }}</dt>
+    <dd>{{ 'rooms.roomType.' + data.roomType | translate }}</dd>
+
+    @if (data.floor) {
+      <dt>{{ 'rooms.fields.floor' | translate }}</dt>
+      <dd>{{ data.floor }}</dd>
+    }
+
+    <dt>{{ 'rooms.fields.coolingType' | translate }}</dt>
+    <dd>{{ 'rooms.coolingType.' + data.coolingType | translate }}</dd>
+
+    <dt>{{ 'rooms.fields.status' | translate }}</dt>
+    <dd>{{ 'rooms.status.' + data.status | translate }}</dd>
+
+    @if (data.areaSqm !== null) {
+      <dt>{{ 'rooms.fields.areaSqm' | translate }}</dt>
+      <dd>{{ data.areaSqm }} m²</dd>
+    }
+
+    @if (data.maxPowerKw !== null) {
+      <dt>{{ 'rooms.fields.maxPowerKw' | translate }}</dt>
+      <dd>{{ data.maxPowerKw }} kW</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'rooms.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

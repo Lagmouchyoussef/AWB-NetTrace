@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.RoomRequest;
 import com.awb.backend.core.dto.RoomResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Datacenter;
 import com.awb.backend.core.entity.Room;
 import com.awb.backend.core.entity.RoomStatus;
 import com.awb.backend.core.repository.DatacenterRepository;
 import com.awb.backend.core.repository.RoomRepository;
 import com.awb.backend.core.repository.RoomSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +24,15 @@ public class RoomService {
 
   private final RoomRepository roomRepository;
   private final DatacenterRepository datacenterRepository;
+  private final AuditLogWriter auditLogWriter;
 
-  public RoomService(RoomRepository roomRepository, DatacenterRepository datacenterRepository) {
+  public RoomService(
+      RoomRepository roomRepository,
+      DatacenterRepository datacenterRepository,
+      AuditLogWriter auditLogWriter) {
     this.roomRepository = roomRepository;
     this.datacenterRepository = datacenterRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -45,7 +52,7 @@ public class RoomService {
   }
 
   @Transactional
-  public RoomResponse create(RoomRequest request) {
+  public RoomResponse create(RoomRequest request, String actorUsername) {
     if (roomRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A room with this code already exists.");
@@ -57,11 +64,13 @@ public class RoomService {
     Instant now = Instant.now();
     room.setCreatedAt(now);
     room.setUpdatedAt(now);
-    return toResponse(roomRepository.save(room));
+    RoomResponse response = toResponse(roomRepository.save(room));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "Room", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public RoomResponse update(Long id, RoomRequest request) {
+  public RoomResponse update(Long id, RoomRequest request, String actorUsername) {
     Room room = findActiveOrThrow(id);
     if (roomRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -71,15 +80,18 @@ public class RoomService {
     room.setDatacenter(findActiveDatacenterOrThrow(request.getDatacenterId()));
     applyRequest(room, request);
     room.setUpdatedAt(Instant.now());
-    return toResponse(roomRepository.save(room));
+    RoomResponse response = toResponse(roomRepository.save(room));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "Room", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     Room room = findActiveOrThrow(id);
     room.setDeleted(true);
     room.setUpdatedAt(Instant.now());
     roomRepository.save(room);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "Room", room.getName(), null);
   }
 
   private Room findActiveOrThrow(Long id) {

@@ -15,12 +15,16 @@
     "forgotSuccess": "如果存在与此用户名关联的账户，管理员已收到通知。"
   },
   "roles": {
-    "superAdmin": "超级管理员"
+    "superAdmin": "超级管理员",
+    "dcAdmin": "数据中心管理员"
   },
   "nav": {
     "dashboard": "仪表盘",
     "physicalInfrastructure": "物理基础设施",
     "datacenters": "数据中心",
+    "myDatacenters": "我的数据中心",
+    "allInterventions": "全部维护干预",
+    "approvalQueue": "审批队列",
     "rooms": "机房",
     "racks": "机柜",
     "devices": "设备",
@@ -69,10 +73,14 @@
     "system": "跟随系统",
     "myAccount": "我的账户",
     "logout": "退出登录",
-    "logoutConfirm": "退出当前登录会话"
+    "logoutConfirm": "退出当前登录会话",
+    "assignedDatacenters": "已分配的数据中心"
   },
   "placeholder": {
     "notBuiltYet": "此页面尚未构建 — 将在超级管理员模块的后续阶段推出。"
+  },
+  "dcAdminDashboard": {
+    "title": "数据中心管理员空间"
   },
   "dashboard": {
     "title": "超级管理员空间",

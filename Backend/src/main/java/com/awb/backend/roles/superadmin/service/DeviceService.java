@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.DeviceRequest;
 import com.awb.backend.core.dto.DeviceResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Device;
 import com.awb.backend.core.entity.DeviceStatus;
 import com.awb.backend.core.entity.Rack;
 import com.awb.backend.core.repository.DeviceRepository;
 import com.awb.backend.core.repository.DeviceSpecifications;
 import com.awb.backend.core.repository.RackRepository;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +24,13 @@ public class DeviceService {
 
   private final DeviceRepository deviceRepository;
   private final RackRepository rackRepository;
+  private final AuditLogWriter auditLogWriter;
 
-  public DeviceService(DeviceRepository deviceRepository, RackRepository rackRepository) {
+  public DeviceService(
+      DeviceRepository deviceRepository, RackRepository rackRepository, AuditLogWriter auditLogWriter) {
     this.deviceRepository = deviceRepository;
     this.rackRepository = rackRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -45,7 +50,7 @@ public class DeviceService {
   }
 
   @Transactional
-  public DeviceResponse create(DeviceRequest request) {
+  public DeviceResponse create(DeviceRequest request, String actorUsername) {
     if (deviceRepository.existsBySerialNumberIgnoreCase(request.getSerialNumber())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A device with this serial number already exists.");
@@ -57,11 +62,13 @@ public class DeviceService {
     Instant now = Instant.now();
     device.setCreatedAt(now);
     device.setUpdatedAt(now);
-    return toResponse(deviceRepository.save(device));
+    DeviceResponse response = toResponse(deviceRepository.save(device));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "Device", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public DeviceResponse update(Long id, DeviceRequest request) {
+  public DeviceResponse update(Long id, DeviceRequest request, String actorUsername) {
     Device device = findActiveOrThrow(id);
     if (deviceRepository.existsBySerialNumberIgnoreCaseAndIdNot(request.getSerialNumber(), id)) {
       throw new ResponseStatusException(
@@ -71,15 +78,18 @@ public class DeviceService {
     device.setRack(findActiveRackOrThrow(request.getRackId()));
     applyRequest(device, request);
     device.setUpdatedAt(Instant.now());
-    return toResponse(deviceRepository.save(device));
+    DeviceResponse response = toResponse(deviceRepository.save(device));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "Device", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     Device device = findActiveOrThrow(id);
     device.setDeleted(true);
     device.setUpdatedAt(Instant.now());
     deviceRepository.save(device);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "Device", device.getName(), null);
   }
 
   private Device findActiveOrThrow(Long id) {

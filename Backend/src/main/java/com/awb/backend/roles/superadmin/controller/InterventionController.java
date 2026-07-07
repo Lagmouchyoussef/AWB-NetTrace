@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,19 +47,22 @@ public class InterventionController {
 
   @PostMapping
   public ResponseEntity<InterventionResponse> create(
-      @Valid @RequestBody InterventionRequest request) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(interventionService.create(request));
+      @Valid @RequestBody InterventionRequest request, Authentication authentication) {
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(interventionService.create(request, authentication.getName()));
   }
 
   @PutMapping("/{id}")
   public InterventionResponse update(
-      @PathVariable Long id, @Valid @RequestBody InterventionRequest request) {
-    return interventionService.update(id, request);
+      @PathVariable Long id,
+      @Valid @RequestBody InterventionRequest request,
+      Authentication authentication) {
+    return interventionService.update(id, request, authentication.getName());
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> delete(@PathVariable Long id) {
-    interventionService.delete(id);
+  public ResponseEntity<Void> delete(@PathVariable Long id, Authentication authentication) {
+    interventionService.delete(id, authentication.getName());
     return ResponseEntity.noContent().build();
   }
 }

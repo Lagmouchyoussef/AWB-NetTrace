@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.PathTraceRequest;
 import com.awb.backend.core.dto.PathTraceResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Device;
 import com.awb.backend.core.entity.PathTrace;
 import com.awb.backend.core.entity.PathTraceStatus;
 import com.awb.backend.core.repository.DeviceRepository;
 import com.awb.backend.core.repository.PathTraceRepository;
 import com.awb.backend.core.repository.PathTraceSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,11 +24,15 @@ public class PathTraceService {
 
   private final PathTraceRepository pathTraceRepository;
   private final DeviceRepository deviceRepository;
+  private final AuditLogWriter auditLogWriter;
 
   public PathTraceService(
-      PathTraceRepository pathTraceRepository, DeviceRepository deviceRepository) {
+      PathTraceRepository pathTraceRepository,
+      DeviceRepository deviceRepository,
+      AuditLogWriter auditLogWriter) {
     this.pathTraceRepository = pathTraceRepository;
     this.deviceRepository = deviceRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -44,7 +50,7 @@ public class PathTraceService {
   }
 
   @Transactional
-  public PathTraceResponse create(PathTraceRequest request) {
+  public PathTraceResponse create(PathTraceRequest request, String actorUsername) {
     if (pathTraceRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A path trace with this code already exists.");
@@ -58,11 +64,13 @@ public class PathTraceService {
     Instant now = Instant.now();
     pathTrace.setCreatedAt(now);
     pathTrace.setUpdatedAt(now);
-    return toResponse(pathTraceRepository.save(pathTrace));
+    PathTraceResponse response = toResponse(pathTraceRepository.save(pathTrace));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "PathTrace", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public PathTraceResponse update(Long id, PathTraceRequest request) {
+  public PathTraceResponse update(Long id, PathTraceRequest request, String actorUsername) {
     PathTrace pathTrace = findActiveOrThrow(id);
     if (pathTraceRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -74,15 +82,18 @@ public class PathTraceService {
     pathTrace.setTargetDevice(findActiveDeviceOrThrow(request.getTargetDeviceId()));
     applyRequest(pathTrace, request);
     pathTrace.setUpdatedAt(Instant.now());
-    return toResponse(pathTraceRepository.save(pathTrace));
+    PathTraceResponse response = toResponse(pathTraceRepository.save(pathTrace));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "PathTrace", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     PathTrace pathTrace = findActiveOrThrow(id);
     pathTrace.setDeleted(true);
     pathTrace.setUpdatedAt(Instant.now());
     pathTraceRepository.save(pathTrace);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "PathTrace", pathTrace.getName(), null);
   }
 
   private void validateEndpoints(Long sourceDeviceId, Long targetDeviceId) {

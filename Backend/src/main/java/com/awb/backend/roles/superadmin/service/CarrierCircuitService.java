@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.CarrierCircuitRequest;
 import com.awb.backend.core.dto.CarrierCircuitResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.CarrierCircuit;
 import com.awb.backend.core.entity.CarrierCircuitStatus;
 import com.awb.backend.core.entity.SdwanEdge;
 import com.awb.backend.core.repository.CarrierCircuitRepository;
 import com.awb.backend.core.repository.CarrierCircuitSpecifications;
 import com.awb.backend.core.repository.SdwanEdgeRepository;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,11 +24,15 @@ public class CarrierCircuitService {
 
   private final CarrierCircuitRepository carrierCircuitRepository;
   private final SdwanEdgeRepository sdwanEdgeRepository;
+  private final AuditLogWriter auditLogWriter;
 
   public CarrierCircuitService(
-      CarrierCircuitRepository carrierCircuitRepository, SdwanEdgeRepository sdwanEdgeRepository) {
+      CarrierCircuitRepository carrierCircuitRepository,
+      SdwanEdgeRepository sdwanEdgeRepository,
+      AuditLogWriter auditLogWriter) {
     this.carrierCircuitRepository = carrierCircuitRepository;
     this.sdwanEdgeRepository = sdwanEdgeRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -46,7 +52,7 @@ public class CarrierCircuitService {
   }
 
   @Transactional
-  public CarrierCircuitResponse create(CarrierCircuitRequest request) {
+  public CarrierCircuitResponse create(CarrierCircuitRequest request, String actorUsername) {
     if (carrierCircuitRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A carrier circuit with this code already exists.");
@@ -58,11 +64,13 @@ public class CarrierCircuitService {
     Instant now = Instant.now();
     circuit.setCreatedAt(now);
     circuit.setUpdatedAt(now);
-    return toResponse(carrierCircuitRepository.save(circuit));
+    CarrierCircuitResponse response = toResponse(carrierCircuitRepository.save(circuit));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "CarrierCircuit", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public CarrierCircuitResponse update(Long id, CarrierCircuitRequest request) {
+  public CarrierCircuitResponse update(Long id, CarrierCircuitRequest request, String actorUsername) {
     CarrierCircuit circuit = findActiveOrThrow(id);
     if (carrierCircuitRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -72,15 +80,18 @@ public class CarrierCircuitService {
     circuit.setEdge(findActiveEdgeOrThrow(request.getEdgeId()));
     applyRequest(circuit, request);
     circuit.setUpdatedAt(Instant.now());
-    return toResponse(carrierCircuitRepository.save(circuit));
+    CarrierCircuitResponse response = toResponse(carrierCircuitRepository.save(circuit));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "CarrierCircuit", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     CarrierCircuit circuit = findActiveOrThrow(id);
     circuit.setDeleted(true);
     circuit.setUpdatedAt(Instant.now());
     carrierCircuitRepository.save(circuit);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "CarrierCircuit", circuit.getName(), null);
   }
 
   private CarrierCircuit findActiveOrThrow(Long id) {

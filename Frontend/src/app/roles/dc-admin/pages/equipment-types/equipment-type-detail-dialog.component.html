@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'equipmentTypes.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'equipmentTypes.fields.category' | translate }}</dt>
+    <dd>{{ 'equipmentTypes.category.' + data.category | translate }}</dd>
+
+    @if (data.manufacturer) {
+      <dt>{{ 'equipmentTypes.fields.manufacturer' | translate }}</dt>
+      <dd>{{ data.manufacturer }}</dd>
+    }
+
+    @if (data.defaultRackUnits !== null) {
+      <dt>{{ 'equipmentTypes.fields.defaultRackUnits' | translate }}</dt>
+      <dd>{{ data.defaultRackUnits }} U</dd>
+    }
+
+    @if (data.defaultPowerWatts !== null) {
+      <dt>{{ 'equipmentTypes.fields.defaultPowerWatts' | translate }}</dt>
+      <dd>{{ data.defaultPowerWatts }} W</dd>
+    }
+
+    <dt>{{ 'equipmentTypes.fields.status' | translate }}</dt>
+    <dd>{{ 'equipmentTypes.status.' + data.status | translate }}</dd>
+
+    @if (data.notes) {
+      <dt>{{ 'equipmentTypes.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

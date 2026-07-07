@@ -30,6 +30,7 @@ export class DataTableComponent<T> {
   readonly loading = input<boolean>(false);
   readonly pageSize = input<number>(10);
   readonly searchable = input<boolean>(true);
+  readonly readOnly = input<boolean>(false);
 
   readonly page = output<PageEvent>();
   readonly sortChange = output<Sort>();

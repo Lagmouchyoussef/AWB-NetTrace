@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'realTimeDashboards.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    @if (data.description) {
+      <dt>{{ 'realTimeDashboards.fields.description' | translate }}</dt>
+      <dd>{{ data.description }}</dd>
+    }
+
+    <dt>{{ 'realTimeDashboards.fields.refreshIntervalSeconds' | translate }}</dt>
+    <dd>{{ data.refreshIntervalSeconds }}s</dd>
+
+    <dt>{{ 'realTimeDashboards.fields.widgetCount' | translate }}</dt>
+    <dd>{{ data.widgetCount }}</dd>
+
+    <dt>{{ 'realTimeDashboards.fields.status' | translate }}</dt>
+    <dd>{{ 'realTimeDashboards.status.' + data.status | translate }}</dd>
+
+    @if (data.notes) {
+      <dt>{{ 'realTimeDashboards.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

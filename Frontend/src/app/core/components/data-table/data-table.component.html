@@ -43,24 +43,26 @@
             >
               <mat-icon fontSet="material-symbols-outlined">visibility</mat-icon>
             </button>
-            <button
-              type="button"
-              class="row-action"
-              (click)="edit.emit(row)"
-              [attr.aria-label]="'common.edit' | translate"
-              matTooltip="{{ 'common.edit' | translate }}"
-            >
-              <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>
-            </button>
-            <button
-              type="button"
-              class="row-action row-action-danger"
-              (click)="delete.emit(row)"
-              [attr.aria-label]="'common.delete' | translate"
-              matTooltip="{{ 'common.delete' | translate }}"
-            >
-              <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
-            </button>
+            @if (!readOnly()) {
+              <button
+                type="button"
+                class="row-action"
+                (click)="edit.emit(row)"
+                [attr.aria-label]="'common.edit' | translate"
+                matTooltip="{{ 'common.edit' | translate }}"
+              >
+                <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>
+              </button>
+              <button
+                type="button"
+                class="row-action row-action-danger"
+                (click)="delete.emit(row)"
+                [attr.aria-label]="'common.delete' | translate"
+                matTooltip="{{ 'common.delete' | translate }}"
+              >
+                <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+              </button>
+            }
           </div>
         </td>
       </ng-container>

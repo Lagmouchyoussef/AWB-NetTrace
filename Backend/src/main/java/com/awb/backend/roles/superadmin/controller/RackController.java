@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,18 +45,21 @@ public class RackController {
   }
 
   @PostMapping
-  public ResponseEntity<RackResponse> create(@Valid @RequestBody RackRequest request) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(rackService.create(request));
+  public ResponseEntity<RackResponse> create(
+      @Valid @RequestBody RackRequest request, Authentication authentication) {
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(rackService.create(request, authentication.getName()));
   }
 
   @PutMapping("/{id}")
-  public RackResponse update(@PathVariable Long id, @Valid @RequestBody RackRequest request) {
-    return rackService.update(id, request);
+  public RackResponse update(
+      @PathVariable Long id, @Valid @RequestBody RackRequest request, Authentication authentication) {
+    return rackService.update(id, request, authentication.getName());
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> delete(@PathVariable Long id) {
-    rackService.delete(id);
+  public ResponseEntity<Void> delete(@PathVariable Long id, Authentication authentication) {
+    rackService.delete(id, authentication.getName());
     return ResponseEntity.noContent().build();
   }
 }

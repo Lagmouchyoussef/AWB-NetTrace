@@ -1,0 +1,99 @@
+<h2 mat-dialog-title>
+  {{ (isEdit ? 'interventions.editTitle' : 'interventions.createTitle') | translate }}
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'interventions.fields.device' | translate }}</mat-label>
+        <mat-select formControlName="deviceId">
+          @for (device of devices(); track device.id) {
+            <mat-option [value]="device.id">{{ device.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'interventions.fields.title' | translate }}</mat-label>
+        <input matInput formControlName="title" required />
+        @if (form.controls.title.invalid && form.controls.title.touched) {
+          <mat-error>{{ 'interventions.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'interventions.fields.description' | translate }}</mat-label>
+        <textarea matInput formControlName="description" rows="2"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'interventions.fields.interventionType' | translate }}</mat-label>
+        <mat-select formControlName="interventionType">
+          @for (type of interventionTypes; track type) {
+            <mat-option [value]="type">{{
+              'interventions.interventionType.' + type | translate
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'interventions.fields.priority' | translate }}</mat-label>
+        <mat-select formControlName="priority">
+          @for (priority of priorities; track priority) {
+            <mat-option [value]="priority">{{
+              'interventions.priority.' + priority | translate
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'interventions.fields.status' | translate }}</mat-label>
+        <mat-select formControlName="status">
+          @for (status of statuses; track status) {
+            <mat-option [value]="status">{{
+              'interventions.status.' + status | translate
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'interventions.fields.assignedTechnician' | translate }}</mat-label>
+        <input matInput formControlName="assignedTechnician" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'interventions.fields.scheduledAt' | translate }}</mat-label>
+        <input matInput type="datetime-local" formControlName="scheduledAt" required />
+        @if (form.controls.scheduledAt.invalid && form.controls.scheduledAt.touched) {
+          <mat-error>{{ 'interventions.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'interventions.fields.completedAt' | translate }}</mat-label>
+        <input matInput type="datetime-local" formControlName="completedAt" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'interventions.fields.notes' | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+
+    @if (errorKey()) {
+      <p class="form-error">{{ errorKey() | translate }}</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" class="dialog-button dialog-button-cancel" (click)="cancel()">
+      {{ 'common.cancel' | translate }}
+    </button>
+    <button type="submit" class="dialog-button dialog-button-confirm" [disabled]="saving()">
+      {{ (saving() ? 'common.saving' : 'common.save') | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>

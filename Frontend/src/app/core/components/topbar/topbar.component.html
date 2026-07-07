@@ -7,6 +7,12 @@
     <img class="topbar-logo" src="attijariwafa-logo.png" alt="Attijariwafa Bank" />
     <span class="topbar-divider"></span>
     <span class="topbar-title">AWB-NetTrace</span>
+    @if (scopeLabel(); as scope) {
+      <span class="scope-chip" [matTooltip]="'topbar.assignedDatacenters' | translate">
+        <mat-icon fontSet="material-symbols-outlined">location_on</mat-icon>
+        {{ scope }}
+      </span>
+    }
   </div>
 
   <div class="topbar-search">

@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.SdwanEdgeRequest;
 import com.awb.backend.core.dto.SdwanEdgeResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Datacenter;
 import com.awb.backend.core.entity.SdwanEdge;
 import com.awb.backend.core.entity.SdwanEdgeStatus;
 import com.awb.backend.core.repository.DatacenterRepository;
 import com.awb.backend.core.repository.SdwanEdgeRepository;
 import com.awb.backend.core.repository.SdwanEdgeSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,11 +24,15 @@ public class SdwanEdgeService {
 
   private final SdwanEdgeRepository sdwanEdgeRepository;
   private final DatacenterRepository datacenterRepository;
+  private final AuditLogWriter auditLogWriter;
 
   public SdwanEdgeService(
-      SdwanEdgeRepository sdwanEdgeRepository, DatacenterRepository datacenterRepository) {
+      SdwanEdgeRepository sdwanEdgeRepository,
+      DatacenterRepository datacenterRepository,
+      AuditLogWriter auditLogWriter) {
     this.sdwanEdgeRepository = sdwanEdgeRepository;
     this.datacenterRepository = datacenterRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -46,7 +52,7 @@ public class SdwanEdgeService {
   }
 
   @Transactional
-  public SdwanEdgeResponse create(SdwanEdgeRequest request) {
+  public SdwanEdgeResponse create(SdwanEdgeRequest request, String actorUsername) {
     if (sdwanEdgeRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "An SD-WAN edge with this code already exists.");
@@ -58,11 +64,13 @@ public class SdwanEdgeService {
     Instant now = Instant.now();
     edge.setCreatedAt(now);
     edge.setUpdatedAt(now);
-    return toResponse(sdwanEdgeRepository.save(edge));
+    SdwanEdgeResponse response = toResponse(sdwanEdgeRepository.save(edge));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "SdwanEdge", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public SdwanEdgeResponse update(Long id, SdwanEdgeRequest request) {
+  public SdwanEdgeResponse update(Long id, SdwanEdgeRequest request, String actorUsername) {
     SdwanEdge edge = findActiveOrThrow(id);
     if (sdwanEdgeRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -72,15 +80,18 @@ public class SdwanEdgeService {
     edge.setDatacenter(findActiveDatacenterOrThrow(request.getDatacenterId()));
     applyRequest(edge, request);
     edge.setUpdatedAt(Instant.now());
-    return toResponse(sdwanEdgeRepository.save(edge));
+    SdwanEdgeResponse response = toResponse(sdwanEdgeRepository.save(edge));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "SdwanEdge", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     SdwanEdge edge = findActiveOrThrow(id);
     edge.setDeleted(true);
     edge.setUpdatedAt(Instant.now());
     sdwanEdgeRepository.save(edge);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "SdwanEdge", edge.getName(), null);
   }
 
   private SdwanEdge findActiveOrThrow(Long id) {

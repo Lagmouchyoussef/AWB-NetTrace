@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.CableRequest;
 import com.awb.backend.core.dto.CableResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Cable;
 import com.awb.backend.core.entity.CableStatus;
 import com.awb.backend.core.entity.Device;
 import com.awb.backend.core.repository.CableRepository;
 import com.awb.backend.core.repository.CableSpecifications;
 import com.awb.backend.core.repository.DeviceRepository;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +24,15 @@ public class CableService {
 
   private final CableRepository cableRepository;
   private final DeviceRepository deviceRepository;
+  private final AuditLogWriter auditLogWriter;
 
-  public CableService(CableRepository cableRepository, DeviceRepository deviceRepository) {
+  public CableService(
+      CableRepository cableRepository,
+      DeviceRepository deviceRepository,
+      AuditLogWriter auditLogWriter) {
     this.cableRepository = cableRepository;
     this.deviceRepository = deviceRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -43,7 +50,7 @@ public class CableService {
   }
 
   @Transactional
-  public CableResponse create(CableRequest request) {
+  public CableResponse create(CableRequest request, String actorUsername) {
     if (cableRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A cable with this code already exists.");
@@ -57,11 +64,13 @@ public class CableService {
     Instant now = Instant.now();
     cable.setCreatedAt(now);
     cable.setUpdatedAt(now);
-    return toResponse(cableRepository.save(cable));
+    CableResponse response = toResponse(cableRepository.save(cable));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "Cable", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public CableResponse update(Long id, CableRequest request) {
+  public CableResponse update(Long id, CableRequest request, String actorUsername) {
     Cable cable = findActiveOrThrow(id);
     if (cableRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -73,15 +82,18 @@ public class CableService {
     cable.setTargetDevice(findActiveDeviceOrThrow(request.getTargetDeviceId()));
     applyRequest(cable, request);
     cable.setUpdatedAt(Instant.now());
-    return toResponse(cableRepository.save(cable));
+    CableResponse response = toResponse(cableRepository.save(cable));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "Cable", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     Cable cable = findActiveOrThrow(id);
     cable.setDeleted(true);
     cable.setUpdatedAt(Instant.now());
     cableRepository.save(cable);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "Cable", cable.getName(), null);
   }
 
   private void validateEndpoints(Long sourceDeviceId, Long targetDeviceId) {

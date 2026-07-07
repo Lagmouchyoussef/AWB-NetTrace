@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,19 +45,22 @@ public class OverlayTunnelController {
 
   @PostMapping
   public ResponseEntity<OverlayTunnelResponse> create(
-      @Valid @RequestBody OverlayTunnelRequest request) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(overlayTunnelService.create(request));
+      @Valid @RequestBody OverlayTunnelRequest request, Authentication authentication) {
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(overlayTunnelService.create(request, authentication.getName()));
   }
 
   @PutMapping("/{id}")
   public OverlayTunnelResponse update(
-      @PathVariable Long id, @Valid @RequestBody OverlayTunnelRequest request) {
-    return overlayTunnelService.update(id, request);
+      @PathVariable Long id,
+      @Valid @RequestBody OverlayTunnelRequest request,
+      Authentication authentication) {
+    return overlayTunnelService.update(id, request, authentication.getName());
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> delete(@PathVariable Long id) {
-    overlayTunnelService.delete(id);
+  public ResponseEntity<Void> delete(@PathVariable Long id, Authentication authentication) {
+    overlayTunnelService.delete(id, authentication.getName());
     return ResponseEntity.noContent().build();
   }
 }

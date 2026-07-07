@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.OverlayTunnelRequest;
 import com.awb.backend.core.dto.OverlayTunnelResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.OverlayTunnel;
 import com.awb.backend.core.entity.OverlayTunnelStatus;
 import com.awb.backend.core.entity.SdwanEdge;
 import com.awb.backend.core.repository.OverlayTunnelRepository;
 import com.awb.backend.core.repository.OverlayTunnelSpecifications;
 import com.awb.backend.core.repository.SdwanEdgeRepository;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,11 +24,15 @@ public class OverlayTunnelService {
 
   private final OverlayTunnelRepository overlayTunnelRepository;
   private final SdwanEdgeRepository sdwanEdgeRepository;
+  private final AuditLogWriter auditLogWriter;
 
   public OverlayTunnelService(
-      OverlayTunnelRepository overlayTunnelRepository, SdwanEdgeRepository sdwanEdgeRepository) {
+      OverlayTunnelRepository overlayTunnelRepository,
+      SdwanEdgeRepository sdwanEdgeRepository,
+      AuditLogWriter auditLogWriter) {
     this.overlayTunnelRepository = overlayTunnelRepository;
     this.sdwanEdgeRepository = sdwanEdgeRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -45,7 +51,7 @@ public class OverlayTunnelService {
   }
 
   @Transactional
-  public OverlayTunnelResponse create(OverlayTunnelRequest request) {
+  public OverlayTunnelResponse create(OverlayTunnelRequest request, String actorUsername) {
     if (overlayTunnelRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "An overlay tunnel with this code already exists.");
@@ -59,11 +65,13 @@ public class OverlayTunnelService {
     Instant now = Instant.now();
     tunnel.setCreatedAt(now);
     tunnel.setUpdatedAt(now);
-    return toResponse(overlayTunnelRepository.save(tunnel));
+    OverlayTunnelResponse response = toResponse(overlayTunnelRepository.save(tunnel));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "OverlayTunnel", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public OverlayTunnelResponse update(Long id, OverlayTunnelRequest request) {
+  public OverlayTunnelResponse update(Long id, OverlayTunnelRequest request, String actorUsername) {
     OverlayTunnel tunnel = findActiveOrThrow(id);
     if (overlayTunnelRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -75,15 +83,18 @@ public class OverlayTunnelService {
     tunnel.setTargetEdge(findActiveEdgeOrThrow(request.getTargetEdgeId()));
     applyRequest(tunnel, request);
     tunnel.setUpdatedAt(Instant.now());
-    return toResponse(overlayTunnelRepository.save(tunnel));
+    OverlayTunnelResponse response = toResponse(overlayTunnelRepository.save(tunnel));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "OverlayTunnel", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     OverlayTunnel tunnel = findActiveOrThrow(id);
     tunnel.setDeleted(true);
     tunnel.setUpdatedAt(Instant.now());
     overlayTunnelRepository.save(tunnel);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "OverlayTunnel", tunnel.getName(), null);
   }
 
   private void validateEndpoints(Long sourceEdgeId, Long targetEdgeId) {

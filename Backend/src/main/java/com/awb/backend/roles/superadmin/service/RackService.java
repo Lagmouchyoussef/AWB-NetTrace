@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.RackRequest;
 import com.awb.backend.core.dto.RackResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Rack;
 import com.awb.backend.core.entity.RackStatus;
 import com.awb.backend.core.entity.Room;
 import com.awb.backend.core.repository.RackRepository;
 import com.awb.backend.core.repository.RackSpecifications;
 import com.awb.backend.core.repository.RoomRepository;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +24,13 @@ public class RackService {
 
   private final RackRepository rackRepository;
   private final RoomRepository roomRepository;
+  private final AuditLogWriter auditLogWriter;
 
-  public RackService(RackRepository rackRepository, RoomRepository roomRepository) {
+  public RackService(
+      RackRepository rackRepository, RoomRepository roomRepository, AuditLogWriter auditLogWriter) {
     this.rackRepository = rackRepository;
     this.roomRepository = roomRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -44,7 +49,7 @@ public class RackService {
   }
 
   @Transactional
-  public RackResponse create(RackRequest request) {
+  public RackResponse create(RackRequest request, String actorUsername) {
     if (rackRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A rack with this code already exists.");
@@ -56,11 +61,13 @@ public class RackService {
     Instant now = Instant.now();
     rack.setCreatedAt(now);
     rack.setUpdatedAt(now);
-    return toResponse(rackRepository.save(rack));
+    RackResponse response = toResponse(rackRepository.save(rack));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "Rack", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public RackResponse update(Long id, RackRequest request) {
+  public RackResponse update(Long id, RackRequest request, String actorUsername) {
     Rack rack = findActiveOrThrow(id);
     if (rackRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -70,15 +77,18 @@ public class RackService {
     rack.setRoom(findActiveRoomOrThrow(request.getRoomId()));
     applyRequest(rack, request);
     rack.setUpdatedAt(Instant.now());
-    return toResponse(rackRepository.save(rack));
+    RackResponse response = toResponse(rackRepository.save(rack));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "Rack", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     Rack rack = findActiveOrThrow(id);
     rack.setDeleted(true);
     rack.setUpdatedAt(Instant.now());
     rackRepository.save(rack);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "Rack", rack.getName(), null);
   }
 
   private Rack findActiveOrThrow(Long id) {

@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'networkRoles.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'networkRoles.fields.device' | translate }}</dt>
+    <dd>{{ data.deviceName }}</dd>
+
+    <dt>{{ 'networkRoles.fields.roleType' | translate }}</dt>
+    <dd>{{ 'networkRoles.roleType.' + data.roleType | translate }}</dd>
+
+    <dt>{{ 'networkRoles.fields.status' | translate }}</dt>
+    <dd>{{ 'networkRoles.status.' + data.status | translate }}</dd>
+
+    @if (data.asn !== null) {
+      <dt>{{ 'networkRoles.fields.asn' | translate }}</dt>
+      <dd>{{ data.asn }}</dd>
+    }
+
+    @if (data.loopbackIp) {
+      <dt>{{ 'networkRoles.fields.loopbackIp' | translate }}</dt>
+      <dd>{{ data.loopbackIp }}</dd>
+    }
+
+    @if (data.podNumber !== null) {
+      <dt>{{ 'networkRoles.fields.podNumber' | translate }}</dt>
+      <dd>{{ data.podNumber }}</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'networkRoles.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

@@ -2,6 +2,7 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.SyncDriftRequest;
 import com.awb.backend.core.dto.SyncDriftResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Device;
 import com.awb.backend.core.entity.DriftSeverity;
 import com.awb.backend.core.entity.SyncDrift;
@@ -9,6 +10,7 @@ import com.awb.backend.core.entity.SyncDriftStatus;
 import com.awb.backend.core.repository.DeviceRepository;
 import com.awb.backend.core.repository.SyncDriftRepository;
 import com.awb.backend.core.repository.SyncDriftSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,11 +25,15 @@ public class SyncDriftService {
 
   private final SyncDriftRepository syncDriftRepository;
   private final DeviceRepository deviceRepository;
+  private final AuditLogWriter auditLogWriter;
 
   public SyncDriftService(
-      SyncDriftRepository syncDriftRepository, DeviceRepository deviceRepository) {
+      SyncDriftRepository syncDriftRepository,
+      DeviceRepository deviceRepository,
+      AuditLogWriter auditLogWriter) {
     this.syncDriftRepository = syncDriftRepository;
     this.deviceRepository = deviceRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -47,31 +53,36 @@ public class SyncDriftService {
   }
 
   @Transactional
-  public SyncDriftResponse create(SyncDriftRequest request) {
+  public SyncDriftResponse create(SyncDriftRequest request, String actorUsername) {
     SyncDrift drift = new SyncDrift();
     drift.setDevice(findActiveDeviceOrThrow(request.getDeviceId()));
     applyRequest(drift, request);
     Instant now = Instant.now();
     drift.setCreatedAt(now);
     drift.setUpdatedAt(now);
-    return toResponse(syncDriftRepository.save(drift));
+    SyncDriftResponse response = toResponse(syncDriftRepository.save(drift));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "SyncDrift", response.getTitle(), null);
+    return response;
   }
 
   @Transactional
-  public SyncDriftResponse update(Long id, SyncDriftRequest request) {
+  public SyncDriftResponse update(Long id, SyncDriftRequest request, String actorUsername) {
     SyncDrift drift = findActiveOrThrow(id);
     drift.setDevice(findActiveDeviceOrThrow(request.getDeviceId()));
     applyRequest(drift, request);
     drift.setUpdatedAt(Instant.now());
-    return toResponse(syncDriftRepository.save(drift));
+    SyncDriftResponse response = toResponse(syncDriftRepository.save(drift));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "SyncDrift", response.getTitle(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     SyncDrift drift = findActiveOrThrow(id);
     drift.setDeleted(true);
     drift.setUpdatedAt(Instant.now());
     syncDriftRepository.save(drift);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "SyncDrift", drift.getTitle(), null);
   }
 
   private SyncDrift findActiveOrThrow(Long id) {

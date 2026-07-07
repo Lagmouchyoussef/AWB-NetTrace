@@ -15,12 +15,16 @@
     "forgotSuccess": "If an account exists for this username, your administrator has been notified."
   },
   "roles": {
-    "superAdmin": "Super Admin"
+    "superAdmin": "Super Admin",
+    "dcAdmin": "Datacenter Admin"
   },
   "nav": {
     "dashboard": "Dashboard",
     "physicalInfrastructure": "Physical Infrastructure",
     "datacenters": "Datacenters",
+    "myDatacenters": "My Datacenters",
+    "allInterventions": "All Interventions",
+    "approvalQueue": "Approval Queue",
     "rooms": "Rooms",
     "racks": "Racks",
     "devices": "Devices",
@@ -69,10 +73,14 @@
     "system": "System",
     "myAccount": "My Account",
     "logout": "Logout",
-    "logoutConfirm": "Sign out of your current session"
+    "logoutConfirm": "Sign out of your current session",
+    "assignedDatacenters": "Assigned datacenters"
   },
   "placeholder": {
     "notBuiltYet": "This page is not built yet — it will arrive in a later step of the Super Admin module."
+  },
+  "dcAdminDashboard": {
+    "title": "Datacenter Admin Space"
   },
   "dashboard": {
     "title": "Super Administrator Space",

@@ -2,10 +2,12 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.RealTimeDashboardRequest;
 import com.awb.backend.core.dto.RealTimeDashboardResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.RealTimeDashboard;
 import com.awb.backend.core.entity.RealTimeDashboardStatus;
 import com.awb.backend.core.repository.RealTimeDashboardRepository;
 import com.awb.backend.core.repository.RealTimeDashboardSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,9 +21,12 @@ import org.springframework.web.server.ResponseStatusException;
 public class RealTimeDashboardService {
 
   private final RealTimeDashboardRepository realTimeDashboardRepository;
+  private final AuditLogWriter auditLogWriter;
 
-  public RealTimeDashboardService(RealTimeDashboardRepository realTimeDashboardRepository) {
+  public RealTimeDashboardService(
+      RealTimeDashboardRepository realTimeDashboardRepository, AuditLogWriter auditLogWriter) {
     this.realTimeDashboardRepository = realTimeDashboardRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -40,7 +45,7 @@ public class RealTimeDashboardService {
   }
 
   @Transactional
-  public RealTimeDashboardResponse create(RealTimeDashboardRequest request) {
+  public RealTimeDashboardResponse create(RealTimeDashboardRequest request, String actorUsername) {
     if (realTimeDashboardRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A dashboard with this code already exists.");
@@ -51,11 +56,14 @@ public class RealTimeDashboardService {
     Instant now = Instant.now();
     dashboard.setCreatedAt(now);
     dashboard.setUpdatedAt(now);
-    return toResponse(realTimeDashboardRepository.save(dashboard));
+    RealTimeDashboardResponse response = toResponse(realTimeDashboardRepository.save(dashboard));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "RealTimeDashboard", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public RealTimeDashboardResponse update(Long id, RealTimeDashboardRequest request) {
+  public RealTimeDashboardResponse update(
+      Long id, RealTimeDashboardRequest request, String actorUsername) {
     RealTimeDashboard dashboard = findActiveOrThrow(id);
     if (realTimeDashboardRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -64,15 +72,18 @@ public class RealTimeDashboardService {
 
     applyRequest(dashboard, request);
     dashboard.setUpdatedAt(Instant.now());
-    return toResponse(realTimeDashboardRepository.save(dashboard));
+    RealTimeDashboardResponse response = toResponse(realTimeDashboardRepository.save(dashboard));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "RealTimeDashboard", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     RealTimeDashboard dashboard = findActiveOrThrow(id);
     dashboard.setDeleted(true);
     dashboard.setUpdatedAt(Instant.now());
     realTimeDashboardRepository.save(dashboard);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "RealTimeDashboard", dashboard.getName(), null);
   }
 
   private RealTimeDashboard findActiveOrThrow(Long id) {

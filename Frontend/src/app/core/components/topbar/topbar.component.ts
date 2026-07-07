@@ -3,6 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 import { NotificationService } from '../../services/notification.service';
@@ -20,7 +21,7 @@ interface SearchResult {
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [MatIconModule, MatMenuModule, TranslatePipe, FlagIconComponent],
+  imports: [MatIconModule, MatMenuModule, MatTooltipModule, TranslatePipe, FlagIconComponent],
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.css',
 })
@@ -34,6 +35,7 @@ export class TopbarComponent {
   private readonly route = inject(ActivatedRoute);
 
   readonly sections = input.required<NavSection[]>();
+  readonly scopeLabel = input<string | null>(null);
   readonly menuToggle = output<void>();
 
   private readonly currentLang = toSignal(this.translateService.onLangChange, {

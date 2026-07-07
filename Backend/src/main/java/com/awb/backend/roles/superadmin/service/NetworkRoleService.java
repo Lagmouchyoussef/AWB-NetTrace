@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.NetworkRoleRequest;
 import com.awb.backend.core.dto.NetworkRoleResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Device;
 import com.awb.backend.core.entity.NetworkRole;
 import com.awb.backend.core.entity.NetworkRoleStatus;
 import com.awb.backend.core.repository.DeviceRepository;
 import com.awb.backend.core.repository.NetworkRoleRepository;
 import com.awb.backend.core.repository.NetworkRoleSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,11 +24,15 @@ public class NetworkRoleService {
 
   private final NetworkRoleRepository networkRoleRepository;
   private final DeviceRepository deviceRepository;
+  private final AuditLogWriter auditLogWriter;
 
   public NetworkRoleService(
-      NetworkRoleRepository networkRoleRepository, DeviceRepository deviceRepository) {
+      NetworkRoleRepository networkRoleRepository,
+      DeviceRepository deviceRepository,
+      AuditLogWriter auditLogWriter) {
     this.networkRoleRepository = networkRoleRepository;
     this.deviceRepository = deviceRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -45,7 +51,7 @@ public class NetworkRoleService {
   }
 
   @Transactional
-  public NetworkRoleResponse create(NetworkRoleRequest request) {
+  public NetworkRoleResponse create(NetworkRoleRequest request, String actorUsername) {
     if (networkRoleRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A network role with this code already exists.");
@@ -61,11 +67,13 @@ public class NetworkRoleService {
     Instant now = Instant.now();
     role.setCreatedAt(now);
     role.setUpdatedAt(now);
-    return toResponse(networkRoleRepository.save(role));
+    NetworkRoleResponse response = toResponse(networkRoleRepository.save(role));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "NetworkRole", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public NetworkRoleResponse update(Long id, NetworkRoleRequest request) {
+  public NetworkRoleResponse update(Long id, NetworkRoleRequest request, String actorUsername) {
     NetworkRole role = findActiveOrThrow(id);
     if (networkRoleRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -79,15 +87,18 @@ public class NetworkRoleService {
     role.setDevice(findActiveDeviceOrThrow(request.getDeviceId()));
     applyRequest(role, request);
     role.setUpdatedAt(Instant.now());
-    return toResponse(networkRoleRepository.save(role));
+    NetworkRoleResponse response = toResponse(networkRoleRepository.save(role));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "NetworkRole", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     NetworkRole role = findActiveOrThrow(id);
     role.setDeleted(true);
     role.setUpdatedAt(Instant.now());
     networkRoleRepository.save(role);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "NetworkRole", role.getName(), null);
   }
 
   private NetworkRole findActiveOrThrow(Long id) {

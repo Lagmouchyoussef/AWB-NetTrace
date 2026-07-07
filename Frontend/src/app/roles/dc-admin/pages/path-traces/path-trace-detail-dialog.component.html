@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'pathTraces.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'pathTraces.fields.source' | translate }}</dt>
+    <dd>{{ data.sourceDeviceName }}</dd>
+
+    <dt>{{ 'pathTraces.fields.target' | translate }}</dt>
+    <dd>{{ data.targetDeviceName }}</dd>
+
+    <dt>{{ 'pathTraces.fields.hopCount' | translate }}</dt>
+    <dd>{{ data.hopCount }}</dd>
+
+    <dt>{{ 'pathTraces.fields.status' | translate }}</dt>
+    <dd>{{ 'pathTraces.status.' + data.status | translate }}</dd>
+
+    @if (data.totalLengthMeters !== null) {
+      <dt>{{ 'pathTraces.fields.totalLengthMeters' | translate }}</dt>
+      <dd>{{ data.totalLengthMeters }} m</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'pathTraces.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

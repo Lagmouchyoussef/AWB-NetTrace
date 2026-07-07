@@ -55,6 +55,29 @@
   white-space: nowrap;
 }
 
+.scope-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: var(--awb-hover);
+  color: var(--awb-on-surface-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+}
+
+.scope-chip mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
 /* The brand text/divider take too much width to coexist with search + 4 action dropdowns on
    narrow phones — drop them and keep just the logo mark. The chevrons are dropped too (each
    button stays a fully functional dropdown trigger without one, just without the desktop hint). */

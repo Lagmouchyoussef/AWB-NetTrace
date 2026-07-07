@@ -1,0 +1,23 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'devices.pageTitle' | translate }}</h1>
+    <button type="button" class="add-button" (click)="onCreate()">
+      <mat-icon fontSet="material-symbols-outlined">add</mat-icon>
+      {{ 'devices.addNew' | translate }}
+    </button>
+  </div>
+
+  <app-data-table
+    [columns]="columns"
+    [data]="data()"
+    [totalCount]="totalCount()"
+    [loading]="loading()"
+    (page)="onPage($event)"
+    (sortChange)="onSort($event)"
+    (searchChange)="onSearch($event)"
+    (view)="onView($event)"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+    (exportCsv)="onExportCsv()"
+  />
+</div>

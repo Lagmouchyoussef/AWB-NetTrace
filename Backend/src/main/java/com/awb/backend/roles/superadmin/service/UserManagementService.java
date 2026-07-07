@@ -2,10 +2,12 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.UserRequest;
 import com.awb.backend.core.dto.UserResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Role;
 import com.awb.backend.core.entity.User;
 import com.awb.backend.core.repository.UserRepository;
 import com.awb.backend.core.repository.UserSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,10 +23,13 @@ public class UserManagementService {
 
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
+  private final AuditLogWriter auditLogWriter;
 
-  public UserManagementService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+  public UserManagementService(
+      UserRepository userRepository, PasswordEncoder passwordEncoder, AuditLogWriter auditLogWriter) {
     this.userRepository = userRepository;
     this.passwordEncoder = passwordEncoder;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -41,7 +46,7 @@ public class UserManagementService {
   }
 
   @Transactional
-  public UserResponse create(UserRequest request) {
+  public UserResponse create(UserRequest request, String actorUsername) {
     if (userRepository.existsByUsernameIgnoreCase(request.getUsername())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A user with this username already exists.");
@@ -57,11 +62,13 @@ public class UserManagementService {
     user.setEnabled(request.isEnabled());
     user.setIpRestrictionEnabled(request.isIpRestrictionEnabled());
     user.setCreatedAt(Instant.now());
-    return toResponse(userRepository.save(user));
+    UserResponse response = toResponse(userRepository.save(user));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "User", response.getUsername(), null);
+    return response;
   }
 
   @Transactional
-  public UserResponse update(Long id, UserRequest request) {
+  public UserResponse update(Long id, UserRequest request, String actorUsername) {
     User user = findOrThrow(id);
     if (userRepository.existsByUsernameIgnoreCaseAndIdNot(request.getUsername(), id)) {
       throw new ResponseStatusException(
@@ -75,13 +82,16 @@ public class UserManagementService {
     user.setRole(request.getRole());
     user.setEnabled(request.isEnabled());
     user.setIpRestrictionEnabled(request.isIpRestrictionEnabled());
-    return toResponse(userRepository.save(user));
+    UserResponse response = toResponse(userRepository.save(user));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "User", response.getUsername(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     User user = findOrThrow(id);
     userRepository.delete(user);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "User", user.getUsername(), null);
   }
 
   private User findOrThrow(Long id) {

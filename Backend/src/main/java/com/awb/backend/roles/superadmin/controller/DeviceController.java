@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,18 +45,21 @@ public class DeviceController {
   }
 
   @PostMapping
-  public ResponseEntity<DeviceResponse> create(@Valid @RequestBody DeviceRequest request) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(deviceService.create(request));
+  public ResponseEntity<DeviceResponse> create(
+      @Valid @RequestBody DeviceRequest request, Authentication authentication) {
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(deviceService.create(request, authentication.getName()));
   }
 
   @PutMapping("/{id}")
-  public DeviceResponse update(@PathVariable Long id, @Valid @RequestBody DeviceRequest request) {
-    return deviceService.update(id, request);
+  public DeviceResponse update(
+      @PathVariable Long id, @Valid @RequestBody DeviceRequest request, Authentication authentication) {
+    return deviceService.update(id, request, authentication.getName());
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> delete(@PathVariable Long id) {
-    deviceService.delete(id);
+  public ResponseEntity<Void> delete(@PathVariable Long id, Authentication authentication) {
+    deviceService.delete(id, authentication.getName());
     return ResponseEntity.noContent().build();
   }
 }

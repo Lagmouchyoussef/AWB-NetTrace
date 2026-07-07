@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'devices.fields.serialNumber' | translate }}</dt>
+    <dd>{{ data.serialNumber }}</dd>
+
+    <dt>{{ 'devices.fields.rack' | translate }}</dt>
+    <dd>{{ data.rackName }}</dd>
+
+    <dt>{{ 'devices.fields.deviceType' | translate }}</dt>
+    <dd>{{ 'devices.deviceType.' + data.deviceType | translate }}</dd>
+
+    <dt>{{ 'devices.fields.status' | translate }}</dt>
+    <dd>{{ 'devices.status.' + data.status | translate }}</dd>
+
+    @if (data.manufacturer) {
+      <dt>{{ 'devices.fields.manufacturer' | translate }}</dt>
+      <dd>{{ data.manufacturer }}</dd>
+    }
+
+    @if (data.model) {
+      <dt>{{ 'devices.fields.model' | translate }}</dt>
+      <dd>{{ data.model }}</dd>
+    }
+
+    <dt>{{ 'devices.fields.positionUStart' | translate }}</dt>
+    <dd>U{{ data.positionUStart }}</dd>
+
+    <dt>{{ 'devices.fields.heightU' | translate }}</dt>
+    <dd>{{ data.heightU }}U</dd>
+
+    @if (data.powerConsumptionW !== null) {
+      <dt>{{ 'devices.fields.powerConsumptionW' | translate }}</dt>
+      <dd>{{ data.powerConsumptionW }} W</dd>
+    }
+
+    @if (data.managementIp) {
+      <dt>{{ 'devices.fields.managementIp' | translate }}</dt>
+      <dd>{{ data.managementIp }}</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'devices.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'reports.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'reports.fields.reportType' | translate }}</dt>
+    <dd>{{ 'reports.reportType.' + data.reportType | translate }}</dd>
+
+    <dt>{{ 'reports.fields.format' | translate }}</dt>
+    <dd>{{ 'reports.format.' + data.format | translate }}</dd>
+
+    <dt>{{ 'reports.fields.schedule' | translate }}</dt>
+    <dd>{{ 'reports.schedule.' + data.schedule | translate }}</dd>
+
+    <dt>{{ 'reports.fields.status' | translate }}</dt>
+    <dd>{{ 'reports.status.' + data.status | translate }}</dd>
+
+    @if (data.lastGeneratedAt) {
+      <dt>{{ 'reports.fields.lastGeneratedAt' | translate }}</dt>
+      <dd>{{ data.lastGeneratedAt | date: 'medium' }}</dd>
+    }
+
+    @if (data.description) {
+      <dt>{{ 'reports.fields.description' | translate }}</dt>
+      <dd>{{ data.description }}</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'reports.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

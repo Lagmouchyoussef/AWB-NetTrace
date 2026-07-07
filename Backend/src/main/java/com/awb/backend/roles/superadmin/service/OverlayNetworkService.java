@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.OverlayNetworkRequest;
 import com.awb.backend.core.dto.OverlayNetworkResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Datacenter;
 import com.awb.backend.core.entity.OverlayNetwork;
 import com.awb.backend.core.entity.OverlayNetworkStatus;
 import com.awb.backend.core.repository.DatacenterRepository;
 import com.awb.backend.core.repository.OverlayNetworkRepository;
 import com.awb.backend.core.repository.OverlayNetworkSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,12 +24,15 @@ public class OverlayNetworkService {
 
   private final OverlayNetworkRepository overlayNetworkRepository;
   private final DatacenterRepository datacenterRepository;
+  private final AuditLogWriter auditLogWriter;
 
   public OverlayNetworkService(
       OverlayNetworkRepository overlayNetworkRepository,
-      DatacenterRepository datacenterRepository) {
+      DatacenterRepository datacenterRepository,
+      AuditLogWriter auditLogWriter) {
     this.overlayNetworkRepository = overlayNetworkRepository;
     this.datacenterRepository = datacenterRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -47,7 +52,7 @@ public class OverlayNetworkService {
   }
 
   @Transactional
-  public OverlayNetworkResponse create(OverlayNetworkRequest request) {
+  public OverlayNetworkResponse create(OverlayNetworkRequest request, String actorUsername) {
     if (overlayNetworkRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "An overlay network with this code already exists.");
@@ -63,11 +68,13 @@ public class OverlayNetworkService {
     Instant now = Instant.now();
     overlay.setCreatedAt(now);
     overlay.setUpdatedAt(now);
-    return toResponse(overlayNetworkRepository.save(overlay));
+    OverlayNetworkResponse response = toResponse(overlayNetworkRepository.save(overlay));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "OverlayNetwork", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public OverlayNetworkResponse update(Long id, OverlayNetworkRequest request) {
+  public OverlayNetworkResponse update(Long id, OverlayNetworkRequest request, String actorUsername) {
     OverlayNetwork overlay = findActiveOrThrow(id);
     if (overlayNetworkRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -81,15 +88,18 @@ public class OverlayNetworkService {
     overlay.setDatacenter(findActiveDatacenterOrThrow(request.getDatacenterId()));
     applyRequest(overlay, request);
     overlay.setUpdatedAt(Instant.now());
-    return toResponse(overlayNetworkRepository.save(overlay));
+    OverlayNetworkResponse response = toResponse(overlayNetworkRepository.save(overlay));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "OverlayNetwork", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     OverlayNetwork overlay = findActiveOrThrow(id);
     overlay.setDeleted(true);
     overlay.setUpdatedAt(Instant.now());
     overlayNetworkRepository.save(overlay);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "OverlayNetwork", overlay.getName(), null);
   }
 
   private OverlayNetwork findActiveOrThrow(Long id) {

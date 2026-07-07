@@ -1,0 +1,90 @@
+<h2 mat-dialog-title>
+  {{ (isEdit ? 'reports.editTitle' : 'reports.createTitle') | translate }}
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'reports.fields.name' | translate }}</mat-label>
+        <input matInput formControlName="name" required />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <mat-error>{{ 'reports.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'reports.fields.code' | translate }}</mat-label>
+        <input matInput formControlName="code" required />
+        @if (form.controls.code.invalid && form.controls.code.touched) {
+          <mat-error>{{ 'reports.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'reports.fields.reportType' | translate }}</mat-label>
+        <mat-select formControlName="reportType">
+          @for (type of reportTypes; track type) {
+            <mat-option [value]="type">{{ 'reports.reportType.' + type | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'reports.fields.format' | translate }}</mat-label>
+        <mat-select formControlName="format">
+          @for (format of formats; track format) {
+            <mat-option [value]="format">{{ 'reports.format.' + format | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'reports.fields.schedule' | translate }}</mat-label>
+        <mat-select formControlName="schedule">
+          @for (schedule of schedules; track schedule) {
+            <mat-option [value]="schedule">{{
+              'reports.schedule.' + schedule | translate
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'reports.fields.status' | translate }}</mat-label>
+        <mat-select formControlName="status">
+          @for (status of statuses; track status) {
+            <mat-option [value]="status">{{ 'reports.status.' + status | translate }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'reports.fields.lastGeneratedAt' | translate }}</mat-label>
+        <input matInput type="datetime-local" formControlName="lastGeneratedAt" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'reports.fields.description' | translate }}</mat-label>
+        <textarea matInput formControlName="description" rows="2"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'reports.fields.notes' | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+
+    @if (errorKey()) {
+      <p class="form-error">{{ errorKey() | translate }}</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" class="dialog-button dialog-button-cancel" (click)="cancel()">
+      {{ 'common.cancel' | translate }}
+    </button>
+    <button type="submit" class="dialog-button dialog-button-confirm" [disabled]="saving()">
+      {{ (saving() ? 'common.saving' : 'common.save') | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>

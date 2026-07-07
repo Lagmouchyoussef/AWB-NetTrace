@@ -2,11 +2,13 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.DatacenterRequest;
 import com.awb.backend.core.dto.DatacenterResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Datacenter;
 import com.awb.backend.core.entity.DatacenterStatus;
 import com.awb.backend.core.entity.DatacenterTier;
 import com.awb.backend.core.repository.DatacenterRepository;
 import com.awb.backend.core.repository.DatacenterSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,9 +21,11 @@ import org.springframework.web.server.ResponseStatusException;
 public class DatacenterService {
 
   private final DatacenterRepository datacenterRepository;
+  private final AuditLogWriter auditLogWriter;
 
-  public DatacenterService(DatacenterRepository datacenterRepository) {
+  public DatacenterService(DatacenterRepository datacenterRepository, AuditLogWriter auditLogWriter) {
     this.datacenterRepository = datacenterRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   public Page<DatacenterResponse> list(
@@ -38,7 +42,7 @@ public class DatacenterService {
     return toResponse(findActiveOrThrow(id));
   }
 
-  public DatacenterResponse create(DatacenterRequest request) {
+  public DatacenterResponse create(DatacenterRequest request, String actorUsername) {
     if (datacenterRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A datacenter with this code already exists.");
@@ -49,10 +53,12 @@ public class DatacenterService {
     Instant now = Instant.now();
     datacenter.setCreatedAt(now);
     datacenter.setUpdatedAt(now);
-    return toResponse(datacenterRepository.save(datacenter));
+    DatacenterResponse response = toResponse(datacenterRepository.save(datacenter));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "Datacenter", response.getName(), null);
+    return response;
   }
 
-  public DatacenterResponse update(Long id, DatacenterRequest request) {
+  public DatacenterResponse update(Long id, DatacenterRequest request, String actorUsername) {
     Datacenter datacenter = findActiveOrThrow(id);
     if (datacenterRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -61,14 +67,17 @@ public class DatacenterService {
 
     applyRequest(datacenter, request);
     datacenter.setUpdatedAt(Instant.now());
-    return toResponse(datacenterRepository.save(datacenter));
+    DatacenterResponse response = toResponse(datacenterRepository.save(datacenter));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "Datacenter", response.getName(), null);
+    return response;
   }
 
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     Datacenter datacenter = findActiveOrThrow(id);
     datacenter.setDeleted(true);
     datacenter.setUpdatedAt(Instant.now());
     datacenterRepository.save(datacenter);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "Datacenter", datacenter.getName(), null);
   }
 
   private Datacenter findActiveOrThrow(Long id) {

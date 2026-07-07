@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 import { AuthService } from './auth.service';
 import { DashboardService } from './dashboard.service';
+import { DcAdminDashboardService } from './dc-admin-dashboard.service';
 
 export interface AppNotification {
   id: string;
@@ -27,6 +28,7 @@ export class NotificationService {
   private readonly authService = inject(AuthService);
   private readonly translateService = inject(TranslateService);
   private readonly dashboardService = inject(DashboardService);
+  private readonly dcAdminDashboardService = inject(DcAdminDashboardService);
 
   private eventSource: EventSource | null = null;
   private readonly notifications$ = new BehaviorSubject<AppNotification[]>([]);
@@ -51,7 +53,13 @@ export class NotificationService {
         const payload = JSON.parse((event as MessageEvent<string>).data) as NotificationEventPayload;
         const notification = this.toAppNotification(payload);
         this.notifications$.next([notification, ...this.notifications$.value].slice(0, MAX_NOTIFICATIONS));
-        this.dashboardService.triggerRefresh();
+        // Only refresh the dashboard matching the signed-in role - the other role's endpoint
+        // would 403 for this user's token.
+        if (this.authService.currentRole() === 'DC_ADMIN') {
+          this.dcAdminDashboardService.triggerRefresh();
+        } else {
+          this.dashboardService.triggerRefresh();
+        }
       });
     });
   }

@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'topologyLinks.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'topologyLinks.fields.source' | translate }}</dt>
+    <dd>{{ data.sourceRoleName }}</dd>
+
+    <dt>{{ 'topologyLinks.fields.target' | translate }}</dt>
+    <dd>{{ data.targetRoleName }}</dd>
+
+    <dt>{{ 'topologyLinks.fields.linkType' | translate }}</dt>
+    <dd>{{ 'topologyLinks.linkType.' + data.linkType | translate }}</dd>
+
+    <dt>{{ 'topologyLinks.fields.speedGbps' | translate }}</dt>
+    <dd>{{ data.speedGbps }} Gbps</dd>
+
+    <dt>{{ 'topologyLinks.fields.status' | translate }}</dt>
+    <dd>{{ 'topologyLinks.status.' + data.status | translate }}</dd>
+
+    @if (data.notes) {
+      <dt>{{ 'topologyLinks.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

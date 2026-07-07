@@ -2,6 +2,7 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.InterventionRequest;
 import com.awb.backend.core.dto.InterventionResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Device;
 import com.awb.backend.core.entity.Intervention;
 import com.awb.backend.core.entity.InterventionPriority;
@@ -9,6 +10,7 @@ import com.awb.backend.core.entity.InterventionStatus;
 import com.awb.backend.core.repository.DeviceRepository;
 import com.awb.backend.core.repository.InterventionRepository;
 import com.awb.backend.core.repository.InterventionSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,11 +25,15 @@ public class InterventionService {
 
   private final InterventionRepository interventionRepository;
   private final DeviceRepository deviceRepository;
+  private final AuditLogWriter auditLogWriter;
 
   public InterventionService(
-      InterventionRepository interventionRepository, DeviceRepository deviceRepository) {
+      InterventionRepository interventionRepository,
+      DeviceRepository deviceRepository,
+      AuditLogWriter auditLogWriter) {
     this.interventionRepository = interventionRepository;
     this.deviceRepository = deviceRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -47,31 +53,36 @@ public class InterventionService {
   }
 
   @Transactional
-  public InterventionResponse create(InterventionRequest request) {
+  public InterventionResponse create(InterventionRequest request, String actorUsername) {
     Intervention intervention = new Intervention();
     intervention.setDevice(findActiveDeviceOrThrow(request.getDeviceId()));
     applyRequest(intervention, request);
     Instant now = Instant.now();
     intervention.setCreatedAt(now);
     intervention.setUpdatedAt(now);
-    return toResponse(interventionRepository.save(intervention));
+    InterventionResponse response = toResponse(interventionRepository.save(intervention));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "Intervention", response.getTitle(), null);
+    return response;
   }
 
   @Transactional
-  public InterventionResponse update(Long id, InterventionRequest request) {
+  public InterventionResponse update(Long id, InterventionRequest request, String actorUsername) {
     Intervention intervention = findActiveOrThrow(id);
     intervention.setDevice(findActiveDeviceOrThrow(request.getDeviceId()));
     applyRequest(intervention, request);
     intervention.setUpdatedAt(Instant.now());
-    return toResponse(interventionRepository.save(intervention));
+    InterventionResponse response = toResponse(interventionRepository.save(intervention));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "Intervention", response.getTitle(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     Intervention intervention = findActiveOrThrow(id);
     intervention.setDeleted(true);
     intervention.setUpdatedAt(Instant.now());
     interventionRepository.save(intervention);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "Intervention", intervention.getTitle(), null);
   }
 
   private Intervention findActiveOrThrow(Long id) {

@@ -15,12 +15,16 @@
     "forgotSuccess": "إذا كان هناك حساب مرتبط بهذا الاسم، فقد تم إخطار المسؤول."
   },
   "roles": {
-    "superAdmin": "المسؤول العام"
+    "superAdmin": "المسؤول العام",
+    "dcAdmin": "مسؤول مركز البيانات"
   },
   "nav": {
     "dashboard": "لوحة التحكم",
     "physicalInfrastructure": "البنية التحتية المادية",
     "datacenters": "مراكز البيانات",
+    "myDatacenters": "مراكز البيانات الخاصة بي",
+    "allInterventions": "كل التدخلات",
+    "approvalQueue": "قائمة الموافقات",
     "rooms": "الغرف",
     "racks": "الحوامل",
     "devices": "الأجهزة",
@@ -69,10 +73,14 @@
     "system": "النظام",
     "myAccount": "حسابي",
     "logout": "تسجيل الخروج",
-    "logoutConfirm": "تسجيل الخروج من جلستك الحالية"
+    "logoutConfirm": "تسجيل الخروج من جلستك الحالية",
+    "assignedDatacenters": "مراكز البيانات المخصصة"
   },
   "placeholder": {
     "notBuiltYet": "هذه الصفحة لم تُبنَ بعد — ستتوفر في مرحلة لاحقة من وحدة المسؤول العام."
+  },
+  "dcAdminDashboard": {
+    "title": "مساحة مسؤول مركز البيانات"
   },
   "dashboard": {
     "title": "مساحة المسؤول العام",

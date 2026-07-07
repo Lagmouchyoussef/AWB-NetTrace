@@ -27,6 +27,7 @@ export class AppShellComponent {
 
   readonly sections = input.required<NavSection[]>();
   readonly roleLabelKey = input.required<string>();
+  readonly scopeLabel = input<string | null>(null);
 
   private readonly isHandset = toSignal(
     this.breakpointObserver.observe(Breakpoints.Handset).pipe(map((result) => result.matches)),

@@ -2,11 +2,13 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.TechnologyCatalogRequest;
 import com.awb.backend.core.dto.TechnologyCatalogResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.TechnologyCatalogEntry;
 import com.awb.backend.core.entity.TechnologyCatalogStatus;
 import com.awb.backend.core.entity.TechnologyCategory;
 import com.awb.backend.core.repository.TechnologyCatalogRepository;
 import com.awb.backend.core.repository.TechnologyCatalogSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,9 +22,12 @@ import org.springframework.web.server.ResponseStatusException;
 public class TechnologyCatalogService {
 
   private final TechnologyCatalogRepository technologyCatalogRepository;
+  private final AuditLogWriter auditLogWriter;
 
-  public TechnologyCatalogService(TechnologyCatalogRepository technologyCatalogRepository) {
+  public TechnologyCatalogService(
+      TechnologyCatalogRepository technologyCatalogRepository, AuditLogWriter auditLogWriter) {
     this.technologyCatalogRepository = technologyCatalogRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -45,7 +50,7 @@ public class TechnologyCatalogService {
   }
 
   @Transactional
-  public TechnologyCatalogResponse create(TechnologyCatalogRequest request) {
+  public TechnologyCatalogResponse create(TechnologyCatalogRequest request, String actorUsername) {
     if (technologyCatalogRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A technology catalog entry with this code already exists.");
@@ -56,11 +61,15 @@ public class TechnologyCatalogService {
     Instant now = Instant.now();
     entry.setCreatedAt(now);
     entry.setUpdatedAt(now);
-    return toResponse(technologyCatalogRepository.save(entry));
+    TechnologyCatalogResponse response = toResponse(technologyCatalogRepository.save(entry));
+    auditLogWriter.log(
+        actorUsername, AuditAction.CREATE, "TechnologyCatalogEntry", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public TechnologyCatalogResponse update(Long id, TechnologyCatalogRequest request) {
+  public TechnologyCatalogResponse update(
+      Long id, TechnologyCatalogRequest request, String actorUsername) {
     TechnologyCatalogEntry entry = findActiveOrThrow(id);
     if (technologyCatalogRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -69,15 +78,20 @@ public class TechnologyCatalogService {
 
     applyRequest(entry, request);
     entry.setUpdatedAt(Instant.now());
-    return toResponse(technologyCatalogRepository.save(entry));
+    TechnologyCatalogResponse response = toResponse(technologyCatalogRepository.save(entry));
+    auditLogWriter.log(
+        actorUsername, AuditAction.UPDATE, "TechnologyCatalogEntry", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     TechnologyCatalogEntry entry = findActiveOrThrow(id);
     entry.setDeleted(true);
     entry.setUpdatedAt(Instant.now());
     technologyCatalogRepository.save(entry);
+    auditLogWriter.log(
+        actorUsername, AuditAction.DELETE, "TechnologyCatalogEntry", entry.getName(), null);
   }
 
   private TechnologyCatalogEntry findActiveOrThrow(Long id) {

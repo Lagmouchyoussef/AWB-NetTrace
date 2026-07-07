@@ -2,11 +2,13 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.ReportRequest;
 import com.awb.backend.core.dto.ReportResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Report;
 import com.awb.backend.core.entity.ReportStatus;
 import com.awb.backend.core.entity.ReportType;
 import com.awb.backend.core.repository.ReportRepository;
 import com.awb.backend.core.repository.ReportSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,9 +22,11 @@ import org.springframework.web.server.ResponseStatusException;
 public class ReportService {
 
   private final ReportRepository reportRepository;
+  private final AuditLogWriter auditLogWriter;
 
-  public ReportService(ReportRepository reportRepository) {
+  public ReportService(ReportRepository reportRepository, AuditLogWriter auditLogWriter) {
     this.reportRepository = reportRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -42,7 +46,7 @@ public class ReportService {
   }
 
   @Transactional
-  public ReportResponse create(ReportRequest request) {
+  public ReportResponse create(ReportRequest request, String actorUsername) {
     if (reportRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A report with this code already exists.");
@@ -53,11 +57,13 @@ public class ReportService {
     Instant now = Instant.now();
     report.setCreatedAt(now);
     report.setUpdatedAt(now);
-    return toResponse(reportRepository.save(report));
+    ReportResponse response = toResponse(reportRepository.save(report));
+    auditLogWriter.log(actorUsername, AuditAction.CREATE, "Report", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public ReportResponse update(Long id, ReportRequest request) {
+  public ReportResponse update(Long id, ReportRequest request, String actorUsername) {
     Report report = findActiveOrThrow(id);
     if (reportRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -66,15 +72,18 @@ public class ReportService {
 
     applyRequest(report, request);
     report.setUpdatedAt(Instant.now());
-    return toResponse(reportRepository.save(report));
+    ReportResponse response = toResponse(reportRepository.save(report));
+    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "Report", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     Report report = findActiveOrThrow(id);
     report.setDeleted(true);
     report.setUpdatedAt(Instant.now());
     reportRepository.save(report);
+    auditLogWriter.log(actorUsername, AuditAction.DELETE, "Report", report.getName(), null);
   }
 
   private Report findActiveOrThrow(Long id) {

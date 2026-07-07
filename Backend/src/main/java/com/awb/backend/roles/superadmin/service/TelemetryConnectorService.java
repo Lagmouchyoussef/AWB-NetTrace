@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.TelemetryConnectorRequest;
 import com.awb.backend.core.dto.TelemetryConnectorResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Device;
 import com.awb.backend.core.entity.TelemetryConnector;
 import com.awb.backend.core.entity.TelemetryConnectorStatus;
 import com.awb.backend.core.repository.DeviceRepository;
 import com.awb.backend.core.repository.TelemetryConnectorRepository;
 import com.awb.backend.core.repository.TelemetryConnectorSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,12 +24,15 @@ public class TelemetryConnectorService {
 
   private final TelemetryConnectorRepository telemetryConnectorRepository;
   private final DeviceRepository deviceRepository;
+  private final AuditLogWriter auditLogWriter;
 
   public TelemetryConnectorService(
       TelemetryConnectorRepository telemetryConnectorRepository,
-      DeviceRepository deviceRepository) {
+      DeviceRepository deviceRepository,
+      AuditLogWriter auditLogWriter) {
     this.telemetryConnectorRepository = telemetryConnectorRepository;
     this.deviceRepository = deviceRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -46,7 +51,7 @@ public class TelemetryConnectorService {
   }
 
   @Transactional
-  public TelemetryConnectorResponse create(TelemetryConnectorRequest request) {
+  public TelemetryConnectorResponse create(TelemetryConnectorRequest request, String actorUsername) {
     if (telemetryConnectorRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A telemetry connector with this code already exists.");
@@ -58,11 +63,15 @@ public class TelemetryConnectorService {
     Instant now = Instant.now();
     connector.setCreatedAt(now);
     connector.setUpdatedAt(now);
-    return toResponse(telemetryConnectorRepository.save(connector));
+    TelemetryConnectorResponse response = toResponse(telemetryConnectorRepository.save(connector));
+    auditLogWriter.log(
+        actorUsername, AuditAction.CREATE, "TelemetryConnector", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public TelemetryConnectorResponse update(Long id, TelemetryConnectorRequest request) {
+  public TelemetryConnectorResponse update(
+      Long id, TelemetryConnectorRequest request, String actorUsername) {
     TelemetryConnector connector = findActiveOrThrow(id);
     if (telemetryConnectorRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -72,15 +81,20 @@ public class TelemetryConnectorService {
     connector.setDevice(findActiveDeviceOrThrow(request.getDeviceId()));
     applyRequest(connector, request);
     connector.setUpdatedAt(Instant.now());
-    return toResponse(telemetryConnectorRepository.save(connector));
+    TelemetryConnectorResponse response = toResponse(telemetryConnectorRepository.save(connector));
+    auditLogWriter.log(
+        actorUsername, AuditAction.UPDATE, "TelemetryConnector", response.getName(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     TelemetryConnector connector = findActiveOrThrow(id);
     connector.setDeleted(true);
     connector.setUpdatedAt(Instant.now());
     telemetryConnectorRepository.save(connector);
+    auditLogWriter.log(
+        actorUsername, AuditAction.DELETE, "TelemetryConnector", connector.getName(), null);
   }
 
   private TelemetryConnector findActiveOrThrow(Long id) {

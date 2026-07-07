@@ -2,12 +2,14 @@ package com.awb.backend.roles.superadmin.service;
 
 import com.awb.backend.core.dto.RolePermissionRequest;
 import com.awb.backend.core.dto.RolePermissionResponse;
+import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.Permission;
 import com.awb.backend.core.entity.Role;
 import com.awb.backend.core.entity.RolePermission;
 import com.awb.backend.core.repository.PermissionRepository;
 import com.awb.backend.core.repository.RolePermissionRepository;
 import com.awb.backend.core.repository.RolePermissionSpecifications;
+import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,12 +24,15 @@ public class RolePermissionService {
 
   private final RolePermissionRepository rolePermissionRepository;
   private final PermissionRepository permissionRepository;
+  private final AuditLogWriter auditLogWriter;
 
   public RolePermissionService(
       RolePermissionRepository rolePermissionRepository,
-      PermissionRepository permissionRepository) {
+      PermissionRepository permissionRepository,
+      AuditLogWriter auditLogWriter) {
     this.rolePermissionRepository = rolePermissionRepository;
     this.permissionRepository = permissionRepository;
+    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -45,7 +50,7 @@ public class RolePermissionService {
   }
 
   @Transactional
-  public RolePermissionResponse create(RolePermissionRequest request) {
+  public RolePermissionResponse create(RolePermissionRequest request, String actorUsername) {
     if (rolePermissionRepository.existsByRoleAndPermissionIdAndDeletedFalse(
         request.getRole(), request.getPermissionId())) {
       throw new ResponseStatusException(
@@ -58,11 +63,14 @@ public class RolePermissionService {
     Instant now = Instant.now();
     rolePermission.setCreatedAt(now);
     rolePermission.setUpdatedAt(now);
-    return toResponse(rolePermissionRepository.save(rolePermission));
+    RolePermissionResponse response = toResponse(rolePermissionRepository.save(rolePermission));
+    auditLogWriter.log(
+        actorUsername, AuditAction.CREATE, "RolePermission", response.getRole().name(), null);
+    return response;
   }
 
   @Transactional
-  public RolePermissionResponse update(Long id, RolePermissionRequest request) {
+  public RolePermissionResponse update(Long id, RolePermissionRequest request, String actorUsername) {
     RolePermission rolePermission = findActiveOrThrow(id);
     if (rolePermissionRepository.existsByRoleAndPermissionIdAndDeletedFalseAndIdNot(
         request.getRole(), request.getPermissionId(), id)) {
@@ -73,15 +81,20 @@ public class RolePermissionService {
     rolePermission.setPermission(findActivePermissionOrThrow(request.getPermissionId()));
     applyRequest(rolePermission, request);
     rolePermission.setUpdatedAt(Instant.now());
-    return toResponse(rolePermissionRepository.save(rolePermission));
+    RolePermissionResponse response = toResponse(rolePermissionRepository.save(rolePermission));
+    auditLogWriter.log(
+        actorUsername, AuditAction.UPDATE, "RolePermission", response.getRole().name(), null);
+    return response;
   }
 
   @Transactional
-  public void delete(Long id) {
+  public void delete(Long id, String actorUsername) {
     RolePermission rolePermission = findActiveOrThrow(id);
     rolePermission.setDeleted(true);
     rolePermission.setUpdatedAt(Instant.now());
     rolePermissionRepository.save(rolePermission);
+    auditLogWriter.log(
+        actorUsername, AuditAction.DELETE, "RolePermission", rolePermission.getRole().name(), null);
   }
 
   private RolePermission findActiveOrThrow(Long id) {

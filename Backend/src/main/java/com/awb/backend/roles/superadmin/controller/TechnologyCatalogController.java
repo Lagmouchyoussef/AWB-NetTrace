@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,19 +47,22 @@ public class TechnologyCatalogController {
 
   @PostMapping
   public ResponseEntity<TechnologyCatalogResponse> create(
-      @Valid @RequestBody TechnologyCatalogRequest request) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(technologyCatalogService.create(request));
+      @Valid @RequestBody TechnologyCatalogRequest request, Authentication authentication) {
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(technologyCatalogService.create(request, authentication.getName()));
   }
 
   @PutMapping("/{id}")
   public TechnologyCatalogResponse update(
-      @PathVariable Long id, @Valid @RequestBody TechnologyCatalogRequest request) {
-    return technologyCatalogService.update(id, request);
+      @PathVariable Long id,
+      @Valid @RequestBody TechnologyCatalogRequest request,
+      Authentication authentication) {
+    return technologyCatalogService.update(id, request, authentication.getName());
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> delete(@PathVariable Long id) {
-    technologyCatalogService.delete(id);
+  public ResponseEntity<Void> delete(@PathVariable Long id, Authentication authentication) {
+    technologyCatalogService.delete(id, authentication.getName());
     return ResponseEntity.noContent().build();
   }
 }

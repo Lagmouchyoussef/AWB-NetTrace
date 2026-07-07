@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'racks.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'racks.fields.room' | translate }}</dt>
+    <dd>{{ data.roomName }}</dd>
+
+    <dt>{{ 'racks.fields.heightU' | translate }}</dt>
+    <dd>{{ data.heightU }}U</dd>
+
+    <dt>{{ 'racks.fields.containment' | translate }}</dt>
+    <dd>{{ 'racks.containment.' + data.containment | translate }}</dd>
+
+    <dt>{{ 'racks.fields.status' | translate }}</dt>
+    <dd>{{ 'racks.status.' + data.status | translate }}</dd>
+
+    <dt>{{ 'racks.fields.powerCapacityKw' | translate }}</dt>
+    <dd>{{ data.powerCapacityKw }} kW</dd>
+
+    @if (data.currentPowerDrawKw !== null) {
+      <dt>{{ 'racks.fields.currentPowerDrawKw' | translate }}</dt>
+      <dd>{{ data.currentPowerDrawKw }} kW</dd>
+    }
+
+    @if (data.maxWeightKg !== null) {
+      <dt>{{ 'racks.fields.maxWeightKg' | translate }}</dt>
+      <dd>{{ data.maxWeightKg }} kg</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'racks.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

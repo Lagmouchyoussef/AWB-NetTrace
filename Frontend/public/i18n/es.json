@@ -15,12 +15,16 @@
     "forgotSuccess": "Si existe una cuenta con este usuario, se ha notificado a su administrador."
   },
   "roles": {
-    "superAdmin": "Superadministrador"
+    "superAdmin": "Superadministrador",
+    "dcAdmin": "Administrador de Datacenter"
   },
   "nav": {
     "dashboard": "Panel de control",
     "physicalInfrastructure": "Infraestructura física",
     "datacenters": "Centros de datos",
+    "myDatacenters": "Mis centros de datos",
+    "allInterventions": "Todas las intervenciones",
+    "approvalQueue": "Cola de aprobación",
     "rooms": "Salas",
     "racks": "Racks",
     "devices": "Dispositivos",
@@ -69,10 +73,14 @@
     "system": "Sistema",
     "myAccount": "Mi cuenta",
     "logout": "Cerrar sesión",
-    "logoutConfirm": "Cerrar tu sesión actual"
+    "logoutConfirm": "Cerrar tu sesión actual",
+    "assignedDatacenters": "Datacenters asignados"
   },
   "placeholder": {
     "notBuiltYet": "Esta página aún no está construida — llegará en una etapa posterior del módulo Super Admin."
+  },
+  "dcAdminDashboard": {
+    "title": "Espacio de Administrador de Datacenter"
   },
   "dashboard": {
     "title": "Espacio de Superadministrador",
