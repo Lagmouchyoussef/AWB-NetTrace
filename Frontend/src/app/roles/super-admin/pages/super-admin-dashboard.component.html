@@ -29,6 +29,75 @@
         <span class="stat-value">{{ s.activeInterventionsCount }}</span>
         <span class="stat-label">{{ 'dashboard.stats.activeInterventions' | translate }}</span>
       </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ s.activityTodayCount }}</span>
+        <span class="stat-label">{{ 'dashboard.stats.activityToday' | translate }}</span>
+      </div>
+    </div>
+
+    <div class="date-range-row">
+      <span class="date-range-label">{{ 'dashboard.dateRange.label' | translate }}</span>
+      <div class="date-range-buttons">
+        <button
+          type="button"
+          class="date-range-button"
+          [class.active]="daysRange() === 7"
+          (click)="setDaysRange(7)"
+        >
+          {{ 'dashboard.dateRange.last7' | translate }}
+        </button>
+        <button
+          type="button"
+          class="date-range-button"
+          [class.active]="daysRange() === 14"
+          (click)="setDaysRange(14)"
+        >
+          {{ 'dashboard.dateRange.last14' | translate }}
+        </button>
+        <button
+          type="button"
+          class="date-range-button"
+          [class.active]="daysRange() === 30"
+          (click)="setDaysRange(30)"
+        >
+          {{ 'dashboard.dateRange.last30' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="charts-grid-2col">
+      <app-stat-chart
+        [data]="activityTrendData()"
+        titleKey="dashboard.charts.activityTrend"
+        initialMode="line"
+      />
+      <app-stat-chart
+        [data]="activityByEntityTypeData()"
+        titleKey="dashboard.charts.activityByEntityType"
+        initialMode="bar"
+      />
+    </div>
+
+    <div class="charts-grid-3col">
+      <app-stat-chart
+        [data]="infraHealthData()"
+        titleKey="dashboard.charts.infraHealth"
+        initialMode="donut"
+      />
+
+      <app-stat-chart
+        [data]="interventionsByPriorityData()"
+        titleKey="dashboard.charts.interventionsByPriority"
+        initialMode="bar"
+        [showLegend]="true"
+      />
+
+      <app-stat-chart
+        [data]="anomaliesBySeverityData()"
+        titleKey="dashboard.charts.anomaliesBySeverity"
+        initialMode="bar"
+        [showLegend]="true"
+      />
     </div>
 
     <div class="panels-grid">

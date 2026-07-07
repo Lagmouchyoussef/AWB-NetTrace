@@ -41,7 +41,7 @@
         <span class="badge">{{ unreadCount() }}</span>
       }
     </button>
-    <mat-menu #notifMenu="matMenu" class="topbar-menu notif-menu">
+    <mat-menu #notifMenu="matMenu" class="topbar-menu notif-menu" (closed)="onNotifMenuClosed()">
       <div class="menu-header">
         <span>{{ 'topbar.notifications' | translate }}</span>
         @if (unreadCount() > 0) {

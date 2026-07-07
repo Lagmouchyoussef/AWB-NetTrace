@@ -85,7 +85,8 @@
       "racks": "الحوامل",
       "devices": "الأجهزة",
       "openAnomalies": "الحالات الشاذة المفتوحة",
-      "activeInterventions": "التدخلات النشطة"
+      "activeInterventions": "التدخلات النشطة",
+      "activityToday": "نشاط اليوم"
     },
     "panels": {
       "aiInsights": "رؤى الذكاء الاصطناعي",
@@ -104,6 +105,36 @@
       "LOGOUT": "سجل الخروج",
       "EXPORT": "صدّر",
       "CONFIG_CHANGE": "غيّر الإعدادات لـ"
+    },
+    "charts": {
+      "activityTrend": "اتجاه النشاط",
+      "activityByEntityType": "النشاط حسب نوع العنصر",
+      "infraHealth": "سلامة البنية التحتية",
+      "interventionsByPriority": "التدخلات حسب الأولوية",
+      "anomaliesBySeverity": "الحالات الشاذة حسب الخطورة"
+    },
+    "dateRange": {
+      "label": "الفترة:",
+      "last7": "7 أيام",
+      "last14": "14 يومًا",
+      "last30": "30 يومًا"
+    },
+    "chart": {
+      "viewAsTable": "عرض كجدول",
+      "viewAsChart": "عرض كرسم بياني",
+      "modeBar": "عرض أعمدة",
+      "modeLine": "عرض منحنى",
+      "modeDonut": "عرض دائري",
+      "date": "التاريخ",
+      "value": "القيمة",
+      "category": "الفئة",
+      "total": "المجموع"
+    },
+    "entityType": {
+      "OTHER": "أخرى"
+    },
+    "health": {
+      "active": "نشط"
     }
   },
   "common": {

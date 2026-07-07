@@ -19,6 +19,25 @@ body {
   --awb-content-bg: light-dark(#f4f5f7, #17181a);
   --awb-border: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.08));
   --awb-hover: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.06));
+
+  /* Dashboard chart palette — validated with the dataviz skill's six-checks script
+     (scripts/validate_palette.js) against this app's actual --awb-surface hexes,
+     both light and dark. Status colors are the fixed reference scale (never themed);
+     series-1 is the app's own brand orange; ordinal-1..5 is a single-hue red ramp
+     for the 5-level anomaly severity scale (1=lightest/INFO, 5=darkest/CRITICAL). */
+  --chart-surface: var(--awb-surface);
+  --chart-series-1: light-dark(#f47920, #d9660a);
+  --chart-good: #0ca30c;
+  --chart-warning: #fab219;
+  --chart-serious: #ec835a;
+  --chart-critical: #d03b3b;
+  --chart-ordinal-1: light-dark(#e2a3a3, #f0b8b8);
+  --chart-ordinal-2: light-dark(#d98080, #e69494);
+  --chart-ordinal-3: light-dark(#cc5a5a, #db6f6f);
+  --chart-ordinal-4: light-dark(#bb3838, #cf4a4a);
+  --chart-ordinal-5: light-dark(#961e1e, #c02929);
+  --chart-grid: var(--awb-border);
+  --chart-axis: var(--awb-on-surface-muted);
 }
 
 /* Self-hosted (no external CDN, required by the app's CSP: default-src 'self'). */

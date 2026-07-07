@@ -4,6 +4,7 @@ import com.awb.backend.core.dto.DashboardSummaryResponse;
 import com.awb.backend.roles.superadmin.service.DashboardService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,7 +18,7 @@ public class DashboardController {
   }
 
   @GetMapping("/summary")
-  public DashboardSummaryResponse getSummary() {
-    return dashboardService.getSummary();
+  public DashboardSummaryResponse getSummary(@RequestParam(defaultValue = "14") int days) {
+    return dashboardService.getSummary(days);
   }
 }

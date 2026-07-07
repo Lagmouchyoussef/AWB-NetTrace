@@ -85,7 +85,8 @@
       "racks": "Racks",
       "devices": "Equipos",
       "openAnomalies": "Anomalías abiertas",
-      "activeInterventions": "Intervenciones activas"
+      "activeInterventions": "Intervenciones activas",
+      "activityToday": "Actividad de hoy"
     },
     "panels": {
       "aiInsights": "Perspectivas de IA",
@@ -104,6 +105,36 @@
       "LOGOUT": "cerró sesión",
       "EXPORT": "exportó",
       "CONFIG_CHANGE": "cambió la configuración de"
+    },
+    "charts": {
+      "activityTrend": "Tendencia de actividad",
+      "activityByEntityType": "Actividad por tipo de elemento",
+      "infraHealth": "Salud de la infraestructura",
+      "interventionsByPriority": "Intervenciones por prioridad",
+      "anomaliesBySeverity": "Anomalías por gravedad"
+    },
+    "dateRange": {
+      "label": "Periodo:",
+      "last7": "7 días",
+      "last14": "14 días",
+      "last30": "30 días"
+    },
+    "chart": {
+      "viewAsTable": "Ver como tabla",
+      "viewAsChart": "Ver como gráfico",
+      "modeBar": "Vista de barras",
+      "modeLine": "Vista de línea",
+      "modeDonut": "Vista circular",
+      "date": "Fecha",
+      "value": "Valor",
+      "category": "Categoría",
+      "total": "Total"
+    },
+    "entityType": {
+      "OTHER": "Otro"
+    },
+    "health": {
+      "active": "Activo"
     }
   },
   "common": {

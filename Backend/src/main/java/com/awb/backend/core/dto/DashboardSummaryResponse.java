@@ -8,10 +8,15 @@ public class DashboardSummaryResponse {
   private InfraCounts infra;
   private long openAnomaliesCount;
   private long activeInterventionsCount;
+  private long activityTodayCount;
   private boolean aiConfigured;
   private List<InsightSummary> recentInsights;
   private List<InterventionSummary> recentInterventions;
   private List<ActivityItem> recentActivity;
+  private List<LabeledCount> activityTimeSeries;
+  private List<LabeledCount> activityByEntityType;
+  private List<LabeledCount> interventionsByPriority;
+  private List<LabeledCount> anomaliesBySeverity;
 
   public InfraCounts getInfra() {
     return infra;
@@ -67,6 +72,74 @@ public class DashboardSummaryResponse {
 
   public void setRecentActivity(List<ActivityItem> recentActivity) {
     this.recentActivity = recentActivity;
+  }
+
+  public long getActivityTodayCount() {
+    return activityTodayCount;
+  }
+
+  public void setActivityTodayCount(long activityTodayCount) {
+    this.activityTodayCount = activityTodayCount;
+  }
+
+  public List<LabeledCount> getActivityTimeSeries() {
+    return activityTimeSeries;
+  }
+
+  public void setActivityTimeSeries(List<LabeledCount> activityTimeSeries) {
+    this.activityTimeSeries = activityTimeSeries;
+  }
+
+  public List<LabeledCount> getActivityByEntityType() {
+    return activityByEntityType;
+  }
+
+  public void setActivityByEntityType(List<LabeledCount> activityByEntityType) {
+    this.activityByEntityType = activityByEntityType;
+  }
+
+  public List<LabeledCount> getInterventionsByPriority() {
+    return interventionsByPriority;
+  }
+
+  public void setInterventionsByPriority(List<LabeledCount> interventionsByPriority) {
+    this.interventionsByPriority = interventionsByPriority;
+  }
+
+  public List<LabeledCount> getAnomaliesBySeverity() {
+    return anomaliesBySeverity;
+  }
+
+  public void setAnomaliesBySeverity(List<LabeledCount> anomaliesBySeverity) {
+    this.anomaliesBySeverity = anomaliesBySeverity;
+  }
+
+  public static class LabeledCount {
+    private String label;
+    private long count;
+
+    public LabeledCount() {}
+
+    public LabeledCount(String label, long count) {
+      this.label = label;
+      this.count = count;
+    }
+
+    public String getLabel() {
+      return label;
+    }
+
+    public void setLabel(String label) {
+      this.label = label;
+    }
+
+    public long getCount() {
+      return count;
+    }
+
+    public void setCount(long count) {
+      this.count = count;
+    }
   }
 
   public static class InfraCounts {

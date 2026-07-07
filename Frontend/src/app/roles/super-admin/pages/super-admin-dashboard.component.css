@@ -51,6 +51,65 @@
   letter-spacing: 0.03em;
 }
 
+.date-range-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.date-range-label {
+  font-size: 0.8rem;
+  color: var(--awb-on-surface-muted);
+}
+
+.date-range-buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.date-range-button {
+  background: none;
+  border: 1px solid var(--awb-border);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.78rem;
+  color: var(--awb-on-surface-muted);
+  cursor: pointer;
+}
+
+.date-range-button:hover {
+  background: var(--awb-hover);
+}
+
+.date-range-button.active {
+  background: var(--chart-series-1);
+  border-color: var(--chart-series-1);
+  color: #fff;
+  font-weight: 600;
+}
+
+.charts-grid-2col {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.charts-grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .charts-grid-2col,
+  .charts-grid-3col {
+    grid-template-columns: 1fr;
+  }
+}
+
 .panels-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

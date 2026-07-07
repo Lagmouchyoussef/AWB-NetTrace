@@ -36,6 +36,10 @@ public class CorsConfig {
         new FilterRegistrationBean<>(new SecurityHeadersFilter());
     registration.addUrlPatterns("/*");
     registration.setOrder(Ordered.HIGHEST_PRECEDENCE);
+    // Required for the SSE notification stream: without this, Tomcat silently completes the
+    // response after the first dispatch instead of keeping it open for async writes, so
+    // SseEmitter.send() never actually reaches the client even though it throws no error.
+    registration.setAsyncSupported(true);
     return registration;
   }
 }

@@ -85,7 +85,8 @@
       "racks": "Baies",
       "devices": "Équipements",
       "openAnomalies": "Anomalies ouvertes",
-      "activeInterventions": "Interventions actives"
+      "activeInterventions": "Interventions actives",
+      "activityToday": "Activité aujourd'hui"
     },
     "panels": {
       "aiInsights": "Insights IA",
@@ -104,6 +105,36 @@
       "LOGOUT": "déconnecté",
       "EXPORT": "a exporté",
       "CONFIG_CHANGE": "a changé la configuration de"
+    },
+    "charts": {
+      "activityTrend": "Tendance d'activité",
+      "activityByEntityType": "Activité par type d'élément",
+      "infraHealth": "Santé de l'infrastructure",
+      "interventionsByPriority": "Interventions par priorité",
+      "anomaliesBySeverity": "Anomalies par sévérité"
+    },
+    "dateRange": {
+      "label": "Période :",
+      "last7": "7 jours",
+      "last14": "14 jours",
+      "last30": "30 jours"
+    },
+    "chart": {
+      "viewAsTable": "Voir en tableau",
+      "viewAsChart": "Voir en graphique",
+      "modeBar": "Vue en bâtons",
+      "modeLine": "Vue en courbe",
+      "modeDonut": "Vue en cercle",
+      "date": "Date",
+      "value": "Valeur",
+      "category": "Catégorie",
+      "total": "Total"
+    },
+    "entityType": {
+      "OTHER": "Autre"
+    },
+    "health": {
+      "active": "Actif"
     }
   },
   "common": {

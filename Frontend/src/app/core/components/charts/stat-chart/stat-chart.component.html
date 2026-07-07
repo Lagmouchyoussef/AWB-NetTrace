@@ -1,0 +1,225 @@
+<figure class="chart-card">
+  <div class="chart-header">
+    <h3>{{ titleKey() | translate }}</h3>
+    <div class="mode-switcher">
+      @if (availableModes().includes('bar')) {
+        <button
+          type="button"
+          class="mode-button"
+          [class.active]="mode() === 'bar'"
+          (click)="setMode('bar')"
+          [attr.aria-label]="'dashboard.chart.modeBar' | translate"
+          [title]="'dashboard.chart.modeBar' | translate"
+        >
+          <mat-icon fontSet="material-symbols-outlined">bar_chart</mat-icon>
+        </button>
+      }
+      @if (availableModes().includes('line')) {
+        <button
+          type="button"
+          class="mode-button"
+          [class.active]="mode() === 'line'"
+          (click)="setMode('line')"
+          [attr.aria-label]="'dashboard.chart.modeLine' | translate"
+          [title]="'dashboard.chart.modeLine' | translate"
+        >
+          <mat-icon fontSet="material-symbols-outlined">show_chart</mat-icon>
+        </button>
+      }
+      @if (availableModes().includes('donut')) {
+        <button
+          type="button"
+          class="mode-button"
+          [class.active]="mode() === 'donut'"
+          (click)="setMode('donut')"
+          [attr.aria-label]="'dashboard.chart.modeDonut' | translate"
+          [title]="'dashboard.chart.modeDonut' | translate"
+        >
+          <mat-icon fontSet="material-symbols-outlined">donut_large</mat-icon>
+        </button>
+      }
+      @if (availableModes().includes('table')) {
+        <button
+          type="button"
+          class="mode-button"
+          [class.active]="mode() === 'table'"
+          (click)="setMode('table')"
+          [attr.aria-label]="'dashboard.chart.viewAsTable' | translate"
+          [title]="'dashboard.chart.viewAsTable' | translate"
+        >
+          <mat-icon fontSet="material-symbols-outlined">table_rows</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+
+  @switch (mode()) {
+    @case ('table') {
+      <table class="chart-table">
+        <thead>
+          <tr>
+            <th>{{ 'dashboard.chart.category' | translate }}</th>
+            <th>{{ 'dashboard.chart.value' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (d of data(); track d.label) {
+            <tr>
+              <td>{{ d.label }}</td>
+              <td>{{ d.count }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+
+    @case ('donut') {
+      <div class="donut-layout">
+        <div class="donut-plot">
+          <svg [attr.viewBox]="donutViewBox" class="donut-svg">
+            <circle
+              [attr.cx]="donutCenter"
+              [attr.cy]="donutCenter"
+              [attr.r]="donutRadius"
+              class="donut-track"
+              [attr.stroke-width]="donutStroke"
+            />
+            @for (seg of donutSegments(); track seg.label; let i = $index) {
+              <circle
+                [attr.cx]="donutCenter"
+                [attr.cy]="donutCenter"
+                [attr.r]="donutRadius"
+                fill="none"
+                [attr.stroke-width]="donutStroke"
+                [attr.stroke-dasharray]="seg.dashArray"
+                [attr.stroke-dashoffset]="seg.dashOffset"
+                [style.stroke]="'var(--chart-' + seg.resolvedColorRole + ')'"
+                class="donut-segment"
+                [class.dimmed]="hoverIndex() !== null && hoverIndex() !== i"
+                transform="rotate(-90 90 90)"
+                (pointerenter)="onHover(i)"
+                (pointerleave)="onLeave()"
+              />
+            }
+          </svg>
+          <div class="donut-center">
+            @if (hoverIndex() !== null && donutSegments()[hoverIndex()!]; as hovered) {
+              <strong>{{ hovered.percentOfTotal }}%</strong>
+              <span>{{ hovered.label }}</span>
+            } @else {
+              <strong>{{ total() }}</strong>
+              <span>{{ 'dashboard.chart.total' | translate }}</span>
+            }
+          </div>
+        </div>
+        <div class="donut-legend">
+          @for (seg of donutSegments(); track seg.label; let i = $index) {
+            <div
+              class="donut-legend-item"
+              [class.active]="hoverIndex() === i"
+              (pointerenter)="onHover(i)"
+              (pointerleave)="onLeave()"
+            >
+              <span class="legend-swatch" [style.background]="'var(--chart-' + seg.resolvedColorRole + ')'"></span>
+              <span class="legend-label">{{ seg.label }}</span>
+              <span class="legend-value">{{ seg.percentOfTotal }}%</span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    @case ('line') {
+      <div class="chart-plot">
+        <svg [attr.viewBox]="viewBox" preserveAspectRatio="none" class="chart-svg">
+          <line x1="4" [attr.y1]="baselineY" x2="516" [attr.y2]="baselineY" class="chart-axis" />
+          @if (areaPath()) {
+            <path [attr.d]="areaPath()" class="chart-area" [style.fill]="'var(--chart-' + defaultColorRole() + ')'" />
+          }
+          @if (linePath()) {
+            <path [attr.d]="linePath()" class="chart-line" [style.stroke]="'var(--chart-' + defaultColorRole() + ')'" />
+          }
+          @if (hoveredPoint(); as hp) {
+            <line [attr.x1]="hp.x" [attr.x2]="hp.x" y1="10" [attr.y2]="baselineY" class="chart-crosshair" />
+          }
+          @for (point of points(); track point.label; let i = $index) {
+            <circle
+              [attr.cx]="point.x"
+              [attr.cy]="point.y"
+              r="4"
+              class="chart-dot"
+              [style.fill]="'var(--chart-' + defaultColorRole() + ')'"
+            />
+            <circle
+              [attr.cx]="point.x"
+              [attr.cy]="point.y"
+              r="12"
+              class="chart-hit"
+              (pointerenter)="onHover(i)"
+              (pointerleave)="onLeave()"
+              tabindex="0"
+              [attr.aria-label]="point.label + ': ' + point.count"
+            />
+          }
+        </svg>
+
+        @if (hoveredPoint(); as hp) {
+          <div class="chart-tooltip" [style.left.%]="hp.xPercent" [style.top.%]="hp.yPercent">
+            <strong>{{ hp.count }}</strong>
+            <span>{{ hp.label }}</span>
+          </div>
+        }
+
+        <div class="chart-x-labels">
+          @for (point of points(); track point.label; let i = $index) {
+            @if (i % labelStep() === 0) {
+              <span class="chart-x-label" [style.left.%]="point.xPercent">{{ point.label }}</span>
+            }
+          }
+        </div>
+      </div>
+    }
+
+    @default {
+      <div class="bar-list">
+        @for (bar of bars(); track bar.label; let i = $index) {
+          <div
+            class="bar-row"
+            (pointerenter)="onHover(i)"
+            (pointerleave)="onLeave()"
+            tabindex="0"
+            [attr.aria-label]="bar.label + ': ' + bar.count"
+          >
+            <span class="bar-label">{{ bar.label }}</span>
+            <span class="bar-track">
+              <span
+                class="bar-fill"
+                [style.width.%]="bar.percent"
+                [style.background]="'var(--chart-' + bar.resolvedColorRole + ')'"
+              ></span>
+            </span>
+            <span class="bar-value">{{ bar.count }}</span>
+
+            @if (hoverIndex() === i) {
+              <div class="bar-tooltip">
+                <strong>{{ bar.count }}</strong>
+                <span>{{ bar.label }}</span>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+  }
+
+  @if (showLegend() && mode() !== 'donut' && mode() !== 'table') {
+    <div class="chart-legend">
+      @for (bar of bars(); track bar.label) {
+        <span class="legend-item">
+          <span class="legend-swatch" [style.background]="'var(--chart-' + bar.resolvedColorRole + ')'"></span>
+          {{ bar.label }}
+        </span>
+      }
+    </div>
+  }
+</figure>

@@ -1,0 +1,372 @@
+.chart-card {
+  margin: 0;
+  background: var(--awb-surface);
+  border: 1px solid var(--awb-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.chart-header h3 {
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--awb-on-surface);
+}
+
+.mode-switcher {
+  display: flex;
+  gap: 0.15rem;
+  background: var(--awb-hover);
+  border-radius: 8px;
+  padding: 0.15rem;
+  flex-shrink: 0;
+}
+
+.mode-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem;
+  color: var(--awb-on-surface-muted);
+  cursor: pointer;
+}
+
+.mode-button mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.mode-button:hover {
+  color: var(--awb-on-surface);
+}
+
+.mode-button.active {
+  background: var(--awb-surface);
+  color: var(--chart-series-1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Bar mode --- */
+.bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.bar-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(70px, auto) 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 6px;
+  padding: 0.15rem 0.3rem;
+  cursor: default;
+}
+
+.bar-row:hover,
+.bar-row:focus-visible {
+  background: var(--awb-hover);
+  outline: none;
+}
+
+.bar-label {
+  font-size: 0.8rem;
+  color: var(--awb-on-surface-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bar-track {
+  display: block;
+  height: 16px;
+  background: transparent;
+}
+
+.bar-fill {
+  display: block;
+  height: 16px;
+  max-height: 16px;
+  border-radius: 4px;
+  min-width: 3px;
+  transition: width 0.2s ease;
+}
+
+.bar-value {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--awb-on-surface);
+  min-width: 2.2ch;
+  text-align: right;
+}
+
+.bar-tooltip {
+  position: absolute;
+  top: -2.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--awb-surface);
+  border: 1px solid var(--awb-border);
+  border-radius: 6px;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.bar-tooltip strong {
+  color: var(--awb-on-surface);
+  font-size: 0.85rem;
+}
+
+.bar-tooltip span {
+  color: var(--awb-on-surface-muted);
+}
+
+/* --- Line mode --- */
+.chart-plot {
+  position: relative;
+}
+
+.chart-svg {
+  display: block;
+  width: 100%;
+  height: 200px;
+  overflow: visible;
+}
+
+.chart-axis {
+  stroke: var(--chart-axis);
+  stroke-width: 1;
+}
+
+.chart-area {
+  opacity: 0.1;
+  stroke: none;
+}
+
+.chart-line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.chart-dot {
+  stroke: var(--chart-surface);
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.chart-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.chart-hit:focus-visible {
+  outline: 2px solid var(--chart-series-1);
+  outline-offset: 2px;
+}
+
+.chart-crosshair {
+  stroke: var(--chart-axis);
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+.chart-tooltip {
+  position: absolute;
+  transform: translate(-50%, -130%);
+  background: var(--awb-surface);
+  border: 1px solid var(--awb-border);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.chart-tooltip strong {
+  color: var(--awb-on-surface);
+  font-size: 0.9rem;
+}
+
+.chart-tooltip span {
+  color: var(--awb-on-surface-muted);
+}
+
+.chart-x-labels {
+  position: relative;
+  height: 20px;
+}
+
+.chart-x-label {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 0.68rem;
+  color: var(--awb-on-surface-muted);
+  white-space: nowrap;
+}
+
+/* --- Donut mode --- */
+.donut-layout {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.donut-plot {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  flex-shrink: 0;
+}
+
+.donut-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.donut-track {
+  fill: none;
+  stroke: var(--awb-hover);
+}
+
+.donut-segment {
+  cursor: pointer;
+  transition:
+    opacity 0.15s ease,
+    stroke-width 0.15s ease;
+}
+
+.donut-segment.dimmed {
+  opacity: 0.35;
+}
+
+.donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  text-align: center;
+}
+
+.donut-center strong {
+  font-size: 1.3rem;
+  color: var(--awb-on-surface);
+}
+
+.donut-center span {
+  font-size: 0.72rem;
+  color: var(--awb-on-surface-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+  min-width: 140px;
+}
+
+.donut-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
+  cursor: default;
+  font-size: 0.8rem;
+}
+
+.donut-legend-item.active {
+  background: var(--awb-hover);
+}
+
+.donut-legend-item .legend-label {
+  color: var(--awb-on-surface-muted);
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.donut-legend-item .legend-value {
+  color: var(--awb-on-surface);
+  font-weight: 600;
+}
+
+/* --- Shared: legend (bar/line modes), table --- */
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--awb-border);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.76rem;
+  color: var(--awb-on-surface-muted);
+}
+
+.legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.chart-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.chart-table th {
+  text-align: left;
+  color: var(--awb-on-surface-muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--awb-border);
+}
+
+.chart-table td {
+  padding: 0.4rem 0.6rem;
+  color: var(--awb-on-surface);
+  border-bottom: 1px solid var(--awb-border);
+}

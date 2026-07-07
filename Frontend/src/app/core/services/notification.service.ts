@@ -1,5 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable, effect, inject } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { environment } from '../../../environments/environment';
+import { AuthService } from './auth.service';
+import { DashboardService } from './dashboard.service';
 
 export interface AppNotification {
   id: string;
@@ -8,11 +12,68 @@ export interface AppNotification {
   read: boolean;
 }
 
+interface NotificationEventPayload {
+  actorUsername: string;
+  action: string;
+  entityType: string;
+  description: string | null;
+  occurredAt: string;
+}
+
+const MAX_NOTIFICATIONS = 20;
+
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
-  // No backend notifications endpoint exists yet — honest empty state rather than mock data.
-  // Swap this for a real HttpClient call once one exists.
+  private readonly authService = inject(AuthService);
+  private readonly translateService = inject(TranslateService);
+  private readonly dashboardService = inject(DashboardService);
+
+  private eventSource: EventSource | null = null;
+  private readonly notifications$ = new BehaviorSubject<AppNotification[]>([]);
+
+  constructor() {
+    // Reconnects the SSE stream whenever the signed-in role changes (login/logout/switch role).
+    effect(() => {
+      const role = this.authService.currentRole();
+      this.eventSource?.close();
+      this.eventSource = null;
+
+      if (!role) {
+        this.notifications$.next([]);
+        return;
+      }
+
+      const token = this.authService.getToken();
+      this.eventSource = new EventSource(
+        `${environment.apiBaseUrl}/api/notifications/stream?token=${encodeURIComponent(token ?? '')}`,
+      );
+      this.eventSource.addEventListener('notification', (event) => {
+        const payload = JSON.parse((event as MessageEvent<string>).data) as NotificationEventPayload;
+        const notification = this.toAppNotification(payload);
+        this.notifications$.next([notification, ...this.notifications$.value].slice(0, MAX_NOTIFICATIONS));
+        this.dashboardService.triggerRefresh();
+      });
+    });
+  }
+
   getNotifications(): Observable<AppNotification[]> {
-    return of([]);
+    return this.notifications$.asObservable();
+  }
+
+  markAllRead(): void {
+    this.notifications$.next(this.notifications$.value.map((n) => ({ ...n, read: true })));
+  }
+
+  private toAppNotification(payload: NotificationEventPayload): AppNotification {
+    const actionLabel = this.translateService.instant(`dashboard.activityActions.${payload.action}`);
+    const message = payload.description
+      ? `${payload.actorUsername} ${actionLabel} ${payload.entityType} — ${payload.description}`
+      : `${payload.actorUsername} ${actionLabel} ${payload.entityType}`;
+    return {
+      id: `${payload.occurredAt}-${payload.actorUsername}-${Math.random().toString(36).slice(2)}`,
+      message,
+      createdAt: payload.occurredAt,
+      read: false,
+    };
   }
 }

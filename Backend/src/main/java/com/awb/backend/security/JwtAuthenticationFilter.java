@@ -15,6 +15,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
   private static final String BEARER_PREFIX = "Bearer ";
 
+  // The browser's native EventSource API cannot set an Authorization header, so the SSE stream
+  // is the one endpoint allowed to authenticate via a query param instead. Scoped to this single
+  // path so no other endpoint's tokens end up in access logs / browser history.
+  private static final String SSE_STREAM_PATH = "/api/notifications/stream";
+
   private final JwtService jwtService;
 
   public JwtAuthenticationFilter(JwtService jwtService) {
@@ -26,19 +31,23 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       HttpServletRequest request, HttpServletResponse response, FilterChain chain)
       throws ServletException, IOException {
     String header = request.getHeader("Authorization");
+    String token = null;
 
     if (header != null && header.startsWith(BEARER_PREFIX)) {
-      String token = header.substring(BEARER_PREFIX.length());
-      if (jwtService.isTokenValid(token)) {
-        String username = jwtService.extractUsername(token);
-        String role = jwtService.extractRole(token);
-        var authorities =
-            role != null
-                ? List.of(new SimpleGrantedAuthority("ROLE_" + role))
-                : List.<SimpleGrantedAuthority>of();
-        var authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-      }
+      token = header.substring(BEARER_PREFIX.length());
+    } else if (SSE_STREAM_PATH.equals(request.getServletPath())) {
+      token = request.getParameter("token");
+    }
+
+    if (token != null && jwtService.isTokenValid(token)) {
+      String username = jwtService.extractUsername(token);
+      String role = jwtService.extractRole(token);
+      var authorities =
+          role != null
+              ? List.of(new SimpleGrantedAuthority("ROLE_" + role))
+              : List.<SimpleGrantedAuthority>of();
+      var authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
+      SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
     chain.doFilter(request, response);

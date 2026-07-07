@@ -85,7 +85,8 @@
       "racks": "机柜",
       "devices": "设备",
       "openAnomalies": "未解决的异常",
-      "activeInterventions": "进行中的干预"
+      "activeInterventions": "进行中的干预",
+      "activityToday": "今日活动"
     },
     "panels": {
       "aiInsights": "AI 洞察",
@@ -104,6 +105,36 @@
       "LOGOUT": "退出了登录",
       "EXPORT": "导出了",
       "CONFIG_CHANGE": "更改了配置："
+    },
+    "charts": {
+      "activityTrend": "活动趋势",
+      "activityByEntityType": "按元素类型划分的活动",
+      "infraHealth": "基础设施健康状况",
+      "interventionsByPriority": "按优先级划分的干预",
+      "anomaliesBySeverity": "按严重程度划分的异常"
+    },
+    "dateRange": {
+      "label": "时间范围：",
+      "last7": "7 天",
+      "last14": "14 天",
+      "last30": "30 天"
+    },
+    "chart": {
+      "viewAsTable": "以表格查看",
+      "viewAsChart": "以图表查看",
+      "modeBar": "柱状图视图",
+      "modeLine": "折线图视图",
+      "modeDonut": "环形图视图",
+      "date": "日期",
+      "value": "数值",
+      "category": "类别",
+      "total": "总计"
+    },
+    "entityType": {
+      "OTHER": "其他"
+    },
+    "health": {
+      "active": "正常"
     }
   },
   "common": {

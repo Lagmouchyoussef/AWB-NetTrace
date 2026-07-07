@@ -34,12 +34,22 @@ export interface ActivityItem {
   occurredAt: string;
 }
 
+export interface LabeledCount {
+  label: string;
+  count: number;
+}
+
 export interface DashboardSummary {
   infra: InfraCounts;
   openAnomaliesCount: number;
   activeInterventionsCount: number;
+  activityTodayCount: number;
   aiConfigured: boolean;
   recentInsights: InsightSummary[];
   recentInterventions: InterventionSummary[];
   recentActivity: ActivityItem[];
+  activityTimeSeries: LabeledCount[];
+  activityByEntityType: LabeledCount[];
+  interventionsByPriority: LabeledCount[];
+  anomaliesBySeverity: LabeledCount[];
 }

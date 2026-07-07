@@ -95,6 +95,10 @@ export class TopbarComponent {
     return this.formatRole(role);
   });
 
+  protected onNotifMenuClosed(): void {
+    this.notificationService.markAllRead();
+  }
+
   protected onSearchInput(value: string): void {
     this.searchQuery.set(value);
   }

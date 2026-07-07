@@ -73,7 +73,7 @@ public class AiToolExecutor {
         case "list_interventions" -> toJson(listInterventions(argOrNull(input, "status")));
         case "list_ai_insights" -> toJson(listAiInsights(argOrNull(input, "status")));
         case "search_audit_log" -> toJson(searchAuditLog(argOrNull(input, "search")));
-        case "get_dashboard_summary" -> toJson(dashboardService.getSummary());
+        case "get_dashboard_summary" -> toJson(dashboardService.getSummary(14));
         case "create_urgent_intervention" -> handleCreateUrgentIntervention(input, actorUsername);
         case "set_entity_status" -> handleSetEntityStatus(input, actorUsername);
         default -> "Unknown tool: " + toolName;
