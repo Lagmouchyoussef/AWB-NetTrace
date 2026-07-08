@@ -16,7 +16,8 @@
   },
   "roles": {
     "superAdmin": "المسؤول العام",
-    "dcAdmin": "مسؤول مركز البيانات"
+    "dcAdmin": "مسؤول مركز البيانات",
+    "networkEngineer": "مهندس الشبكة"
   },
   "nav": {
     "dashboard": "لوحة التحكم",
@@ -45,6 +46,7 @@
     "realTimeDashboards": "لوحات المعلومات اللحظية",
     "anomalyDetection": "كشف الحالات الشاذة",
     "interventions": "التدخلات",
+    "myInterventionRequests": "طلبات التدخل الخاصة بي",
     "technicalLibrary": "المكتبة التقنية",
     "equipmentTypes": "أنواع الأجهزة",
     "networkTechnologyCatalog": "كتالوج تقنيات الشبكة",

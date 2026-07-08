@@ -16,7 +16,8 @@
   },
   "roles": {
     "superAdmin": "Superadministrador",
-    "dcAdmin": "Administrador de Datacenter"
+    "dcAdmin": "Administrador de Datacenter",
+    "networkEngineer": "Ingeniero de Red"
   },
   "nav": {
     "dashboard": "Panel de control",
@@ -45,6 +46,7 @@
     "realTimeDashboards": "Paneles en tiempo real",
     "anomalyDetection": "Detección de anomalías",
     "interventions": "Intervenciones",
+    "myInterventionRequests": "Mis solicitudes de intervención",
     "technicalLibrary": "Biblioteca técnica",
     "equipmentTypes": "Tipos de equipos",
     "networkTechnologyCatalog": "Catálogo de tecnologías de red",

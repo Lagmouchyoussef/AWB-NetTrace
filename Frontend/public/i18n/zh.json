@@ -16,7 +16,8 @@
   },
   "roles": {
     "superAdmin": "超级管理员",
-    "dcAdmin": "数据中心管理员"
+    "dcAdmin": "数据中心管理员",
+    "networkEngineer": "网络工程师"
   },
   "nav": {
     "dashboard": "仪表盘",
@@ -45,6 +46,7 @@
     "realTimeDashboards": "实时仪表盘",
     "anomalyDetection": "异常检测",
     "interventions": "维护干预",
+    "myInterventionRequests": "我的维护干预申请",
     "technicalLibrary": "技术资料库",
     "equipmentTypes": "设备类型",
     "networkTechnologyCatalog": "网络技术目录",
