@@ -37,13 +37,13 @@ jobs:
           --health-retries 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Ensure Maven wrapper is executable
         run: chmod +x mvnw
 
       - name: Set up JDK 21
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "21"
@@ -68,19 +68,14 @@ jobs:
       run:
         working-directory: Frontend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: npm
           cache-dependency-path: Frontend/package-lock.json
-
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
 
       - name: Install dependencies
         run: npm ci
@@ -95,6 +90,4 @@ jobs:
         run: npm run build
 
       - name: Test
-        env:
-          CHROME_BIN: /usr/bin/google-chrome
-        run: npx ng test --watch=false --browsers=ChromeHeadless
+        run: npm test -- --watch=false

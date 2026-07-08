@@ -10,7 +10,7 @@ jobs:
   zap-baseline:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Start db + backend
         env:
@@ -44,11 +44,20 @@ jobs:
       - name: Verify backend before ZAP
         run: |
           echo "Final verification before ZAP scan..."
-          HTTP_CODE=$(curl -sk -o /dev/null -w "%{http_code}" https://127.0.0.1:8443/ || echo "000")
-          echo "HTTP status: $HTTP_CODE"
+          HTTP_CODE="000"
+          for i in $(seq 1 12); do
+            HTTP_CODE=$(curl -sk -o /dev/null -w "%{http_code}" https://127.0.0.1:8443/ || echo "000")
+            if [ "$HTTP_CODE" != "000" ]; then
+              echo "HTTP status: $HTTP_CODE"
+              break
+            fi
+            echo "Not reachable yet (attempt $i/12), retrying..."
+            sleep 5
+          done
           if [ "$HTTP_CODE" == "000" ]; then
             echo "Backend became unreachable before ZAP scan"
             docker compose logs backend
+            docker compose logs db
             docker compose ps
             exit 1
           fi
