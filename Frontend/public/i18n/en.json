@@ -81,7 +81,7 @@
     "assignedDatacenters": "Assigned datacenters"
   },
   "placeholder": {
-    "notBuiltYet": "This page is not built yet — it will arrive in a later step of the Super Admin module."
+    "notBuiltYet": "This page is not built yet — it will arrive in a later step."
   },
   "dcAdminDashboard": {
     "title": "Datacenter Admin Space"
@@ -159,6 +159,7 @@
     "noResults": "No results found.",
     "cancel": "Cancel",
     "confirm": "Confirm",
+    "reason": "Reason",
     "save": "Save",
     "saving": "Saving...",
     "loading": "Loading...",
@@ -502,6 +503,9 @@
     "editTitle": "Edit Cable",
     "deleteTitle": "Delete Cable",
     "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
+    "decommissionTitle": "Decommission Cable",
+    "decommissionMessage": "This will mark \"{{name}}\" as disconnected. A reason is required for the audit trail.",
+    "decommission": "Decommission",
     "saveError": "Something went wrong while saving. Please check the code is unique and the source/target are different.",
     "columns": {
       "name": "Name",
@@ -514,6 +518,8 @@
     "fields": {
       "source": "Source Device",
       "target": "Target Device",
+      "sourcePort": "Source Port",
+      "targetPort": "Target Port",
       "name": "Name",
       "code": "Code",
       "cableType": "Cable Type",
@@ -521,6 +527,8 @@
       "status": "Status",
       "notes": "Notes"
     },
+    "selectPortHint": "Select a free port (highlighted) on the chosen device.",
+    "noPortsAvailable": "No connectors found for this device yet.",
     "validation": {
       "required": "This field is required."
     },

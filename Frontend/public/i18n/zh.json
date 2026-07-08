@@ -81,7 +81,7 @@
     "assignedDatacenters": "已分配的数据中心"
   },
   "placeholder": {
-    "notBuiltYet": "此页面尚未构建 — 将在超级管理员模块的后续阶段推出。"
+    "notBuiltYet": "此页面尚未构建 — 将在后续阶段推出。"
   },
   "dcAdminDashboard": {
     "title": "数据中心管理员空间"
@@ -159,6 +159,7 @@
     "noResults": "未找到结果。",
     "cancel": "取消",
     "confirm": "确认",
+    "reason": "原因",
     "save": "保存",
     "saving": "正在保存...",
     "loading": "正在加载...",
@@ -502,6 +503,9 @@
     "editTitle": "编辑线缆",
     "deleteTitle": "删除线缆",
     "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
+    "decommissionTitle": "下线线缆",
+    "decommissionMessage": "此操作会将\"{{name}}\"标记为已断开。审计记录需要填写原因。",
+    "decommission": "下线",
     "saveError": "保存时出错。请确认代码是唯一的，且源与目标不同。",
     "columns": {
       "name": "名称",
@@ -514,6 +518,8 @@
     "fields": {
       "source": "源设备",
       "target": "目标设备",
+      "sourcePort": "源端口",
+      "targetPort": "目标端口",
       "name": "名称",
       "code": "代码",
       "cableType": "线缆类型",
@@ -521,6 +527,8 @@
       "status": "状态",
       "notes": "备注"
     },
+    "selectPortHint": "在所选设备上选择一个空闲端口（已高亮显示）。",
+    "noPortsAvailable": "尚未找到该设备的连接器。",
     "validation": {
       "required": "此字段为必填项。"
     },

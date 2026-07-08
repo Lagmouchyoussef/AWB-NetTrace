@@ -53,15 +53,28 @@
               >
                 <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>
               </button>
-              <button
-                type="button"
-                class="row-action row-action-danger"
-                (click)="delete.emit(row)"
-                [attr.aria-label]="'common.delete' | translate"
-                matTooltip="{{ 'common.delete' | translate }}"
-              >
-                <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
-              </button>
+              @if (customActionIcon() && customActionLabelKey()) {
+                <button
+                  type="button"
+                  class="row-action"
+                  (click)="customAction.emit(row)"
+                  [attr.aria-label]="customActionLabelKey()! | translate"
+                  matTooltip="{{ customActionLabelKey()! | translate }}"
+                >
+                  <mat-icon fontSet="material-symbols-outlined">{{ customActionIcon() }}</mat-icon>
+                </button>
+              }
+              @if (!hideDelete()) {
+                <button
+                  type="button"
+                  class="row-action row-action-danger"
+                  (click)="delete.emit(row)"
+                  [attr.aria-label]="'common.delete' | translate"
+                  matTooltip="{{ 'common.delete' | translate }}"
+                >
+                  <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+                </button>
+              }
             }
           </div>
         </td>

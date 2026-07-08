@@ -46,6 +46,16 @@ public final class InterventionSpecifications {
     return (root, query, cb) -> cb.equal(root.get("approvalStatus"), approvalStatus);
   }
 
+  // Personal-scope filter for roles that may only ever see their own requests (e.g. Network
+  // Engineer's "My Intervention Requests") - never combined with hasDatacenterIdIn, which is
+  // DC Admin's own, broader scoping mechanism.
+  public static Specification<Intervention> requestedByUsername(String username) {
+    if (username == null || username.isBlank()) {
+      return (root, query, cb) -> cb.conjunction();
+    }
+    return (root, query, cb) -> cb.equal(root.get("requestedBy").get("username"), username);
+  }
+
   // Interventions have no direct datacenter FK - scoped through device -> rack -> room ->
   // datacenter, same multi-hop join pattern used for other DC-Admin-scoped entities.
   public static Specification<Intervention> hasDatacenterIdIn(Collection<Long> datacenterIds) {

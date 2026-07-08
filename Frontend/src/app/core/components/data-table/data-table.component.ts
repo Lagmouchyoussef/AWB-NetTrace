@@ -31,6 +31,15 @@ export class DataTableComponent<T> {
   readonly pageSize = input<number>(10);
   readonly searchable = input<boolean>(true);
   readonly readOnly = input<boolean>(false);
+  // Shows Edit but hides Delete - for roles that may modify an entity but never hard-delete it
+  // (e.g. Network Engineer, which decommissions via a status change instead). Independent of
+  // readOnly, which hides both.
+  readonly hideDelete = input<boolean>(false);
+  // Optional extra row action rendered between Edit and Delete - e.g. Network Engineer's
+  // "Decommission" on cables, a status change rather than a hard delete. Only rendered when
+  // both icon and label are provided.
+  readonly customActionIcon = input<string | undefined>(undefined);
+  readonly customActionLabelKey = input<string | undefined>(undefined);
 
   readonly page = output<PageEvent>();
   readonly sortChange = output<Sort>();
@@ -38,6 +47,7 @@ export class DataTableComponent<T> {
   readonly view = output<T>();
   readonly edit = output<T>();
   readonly delete = output<T>();
+  readonly customAction = output<T>();
   readonly exportCsv = output<void>();
 
   protected readonly displayedColumns = computed<string[]>(() => [

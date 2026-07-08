@@ -81,7 +81,7 @@
     "assignedDatacenters": "Datacenters assignés"
   },
   "placeholder": {
-    "notBuiltYet": "Cette page n'est pas encore construite — elle arrivera dans une prochaine étape du module Super Admin."
+    "notBuiltYet": "Cette page n'est pas encore construite — elle arrivera dans une prochaine étape."
   },
   "dcAdminDashboard": {
     "title": "Espace Administrateur Datacenter"
@@ -159,6 +159,7 @@
     "noResults": "Aucun résultat trouvé.",
     "cancel": "Annuler",
     "confirm": "Confirmer",
+    "reason": "Motif",
     "save": "Enregistrer",
     "saving": "Enregistrement...",
     "loading": "Chargement...",
@@ -502,6 +503,9 @@
     "editTitle": "Modifier le câble",
     "deleteTitle": "Supprimer le câble",
     "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
+    "decommissionTitle": "Retirer le câble",
+    "decommissionMessage": "Ceci marquera « {{name}} » comme déconnecté. Un motif est requis pour la piste d'audit.",
+    "decommission": "Retirer",
     "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et que la source/cible sont différentes.",
     "columns": {
       "name": "Nom",
@@ -514,6 +518,8 @@
     "fields": {
       "source": "Équipement source",
       "target": "Équipement cible",
+      "sourcePort": "Port source",
+      "targetPort": "Port cible",
       "name": "Nom",
       "code": "Code",
       "cableType": "Type de câble",
@@ -521,6 +527,8 @@
       "status": "Statut",
       "notes": "Notes"
     },
+    "selectPortHint": "Sélectionnez un port libre (en surbrillance) sur l'équipement choisi.",
+    "noPortsAvailable": "Aucun connecteur trouvé pour cet équipement.",
     "validation": {
       "required": "Ce champ est obligatoire."
     },

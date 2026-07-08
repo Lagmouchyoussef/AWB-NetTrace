@@ -72,6 +72,25 @@ public class InterventionService {
     return interventionRepository.findAll(spec, pageable).map(this::toResponse);
   }
 
+  // Used by Network Engineer's "My Intervention Requests" - the requester only ever sees their
+  // own submissions, regardless of datacenter, and never the approval-queue/approve/reject
+  // endpoints (those stay DC-Admin/Super-Admin only).
+  @Transactional(readOnly = true)
+  public Page<InterventionResponse> listByRequester(
+      String requesterUsername,
+      String search,
+      InterventionStatus status,
+      InterventionPriority priority,
+      Pageable pageable) {
+    Specification<Intervention> spec =
+        Specification.where(InterventionSpecifications.notDeleted())
+            .and(InterventionSpecifications.requestedByUsername(requesterUsername))
+            .and(InterventionSpecifications.search(search))
+            .and(InterventionSpecifications.hasStatus(status))
+            .and(InterventionSpecifications.hasPriority(priority));
+    return interventionRepository.findAll(spec, pageable).map(this::toResponse);
+  }
+
   // The pending-approval queue: PENDING requests within the caller's assigned datacenters.
   @Transactional(readOnly = true)
   public Page<InterventionResponse> getApprovalQueue(Set<Long> datacenterIds, Pageable pageable) {

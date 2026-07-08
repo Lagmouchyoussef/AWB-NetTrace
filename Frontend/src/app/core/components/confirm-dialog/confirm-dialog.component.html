@@ -1,6 +1,17 @@
 <h2 mat-dialog-title>{{ data.titleKey | translate }}</h2>
 <mat-dialog-content>
   <p>{{ data.messageKey | translate: data.messageParams }}</p>
+  @if (requireReason) {
+    <label class="reason-label" for="confirm-dialog-reason">{{ reasonLabelKey | translate }}</label>
+    <textarea
+      id="confirm-dialog-reason"
+      class="reason-input"
+      rows="3"
+      required
+      [ngModel]="reason()"
+      (ngModelChange)="reason.set($event)"
+    ></textarea>
+  }
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button type="button" class="dialog-button dialog-button-cancel" (click)="cancel()">
@@ -10,6 +21,7 @@
     type="button"
     class="dialog-button dialog-button-confirm"
     [class.dialog-button-danger]="data.danger"
+    [disabled]="requireReason && !reason().trim()"
     (click)="confirm()"
   >
     {{ confirmKey | translate }}

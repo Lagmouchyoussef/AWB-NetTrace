@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -13,6 +13,8 @@ import { filter, map, startWith } from 'rxjs';
 })
 export class BreadcrumbsComponent {
   private readonly router = inject(Router);
+
+  readonly roleLabelKey = input.required<string>();
 
   protected readonly crumbKeys = toSignal(
     this.router.events.pipe(

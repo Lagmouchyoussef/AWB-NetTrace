@@ -19,7 +19,7 @@
       [scopeLabel]="scopeLabel()"
       (menuToggle)="onMenuToggle(drawer)"
     />
-    <app-breadcrumbs />
+    <app-breadcrumbs [roleLabelKey]="roleLabelKey()" />
     <div class="shell-page">
       <ng-content></ng-content>
     </div>

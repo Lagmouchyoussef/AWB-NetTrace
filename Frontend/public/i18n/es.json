@@ -81,7 +81,7 @@
     "assignedDatacenters": "Datacenters asignados"
   },
   "placeholder": {
-    "notBuiltYet": "Esta página aún no está construida — llegará en una etapa posterior del módulo Super Admin."
+    "notBuiltYet": "Esta página aún no está construida — llegará en una etapa posterior."
   },
   "dcAdminDashboard": {
     "title": "Espacio de Administrador de Datacenter"
@@ -159,6 +159,7 @@
     "noResults": "No se encontraron resultados.",
     "cancel": "Cancelar",
     "confirm": "Confirmar",
+    "reason": "Motivo",
     "save": "Guardar",
     "saving": "Guardando...",
     "loading": "Cargando...",
@@ -502,6 +503,9 @@
     "editTitle": "Editar cable",
     "deleteTitle": "Eliminar cable",
     "deleteMessage": "¿Seguro que desea eliminar \"{{name}}\"? Un administrador puede revertir esta acción más tarde.",
+    "decommissionTitle": "Retirar cable",
+    "decommissionMessage": "Esto marcará \"{{name}}\" como desconectado. Se requiere un motivo para el registro de auditoría.",
+    "decommission": "Retirar",
     "saveError": "Ocurrió un error al guardar. Verifique que el código sea único y que el origen y destino sean diferentes.",
     "columns": {
       "name": "Nombre",
@@ -514,6 +518,8 @@
     "fields": {
       "source": "Dispositivo de origen",
       "target": "Dispositivo de destino",
+      "sourcePort": "Puerto de origen",
+      "targetPort": "Puerto de destino",
       "name": "Nombre",
       "code": "Código",
       "cableType": "Tipo de cable",
@@ -521,6 +527,8 @@
       "status": "Estado",
       "notes": "Notas"
     },
+    "selectPortHint": "Seleccione un puerto libre (resaltado) en el dispositivo elegido.",
+    "noPortsAvailable": "No se encontraron conectores para este dispositivo todavía.",
     "validation": {
       "required": "Este campo es obligatorio."
     },

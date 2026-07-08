@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'connectors.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'connectors.fields.device' | translate }}</dt>
+    <dd>{{ data.deviceName }}</dd>
+
+    <dt>{{ 'connectors.fields.formFactor' | translate }}</dt>
+    <dd>{{ 'connectors.formFactor.' + data.formFactor | translate }}</dd>
+
+    <dt>{{ 'connectors.fields.connectorType' | translate }}</dt>
+    <dd>{{ 'connectors.connectorType.' + data.connectorType | translate }}</dd>
+
+    <dt>{{ 'connectors.fields.status' | translate }}</dt>
+    <dd>{{ 'connectors.status.' + data.status | translate }}</dd>
+
+    <dt>{{ 'connectors.fields.speedGbps' | translate }}</dt>
+    <dd>{{ data.speedGbps }} Gbps</dd>
+
+    @if (data.wavelengthNm !== null) {
+      <dt>{{ 'connectors.fields.wavelengthNm' | translate }}</dt>
+      <dd>{{ data.wavelengthNm }} nm</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'connectors.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>
