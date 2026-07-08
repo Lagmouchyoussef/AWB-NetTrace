@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'technologyCatalog.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'technologyCatalog.fields.category' | translate }}</dt>
+    <dd>{{ 'technologyCatalog.category.' + data.category | translate }}</dd>
+
+    @if (data.vendor) {
+      <dt>{{ 'technologyCatalog.fields.vendor' | translate }}</dt>
+      <dd>{{ data.vendor }}</dd>
+    }
+
+    @if (data.version) {
+      <dt>{{ 'technologyCatalog.fields.version' | translate }}</dt>
+      <dd>{{ data.version }}</dd>
+    }
+
+    @if (data.description) {
+      <dt>{{ 'technologyCatalog.fields.description' | translate }}</dt>
+      <dd>{{ data.description }}</dd>
+    }
+
+    <dt>{{ 'technologyCatalog.fields.status' | translate }}</dt>
+    <dd>{{ 'technologyCatalog.status.' + data.status | translate }}</dd>
+
+    @if (data.notes) {
+      <dt>{{ 'technologyCatalog.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

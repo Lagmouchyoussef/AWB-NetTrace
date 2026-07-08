@@ -1,0 +1,85 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'topologyView.pageTitle' | translate }}</h1>
+  </div>
+
+  <div class="filter-bar">
+    <div class="filter-field">
+      <label for="dc-filter">{{ 'topologyView.filters.datacenter' | translate }}</label>
+      <select id="dc-filter" (change)="onDatacenterFilterChange($any($event.target).value)">
+        <option value="ALL">{{ 'topologyView.filters.all' | translate }}</option>
+        @for (dc of datacenters(); track dc.id) {
+          <option [value]="dc.id">{{ dc.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="filter-field">
+      <label for="role-filter">{{ 'topologyView.filters.role' | translate }}</label>
+      <select id="role-filter" (change)="onRoleFilterChange($any($event.target).value)">
+        <option value="ALL">{{ 'topologyView.filters.all' | translate }}</option>
+        @for (role of roleTypes; track role) {
+          <option [value]="role">{{ roleLabel(role) }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="graph-shell">
+    @if (loading()) {
+      <div class="graph-skeleton"></div>
+    }
+    <div #graphContainer class="graph-container"></div>
+
+    @if (selectedDevice(); as device) {
+      <div class="detail-panel">
+        <div class="detail-panel-header">
+          <h2>{{ device.name }}</h2>
+          <button type="button" class="close-button" (click)="closeDetailPanel()">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <dl class="detail-list">
+          @if (selectedDeviceRole(); as role) {
+            <dt>{{ 'topologyView.detail.role' | translate }}</dt>
+            <dd>{{ roleLabel(role) }}</dd>
+          }
+
+          <dt>{{ 'topologyView.detail.rack' | translate }}</dt>
+          <dd>{{ device.rackName }}</dd>
+
+          <dt>{{ 'topologyView.detail.status' | translate }}</dt>
+          <dd>{{ 'devices.status.' + device.status | translate }}</dd>
+        </dl>
+
+        <h3>{{ 'topologyView.detail.cables' | translate }}</h3>
+        @if (selectedDeviceCables().length === 0) {
+          <p class="detail-empty">{{ 'topologyView.detail.noCables' | translate }}</p>
+        } @else {
+          <ul class="detail-cable-list">
+            @for (cable of selectedDeviceCables(); track cable.id) {
+              <li>
+                <span class="cable-name">{{ cable.name }}</span>
+                <span class="cable-route"
+                  >{{ cable.sourceDeviceName }} → {{ cable.targetDeviceName }}</span
+                >
+                <span
+                  class="badge"
+                  [attr.data-approval]="
+                    cable.status === 'FAULTY'
+                      ? 'REJECTED'
+                      : cable.status === 'CONNECTED'
+                        ? 'APPROVED'
+                        : 'PENDING'
+                  "
+                  >{{ 'cables.status.' + cable.status | translate }}</span
+                >
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    }
+  </div>
+</div>

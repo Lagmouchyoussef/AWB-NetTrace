@@ -1,0 +1,60 @@
+.page {
+  padding: 1.25rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 48px;
+  color: var(--awb-on-surface-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+h1 {
+  font-size: 1.3rem;
+  margin: 0.75rem 0 0.25rem;
+  color: var(--awb-on-surface);
+}
+
+.device {
+  color: var(--awb-on-surface-muted);
+  margin: 0 0 0.75rem;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--chart-series-1);
+}
+
+.description {
+  margin-top: 1rem;
+  color: var(--awb-on-surface);
+  line-height: 1.5;
+}
+
+.hint {
+  color: var(--awb-on-surface-muted);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 3rem 1rem;
+  color: var(--awb-on-surface-muted);
+  text-align: center;
+}
+
+.empty-state .material-symbols-outlined {
+  font-size: 40px;
+  opacity: 0.5;
+}

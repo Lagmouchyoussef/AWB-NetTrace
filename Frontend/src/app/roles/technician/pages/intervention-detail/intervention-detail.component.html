@@ -1,0 +1,24 @@
+<div class="page">
+  <a routerLink="/technician/home" class="back-link">
+    <span class="material-symbols-outlined">arrow_back</span>
+    {{ 'common.back' | translate }}
+  </a>
+
+  @if (loading()) {
+    <p class="hint">{{ 'common.loading' | translate }}</p>
+  } @else if (notFound() || !intervention()) {
+    <div class="empty-state">
+      <span class="material-symbols-outlined">link_off</span>
+      <p>{{ 'technician.interventionDetail.notFound' | translate }}</p>
+    </div>
+  } @else {
+    <h1>{{ intervention()!.title }}</h1>
+    <p class="device">{{ intervention()!.deviceName }}</p>
+    <span class="status-badge">{{
+      'interventions.status.' + intervention()!.status | translate
+    }}</span>
+    @if (intervention()!.description) {
+      <p class="description">{{ intervention()!.description }}</p>
+    }
+  }
+</div>

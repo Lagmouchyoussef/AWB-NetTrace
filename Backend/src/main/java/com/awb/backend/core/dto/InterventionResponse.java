@@ -16,7 +16,8 @@ public class InterventionResponse {
   private InterventionType interventionType;
   private InterventionPriority priority;
   private InterventionStatus status;
-  private String assignedTechnician;
+  private Long assignedTechnicianId;
+  private String assignedTechnicianUsername;
   private Instant scheduledAt;
   private Instant completedAt;
   private String notes;
@@ -94,12 +95,20 @@ public class InterventionResponse {
     this.status = status;
   }
 
-  public String getAssignedTechnician() {
-    return assignedTechnician;
+  public Long getAssignedTechnicianId() {
+    return assignedTechnicianId;
   }
 
-  public void setAssignedTechnician(String assignedTechnician) {
-    this.assignedTechnician = assignedTechnician;
+  public void setAssignedTechnicianId(Long assignedTechnicianId) {
+    this.assignedTechnicianId = assignedTechnicianId;
+  }
+
+  public String getAssignedTechnicianUsername() {
+    return assignedTechnicianUsername;
+  }
+
+  public void setAssignedTechnicianUsername(String assignedTechnicianUsername) {
+    this.assignedTechnicianUsername = assignedTechnicianUsername;
   }
 
   public Instant getScheduledAt() {

@@ -8,6 +8,7 @@ import com.awb.backend.core.entity.Device;
 import com.awb.backend.core.entity.Intervention;
 import com.awb.backend.core.entity.InterventionPriority;
 import com.awb.backend.core.entity.InterventionStatus;
+import com.awb.backend.core.entity.Role;
 import com.awb.backend.core.entity.User;
 import com.awb.backend.core.repository.DeviceRepository;
 import com.awb.backend.core.repository.InterventionRepository;
@@ -89,6 +90,37 @@ public class InterventionService {
             .and(InterventionSpecifications.hasStatus(status))
             .and(InterventionSpecifications.hasPriority(priority));
     return interventionRepository.findAll(spec, pageable).map(this::toResponse);
+  }
+
+  // Used by the Technician role - a technician only ever sees interventions assigned to them.
+  @Transactional(readOnly = true)
+  public Page<InterventionResponse> listByAssignee(
+      String technicianUsername,
+      String search,
+      InterventionStatus status,
+      InterventionPriority priority,
+      Pageable pageable) {
+    Specification<Intervention> spec =
+        Specification.where(InterventionSpecifications.notDeleted())
+            .and(InterventionSpecifications.assignedToUsername(technicianUsername))
+            .and(InterventionSpecifications.search(search))
+            .and(InterventionSpecifications.hasStatus(status))
+            .and(InterventionSpecifications.hasPriority(priority));
+    return interventionRepository.findAll(spec, pageable).map(this::toResponse);
+  }
+
+  // Record-level ownership check for the Technician role's detail screen - a 404 (not 403) is
+  // used for "exists but isn't yours" too, so a technician probing another tech's intervention
+  // id via a direct URL can't even confirm the record exists.
+  @Transactional(readOnly = true)
+  public InterventionResponse getByIdForAssignee(Long id, String technicianUsername) {
+    Intervention intervention = findActiveOrThrow(id);
+    User assignedTechnician = intervention.getAssignedTechnician();
+    if (assignedTechnician == null
+        || !assignedTechnician.getUsername().equals(technicianUsername)) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Intervention not found.");
+    }
+    return toResponse(intervention);
   }
 
   // The pending-approval queue: PENDING requests within the caller's assigned datacenters.
@@ -268,10 +300,27 @@ public class InterventionService {
     intervention.setInterventionType(request.getInterventionType());
     intervention.setPriority(request.getPriority());
     intervention.setStatus(request.getStatus());
-    intervention.setAssignedTechnician(request.getAssignedTechnician());
+    intervention.setAssignedTechnician(
+        resolveAssignedTechnician(request.getAssignedTechnicianId()));
     intervention.setScheduledAt(request.getScheduledAt());
     intervention.setCompletedAt(request.getCompletedAt());
     intervention.setNotes(request.getNotes());
+  }
+
+  private User resolveAssignedTechnician(Long technicianId) {
+    if (technicianId == null) {
+      return null;
+    }
+    User technician =
+        userRepository
+            .findById(technicianId)
+            .orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Technician not found."));
+    if (technician.getRole() != Role.TECHNICIAN) {
+      throw new ResponseStatusException(
+          HttpStatus.BAD_REQUEST, "Assigned user must have the Technician role.");
+    }
+    return technician;
   }
 
   private InterventionResponse toResponse(Intervention intervention) {
@@ -284,10 +333,13 @@ public class InterventionService {
     response.setInterventionType(intervention.getInterventionType());
     response.setPriority(intervention.getPriority());
     response.setStatus(intervention.getStatus());
-    response.setAssignedTechnician(intervention.getAssignedTechnician());
     response.setScheduledAt(intervention.getScheduledAt());
     response.setCompletedAt(intervention.getCompletedAt());
     response.setNotes(intervention.getNotes());
+    if (intervention.getAssignedTechnician() != null) {
+      response.setAssignedTechnicianId(intervention.getAssignedTechnician().getId());
+      response.setAssignedTechnicianUsername(intervention.getAssignedTechnician().getUsername());
+    }
     if (intervention.getRequestedBy() != null) {
       response.setRequestedById(intervention.getRequestedBy().getId());
       response.setRequestedByUsername(intervention.getRequestedBy().getUsername());

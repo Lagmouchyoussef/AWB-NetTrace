@@ -1,0 +1,73 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'interventions.myRequests.pageTitle' | translate }}</h1>
+    <button type="button" class="add-button" (click)="onNewRequest()">
+      <mat-icon fontSet="material-symbols-outlined">add</mat-icon>
+      {{ 'interventions.myRequests.newRequest' | translate }}
+    </button>
+  </div>
+
+  @if (loading() && requests().length === 0) {
+    <div class="timeline">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="timeline-card skeleton-card"></div>
+      }
+    </div>
+  } @else if (requests().length === 0) {
+    <div class="empty-state">
+      <mat-icon fontSet="material-symbols-outlined">build</mat-icon>
+      <p>{{ 'interventions.myRequests.empty' | translate }}</p>
+    </div>
+  } @else {
+    <div class="timeline">
+      @for (request of requests(); track request.id) {
+        <div class="timeline-card">
+          <div class="timeline-card-header">
+            <h2>{{ request.title }}</h2>
+            <div class="badges">
+              <span class="badge" [attr.data-severity]="request.priority">{{
+                'interventions.priority.' + request.priority | translate
+              }}</span>
+              <span class="badge" [attr.data-approval]="request.approvalStatus">{{
+                'interventions.approvalStatus.' + request.approvalStatus | translate
+              }}</span>
+            </div>
+          </div>
+
+          <p class="timeline-card-meta">
+            {{ request.deviceName }} ·
+            {{ 'interventions.interventionType.' + request.interventionType | translate }} ·
+            {{
+              'interventions.myRequests.scheduledFor'
+                | translate: { date: (request.scheduledAt | date: 'medium') }
+            }}
+          </p>
+
+          @if (request.description) {
+            <p class="timeline-card-description">{{ request.description }}</p>
+          }
+
+          @if (request.approvalStatus === 'REJECTED' && request.approvalComment) {
+            <p class="timeline-card-rejection">
+              <strong>{{ 'interventions.myRequests.rejectionReason' | translate }}:</strong>
+              {{ request.approvalComment }}
+            </p>
+          }
+        </div>
+      }
+    </div>
+
+    @if (hasMore) {
+      <div class="load-more-row">
+        <button
+          type="button"
+          class="load-more-button"
+          [disabled]="loading()"
+          (click)="onLoadMore()"
+        >
+          {{ 'interventions.myRequests.loadMore' | translate }}
+        </button>
+      </div>
+    }
+  }
+</div>

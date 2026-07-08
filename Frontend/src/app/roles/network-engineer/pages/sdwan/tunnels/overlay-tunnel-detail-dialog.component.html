@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'overlayTunnels.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'overlayTunnels.fields.source' | translate }}</dt>
+    <dd>{{ data.sourceEdgeName }}</dd>
+
+    <dt>{{ 'overlayTunnels.fields.target' | translate }}</dt>
+    <dd>{{ data.targetEdgeName }}</dd>
+
+    <dt>{{ 'overlayTunnels.fields.tunnelType' | translate }}</dt>
+    <dd>{{ 'overlayTunnels.tunnelType.' + data.tunnelType | translate }}</dd>
+
+    <dt>{{ 'overlayTunnels.fields.status' | translate }}</dt>
+    <dd>{{ 'overlayTunnels.status.' + data.status | translate }}</dd>
+
+    <dt>{{ 'overlayTunnels.fields.bandwidthMbps' | translate }}</dt>
+    <dd>{{ data.bandwidthMbps }} Mbps</dd>
+
+    @if (data.notes) {
+      <dt>{{ 'overlayTunnels.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

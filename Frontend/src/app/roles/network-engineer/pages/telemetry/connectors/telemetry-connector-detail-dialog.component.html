@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'telemetryConnectors.fields.code' | translate }}</dt>
+    <dd>{{ data.code }}</dd>
+
+    <dt>{{ 'telemetryConnectors.fields.device' | translate }}</dt>
+    <dd>{{ data.deviceName }}</dd>
+
+    <dt>{{ 'telemetryConnectors.fields.protocol' | translate }}</dt>
+    <dd>{{ 'telemetryConnectors.protocol.' + data.protocol | translate }}</dd>
+
+    <dt>{{ 'telemetryConnectors.fields.status' | translate }}</dt>
+    <dd>{{ 'telemetryConnectors.status.' + data.status | translate }}</dd>
+
+    @if (data.pollIntervalSeconds !== null) {
+      <dt>{{ 'telemetryConnectors.fields.pollIntervalSeconds' | translate }}</dt>
+      <dd>{{ data.pollIntervalSeconds }} s</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'telemetryConnectors.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

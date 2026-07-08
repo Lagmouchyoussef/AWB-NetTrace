@@ -1,0 +1,16 @@
+<div class="page">
+  <h1>{{ 'technician.nav.profile' | translate }}</h1>
+
+  <div class="profile-card">
+    <span class="material-symbols-outlined avatar-icon">person</span>
+    <div>
+      <p class="username">{{ username() }}</p>
+      <span class="role-badge">{{ 'roles.technician' | translate }}</span>
+    </div>
+  </div>
+
+  <button type="button" class="logout-button" (click)="onLogout()">
+    <span class="material-symbols-outlined">logout</span>
+    {{ 'topbar.logout' | translate }}
+  </button>
+</div>

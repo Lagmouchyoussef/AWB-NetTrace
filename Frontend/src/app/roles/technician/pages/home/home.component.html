@@ -1,0 +1,25 @@
+<div class="page">
+  <h1>{{ 'technician.home.title' | translate }}</h1>
+
+  @if (loading()) {
+    <p class="hint">{{ 'common.loading' | translate }}</p>
+  } @else if (interventions().length === 0) {
+    <p class="hint">{{ 'technician.home.empty' | translate }}</p>
+  } @else {
+    <p class="hint">
+      {{ 'technician.home.assignedCount' | translate: { count: interventions().length } }}
+    </p>
+    <ul class="list">
+      @for (intervention of interventions(); track intervention.id) {
+        <li>
+          <a [routerLink]="['/technician/interventions', intervention.id]" class="item-link">
+            <span class="item-title">{{ intervention.title }}</span>
+            <span class="item-status">{{
+              'interventions.status.' + intervention.status | translate
+            }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  }
+</div>

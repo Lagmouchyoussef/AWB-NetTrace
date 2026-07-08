@@ -43,8 +43,9 @@ public class Intervention {
   @Column(name = "status", nullable = false)
   private InterventionStatus status;
 
-  @Column(name = "assigned_technician")
-  private String assignedTechnician;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "assigned_technician_id")
+  private User assignedTechnician;
 
   @Column(name = "scheduled_at", nullable = false)
   private Instant scheduledAt;
@@ -134,11 +135,11 @@ public class Intervention {
     this.status = status;
   }
 
-  public String getAssignedTechnician() {
+  public User getAssignedTechnician() {
     return assignedTechnician;
   }
 
-  public void setAssignedTechnician(String assignedTechnician) {
+  public void setAssignedTechnician(User assignedTechnician) {
     this.assignedTechnician = assignedTechnician;
   }
 

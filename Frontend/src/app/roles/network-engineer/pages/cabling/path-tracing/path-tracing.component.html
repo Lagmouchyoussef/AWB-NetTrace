@@ -1,0 +1,125 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'pathTracing.pageTitle' | translate }}</h1>
+  </div>
+
+  <div class="selector-row">
+    <div class="selector-card">
+      <label for="source-select">{{ 'pathTracing.source' | translate }}</label>
+      <select id="source-select" (change)="onSourceChange($any($event.target).value)">
+        <option value="">{{ 'pathTracing.chooseDevice' | translate }}</option>
+        @for (device of devices(); track device.id) {
+          <option [value]="device.id">{{ device.name }}</option>
+        }
+      </select>
+
+      @if (sourcePorts().length) {
+        <div class="port-grid">
+          @for (port of sourcePorts(); track port.id) {
+            <span class="port-chip" [class.port-chip-free]="isPortFree(port)">{{ port.name }}</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="selector-arrow">
+      <span class="material-symbols-outlined">arrow_forward</span>
+    </div>
+
+    <div class="selector-card">
+      <label for="target-select">{{ 'pathTracing.target' | translate }}</label>
+      <select id="target-select" (change)="onTargetChange($any($event.target).value)">
+        <option value="">{{ 'pathTracing.chooseDevice' | translate }}</option>
+        @for (device of devices(); track device.id) {
+          <option [value]="device.id">{{ device.name }}</option>
+        }
+      </select>
+
+      @if (targetPorts().length) {
+        <div class="port-grid">
+          @for (port of targetPorts(); track port.id) {
+            <span class="port-chip" [class.port-chip-free]="isPortFree(port)">{{ port.name }}</span>
+          }
+        </div>
+      }
+    </div>
+
+    <button type="button" class="trace-button" [disabled]="!canTrace" (click)="onTrace()">
+      <span class="material-symbols-outlined">route</span>
+      {{ 'pathTracing.trace' | translate }}
+    </button>
+  </div>
+
+  <div class="port-legend">
+    <span class="port-chip port-chip-free">{{ 'pathTracing.portsLegend.free' | translate }}</span>
+    <span class="port-chip">{{ 'pathTracing.portsLegend.occupied' | translate }}</span>
+  </div>
+
+  <div class="content-row">
+    <div class="graph-shell">
+      @if (loading()) {
+        <div class="graph-skeleton"></div>
+      }
+      <div #graphContainer class="graph-container"></div>
+
+      <div class="zoom-controls">
+        <button
+          type="button"
+          (click)="onZoomIn()"
+          [attr.aria-label]="'pathTracing.zoomIn' | translate"
+        >
+          <span class="material-symbols-outlined">add</span>
+        </button>
+        <button
+          type="button"
+          (click)="onZoomOut()"
+          [attr.aria-label]="'pathTracing.zoomOut' | translate"
+        >
+          <span class="material-symbols-outlined">remove</span>
+        </button>
+        <button
+          type="button"
+          (click)="onFitView()"
+          [attr.aria-label]="'pathTracing.fitView' | translate"
+        >
+          <span class="material-symbols-outlined">fit_screen</span>
+        </button>
+      </div>
+
+      @if (traced() && !noPathFound()) {
+        <div class="packet-legend">
+          <span class="packet-dot"></span>
+          {{ 'pathTracing.packetLegend' | translate }}
+        </div>
+      }
+    </div>
+
+    <div class="hops-panel">
+      @if (!traced()) {
+        <div class="empty-state">
+          <span class="material-symbols-outlined">route</span>
+          <p>{{ 'pathTracing.emptyState' | translate }}</p>
+        </div>
+      } @else if (noPathFound()) {
+        <div class="empty-state">
+          <span class="material-symbols-outlined">link_off</span>
+          <p>{{ 'pathTracing.noPathFound' | translate }}</p>
+        </div>
+      } @else {
+        <h2>{{ 'pathTracing.hops' | translate }}</h2>
+        <ol class="hop-list">
+          @for (hop of hops(); track $index) {
+            <li>
+              <span class="hop-device">{{ hop.fromDeviceName }}</span>
+              <span class="hop-cable">
+                <span class="material-symbols-outlined">cable</span>
+                {{ hop.cableName }} ({{ 'cables.cableType.' + hop.cableType | translate }})
+              </span>
+              <span class="hop-device">{{ hop.toDeviceName }}</span>
+            </li>
+          }
+        </ol>
+      }
+    </div>
+  </div>
+</div>

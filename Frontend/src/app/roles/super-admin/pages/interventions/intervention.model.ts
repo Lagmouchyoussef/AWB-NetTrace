@@ -46,7 +46,8 @@ export interface Intervention {
   interventionType: InterventionType;
   priority: InterventionPriority;
   status: InterventionStatus;
-  assignedTechnician: string | null;
+  assignedTechnicianId: number | null;
+  assignedTechnicianUsername: string | null;
   scheduledAt: string;
   completedAt: string | null;
   notes: string | null;
@@ -68,7 +69,7 @@ export interface InterventionRequest {
   interventionType: InterventionType;
   priority: InterventionPriority;
   status: InterventionStatus;
-  assignedTechnician?: string | null;
+  assignedTechnicianId?: number | null;
   scheduledAt: string;
   completedAt?: string | null;
   notes?: string | null;

@@ -1,0 +1,77 @@
+<h2 mat-dialog-title>
+  {{ (isEdit ? 'realTimeDashboards.editTitle' : 'realTimeDashboards.createTitle') | translate }}
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'realTimeDashboards.fields.name' | translate }}</mat-label>
+        <input matInput formControlName="name" required />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <mat-error>{{ 'realTimeDashboards.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'realTimeDashboards.fields.code' | translate }}</mat-label>
+        <input matInput formControlName="code" required />
+        @if (form.controls.code.invalid && form.controls.code.touched) {
+          <mat-error>{{ 'realTimeDashboards.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'realTimeDashboards.fields.description' | translate }}</mat-label>
+        <textarea matInput formControlName="description" rows="2"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'realTimeDashboards.fields.refreshIntervalSeconds' | translate }}</mat-label>
+        <input matInput type="number" formControlName="refreshIntervalSeconds" required />
+        @if (
+          form.controls.refreshIntervalSeconds.invalid &&
+          form.controls.refreshIntervalSeconds.touched
+        ) {
+          <mat-error>{{ 'realTimeDashboards.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'realTimeDashboards.fields.widgetCount' | translate }}</mat-label>
+        <input matInput type="number" formControlName="widgetCount" required />
+        @if (form.controls.widgetCount.invalid && form.controls.widgetCount.touched) {
+          <mat-error>{{ 'realTimeDashboards.validation.required' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'realTimeDashboards.fields.status' | translate }}</mat-label>
+        <mat-select formControlName="status">
+          @for (status of statuses; track status) {
+            <mat-option [value]="status">{{
+              'realTimeDashboards.status.' + status | translate
+            }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'realTimeDashboards.fields.notes' | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+
+    @if (errorKey()) {
+      <p class="form-error">{{ errorKey() | translate }}</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" class="dialog-button dialog-button-cancel" (click)="cancel()">
+      {{ 'common.cancel' | translate }}
+    </button>
+    <button type="submit" class="dialog-button dialog-button-confirm" [disabled]="saving()">
+      {{ (saving() ? 'common.saving' : 'common.save') | translate }}
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -21,7 +21,7 @@ public class InterventionRequest {
 
   @NotNull private InterventionStatus status;
 
-  private String assignedTechnician;
+  private Long assignedTechnicianId;
 
   @NotNull private Instant scheduledAt;
 
@@ -77,12 +77,12 @@ public class InterventionRequest {
     this.status = status;
   }
 
-  public String getAssignedTechnician() {
-    return assignedTechnician;
+  public Long getAssignedTechnicianId() {
+    return assignedTechnicianId;
   }
 
-  public void setAssignedTechnician(String assignedTechnician) {
-    this.assignedTechnician = assignedTechnician;
+  public void setAssignedTechnicianId(Long assignedTechnicianId) {
+    this.assignedTechnicianId = assignedTechnicianId;
   }
 
   public Instant getScheduledAt() {

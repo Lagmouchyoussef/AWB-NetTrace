@@ -1,0 +1,227 @@
+.page {
+  padding: 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  margin-bottom: 1rem;
+}
+
+.page-header h1 {
+  font-size: 1.3rem;
+  margin: 0;
+  color: var(--awb-on-surface);
+}
+
+.filter-bar {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filter-field label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--awb-on-surface-muted);
+}
+
+.filter-field select {
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--awb-border);
+  background: var(--awb-surface);
+  color: var(--awb-on-surface);
+  font-size: 0.85rem;
+  min-width: 180px;
+}
+
+.graph-shell {
+  position: relative;
+  height: 68vh;
+  min-height: 480px;
+  border: 1px solid var(--awb-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--awb-surface);
+}
+
+.graph-container {
+  width: 100%;
+  height: 100%;
+}
+
+.graph-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--awb-hover) 25%,
+    var(--awb-border) 37%,
+    var(--awb-hover) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  z-index: 1;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.detail-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 320px;
+  background: var(--awb-surface);
+  border-left: 1px solid var(--awb-border);
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.08);
+  padding: 1.25rem;
+  overflow-y: auto;
+  box-sizing: border-box;
+  animation: slide-in 0.18s ease;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.detail-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.detail-panel-header h2 {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--awb-on-surface);
+}
+
+.close-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--awb-on-surface-muted);
+  display: flex;
+  padding: 0.2rem;
+  border-radius: 6px;
+}
+
+.close-button:hover {
+  background: var(--awb-hover);
+}
+
+.detail-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  margin: 0 0 1.25rem;
+}
+
+.detail-list dt {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--awb-on-surface-muted);
+}
+
+.detail-list dd {
+  margin: 0;
+  color: var(--awb-on-surface);
+  font-size: 0.85rem;
+}
+
+.detail-panel h3 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--awb-on-surface-muted);
+  margin: 0 0 0.6rem;
+}
+
+.detail-empty {
+  font-size: 0.82rem;
+  color: var(--awb-on-surface-muted);
+}
+
+.detail-cable-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.detail-cable-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  background: var(--awb-hover);
+}
+
+.cable-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--awb-on-surface);
+}
+
+.cable-route {
+  font-size: 0.75rem;
+  color: var(--awb-on-surface-muted);
+}
+
+.badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+  width: fit-content;
+  background: var(--awb-border);
+  color: var(--awb-on-surface-muted);
+}
+
+.badge[data-approval='APPROVED'] {
+  background: rgba(12, 163, 12, 0.15);
+  color: #0ca30c;
+}
+
+.badge[data-approval='REJECTED'] {
+  background: rgba(198, 40, 40, 0.15);
+  color: #c62828;
+}
+
+.badge[data-approval='PENDING'] {
+  background: rgba(247, 148, 29, 0.15);
+  color: #b06b0f;
+}

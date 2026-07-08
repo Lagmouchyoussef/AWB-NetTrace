@@ -17,7 +17,8 @@
   "roles": {
     "superAdmin": "超级管理员",
     "dcAdmin": "数据中心管理员",
-    "networkEngineer": "网络工程师"
+    "networkEngineer": "网络工程师",
+    "technician": "技术员"
   },
   "nav": {
     "dashboard": "仪表盘",
@@ -85,6 +86,52 @@
   },
   "dcAdminDashboard": {
     "title": "数据中心管理员空间"
+  },
+  "neDashboard": {
+    "title": "网络工程师空间",
+    "stats": {
+      "portsUsed": "已用端口",
+      "vlanCount": "VLAN / 叠加网络",
+      "activeTunnels": "活动叠加隧道",
+      "devices": "设备"
+    },
+    "jumpToTopology": "跳转到拓扑视图",
+    "jumpToPathTracing": "跳转到路径追踪",
+    "devicesByRole": "按结构角色划分的设备"
+  },
+  "topologyView": {
+    "pageTitle": "交互式拓扑视图",
+    "filters": {
+      "datacenter": "数据中心",
+      "role": "结构角色",
+      "all": "全部"
+    },
+    "empty": "没有设备符合当前筛选条件。",
+    "detail": {
+      "role": "结构角色",
+      "rack": "机架",
+      "status": "状态",
+      "cables": "已连接线缆",
+      "noCables": "没有已连接的线缆。"
+    }
+  },
+  "pathTracing": {
+    "pageTitle": "路径追踪",
+    "source": "源设备",
+    "target": "目标设备",
+    "chooseDevice": "选择设备...",
+    "trace": "追踪路径",
+    "portsLegend": {
+      "free": "空闲端口",
+      "occupied": "占用端口"
+    },
+    "emptyState": "选择源设备和目标设备，然后追踪以在图中查看高亮显示的路径。",
+    "noPathFound": "没有线缆路径连接这两台设备。",
+    "hops": "跳数",
+    "zoomIn": "放大",
+    "zoomOut": "缩小",
+    "fitView": "适应视图",
+    "packetLegend": "模拟数据包沿追踪路径移动"
   },
   "dashboard": {
     "title": "超级管理员空间",
@@ -171,7 +218,8 @@
     "lastPage": "末页",
     "of": "共",
     "yes": "是",
-    "no": "否"
+    "no": "否",
+    "back": "返回"
   },
   "datacenters": {
     "pageTitle": "数据中心",
@@ -399,7 +447,8 @@
       "LEAF": "叶交换机",
       "BORDER_LEAF": "边界叶交换机",
       "TOR_SWITCH": "架顶交换机",
-      "ROUTE_REFLECTOR": "路由反射器"
+      "ROUTE_REFLECTOR": "路由反射器",
+      "UNASSIGNED": "无结构角色"
     },
     "status": {
       "ACTIVE": "使用中",
@@ -906,6 +955,7 @@
       "priority": "优先级",
       "status": "状态",
       "assignedTechnician": "指派技术员",
+      "unassigned": "未分配",
       "scheduledAt": "计划时间",
       "completedAt": "完成时间",
       "notes": "备注"
@@ -933,6 +983,19 @@
       "ON_HOLD": "暂停",
       "COMPLETED": "已完成",
       "CANCELLED": "已取消"
+    },
+    "approvalStatus": {
+      "PENDING": "待审批",
+      "APPROVED": "已批准",
+      "REJECTED": "已拒绝"
+    },
+    "myRequests": {
+      "pageTitle": "我的干预请求",
+      "newRequest": "新建请求",
+      "empty": "您尚未提交任何干预请求。",
+      "loadMore": "加载更多",
+      "scheduledFor": "计划于 {{date}}",
+      "rejectionReason": "拒绝原因"
     },
     "approvalQueue": {
       "pageTitle": "审批队列",
@@ -1458,5 +1521,22 @@
     "saveSuccess": "设置已成功保存。",
     "saveError": "保存时出错，请重试。",
     "loadError": "无法加载 AI 设置，请检查您的网络连接并重试。"
+  },
+  "technician": {
+    "nav": {
+      "home": "首页",
+      "myInterventions": "我的工单",
+      "schedule": "我的日程",
+      "notifications": "通知",
+      "profile": "个人资料"
+    },
+    "home": {
+      "title": "今日",
+      "empty": "今天没有分配给您的工单。",
+      "assignedCount": "已分配给您 {{count}} 个工单。"
+    },
+    "interventionDetail": {
+      "notFound": "此工单未分配给您。"
+    }
   }
 }

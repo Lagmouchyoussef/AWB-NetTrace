@@ -17,7 +17,8 @@
   "roles": {
     "superAdmin": "Super Administrateur",
     "dcAdmin": "Administrateur Datacenter",
-    "networkEngineer": "Ingénieur Réseau"
+    "networkEngineer": "Ingénieur Réseau",
+    "technician": "Technicien"
   },
   "nav": {
     "dashboard": "Tableau de bord",
@@ -85,6 +86,52 @@
   },
   "dcAdminDashboard": {
     "title": "Espace Administrateur Datacenter"
+  },
+  "neDashboard": {
+    "title": "Espace Ingénieur Réseau",
+    "stats": {
+      "portsUsed": "Ports utilisés",
+      "vlanCount": "VLANs / Réseaux overlay",
+      "activeTunnels": "Tunnels overlay actifs",
+      "devices": "Équipements"
+    },
+    "jumpToTopology": "Aller à la vue Topologie",
+    "jumpToPathTracing": "Aller au traçage de chemin",
+    "devicesByRole": "Équipements par rôle de fabric"
+  },
+  "topologyView": {
+    "pageTitle": "Vue Topologie Interactive",
+    "filters": {
+      "datacenter": "Datacenter",
+      "role": "Rôle de fabric",
+      "all": "Tous"
+    },
+    "empty": "Aucun équipement ne correspond aux filtres actuels.",
+    "detail": {
+      "role": "Rôle de fabric",
+      "rack": "Baie",
+      "status": "Statut",
+      "cables": "Câbles connectés",
+      "noCables": "Aucun câble connecté."
+    }
+  },
+  "pathTracing": {
+    "pageTitle": "Traçage de Chemin",
+    "source": "Équipement source",
+    "target": "Équipement cible",
+    "chooseDevice": "Choisir un équipement...",
+    "trace": "Tracer le chemin",
+    "portsLegend": {
+      "free": "Port libre",
+      "occupied": "Port occupé"
+    },
+    "emptyState": "Choisissez un équipement source et cible, puis tracez pour voir le chemin mis en surbrillance sur le graphe.",
+    "noPathFound": "Aucun chemin de câblage ne relie ces deux équipements.",
+    "hops": "Sauts",
+    "zoomIn": "Zoom avant",
+    "zoomOut": "Zoom arrière",
+    "fitView": "Ajuster à la vue",
+    "packetLegend": "Paquet simulé suivant le chemin tracé"
   },
   "dashboard": {
     "title": "Espace Super Administrateur",
@@ -171,7 +218,8 @@
     "lastPage": "Dernière page",
     "of": "sur",
     "yes": "Oui",
-    "no": "Non"
+    "no": "Non",
+    "back": "Retour"
   },
   "datacenters": {
     "pageTitle": "Centres de données",
@@ -399,7 +447,8 @@
       "LEAF": "Leaf",
       "BORDER_LEAF": "Border Leaf",
       "TOR_SWITCH": "Commutateur Top-of-Rack",
-      "ROUTE_REFLECTOR": "Route Reflector"
+      "ROUTE_REFLECTOR": "Route Reflector",
+      "UNASSIGNED": "Aucun rôle de fabric"
     },
     "status": {
       "ACTIVE": "Actif",
@@ -906,6 +955,7 @@
       "priority": "Priorité",
       "status": "Statut",
       "assignedTechnician": "Technicien assigné",
+      "unassigned": "Non assigné",
       "scheduledAt": "Planifiée le",
       "completedAt": "Terminée le",
       "notes": "Notes"
@@ -933,6 +983,19 @@
       "ON_HOLD": "En attente",
       "COMPLETED": "Terminée",
       "CANCELLED": "Annulée"
+    },
+    "approvalStatus": {
+      "PENDING": "En attente d'approbation",
+      "APPROVED": "Approuvée",
+      "REJECTED": "Rejetée"
+    },
+    "myRequests": {
+      "pageTitle": "Mes demandes d'intervention",
+      "newRequest": "Nouvelle demande",
+      "empty": "Vous n'avez encore soumis aucune demande d'intervention.",
+      "loadMore": "Charger plus",
+      "scheduledFor": "Prévue le {{date}}",
+      "rejectionReason": "Motif du rejet"
     },
     "approvalQueue": {
       "pageTitle": "File d'approbation",
@@ -1458,5 +1521,22 @@
     "saveSuccess": "Paramètres enregistrés avec succès.",
     "saveError": "Une erreur s'est produite lors de l'enregistrement. Veuillez réessayer.",
     "loadError": "Impossible de charger les paramètres IA. Vérifiez votre connexion et réessayez."
+  },
+  "technician": {
+    "nav": {
+      "home": "Accueil",
+      "myInterventions": "Mes interventions",
+      "schedule": "Mon planning",
+      "notifications": "Notifications",
+      "profile": "Profil"
+    },
+    "home": {
+      "title": "Aujourd'hui",
+      "empty": "Aucune intervention prévue aujourd'hui.",
+      "assignedCount": "{{count}} intervention(s) qui vous sont assignées."
+    },
+    "interventionDetail": {
+      "notFound": "Cette intervention ne vous est pas assignée."
+    }
   }
 }

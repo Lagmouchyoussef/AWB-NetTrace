@@ -3,11 +3,14 @@ import { PlaceholderPageComponent } from '../../core/components/placeholder-page
 import { NavSection } from '../../core/types/nav';
 import { NETWORK_ENGINEER_NAV } from './network-engineer-nav.config';
 import { NetworkEngineerShellComponent } from './network-engineer-shell.component';
+import { NetworkEngineerDashboardComponent } from './pages/dashboard/network-engineer-dashboard.component';
 
 // Leaves with a real page get their own explicit route below instead of an auto-generated
 // placeholder - everything else in the nav still falls back to "Coming soon" until built
 // (mirrors dc-admin.routes.ts's REAL_PAGE_PATHS pattern).
 const REAL_PAGE_PATHS = new Set([
+  'topology-view',
+  'path-tracing',
   'infrastructure/datacenters',
   'infrastructure/rooms',
   'infrastructure/racks',
@@ -16,6 +19,14 @@ const REAL_PAGE_PATHS = new Set([
   'fabric/overlay-networks',
   'cabling/cables',
   'cabling/connectors',
+  'sdwan/edges',
+  'sdwan/tunnels',
+  'sdwan/circuits',
+  'telemetry/connectors',
+  'telemetry/dashboards',
+  'library/equipment-types',
+  'library/technology-catalog',
+  'my-requests',
 ]);
 
 function toPlaceholderRoutes(section: NavSection): Routes {
@@ -41,8 +52,24 @@ export const networkEngineerRoutes: Routes = [
     children: [
       {
         path: '',
-        component: PlaceholderPageComponent,
+        component: NetworkEngineerDashboardComponent,
         data: { titleKey: 'nav.dashboard' },
+      },
+      {
+        path: 'topology-view',
+        loadComponent: () =>
+          import('./pages/fabric/topology-view/topology-view.component').then(
+            (m) => m.NeTopologyViewComponent,
+          ),
+        data: { titleKey: 'nav.interactiveTopologyView' },
+      },
+      {
+        path: 'path-tracing',
+        loadComponent: () =>
+          import('./pages/cabling/path-tracing/path-tracing.component').then(
+            (m) => m.NePathTracingComponent,
+          ),
+        data: { titleKey: 'nav.pathTracing' },
       },
       {
         path: 'infrastructure/datacenters',
@@ -107,6 +134,70 @@ export const networkEngineerRoutes: Routes = [
             (m) => m.NeConnectorsListComponent,
           ),
         data: { titleKey: 'nav.connectorsTransceivers', sectionKey: 'nav.cabling' },
+      },
+      {
+        path: 'sdwan/edges',
+        loadComponent: () =>
+          import('./pages/sdwan/edges/sdwan-edges-list.component').then(
+            (m) => m.NeSdwanEdgesListComponent,
+          ),
+        data: { titleKey: 'nav.sdwanEdges', sectionKey: 'nav.sdwanConnectivity' },
+      },
+      {
+        path: 'sdwan/tunnels',
+        loadComponent: () =>
+          import('./pages/sdwan/tunnels/overlay-tunnels-list.component').then(
+            (m) => m.NeOverlayTunnelsListComponent,
+          ),
+        data: { titleKey: 'nav.overlayTunnels', sectionKey: 'nav.sdwanConnectivity' },
+      },
+      {
+        path: 'sdwan/circuits',
+        loadComponent: () =>
+          import('./pages/sdwan/circuits/carrier-circuits-list.component').then(
+            (m) => m.NeCarrierCircuitsListComponent,
+          ),
+        data: { titleKey: 'nav.carrierCircuits', sectionKey: 'nav.sdwanConnectivity' },
+      },
+      {
+        path: 'telemetry/connectors',
+        loadComponent: () =>
+          import('./pages/telemetry/connectors/telemetry-connectors-list.component').then(
+            (m) => m.NeTelemetryConnectorsListComponent,
+          ),
+        data: { titleKey: 'nav.telemetryConnectors', sectionKey: 'nav.telemetryMonitoring' },
+      },
+      {
+        path: 'telemetry/dashboards',
+        loadComponent: () =>
+          import('./pages/telemetry/dashboards/real-time-dashboards-list.component').then(
+            (m) => m.NeRealTimeDashboardsListComponent,
+          ),
+        data: { titleKey: 'nav.realTimeDashboards', sectionKey: 'nav.telemetryMonitoring' },
+      },
+      {
+        path: 'library/equipment-types',
+        loadComponent: () =>
+          import('./pages/library/device-types/equipment-types-list.component').then(
+            (m) => m.NeEquipmentTypesListComponent,
+          ),
+        data: { titleKey: 'nav.equipmentTypes', sectionKey: 'nav.technicalLibrary' },
+      },
+      {
+        path: 'library/technology-catalog',
+        loadComponent: () =>
+          import('./pages/library/technology-catalog/technology-catalog-list.component').then(
+            (m) => m.NeTechnologyCatalogListComponent,
+          ),
+        data: { titleKey: 'nav.networkTechnologyCatalog', sectionKey: 'nav.technicalLibrary' },
+      },
+      {
+        path: 'my-requests',
+        loadComponent: () =>
+          import('./pages/my-requests/my-requests-list.component').then(
+            (m) => m.NeMyRequestsListComponent,
+          ),
+        data: { titleKey: 'nav.myInterventionRequests' },
       },
       ...placeholderRoutes,
     ],

@@ -129,7 +129,9 @@ export class NeCablesListComponent implements OnInit {
         cableType: row.cableType,
         lengthMeters: row.lengthMeters,
         status: 'DISCONNECTED',
-        notes: row.notes ? `${row.notes}\n\nDecommissioned: ${reason}` : `Decommissioned: ${reason}`,
+        notes: row.notes
+          ? `${row.notes}\n\nDecommissioned: ${reason}`
+          : `Decommissioned: ${reason}`,
       });
       this.load();
     }

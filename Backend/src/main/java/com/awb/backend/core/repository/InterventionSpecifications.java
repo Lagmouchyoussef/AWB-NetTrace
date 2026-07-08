@@ -56,6 +56,14 @@ public final class InterventionSpecifications {
     return (root, query, cb) -> cb.equal(root.get("requestedBy").get("username"), username);
   }
 
+  // Personal-scope filter for the Technician role - only interventions assigned to them, ever.
+  public static Specification<Intervention> assignedToUsername(String username) {
+    if (username == null || username.isBlank()) {
+      return (root, query, cb) -> cb.conjunction();
+    }
+    return (root, query, cb) -> cb.equal(root.get("assignedTechnician").get("username"), username);
+  }
+
   // Interventions have no direct datacenter FK - scoped through device -> rack -> room ->
   // datacenter, same multi-hop join pattern used for other DC-Admin-scoped entities.
   public static Specification<Intervention> hasDatacenterIdIn(Collection<Long> datacenterIds) {

@@ -7,7 +7,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DeviceService } from '../../../../core/services/device.service';
 import { InterventionService } from '../../../../core/services/intervention.service';
+import { UserManagementService } from '../../../../core/services/user-management.service';
 import { Device } from '../devices/device.model';
+import { AppUser } from '../users/user.model';
 import {
   INTERVENTION_PRIORITIES,
   INTERVENTION_STATUSES,
@@ -51,6 +53,7 @@ function fromDateTimeLocal(local: string | null): string | null {
 export class InterventionFormDialogComponent implements OnInit {
   private readonly interventionService = inject(InterventionService);
   private readonly deviceService = inject(DeviceService);
+  private readonly userManagementService = inject(UserManagementService);
   private readonly dialogRef = inject(MatDialogRef<InterventionFormDialogComponent, boolean>);
   protected readonly data = inject<Intervention | null>(MAT_DIALOG_DATA);
 
@@ -61,6 +64,7 @@ export class InterventionFormDialogComponent implements OnInit {
   protected readonly saving = signal(false);
   protected readonly errorKey = signal<string | null>(null);
   protected readonly devices = signal<Device[]>([]);
+  protected readonly technicians = signal<AppUser[]>([]);
 
   protected readonly form = new FormGroup({
     deviceId: new FormControl<number | null>(this.data?.deviceId ?? null, {
@@ -83,7 +87,7 @@ export class InterventionFormDialogComponent implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    assignedTechnician: new FormControl(this.data?.assignedTechnician ?? ''),
+    assignedTechnicianId: new FormControl<number | null>(this.data?.assignedTechnicianId ?? null),
     scheduledAt: new FormControl(toDateTimeLocal(this.data?.scheduledAt ?? null), {
       nonNullable: true,
       validators: [Validators.required],
@@ -93,8 +97,12 @@ export class InterventionFormDialogComponent implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
-    const result = await this.deviceService.list({ page: 0, size: 1000 });
-    this.devices.set(result.content);
+    const [devicesResult, techniciansResult] = await Promise.all([
+      this.deviceService.list({ page: 0, size: 1000 }),
+      this.userManagementService.list({ page: 0, size: 1000, role: 'TECHNICIAN' }),
+    ]);
+    this.devices.set(devicesResult.content);
+    this.technicians.set(techniciansResult.content);
   }
 
   protected async onSubmit(): Promise<void> {

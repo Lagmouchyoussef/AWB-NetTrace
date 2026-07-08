@@ -61,7 +61,14 @@
 
       <mat-form-field appearance="outline">
         <mat-label>{{ 'interventions.fields.assignedTechnician' | translate }}</mat-label>
-        <input matInput formControlName="assignedTechnician" />
+        <mat-select formControlName="assignedTechnicianId">
+          <mat-option [value]="null">{{
+            'interventions.fields.unassigned' | translate
+          }}</mat-option>
+          @for (technician of technicians(); track technician.id) {
+            <mat-option [value]="technician.id">{{ technician.username }}</mat-option>
+          }
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline">

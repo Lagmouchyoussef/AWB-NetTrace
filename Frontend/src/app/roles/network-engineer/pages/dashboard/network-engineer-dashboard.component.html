@@ -1,0 +1,53 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'neDashboard.title' | translate }}</h1>
+  </div>
+
+  <div class="quick-actions">
+    <a class="quick-action" routerLink="/network-engineer/topology-view">
+      <span class="material-symbols-outlined">share</span>
+      {{ 'neDashboard.jumpToTopology' | translate }}
+    </a>
+    <a class="quick-action" routerLink="/network-engineer/path-tracing">
+      <span class="material-symbols-outlined">route</span>
+      {{ 'neDashboard.jumpToPathTracing' | translate }}
+    </a>
+  </div>
+
+  @if (loading()) {
+    <div class="stats-grid">
+      @for (i of [1, 2, 3, 4]; track i) {
+        <div class="stat-card skeleton-card"></div>
+      }
+    </div>
+  } @else {
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-value">{{ portsUsed() }}/{{ portsTotal() }}</span>
+        <span class="stat-label">{{ 'neDashboard.stats.portsUsed' | translate }}</span>
+        <span class="stat-sublabel">{{ portsUsedPercent() }}%</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ vlanCount() }}</span>
+        <span class="stat-label">{{ 'neDashboard.stats.vlanCount' | translate }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ activeTunnelsCount() }}</span>
+        <span class="stat-label">{{ 'neDashboard.stats.activeTunnels' | translate }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ deviceCount() }}</span>
+        <span class="stat-label">{{ 'neDashboard.stats.devices' | translate }}</span>
+      </div>
+    </div>
+
+    <div class="charts-grid">
+      <app-stat-chart
+        [data]="deviceRoleData()"
+        titleKey="neDashboard.devicesByRole"
+        initialMode="donut"
+        [showLegend]="true"
+      />
+    </div>
+  }
+</div>

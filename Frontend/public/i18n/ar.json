@@ -17,7 +17,8 @@
   "roles": {
     "superAdmin": "المسؤول العام",
     "dcAdmin": "مسؤول مركز البيانات",
-    "networkEngineer": "مهندس الشبكة"
+    "networkEngineer": "مهندس الشبكة",
+    "technician": "فني"
   },
   "nav": {
     "dashboard": "لوحة التحكم",
@@ -85,6 +86,52 @@
   },
   "dcAdminDashboard": {
     "title": "مساحة مسؤول مركز البيانات"
+  },
+  "neDashboard": {
+    "title": "مساحة مهندس الشبكات",
+    "stats": {
+      "portsUsed": "المنافذ المستخدمة",
+      "vlanCount": "VLAN / الشبكات الفوقية",
+      "activeTunnels": "الأنفاق الفوقية النشطة",
+      "devices": "الأجهزة"
+    },
+    "jumpToTopology": "الانتقال إلى عرض الطوبولوجيا",
+    "jumpToPathTracing": "الانتقال إلى تتبع المسار",
+    "devicesByRole": "الأجهزة حسب دور النسيج"
+  },
+  "topologyView": {
+    "pageTitle": "عرض الطوبولوجيا التفاعلي",
+    "filters": {
+      "datacenter": "مركز البيانات",
+      "role": "دور النسيج",
+      "all": "الكل"
+    },
+    "empty": "لا توجد أجهزة مطابقة للمرشحات الحالية.",
+    "detail": {
+      "role": "دور النسيج",
+      "rack": "الخزانة",
+      "status": "الحالة",
+      "cables": "الكابلات المتصلة",
+      "noCables": "لا توجد كابلات متصلة."
+    }
+  },
+  "pathTracing": {
+    "pageTitle": "تتبع المسار",
+    "source": "الجهاز المصدر",
+    "target": "الجهاز الهدف",
+    "chooseDevice": "اختر جهازًا...",
+    "trace": "تتبع المسار",
+    "portsLegend": {
+      "free": "منفذ حر",
+      "occupied": "منفذ مشغول"
+    },
+    "emptyState": "اختر جهازًا مصدرًا وهدفًا، ثم تتبع لرؤية المسار مميزًا على الرسم البياني.",
+    "noPathFound": "لا يوجد مسار كابلات يربط بين هذين الجهازين.",
+    "hops": "القفزات",
+    "zoomIn": "تكبير",
+    "zoomOut": "تصغير",
+    "fitView": "ملاءمة العرض",
+    "packetLegend": "حزمة محاكاة تتبع المسار المتتبع"
   },
   "dashboard": {
     "title": "مساحة المسؤول العام",
@@ -171,7 +218,8 @@
     "lastPage": "الصفحة الأخيرة",
     "of": "من",
     "yes": "نعم",
-    "no": "لا"
+    "no": "لا",
+    "back": "رجوع"
   },
   "datacenters": {
     "pageTitle": "مراكز البيانات",
@@ -399,7 +447,8 @@
       "LEAF": "ليف",
       "BORDER_LEAF": "ليف حدودي",
       "TOR_SWITCH": "مفتاح أعلى الخزانة",
-      "ROUTE_REFLECTOR": "عاكس المسارات"
+      "ROUTE_REFLECTOR": "عاكس المسارات",
+      "UNASSIGNED": "بدون دور نسيج"
     },
     "status": {
       "ACTIVE": "نشط",
@@ -906,6 +955,7 @@
       "priority": "الأولوية",
       "status": "الحالة",
       "assignedTechnician": "الفني المكلف",
+      "unassigned": "غير مسند",
       "scheduledAt": "مجدولة في",
       "completedAt": "اكتملت في",
       "notes": "ملاحظات"
@@ -933,6 +983,19 @@
       "ON_HOLD": "معلّقة",
       "COMPLETED": "مكتملة",
       "CANCELLED": "ملغاة"
+    },
+    "approvalStatus": {
+      "PENDING": "بانتظار الموافقة",
+      "APPROVED": "تمت الموافقة",
+      "REJECTED": "مرفوضة"
+    },
+    "myRequests": {
+      "pageTitle": "طلبات التدخل الخاصة بي",
+      "newRequest": "طلب جديد",
+      "empty": "لم تقدّم أي طلب تدخل بعد.",
+      "loadMore": "تحميل المزيد",
+      "scheduledFor": "مجدولة في {{date}}",
+      "rejectionReason": "سبب الرفض"
     },
     "approvalQueue": {
       "pageTitle": "قائمة الموافقات",
@@ -1458,5 +1521,22 @@
     "saveSuccess": "تم حفظ الإعدادات بنجاح.",
     "saveError": "حدث خطأ أثناء الحفظ. يرجى المحاولة مرة أخرى.",
     "loadError": "تعذر تحميل إعدادات الذكاء الاصطناعي. يرجى التحقق من اتصالك والمحاولة مرة أخرى."
+  },
+  "technician": {
+    "nav": {
+      "home": "الرئيسية",
+      "myInterventions": "تدخلاتي",
+      "schedule": "جدولي",
+      "notifications": "الإشعارات",
+      "profile": "الملف الشخصي"
+    },
+    "home": {
+      "title": "اليوم",
+      "empty": "لا توجد تدخلات مسندة إليك اليوم.",
+      "assignedCount": "{{count}} تدخل (تدخلات) مسندة إليك."
+    },
+    "interventionDetail": {
+      "notFound": "هذا التدخل غير مسند إليك."
+    }
   }
 }
