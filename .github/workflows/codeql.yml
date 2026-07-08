@@ -28,7 +28,16 @@ jobs:
         with:
           languages: ${{ matrix.language }}
 
+      - name: Build
+        run: |
+          if [ "${{ matrix.language }}" = "javascript-typescript" ]; then
+            cd Frontend
+            npm ci
+            npm run build
+          fi
+
       - name: Autobuild
+        if: matrix.language == 'java'
         uses: github/codeql-action/autobuild@v3
 
       - name: Perform CodeQL Analysis

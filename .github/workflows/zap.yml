@@ -17,7 +17,7 @@ jobs:
           DB_NAME: zap_scan
           DB_USERNAME: zap_scan_user
           DB_PASSWORD: zap-scan-only-password-0000000000
-          SSL_KEYSTORE_PASSWORD: zap-scan-only-keystore-password-0000
+          SSL_KEYSTORE_PASSWORD: DevLocalOnly_ChangeMe_2026!
           APP_SECURITY_JWT_SECRET: zap-scan-only-jwt-secret-never-used-elsewhere-0000
           APP_SECURITY_DEMO_USERS_PASSWORD: zap-scan-only-demo-password-0000
         run: |
@@ -51,7 +51,7 @@ jobs:
           DB_NAME: zap_scan
           DB_USERNAME: zap_scan_user
           DB_PASSWORD: zap-scan-only-password-0000000000
-          SSL_KEYSTORE_PASSWORD: zap-scan-only-keystore-password-0000
+          SSL_KEYSTORE_PASSWORD: DevLocalOnly_ChangeMe_2026!
           APP_SECURITY_JWT_SECRET: zap-scan-only-jwt-secret-never-used-elsewhere-0000
           APP_SECURITY_DEMO_USERS_PASSWORD: zap-scan-only-demo-password-0000
         run: docker compose down
