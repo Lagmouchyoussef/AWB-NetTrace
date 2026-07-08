@@ -81,7 +81,10 @@ export class DcAdminConnectorsListComponent implements OnInit {
   }
 
   protected onCreate(): void {
-    const ref = this.dialog.open(DcAdminConnectorFormDialogComponent, { width: '560px', data: null });
+    const ref = this.dialog.open(DcAdminConnectorFormDialogComponent, {
+      width: '560px',
+      data: null,
+    });
     ref.afterClosed().subscribe((saved) => {
       if (saved) {
         this.load();
@@ -94,7 +97,10 @@ export class DcAdminConnectorsListComponent implements OnInit {
   }
 
   protected onEdit(row: Connector): void {
-    const ref = this.dialog.open(DcAdminConnectorFormDialogComponent, { width: '560px', data: row });
+    const ref = this.dialog.open(DcAdminConnectorFormDialogComponent, {
+      width: '560px',
+      data: row,
+    });
     ref.afterClosed().subscribe((saved) => {
       if (saved) {
         this.load();

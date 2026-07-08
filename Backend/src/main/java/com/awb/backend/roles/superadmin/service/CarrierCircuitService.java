@@ -65,12 +65,14 @@ public class CarrierCircuitService {
     circuit.setCreatedAt(now);
     circuit.setUpdatedAt(now);
     CarrierCircuitResponse response = toResponse(carrierCircuitRepository.save(circuit));
-    auditLogWriter.log(actorUsername, AuditAction.CREATE, "CarrierCircuit", response.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.CREATE, "CarrierCircuit", response.getName(), null);
     return response;
   }
 
   @Transactional
-  public CarrierCircuitResponse update(Long id, CarrierCircuitRequest request, String actorUsername) {
+  public CarrierCircuitResponse update(
+      Long id, CarrierCircuitRequest request, String actorUsername) {
     CarrierCircuit circuit = findActiveOrThrow(id);
     if (carrierCircuitRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -81,7 +83,8 @@ public class CarrierCircuitService {
     applyRequest(circuit, request);
     circuit.setUpdatedAt(Instant.now());
     CarrierCircuitResponse response = toResponse(carrierCircuitRepository.save(circuit));
-    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "CarrierCircuit", response.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.UPDATE, "CarrierCircuit", response.getName(), null);
     return response;
   }
 
@@ -91,7 +94,8 @@ public class CarrierCircuitService {
     circuit.setDeleted(true);
     circuit.setUpdatedAt(Instant.now());
     carrierCircuitRepository.save(circuit);
-    auditLogWriter.log(actorUsername, AuditAction.DELETE, "CarrierCircuit", circuit.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.DELETE, "CarrierCircuit", circuit.getName(), null);
   }
 
   private CarrierCircuit findActiveOrThrow(Long id) {

@@ -9,9 +9,11 @@ import { createScopedCrudService } from './scoped-crud.factory';
 
 @Injectable({ providedIn: 'root' })
 export class DcAdminDatacenterService {
-  private readonly crud = createScopedCrudService<Datacenter, DatacenterRequest, DatacenterListParams>(
-    '/api/roles/dc-admin/datacenters',
-  );
+  private readonly crud = createScopedCrudService<
+    Datacenter,
+    DatacenterRequest,
+    DatacenterListParams
+  >('/api/roles/dc-admin/datacenters');
 
   list(params: DatacenterListParams): Promise<DatacenterPage> {
     return this.crud.list(params);

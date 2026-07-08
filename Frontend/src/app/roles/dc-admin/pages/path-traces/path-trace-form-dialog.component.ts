@@ -8,7 +8,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { DcAdminDeviceService } from '../../../../core/services/dc-admin-device.service';
 import { DcAdminPathTraceService } from '../../../../core/services/dc-admin-path-trace.service';
 import { Device } from '../../../super-admin/pages/devices/device.model';
-import { PATH_TRACE_STATUSES, PathTrace, PathTraceStatus } from '../../../super-admin/pages/path-traces/path-trace.model';
+import {
+  PATH_TRACE_STATUSES,
+  PathTrace,
+  PathTraceStatus,
+} from '../../../super-admin/pages/path-traces/path-trace.model';
 
 @Component({
   selector: 'app-dc-admin-path-trace-form-dialog',

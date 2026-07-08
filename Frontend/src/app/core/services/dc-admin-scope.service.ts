@@ -22,10 +22,14 @@ export class DcAdminScopeService {
     .get<DatacenterScope[]>(`${BASE_URL}/datacenters`)
     .pipe(shareReplay({ bufferSize: 1, refCount: false }));
 
-  readonly assignedDatacenters = toSignal(this.datacenters$, { initialValue: [] as DatacenterScope[] });
+  readonly assignedDatacenters = toSignal(this.datacenters$, {
+    initialValue: [] as DatacenterScope[],
+  });
 
   readonly scopeLabel = toSignal(
-    this.datacenters$.pipe(map((list) => (list.length ? list.map((d) => d.name).join(', ') : null))),
+    this.datacenters$.pipe(
+      map((list) => (list.length ? list.map((d) => d.name).join(', ') : null)),
+    ),
     { initialValue: null },
   );
 

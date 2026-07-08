@@ -52,7 +52,8 @@ public class DcAdminInterventionController {
   }
 
   @GetMapping("/approval-queue")
-  public Page<InterventionResponse> approvalQueue(Pageable pageable, Authentication authentication) {
+  public Page<InterventionResponse> approvalQueue(
+      Pageable pageable, Authentication authentication) {
     return interventionService.getApprovalQueue(
         scopeService.getAssignedDatacenterIds(authentication), pageable);
   }

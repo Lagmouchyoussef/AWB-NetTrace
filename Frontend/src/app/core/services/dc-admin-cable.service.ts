@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Cable, CableListParams, CablePage, CableRequest } from '../../roles/super-admin/pages/cables/cable.model';
+import {
+  Cable,
+  CableListParams,
+  CablePage,
+  CableRequest,
+} from '../../roles/super-admin/pages/cables/cable.model';
 import { createScopedCrudService } from './scoped-crud.factory';
 
 @Injectable({ providedIn: 'root' })

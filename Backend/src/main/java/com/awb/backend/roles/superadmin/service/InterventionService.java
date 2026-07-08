@@ -96,7 +96,8 @@ public class InterventionService {
     intervention.setCreatedAt(now);
     intervention.setUpdatedAt(now);
     InterventionResponse response = toResponse(interventionRepository.save(intervention));
-    auditLogWriter.log(actorUsername, AuditAction.CREATE, "Intervention", response.getTitle(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.CREATE, "Intervention", response.getTitle(), null);
     return response;
   }
 
@@ -115,7 +116,8 @@ public class InterventionService {
     intervention.setCreatedAt(now);
     intervention.setUpdatedAt(now);
     InterventionResponse response = toResponse(interventionRepository.save(intervention));
-    auditLogWriter.log(actorUsername, AuditAction.CREATE, "Intervention", response.getTitle(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.CREATE, "Intervention", response.getTitle(), null);
     return response;
   }
 
@@ -124,7 +126,8 @@ public class InterventionService {
   // null skips the datacenter check (Super Admin has no assignment boundary), a non-null set
   // requires the intervention's device to belong to one of those datacenters.
   @Transactional
-  public InterventionResponse approve(Long id, String actorUsername, Set<Long> allowedDatacenterIds) {
+  public InterventionResponse approve(
+      Long id, String actorUsername, Set<Long> allowedDatacenterIds) {
     Intervention intervention = findPendingOrThrow(id);
     User approver = resolveUser(actorUsername);
     requireNotOwnRequest(intervention, approver);
@@ -164,7 +167,8 @@ public class InterventionService {
     applyRequest(intervention, request);
     intervention.setUpdatedAt(Instant.now());
     InterventionResponse response = toResponse(interventionRepository.save(intervention));
-    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "Intervention", response.getTitle(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.UPDATE, "Intervention", response.getTitle(), null);
     return response;
   }
 
@@ -174,7 +178,8 @@ public class InterventionService {
     intervention.setDeleted(true);
     intervention.setUpdatedAt(Instant.now());
     interventionRepository.save(intervention);
-    auditLogWriter.log(actorUsername, AuditAction.DELETE, "Intervention", intervention.getTitle(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.DELETE, "Intervention", intervention.getTitle(), null);
   }
 
   private Intervention findActiveOrThrow(Long id) {

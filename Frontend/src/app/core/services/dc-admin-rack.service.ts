@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Rack, RackListParams, RackPage, RackRequest } from '../../roles/super-admin/pages/racks/rack.model';
+import {
+  Rack,
+  RackListParams,
+  RackPage,
+  RackRequest,
+} from '../../roles/super-admin/pages/racks/rack.model';
 import { createScopedCrudService } from './scoped-crud.factory';
 
 @Injectable({ providedIn: 'root' })

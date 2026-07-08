@@ -53,7 +53,9 @@ public class DeviceController {
 
   @PutMapping("/{id}")
   public DeviceResponse update(
-      @PathVariable Long id, @Valid @RequestBody DeviceRequest request, Authentication authentication) {
+      @PathVariable Long id,
+      @Valid @RequestBody DeviceRequest request,
+      Authentication authentication) {
     return deviceService.update(id, request, authentication.getName());
   }
 

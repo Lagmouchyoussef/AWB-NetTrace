@@ -27,7 +27,9 @@ public class DeviceService {
   private final AuditLogWriter auditLogWriter;
 
   public DeviceService(
-      DeviceRepository deviceRepository, RackRepository rackRepository, AuditLogWriter auditLogWriter) {
+      DeviceRepository deviceRepository,
+      RackRepository rackRepository,
+      AuditLogWriter auditLogWriter) {
     this.deviceRepository = deviceRepository;
     this.rackRepository = rackRepository;
     this.auditLogWriter = auditLogWriter;

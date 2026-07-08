@@ -121,7 +121,9 @@ export class StatChartComponent {
     const max = this.maxValue();
     return data.map((d, i) => {
       const x =
-        data.length === 1 ? PAD_LEFT + plotWidth / 2 : PAD_LEFT + (i / (data.length - 1)) * plotWidth;
+        data.length === 1
+          ? PAD_LEFT + plotWidth / 2
+          : PAD_LEFT + (i / (data.length - 1)) * plotWidth;
       const y = PAD_TOP + plotHeight - (d.count / max) * plotHeight;
       return {
         x,

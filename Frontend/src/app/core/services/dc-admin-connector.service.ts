@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Connector, ConnectorListParams, ConnectorPage, ConnectorRequest } from '../../roles/super-admin/pages/connectors/connector.model';
+import {
+  Connector,
+  ConnectorListParams,
+  ConnectorPage,
+  ConnectorRequest,
+} from '../../roles/super-admin/pages/connectors/connector.model';
 import { createScopedCrudService } from './scoped-crud.factory';
 
 @Injectable({ providedIn: 'root' })

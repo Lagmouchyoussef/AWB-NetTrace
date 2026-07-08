@@ -52,7 +52,9 @@ public class UserManagementController {
 
   @PutMapping("/{id}")
   public UserResponse update(
-      @PathVariable Long id, @Valid @RequestBody UserRequest request, Authentication authentication) {
+      @PathVariable Long id,
+      @Valid @RequestBody UserRequest request,
+      Authentication authentication) {
     return userManagementService.update(id, request, authentication.getName());
   }
 

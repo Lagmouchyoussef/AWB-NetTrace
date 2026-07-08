@@ -69,12 +69,14 @@ public class OverlayNetworkService {
     overlay.setCreatedAt(now);
     overlay.setUpdatedAt(now);
     OverlayNetworkResponse response = toResponse(overlayNetworkRepository.save(overlay));
-    auditLogWriter.log(actorUsername, AuditAction.CREATE, "OverlayNetwork", response.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.CREATE, "OverlayNetwork", response.getName(), null);
     return response;
   }
 
   @Transactional
-  public OverlayNetworkResponse update(Long id, OverlayNetworkRequest request, String actorUsername) {
+  public OverlayNetworkResponse update(
+      Long id, OverlayNetworkRequest request, String actorUsername) {
     OverlayNetwork overlay = findActiveOrThrow(id);
     if (overlayNetworkRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
       throw new ResponseStatusException(
@@ -89,7 +91,8 @@ public class OverlayNetworkService {
     applyRequest(overlay, request);
     overlay.setUpdatedAt(Instant.now());
     OverlayNetworkResponse response = toResponse(overlayNetworkRepository.save(overlay));
-    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "OverlayNetwork", response.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.UPDATE, "OverlayNetwork", response.getName(), null);
     return response;
   }
 
@@ -99,7 +102,8 @@ public class OverlayNetworkService {
     overlay.setDeleted(true);
     overlay.setUpdatedAt(Instant.now());
     overlayNetworkRepository.save(overlay);
-    auditLogWriter.log(actorUsername, AuditAction.DELETE, "OverlayNetwork", overlay.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.DELETE, "OverlayNetwork", overlay.getName(), null);
   }
 
   private OverlayNetwork findActiveOrThrow(Long id) {

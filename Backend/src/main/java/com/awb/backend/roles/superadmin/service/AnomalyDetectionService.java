@@ -85,7 +85,8 @@ public class AnomalyDetectionService {
     anomaly.setDeleted(true);
     anomaly.setUpdatedAt(Instant.now());
     anomalyDetectionRepository.save(anomaly);
-    auditLogWriter.log(actorUsername, AuditAction.DELETE, "AnomalyDetection", anomaly.getTitle(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.DELETE, "AnomalyDetection", anomaly.getTitle(), null);
   }
 
   private AnomalyDetection findActiveOrThrow(Long id) {

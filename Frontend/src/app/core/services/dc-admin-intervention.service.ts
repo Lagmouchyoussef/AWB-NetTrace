@@ -53,8 +53,6 @@ export class DcAdminInterventionService {
   }
 
   reject(id: number, comment: string): Promise<Intervention> {
-    return firstValueFrom(
-      this.http.post<Intervention>(`${BASE_URL}/${id}/reject`, { comment }),
-    );
+    return firstValueFrom(this.http.post<Intervention>(`${BASE_URL}/${id}/reject`, { comment }));
   }
 }

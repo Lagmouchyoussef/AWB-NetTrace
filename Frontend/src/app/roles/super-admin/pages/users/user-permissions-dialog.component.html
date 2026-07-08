@@ -11,11 +11,15 @@
       @for (row of rows(); track row.module) {
         <div class="permission-row">
           <div class="module-info">
-            <span class="module-name">{{ 'userPermissions.module.' + row.module | translate }}</span>
+            <span class="module-name">{{
+              'userPermissions.module.' + row.module | translate
+            }}</span>
             <span class="module-effective" [class.blocked]="!row.effective">
               {{
-                (row.effective ? 'userPermissions.effectiveAllowed' : 'userPermissions.effectiveBlocked')
-                  | translate
+                (row.effective
+                  ? 'userPermissions.effectiveAllowed'
+                  : 'userPermissions.effectiveBlocked'
+                ) | translate
               }}
             </span>
           </div>
@@ -25,7 +29,9 @@
               [disabled]="isSaving(row.module)"
               (selectionChange)="onModeChange(row, $event)"
             >
-              <mat-option value="INHERIT">{{ 'userPermissions.mode.inherit' | translate }}</mat-option>
+              <mat-option value="INHERIT">{{
+                'userPermissions.mode.inherit' | translate
+              }}</mat-option>
               <mat-option value="GRANT">{{ 'userPermissions.mode.grant' | translate }}</mat-option>
               <mat-option value="BLOCK">{{ 'userPermissions.mode.block' | translate }}</mat-option>
             </mat-select>

@@ -52,7 +52,9 @@ public class CableController {
 
   @PutMapping("/{id}")
   public CableResponse update(
-      @PathVariable Long id, @Valid @RequestBody CableRequest request, Authentication authentication) {
+      @PathVariable Long id,
+      @Valid @RequestBody CableRequest request,
+      Authentication authentication) {
     return cableService.update(id, request, authentication.getName());
   }
 

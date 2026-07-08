@@ -1,6 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AppUser } from './user.model';
 import { UserPermissionsDialogComponent } from './user-permissions-dialog.component';

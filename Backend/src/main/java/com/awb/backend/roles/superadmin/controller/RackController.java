@@ -53,7 +53,9 @@ public class RackController {
 
   @PutMapping("/{id}")
   public RackResponse update(
-      @PathVariable Long id, @Valid @RequestBody RackRequest request, Authentication authentication) {
+      @PathVariable Long id,
+      @Valid @RequestBody RackRequest request,
+      Authentication authentication) {
     return rackService.update(id, request, authentication.getName());
   }
 

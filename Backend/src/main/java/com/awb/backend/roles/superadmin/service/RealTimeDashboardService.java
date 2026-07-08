@@ -57,7 +57,8 @@ public class RealTimeDashboardService {
     dashboard.setCreatedAt(now);
     dashboard.setUpdatedAt(now);
     RealTimeDashboardResponse response = toResponse(realTimeDashboardRepository.save(dashboard));
-    auditLogWriter.log(actorUsername, AuditAction.CREATE, "RealTimeDashboard", response.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.CREATE, "RealTimeDashboard", response.getName(), null);
     return response;
   }
 
@@ -73,7 +74,8 @@ public class RealTimeDashboardService {
     applyRequest(dashboard, request);
     dashboard.setUpdatedAt(Instant.now());
     RealTimeDashboardResponse response = toResponse(realTimeDashboardRepository.save(dashboard));
-    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "RealTimeDashboard", response.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.UPDATE, "RealTimeDashboard", response.getName(), null);
     return response;
   }
 
@@ -83,7 +85,8 @@ public class RealTimeDashboardService {
     dashboard.setDeleted(true);
     dashboard.setUpdatedAt(Instant.now());
     realTimeDashboardRepository.save(dashboard);
-    auditLogWriter.log(actorUsername, AuditAction.DELETE, "RealTimeDashboard", dashboard.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.DELETE, "RealTimeDashboard", dashboard.getName(), null);
   }
 
   private RealTimeDashboard findActiveOrThrow(Long id) {

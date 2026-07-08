@@ -51,7 +51,8 @@ public class IntegrationConnectorService {
   }
 
   @Transactional
-  public IntegrationConnectorResponse create(IntegrationConnectorRequest request, String actorUsername) {
+  public IntegrationConnectorResponse create(
+      IntegrationConnectorRequest request, String actorUsername) {
     if (integrationConnectorRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "An integration connector with this code already exists.");
@@ -63,7 +64,8 @@ public class IntegrationConnectorService {
     Instant now = Instant.now();
     connector.setCreatedAt(now);
     connector.setUpdatedAt(now);
-    IntegrationConnectorResponse response = toResponse(integrationConnectorRepository.save(connector));
+    IntegrationConnectorResponse response =
+        toResponse(integrationConnectorRepository.save(connector));
     auditLogWriter.log(
         actorUsername, AuditAction.CREATE, "IntegrationConnector", response.getName(), null);
     return response;
@@ -81,7 +83,8 @@ public class IntegrationConnectorService {
     connector.setDevice(findActiveDeviceOrThrow(request.getDeviceId()));
     applyRequest(connector, request);
     connector.setUpdatedAt(Instant.now());
-    IntegrationConnectorResponse response = toResponse(integrationConnectorRepository.save(connector));
+    IntegrationConnectorResponse response =
+        toResponse(integrationConnectorRepository.save(connector));
     auditLogWriter.log(
         actorUsername, AuditAction.UPDATE, "IntegrationConnector", response.getName(), null);
     return response;

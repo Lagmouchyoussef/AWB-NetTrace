@@ -70,7 +70,8 @@ public class RolePermissionService {
   }
 
   @Transactional
-  public RolePermissionResponse update(Long id, RolePermissionRequest request, String actorUsername) {
+  public RolePermissionResponse update(
+      Long id, RolePermissionRequest request, String actorUsername) {
     RolePermission rolePermission = findActiveOrThrow(id);
     if (rolePermissionRepository.existsByRoleAndPermissionIdAndDeletedFalseAndIdNot(
         request.getRole(), request.getPermissionId(), id)) {

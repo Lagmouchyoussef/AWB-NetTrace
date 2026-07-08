@@ -99,21 +99,36 @@
     </button>
     <mat-menu #themeMenu="matMenu" class="topbar-menu">
       <div class="menu-header">{{ 'topbar.appearance' | translate }}</div>
-      <button mat-menu-item class="option-item" [class.selected]="themePreference() === 'light'" (click)="setTheme('light')">
+      <button
+        mat-menu-item
+        class="option-item"
+        [class.selected]="themePreference() === 'light'"
+        (click)="setTheme('light')"
+      >
         <mat-icon fontSet="material-symbols-outlined">light_mode</mat-icon>
         {{ 'topbar.light' | translate }}
         @if (themePreference() === 'light') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item class="option-item" [class.selected]="themePreference() === 'dark'" (click)="setTheme('dark')">
+      <button
+        mat-menu-item
+        class="option-item"
+        [class.selected]="themePreference() === 'dark'"
+        (click)="setTheme('dark')"
+      >
         <mat-icon fontSet="material-symbols-outlined">dark_mode</mat-icon>
         {{ 'topbar.dark' | translate }}
         @if (themePreference() === 'dark') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item class="option-item" [class.selected]="themePreference() === 'system'" (click)="setTheme('system')">
+      <button
+        mat-menu-item
+        class="option-item"
+        [class.selected]="themePreference() === 'system'"
+        (click)="setTheme('system')"
+      >
         <mat-icon fontSet="material-symbols-outlined">desktop_windows</mat-icon>
         {{ 'topbar.system' | translate }}
         @if (themePreference() === 'system') {
@@ -133,35 +148,60 @@
     </button>
     <mat-menu #languageMenu="matMenu" class="topbar-menu">
       <div class="menu-header">{{ 'topbar.language' | translate }}</div>
-      <button mat-menu-item class="option-item" [class.selected]="language() === 'en'" (click)="setLanguage('en')">
+      <button
+        mat-menu-item
+        class="option-item"
+        [class.selected]="language() === 'en'"
+        (click)="setLanguage('en')"
+      >
         <app-flag-icon language="en" />
         English
         @if (language() === 'en') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item class="option-item" [class.selected]="language() === 'fr'" (click)="setLanguage('fr')">
+      <button
+        mat-menu-item
+        class="option-item"
+        [class.selected]="language() === 'fr'"
+        (click)="setLanguage('fr')"
+      >
         <app-flag-icon language="fr" />
         Français
         @if (language() === 'fr') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item class="option-item" [class.selected]="language() === 'ar'" (click)="setLanguage('ar')">
+      <button
+        mat-menu-item
+        class="option-item"
+        [class.selected]="language() === 'ar'"
+        (click)="setLanguage('ar')"
+      >
         <app-flag-icon language="ar" />
         العربية
         @if (language() === 'ar') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item class="option-item" [class.selected]="language() === 'es'" (click)="setLanguage('es')">
+      <button
+        mat-menu-item
+        class="option-item"
+        [class.selected]="language() === 'es'"
+        (click)="setLanguage('es')"
+      >
         <app-flag-icon language="es" />
         Español
         @if (language() === 'es') {
           <mat-icon fontSet="material-symbols-outlined" class="check-icon">check</mat-icon>
         }
       </button>
-      <button mat-menu-item class="option-item" [class.selected]="language() === 'zh'" (click)="setLanguage('zh')">
+      <button
+        mat-menu-item
+        class="option-item"
+        [class.selected]="language() === 'zh'"
+        (click)="setLanguage('zh')"
+      >
         <app-flag-icon language="zh" />
         中文
         @if (language() === 'zh') {

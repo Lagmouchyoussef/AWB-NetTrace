@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { PathTrace, PathTraceListParams, PathTracePage, PathTraceRequest } from '../../roles/super-admin/pages/path-traces/path-trace.model';
+import {
+  PathTrace,
+  PathTraceListParams,
+  PathTracePage,
+  PathTraceRequest,
+} from '../../roles/super-admin/pages/path-traces/path-trace.model';
 import { createScopedCrudService } from './scoped-crud.factory';
 
 @Injectable({ providedIn: 'root' })

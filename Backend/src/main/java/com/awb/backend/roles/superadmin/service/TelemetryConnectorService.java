@@ -51,7 +51,8 @@ public class TelemetryConnectorService {
   }
 
   @Transactional
-  public TelemetryConnectorResponse create(TelemetryConnectorRequest request, String actorUsername) {
+  public TelemetryConnectorResponse create(
+      TelemetryConnectorRequest request, String actorUsername) {
     if (telemetryConnectorRepository.existsByCodeIgnoreCase(request.getCode())) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "A telemetry connector with this code already exists.");

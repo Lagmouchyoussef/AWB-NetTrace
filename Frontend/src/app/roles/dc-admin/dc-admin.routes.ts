@@ -110,9 +110,7 @@ export const dcAdminRoutes: Routes = [
       {
         path: 'cabling/cables',
         loadComponent: () =>
-          import('./pages/cables/cables-list.component').then(
-            (m) => m.DcAdminCablesListComponent,
-          ),
+          import('./pages/cables/cables-list.component').then((m) => m.DcAdminCablesListComponent),
         data: { titleKey: 'nav.cables', sectionKey: 'nav.cabling' },
       },
       {

@@ -15,7 +15,11 @@ public class NotificationPayload {
   public NotificationPayload() {}
 
   public NotificationPayload(
-      String actorUsername, String action, String entityType, String description, Instant occurredAt) {
+      String actorUsername,
+      String action,
+      String entityType,
+      String description,
+      Instant occurredAt) {
     this.actorUsername = actorUsername;
     this.action = action;
     this.entityType = entityType;

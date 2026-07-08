@@ -59,7 +59,8 @@ public class EquipmentTypeService {
     equipmentType.setCreatedAt(now);
     equipmentType.setUpdatedAt(now);
     EquipmentTypeResponse response = toResponse(equipmentTypeRepository.save(equipmentType));
-    auditLogWriter.log(actorUsername, AuditAction.CREATE, "EquipmentType", response.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.CREATE, "EquipmentType", response.getName(), null);
     return response;
   }
 
@@ -74,7 +75,8 @@ public class EquipmentTypeService {
     applyRequest(equipmentType, request);
     equipmentType.setUpdatedAt(Instant.now());
     EquipmentTypeResponse response = toResponse(equipmentTypeRepository.save(equipmentType));
-    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "EquipmentType", response.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.UPDATE, "EquipmentType", response.getName(), null);
     return response;
   }
 
@@ -84,7 +86,8 @@ public class EquipmentTypeService {
     equipmentType.setDeleted(true);
     equipmentType.setUpdatedAt(Instant.now());
     equipmentTypeRepository.save(equipmentType);
-    auditLogWriter.log(actorUsername, AuditAction.DELETE, "EquipmentType", equipmentType.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.DELETE, "EquipmentType", equipmentType.getName(), null);
   }
 
   private EquipmentType findActiveOrThrow(Long id) {

@@ -46,7 +46,9 @@ public class UserPermissionController {
 
   @DeleteMapping("/{module}")
   public EffectiveModulePermissionResponse clearOverride(
-      @PathVariable Long userId, @PathVariable PermissionModule module, Authentication authentication) {
+      @PathVariable Long userId,
+      @PathVariable PermissionModule module,
+      Authentication authentication) {
     return overrideService.clearOverride(userId, module, authentication.getName());
   }
 }

@@ -53,7 +53,9 @@ public class RoomController {
 
   @PutMapping("/{id}")
   public RoomResponse update(
-      @PathVariable Long id, @Valid @RequestBody RoomRequest request, Authentication authentication) {
+      @PathVariable Long id,
+      @Valid @RequestBody RoomRequest request,
+      Authentication authentication) {
     return roomService.update(id, request, authentication.getName());
   }
 

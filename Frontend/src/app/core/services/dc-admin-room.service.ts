@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Room, RoomListParams, RoomPage, RoomRequest } from '../../roles/super-admin/pages/rooms/room.model';
+import {
+  Room,
+  RoomListParams,
+  RoomPage,
+  RoomRequest,
+} from '../../roles/super-admin/pages/rooms/room.model';
 import { createScopedCrudService } from './scoped-crud.factory';
 
 @Injectable({ providedIn: 'root' })

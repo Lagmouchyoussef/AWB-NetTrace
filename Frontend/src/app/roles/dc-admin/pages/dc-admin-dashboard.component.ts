@@ -69,7 +69,10 @@ export class DcAdminDashboardComponent {
 
   protected readonly activityByEntityTypeData = computed<ChartDatum[]>(() =>
     (this.rangedSummary()?.activityByEntityType ?? []).map((point) => ({
-      label: point.label === 'OTHER' ? this.translateService.instant('dashboard.entityType.OTHER') : point.label,
+      label:
+        point.label === 'OTHER'
+          ? this.translateService.instant('dashboard.entityType.OTHER')
+          : point.label,
       count: point.count,
     })),
   );
@@ -96,10 +99,26 @@ export class DcAdminDashboardComponent {
       return [];
     }
     return [
-      { label: this.translateService.instant('dashboard.stats.datacenters'), count: infra.datacentersActive, colorRole: 'good' },
-      { label: this.translateService.instant('dashboard.stats.rooms'), count: infra.roomsActive, colorRole: 'good' },
-      { label: this.translateService.instant('dashboard.stats.racks'), count: infra.racksActive, colorRole: 'good' },
-      { label: this.translateService.instant('dashboard.stats.devices'), count: infra.devicesActive, colorRole: 'good' },
+      {
+        label: this.translateService.instant('dashboard.stats.datacenters'),
+        count: infra.datacentersActive,
+        colorRole: 'good',
+      },
+      {
+        label: this.translateService.instant('dashboard.stats.rooms'),
+        count: infra.roomsActive,
+        colorRole: 'good',
+      },
+      {
+        label: this.translateService.instant('dashboard.stats.racks'),
+        count: infra.racksActive,
+        colorRole: 'good',
+      },
+      {
+        label: this.translateService.instant('dashboard.stats.devices'),
+        count: infra.devicesActive,
+        colorRole: 'good',
+      },
     ];
   });
 

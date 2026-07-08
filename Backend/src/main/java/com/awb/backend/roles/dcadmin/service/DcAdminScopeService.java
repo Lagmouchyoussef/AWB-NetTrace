@@ -52,8 +52,7 @@ public class DcAdminScopeService {
   private User resolveUser(Authentication authentication) {
     return userRepository
         .findByUsername(authentication.getName())
-        .orElseThrow(
-            () -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found."));
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found."));
   }
 
   private static DatacenterScopeResponse toResponse(Datacenter datacenter) {

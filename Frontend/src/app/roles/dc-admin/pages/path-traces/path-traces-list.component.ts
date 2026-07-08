@@ -85,7 +85,10 @@ export class DcAdminPathTracesListComponent implements OnInit {
   }
 
   protected onCreate(): void {
-    const ref = this.dialog.open(DcAdminPathTraceFormDialogComponent, { width: '560px', data: null });
+    const ref = this.dialog.open(DcAdminPathTraceFormDialogComponent, {
+      width: '560px',
+      data: null,
+    });
     ref.afterClosed().subscribe((saved) => {
       if (saved) {
         this.load();
@@ -98,7 +101,10 @@ export class DcAdminPathTracesListComponent implements OnInit {
   }
 
   protected onEdit(row: PathTrace): void {
-    const ref = this.dialog.open(DcAdminPathTraceFormDialogComponent, { width: '560px', data: row });
+    const ref = this.dialog.open(DcAdminPathTraceFormDialogComponent, {
+      width: '560px',
+      data: row,
+    });
     ref.afterClosed().subscribe((saved) => {
       if (saved) {
         this.load();

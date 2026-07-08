@@ -50,9 +50,13 @@ export class NotificationService {
         `${environment.apiBaseUrl}/api/notifications/stream?token=${encodeURIComponent(token ?? '')}`,
       );
       this.eventSource.addEventListener('notification', (event) => {
-        const payload = JSON.parse((event as MessageEvent<string>).data) as NotificationEventPayload;
+        const payload = JSON.parse(
+          (event as MessageEvent<string>).data,
+        ) as NotificationEventPayload;
         const notification = this.toAppNotification(payload);
-        this.notifications$.next([notification, ...this.notifications$.value].slice(0, MAX_NOTIFICATIONS));
+        this.notifications$.next(
+          [notification, ...this.notifications$.value].slice(0, MAX_NOTIFICATIONS),
+        );
         // Only refresh the dashboard matching the signed-in role - the other role's endpoint
         // would 403 for this user's token.
         if (this.authService.currentRole() === 'DC_ADMIN') {
@@ -81,7 +85,9 @@ export class NotificationService {
   }
 
   private toAppNotification(payload: NotificationEventPayload): AppNotification {
-    const actionLabel = this.translateService.instant(`dashboard.activityActions.${payload.action}`);
+    const actionLabel = this.translateService.instant(
+      `dashboard.activityActions.${payload.action}`,
+    );
     const message = payload.description
       ? `${payload.actorUsername} ${actionLabel} ${payload.entityType} — ${payload.description}`
       : `${payload.actorUsername} ${actionLabel} ${payload.entityType}`;

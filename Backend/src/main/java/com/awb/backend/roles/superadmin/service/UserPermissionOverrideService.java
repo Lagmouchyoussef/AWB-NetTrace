@@ -46,11 +46,7 @@ public class UserPermissionOverrideService {
 
   @Transactional
   public EffectiveModulePermissionResponse setOverride(
-      Long userId,
-      PermissionModule module,
-      boolean granted,
-      String notes,
-      String actorUsername) {
+      Long userId, PermissionModule module, boolean granted, String notes, String actorUsername) {
     User user = findUserOrThrow(userId);
     UserPermissionOverride override =
         overrideRepository
@@ -82,9 +78,7 @@ public class UserPermissionOverrideService {
   public EffectiveModulePermissionResponse clearOverride(
       Long userId, PermissionModule module, String actorUsername) {
     User user = findUserOrThrow(userId);
-    overrideRepository
-        .findByUserIdAndModule(userId, module)
-        .ifPresent(overrideRepository::delete);
+    overrideRepository.findByUserIdAndModule(userId, module).ifPresent(overrideRepository::delete);
 
     auditLogWriter.log(
         actorUsername,

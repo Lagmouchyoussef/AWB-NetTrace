@@ -14,7 +14,13 @@ export interface RejectInterventionDialogData {
 @Component({
   selector: 'app-reject-intervention-dialog',
   standalone: true,
-  imports: [ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, TranslatePipe],
+  imports: [
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    TranslatePipe,
+  ],
   templateUrl: './reject-intervention-dialog.component.html',
   styleUrl: './reject-intervention-dialog.component.css',
 })

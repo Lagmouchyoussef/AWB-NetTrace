@@ -66,7 +66,8 @@ public class OverlayTunnelService {
     tunnel.setCreatedAt(now);
     tunnel.setUpdatedAt(now);
     OverlayTunnelResponse response = toResponse(overlayTunnelRepository.save(tunnel));
-    auditLogWriter.log(actorUsername, AuditAction.CREATE, "OverlayTunnel", response.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.CREATE, "OverlayTunnel", response.getName(), null);
     return response;
   }
 
@@ -84,7 +85,8 @@ public class OverlayTunnelService {
     applyRequest(tunnel, request);
     tunnel.setUpdatedAt(Instant.now());
     OverlayTunnelResponse response = toResponse(overlayTunnelRepository.save(tunnel));
-    auditLogWriter.log(actorUsername, AuditAction.UPDATE, "OverlayTunnel", response.getName(), null);
+    auditLogWriter.log(
+        actorUsername, AuditAction.UPDATE, "OverlayTunnel", response.getName(), null);
     return response;
   }
 

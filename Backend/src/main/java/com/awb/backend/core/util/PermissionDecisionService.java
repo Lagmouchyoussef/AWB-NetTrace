@@ -79,7 +79,8 @@ public class PermissionDecisionService {
   // Used by the management UI: no single URL in context, so "default" is whether this module is
   // one the user's role owns anywhere in the app today.
   public EvaluatedModulePermission evaluate(User user, PermissionModule module) {
-    boolean defaultAllowed = DEFAULT_MODULE_OWNERS.getOrDefault(module, Set.of()).contains(user.getRole());
+    boolean defaultAllowed =
+        DEFAULT_MODULE_OWNERS.getOrDefault(module, Set.of()).contains(user.getRole());
     Boolean roleGranted = findRoleGranted(user.getRole(), module);
     Boolean userOverrideGranted = findUserOverrideGranted(user.getId(), module);
     boolean effective;

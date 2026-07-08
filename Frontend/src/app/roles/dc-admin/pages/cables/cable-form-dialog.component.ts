@@ -8,7 +8,13 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { DcAdminDeviceService } from '../../../../core/services/dc-admin-device.service';
 import { DcAdminCableService } from '../../../../core/services/dc-admin-cable.service';
 import { Device } from '../../../super-admin/pages/devices/device.model';
-import { CABLE_STATUSES, CABLE_TYPES, Cable, CableStatus, CableType } from '../../../super-admin/pages/cables/cable.model';
+import {
+  CABLE_STATUSES,
+  CABLE_TYPES,
+  Cable,
+  CableStatus,
+  CableType,
+} from '../../../super-admin/pages/cables/cable.model';
 
 @Component({
   selector: 'app-dc-admin-cable-form-dialog',

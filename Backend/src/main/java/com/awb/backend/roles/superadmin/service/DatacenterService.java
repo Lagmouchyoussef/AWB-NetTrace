@@ -23,7 +23,8 @@ public class DatacenterService {
   private final DatacenterRepository datacenterRepository;
   private final AuditLogWriter auditLogWriter;
 
-  public DatacenterService(DatacenterRepository datacenterRepository, AuditLogWriter auditLogWriter) {
+  public DatacenterService(
+      DatacenterRepository datacenterRepository, AuditLogWriter auditLogWriter) {
     this.datacenterRepository = datacenterRepository;
     this.auditLogWriter = auditLogWriter;
   }

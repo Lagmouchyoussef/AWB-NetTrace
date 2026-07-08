@@ -56,7 +56,9 @@ public class DcAdminReportController {
 
   @PutMapping("/{id}")
   public ReportResponse update(
-      @PathVariable Long id, @Valid @RequestBody ReportRequest request, Authentication authentication) {
+      @PathVariable Long id,
+      @Valid @RequestBody ReportRequest request,
+      Authentication authentication) {
     return reportService.update(id, request, authentication.getName());
   }
 

@@ -120,7 +120,10 @@
               (pointerenter)="onHover(i)"
               (pointerleave)="onLeave()"
             >
-              <span class="legend-swatch" [style.background]="'var(--chart-' + seg.resolvedColorRole + ')'"></span>
+              <span
+                class="legend-swatch"
+                [style.background]="'var(--chart-' + seg.resolvedColorRole + ')'"
+              ></span>
               <span class="legend-label">{{ seg.label }}</span>
               <span class="legend-value">{{ seg.percentOfTotal }}%</span>
             </div>
@@ -134,13 +137,27 @@
         <svg [attr.viewBox]="viewBox" preserveAspectRatio="none" class="chart-svg">
           <line x1="4" [attr.y1]="baselineY" x2="516" [attr.y2]="baselineY" class="chart-axis" />
           @if (areaPath()) {
-            <path [attr.d]="areaPath()" class="chart-area" [style.fill]="'var(--chart-' + defaultColorRole() + ')'" />
+            <path
+              [attr.d]="areaPath()"
+              class="chart-area"
+              [style.fill]="'var(--chart-' + defaultColorRole() + ')'"
+            />
           }
           @if (linePath()) {
-            <path [attr.d]="linePath()" class="chart-line" [style.stroke]="'var(--chart-' + defaultColorRole() + ')'" />
+            <path
+              [attr.d]="linePath()"
+              class="chart-line"
+              [style.stroke]="'var(--chart-' + defaultColorRole() + ')'"
+            />
           }
           @if (hoveredPoint(); as hp) {
-            <line [attr.x1]="hp.x" [attr.x2]="hp.x" y1="10" [attr.y2]="baselineY" class="chart-crosshair" />
+            <line
+              [attr.x1]="hp.x"
+              [attr.x2]="hp.x"
+              y1="10"
+              [attr.y2]="baselineY"
+              class="chart-crosshair"
+            />
           }
           @for (point of points(); track point.label; let i = $index) {
             <circle
@@ -216,7 +233,10 @@
     <div class="chart-legend">
       @for (bar of bars(); track bar.label) {
         <span class="legend-item">
-          <span class="legend-swatch" [style.background]="'var(--chart-' + bar.resolvedColorRole + ')'"></span>
+          <span
+            class="legend-swatch"
+            [style.background]="'var(--chart-' + bar.resolvedColorRole + ')'"
+          ></span>
           {{ bar.label }}
         </span>
       }

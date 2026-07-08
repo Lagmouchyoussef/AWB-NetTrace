@@ -26,7 +26,9 @@ public class UserManagementService {
   private final AuditLogWriter auditLogWriter;
 
   public UserManagementService(
-      UserRepository userRepository, PasswordEncoder passwordEncoder, AuditLogWriter auditLogWriter) {
+      UserRepository userRepository,
+      PasswordEncoder passwordEncoder,
+      AuditLogWriter auditLogWriter) {
     this.userRepository = userRepository;
     this.passwordEncoder = passwordEncoder;
     this.auditLogWriter = auditLogWriter;

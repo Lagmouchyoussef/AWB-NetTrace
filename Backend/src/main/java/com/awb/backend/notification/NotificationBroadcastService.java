@@ -12,7 +12,8 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 @Service
 public class NotificationBroadcastService {
 
-  private static final long EMITTER_TIMEOUT_MS = 30L * 60 * 1000; // 30 min, browser reconnects after
+  private static final long EMITTER_TIMEOUT_MS =
+      30L * 60 * 1000; // 30 min, browser reconnects after
 
   private final List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
 
