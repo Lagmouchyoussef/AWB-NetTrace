@@ -17,7 +17,7 @@
   @if (loading()) {
     <div class="list">
       @for (i of [1, 2, 3]; track i) {
-        <div class="skeleton-card"></div>
+        <div class="skeleton-card skeleton-shimmer"></div>
       }
     </div>
   } @else if (interventions().length === 0) {

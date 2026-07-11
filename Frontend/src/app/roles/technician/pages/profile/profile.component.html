@@ -1,13 +1,113 @@
 <div class="page">
   <h1>{{ 'technician.nav.profile' | translate }}</h1>
 
-  <div class="profile-card">
-    <span class="avatar-circle">{{ initials() }}</span>
-    <div>
-      <p class="username">{{ username() }}</p>
+  @if (loading()) {
+    <div class="skeleton-card skeleton-shimmer"></div>
+    <div class="skeleton-card skeleton-shimmer"></div>
+  } @else if (loadErrorKey()) {
+    <p class="form-error">{{ loadErrorKey() | translate }}</p>
+  } @else {
+    <div class="card identity-card">
+      <div class="photo-row">
+        <div class="avatar-circle">
+          @if (photoPreview()) {
+            <img [src]="photoPreview()" alt="" />
+          } @else {
+            {{ initials() }}
+          }
+        </div>
+        <div class="photo-actions">
+          <label class="photo-button">
+            <span class="material-symbols-outlined">photo_camera</span>
+            {{ 'myAccount.changePhoto' | translate }}
+            <input type="file" accept="image/*" hidden (change)="onPhotoSelected($event)" />
+          </label>
+          @if (photoPreview()) {
+            <button type="button" class="photo-button photo-button-remove" (click)="onRemovePhoto()">
+              <span class="material-symbols-outlined">delete</span>
+              {{ 'myAccount.removePhoto' | translate }}
+            </button>
+          }
+        </div>
+      </div>
       <span class="role-badge">{{ 'roles.technician' | translate }}</span>
     </div>
-  </div>
+
+    <div class="card">
+      <h2>{{ 'myAccount.profileSection' | translate }}</h2>
+
+      <label class="field">
+        <span class="field-label">{{ 'myAccount.fields.fullName' | translate }}</span>
+        <input type="text" [(ngModel)]="fullName" name="fullName" />
+      </label>
+
+      <label class="field">
+        <span class="field-label">{{ 'myAccount.fields.username' | translate }}</span>
+        <input type="text" [(ngModel)]="username" name="username" required />
+      </label>
+
+      <label class="field">
+        <span class="field-label">{{ 'myAccount.fields.email' | translate }}</span>
+        <input type="email" [(ngModel)]="email" name="email" />
+      </label>
+
+      <label class="field">
+        <span class="field-label">{{ 'myAccount.fields.phone' | translate }}</span>
+        <input type="tel" [(ngModel)]="phone" name="phone" />
+      </label>
+
+      <label class="field">
+        <span class="field-label">{{ 'myAccount.fields.matricule' | translate }}</span>
+        <input type="text" [(ngModel)]="matricule" name="matricule" />
+      </label>
+
+      @if (profileErrorKey()) {
+        <p class="form-error">{{ profileErrorKey() | translate }}</p>
+      }
+      @if (profileSavedMessage()) {
+        <p class="form-success">{{ 'myAccount.saveSuccess' | translate }}</p>
+      }
+
+      <button type="button" class="primary-button" [disabled]="profileSaving()" (click)="onSaveProfile()">
+        {{ (profileSaving() ? 'common.saving' : 'common.save') | translate }}
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>{{ 'myAccount.passwordSection' | translate }}</h2>
+
+      <label class="field">
+        <span class="field-label">{{ 'myAccount.fields.currentPassword' | translate }}</span>
+        <input type="password" [(ngModel)]="currentPassword" name="currentPassword" />
+      </label>
+
+      <label class="field">
+        <span class="field-label">{{ 'myAccount.fields.newPassword' | translate }}</span>
+        <input type="password" [(ngModel)]="newPassword" name="newPassword" />
+      </label>
+
+      <label class="field">
+        <span class="field-label">{{ 'myAccount.fields.confirmPassword' | translate }}</span>
+        <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" />
+      </label>
+
+      @if (passwordErrorKey()) {
+        <p class="form-error">{{ passwordErrorKey() | translate }}</p>
+      }
+      @if (passwordSavedMessage()) {
+        <p class="form-success">{{ 'myAccount.passwordSaveSuccess' | translate }}</p>
+      }
+
+      <button
+        type="button"
+        class="primary-button"
+        [disabled]="passwordSaving()"
+        (click)="onChangePassword()"
+      >
+        {{ (passwordSaving() ? 'common.saving' : 'myAccount.changePassword') | translate }}
+      </button>
+    </div>
+  }
 
   <button type="button" class="logout-button" (click)="onLogout()">
     <span class="material-symbols-outlined">logout</span>

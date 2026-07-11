@@ -1,4 +1,12 @@
-import { Component, OnDestroy, OnInit, inject, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+  input,
+  signal,
+} from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TechnicianPhotoService } from '../../../../core/services/technician-photo.service';
 import { InterventionPhotoMeta, PhotoPhase } from '../../technician-execution.model';
@@ -22,6 +30,7 @@ interface PhotoTile {
   imports: [TranslatePipe],
   templateUrl: './photo-capture.component.html',
   styleUrl: './photo-capture.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoCaptureComponent implements OnInit, OnDestroy {
   readonly interventionId = input.required<number>();

@@ -13,6 +13,11 @@
     box-shadow 0.15s ease;
 }
 
+.card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .card:active {
   transform: scale(0.985);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
@@ -78,23 +83,23 @@
 }
 
 .priority-badge[data-priority='CRITICAL'] {
-  background: rgba(208, 59, 59, 0.15);
-  color: #c62828;
+  background: var(--priority-critical-bg);
+  color: var(--priority-critical-fg);
 }
 
 .priority-badge[data-priority='HIGH'] {
-  background: rgba(236, 131, 90, 0.18);
-  color: #ee5b41;
+  background: var(--priority-high-bg);
+  color: var(--priority-high-fg);
 }
 
 .priority-badge[data-priority='MEDIUM'] {
-  background: rgba(250, 178, 25, 0.2);
-  color: #b06b0f;
+  background: var(--priority-medium-bg);
+  color: var(--priority-medium-fg);
 }
 
 .priority-badge[data-priority='LOW'] {
-  background: rgba(12, 163, 12, 0.15);
-  color: #0ca30c;
+  background: var(--priority-low-bg);
+  color: var(--priority-low-fg);
 }
 
 .card-bottom {
@@ -115,13 +120,13 @@
 }
 
 .status-badge[data-status='SCHEDULED'] {
-  background: rgba(244, 121, 32, 0.14);
-  color: var(--chart-series-1);
+  background: var(--status-scheduled-bg);
+  color: var(--status-scheduled-fg);
 }
 
 .status-badge[data-status='IN_PROGRESS'] {
-  background: rgba(250, 178, 25, 0.2);
-  color: #b06b0f;
+  background: var(--status-inprogress-bg);
+  color: var(--status-inprogress-fg);
 }
 
 .status-badge[data-status='ON_HOLD'] {
@@ -130,13 +135,13 @@
 }
 
 .status-badge[data-status='COMPLETED'] {
-  background: rgba(12, 163, 12, 0.15);
-  color: #0ca30c;
+  background: var(--status-completed-bg);
+  color: var(--status-completed-fg);
 }
 
 .status-badge[data-status='CANCELLED'] {
-  background: rgba(198, 40, 40, 0.12);
-  color: #c62828;
+  background: var(--status-cancelled-bg);
+  color: var(--status-cancelled-fg);
 }
 
 .action-button {
@@ -149,7 +154,7 @@
   font-size: 0.88rem;
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(90deg, #f7941d, #ee5b41);
+  background: var(--awb-brand-gradient-h);
 }
 
 .action-button .material-symbols-outlined {

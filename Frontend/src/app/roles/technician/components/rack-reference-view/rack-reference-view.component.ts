@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   Injector,
@@ -31,6 +32,7 @@ interface PositionedDevice extends RackElevationDevice {
   imports: [TranslatePipe],
   templateUrl: './rack-reference-view.component.html',
   styleUrl: './rack-reference-view.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RackReferenceViewComponent {
   @ViewChild('rackShell') private readonly rackShellRef?: ElementRef<HTMLDivElement>;

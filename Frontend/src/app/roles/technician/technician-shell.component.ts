@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppShellComponent } from '../../core/components/app-shell/app-shell.component';
 import { TECHNICIAN_NAV } from './technician-nav.config';
@@ -12,6 +12,7 @@ import { TECHNICIAN_NAV } from './technician-nav.config';
       <router-outlet />
     </app-app-shell>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TechnicianShellComponent {
   protected readonly sections = TECHNICIAN_NAV;

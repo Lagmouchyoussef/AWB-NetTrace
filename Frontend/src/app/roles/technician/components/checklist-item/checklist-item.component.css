@@ -39,8 +39,8 @@
 }
 
 .checkbox-checked {
-  background: #0ca30c;
-  border-color: #0ca30c;
+  background: var(--status-completed-fg);
+  border-color: var(--status-completed-fg);
 }
 
 .checkbox .material-symbols-outlined {

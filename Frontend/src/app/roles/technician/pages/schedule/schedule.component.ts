@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { TechnicianInterventionService } from '../../../../core/services/technician-intervention.service';
@@ -39,6 +39,7 @@ function startOfWeek(date: Date): Date {
   imports: [TranslatePipe, DatePipe],
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TechnicianScheduleComponent implements OnInit {
   private readonly interventionService = inject(TechnicianInterventionService);

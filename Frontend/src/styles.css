@@ -38,6 +38,54 @@ body {
   --chart-ordinal-5: light-dark(#961e1e, #c02929);
   --chart-grid: var(--awb-border);
   --chart-axis: var(--awb-on-surface-muted);
+
+  /* Intervention priority/status badges (technician role) - single source of truth reused by
+     intervention-card, intervention-detail and schedule so all three screens agree, and themed
+     via light-dark() so contrast holds up in dark mode (unlike the flat hex they replace). Fg
+     colors reuse the already-validated --chart-* severity scale rather than inventing new hues. */
+  --priority-critical-fg: var(--chart-critical);
+  --priority-critical-bg: light-dark(rgba(208, 59, 59, 0.15), rgba(208, 59, 59, 0.28));
+  --priority-high-fg: var(--chart-serious);
+  --priority-high-bg: light-dark(rgba(236, 131, 90, 0.18), rgba(236, 131, 90, 0.28));
+  --priority-medium-fg: var(--chart-warning);
+  --priority-medium-bg: light-dark(rgba(250, 178, 25, 0.2), rgba(250, 178, 25, 0.3));
+  --priority-low-fg: var(--chart-good);
+  --priority-low-bg: light-dark(rgba(12, 163, 12, 0.15), rgba(12, 163, 12, 0.28));
+
+  --status-scheduled-fg: var(--chart-series-1);
+  --status-scheduled-bg: light-dark(rgba(244, 121, 32, 0.14), rgba(244, 121, 32, 0.26));
+  --status-inprogress-fg: var(--chart-warning);
+  --status-inprogress-bg: light-dark(rgba(250, 178, 25, 0.2), rgba(250, 178, 25, 0.3));
+  --status-completed-fg: var(--chart-good);
+  --status-completed-bg: light-dark(rgba(12, 163, 12, 0.15), rgba(12, 163, 12, 0.28));
+  --status-cancelled-fg: var(--chart-critical);
+  --status-cancelled-bg: light-dark(rgba(198, 40, 40, 0.12), rgba(198, 40, 40, 0.26));
+
+  --awb-brand-gradient-h: linear-gradient(90deg, #f7941d, #ee5b41);
+  --awb-brand-gradient-d: linear-gradient(135deg, #f7941d, #ee5b41);
+}
+
+/* Shared shimmer for loading-skeleton placeholders. Each page keeps its own class for
+   shape/sizing (e.g. .skeleton-card { height: 128px }) and adds this one for the animation,
+   instead of every page redefining the same @keyframes. */
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--awb-hover) 25%,
+    var(--awb-border) 37%,
+    var(--awb-hover) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 
 /* Self-hosted (no external CDN, required by the app's CSP: default-src 'self'). */

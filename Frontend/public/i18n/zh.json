@@ -1547,10 +1547,16 @@
     },
     "home": {
       "title": "今日",
+      "greeting": "你好，{{name}}",
       "empty": "今天没有分配给您的工单。",
       "assignedCount": "已分配给您 {{count}} 个工单。",
       "start": "开始",
-      "continue": "继续"
+      "continue": "继续",
+      "stats": {
+        "total": "已分配",
+        "urgent": "紧急",
+        "inProgress": "进行中"
+      }
     },
     "interventionDetail": {
       "notFound": "此工单未分配给您。",

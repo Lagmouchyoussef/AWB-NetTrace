@@ -2,7 +2,7 @@
   <h3>{{ 'technician.rackReference.title' | translate }}</h3>
 
   @if (loading()) {
-    <div class="skeleton"></div>
+    <div class="skeleton skeleton-shimmer"></div>
   } @else if (elevation()) {
     <div class="rack-name">{{ elevation()?.rackName }}</div>
     <div #rackShell class="rack-shell" [style.height.px]="rackHeightPx()">

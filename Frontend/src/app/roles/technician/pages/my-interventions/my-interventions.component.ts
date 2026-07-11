@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TechnicianInterventionService } from '../../../../core/services/technician-intervention.service';
 import {
@@ -27,6 +27,7 @@ const FILTER_CHIPS: { value: StatusFilter; labelKey: string }[] = [
   imports: [TranslatePipe, InterventionCardComponent],
   templateUrl: './my-interventions.component.html',
   styleUrl: './my-interventions.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TechnicianMyInterventionsComponent implements OnInit {
   private readonly interventionService = inject(TechnicianInterventionService);

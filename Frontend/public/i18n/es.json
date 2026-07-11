@@ -1547,10 +1547,16 @@
     },
     "home": {
       "title": "Hoy",
+      "greeting": "Hola, {{name}}",
       "empty": "No hay intervenciones asignadas para hoy.",
       "assignedCount": "{{count}} intervención(es) asignadas a usted.",
       "start": "Iniciar",
-      "continue": "Continuar"
+      "continue": "Continuar",
+      "stats": {
+        "total": "Asignadas",
+        "urgent": "Urgentes",
+        "inProgress": "En curso"
+      }
     },
     "interventionDetail": {
       "notFound": "Esta intervención no le está asignada.",

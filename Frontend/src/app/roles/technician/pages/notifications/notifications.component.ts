@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NotificationService } from '../../../../core/services/notification.service';
@@ -13,6 +13,7 @@ import { NotificationService } from '../../../../core/services/notification.serv
   imports: [TranslatePipe],
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TechnicianNotificationsComponent {
   private readonly notificationService = inject(NotificationService);

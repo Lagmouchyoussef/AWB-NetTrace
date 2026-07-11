@@ -5,8 +5,8 @@
   </a>
 
   @if (loading()) {
-    <div class="skeleton-block"></div>
-    <div class="skeleton-block"></div>
+    <div class="skeleton-block skeleton-shimmer"></div>
+    <div class="skeleton-block skeleton-shimmer"></div>
   } @else if (notFound()) {
     <div class="empty-state">
       <span class="material-symbols-outlined">block</span>

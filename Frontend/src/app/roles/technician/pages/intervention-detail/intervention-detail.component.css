@@ -21,23 +21,6 @@
 .skeleton-block {
   height: 90px;
   border-radius: 14px;
-  background: linear-gradient(
-    90deg,
-    var(--awb-hover) 25%,
-    var(--awb-border) 37%,
-    var(--awb-hover) 63%
-  );
-  background-size: 400% 100%;
-  animation: skeleton-shimmer 1.4s ease infinite;
-}
-
-@keyframes skeleton-shimmer {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0 50%;
-  }
 }
 
 .empty-state {
@@ -114,23 +97,23 @@
 }
 
 .badge-priority[data-priority='CRITICAL'] {
-  background: rgba(208, 59, 59, 0.15);
-  color: #c62828;
+  background: var(--priority-critical-bg);
+  color: var(--priority-critical-fg);
 }
 
 .badge-priority[data-priority='HIGH'] {
-  background: rgba(236, 131, 90, 0.18);
-  color: #ee5b41;
+  background: var(--priority-high-bg);
+  color: var(--priority-high-fg);
 }
 
 .badge-priority[data-priority='MEDIUM'] {
-  background: rgba(250, 178, 25, 0.2);
-  color: #b06b0f;
+  background: var(--priority-medium-bg);
+  color: var(--priority-medium-fg);
 }
 
 .badge-priority[data-priority='LOW'] {
-  background: rgba(12, 163, 12, 0.15);
-  color: #0ca30c;
+  background: var(--priority-low-bg);
+  color: var(--priority-low-fg);
 }
 
 .badge-status {
@@ -139,18 +122,18 @@
 }
 
 .badge-status[data-status='SCHEDULED'] {
-  background: rgba(244, 121, 32, 0.14);
-  color: var(--chart-series-1);
+  background: var(--status-scheduled-bg);
+  color: var(--status-scheduled-fg);
 }
 
 .badge-status[data-status='IN_PROGRESS'] {
-  background: rgba(250, 178, 25, 0.2);
-  color: #b06b0f;
+  background: var(--status-inprogress-bg);
+  color: var(--status-inprogress-fg);
 }
 
 .badge-status[data-status='COMPLETED'] {
-  background: rgba(12, 163, 12, 0.15);
-  color: #0ca30c;
+  background: var(--status-completed-bg);
+  color: var(--status-completed-fg);
 }
 
 .success-banner {
@@ -159,8 +142,8 @@
   gap: 0.5rem;
   padding: 0.9rem 1rem;
   border-radius: 12px;
-  background: rgba(12, 163, 12, 0.12);
-  color: #0ca30c;
+  background: var(--status-completed-bg);
+  color: var(--status-completed-fg);
   font-weight: 700;
   font-size: 0.9rem;
 }
@@ -177,7 +160,7 @@
   font-size: 0.95rem;
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(90deg, #f7941d, #ee5b41);
+  background: var(--awb-brand-gradient-h);
   cursor: pointer;
 }
 
@@ -268,7 +251,7 @@
   border-radius: 10px;
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(90deg, #f7941d, #ee5b41);
+  background: var(--awb-brand-gradient-h);
   cursor: pointer;
 }
 
@@ -371,7 +354,7 @@
   font-size: 0.95rem;
   font-weight: 700;
   color: #fff;
-  background: #0ca30c;
+  background: var(--status-completed-fg);
   cursor: pointer;
 }
 

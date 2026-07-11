@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -38,6 +38,7 @@ const LOCKED_STATUSES = new Set(['COMPLETED', 'CANCELLED']);
   ],
   templateUrl: './intervention-detail.component.html',
   styleUrl: './intervention-detail.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TechnicianInterventionDetailComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);

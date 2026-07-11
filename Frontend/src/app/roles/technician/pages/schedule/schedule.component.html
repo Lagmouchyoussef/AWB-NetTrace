@@ -27,7 +27,7 @@
   </div>
 
   @if (loading()) {
-    <div class="skeleton-week"></div>
+    <div class="skeleton-week skeleton-shimmer"></div>
   } @else {
     <div class="week-grid">
       @for (day of days(); track day.dateKey) {

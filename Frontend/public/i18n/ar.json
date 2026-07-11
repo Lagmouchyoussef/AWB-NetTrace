@@ -1547,10 +1547,16 @@
     },
     "home": {
       "title": "اليوم",
+      "greeting": "مرحبًا، {{name}}",
       "empty": "لا توجد تدخلات مسندة إليك اليوم.",
       "assignedCount": "{{count}} تدخل (تدخلات) مسندة إليك.",
       "start": "بدء",
-      "continue": "متابعة"
+      "continue": "متابعة",
+      "stats": {
+        "total": "المسندة",
+        "urgent": "عاجلة",
+        "inProgress": "قيد التنفيذ"
+      }
     },
     "interventionDetail": {
       "notFound": "هذا التدخل غير مسند إليك.",

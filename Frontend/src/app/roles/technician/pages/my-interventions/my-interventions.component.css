@@ -32,7 +32,7 @@ h1 {
 }
 
 .chip-active {
-  background: linear-gradient(90deg, #f7941d, #ee5b41);
+  background: var(--awb-brand-gradient-h);
   border-color: transparent;
   color: #fff;
 }
@@ -49,23 +49,6 @@ h1 {
 .skeleton-card {
   height: 128px;
   border-radius: 14px;
-  background: linear-gradient(
-    90deg,
-    var(--awb-hover) 25%,
-    var(--awb-border) 37%,
-    var(--awb-hover) 63%
-  );
-  background-size: 400% 100%;
-  animation: skeleton-shimmer 1.4s ease infinite;
-}
-
-@keyframes skeleton-shimmer {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0 50%;
-  }
 }
 
 .empty-state {

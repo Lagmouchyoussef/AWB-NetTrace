@@ -2,13 +2,16 @@
   <h4>{{ 'technician.interventionDetail.phase.' + phase() | translate }}</h4>
 
   @if (loading()) {
-    <div class="skeleton"></div>
+    <div class="skeleton skeleton-shimmer"></div>
   } @else {
     <div class="tile-grid">
-      @for (tile of tiles(); track tile.meta.id) {
+      @for (tile of tiles(); track tile.meta.id; let i = $index) {
         <div class="tile">
           @if (tile.objectUrl) {
-            <img [src]="tile.objectUrl" alt="" />
+            <img
+              [src]="tile.objectUrl"
+              [attr.alt]="(('technician.interventionDetail.phase.' + phase()) | translate) + ' ' + (i + 1)"
+            />
           }
           @if (!disabled()) {
             <button

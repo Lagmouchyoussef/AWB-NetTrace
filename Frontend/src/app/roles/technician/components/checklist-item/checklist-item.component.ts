@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { ChecklistItem } from '../../technician-execution.model';
 
 @Component({
@@ -6,6 +6,7 @@ import { ChecklistItem } from '../../technician-execution.model';
   standalone: true,
   templateUrl: './checklist-item.component.html',
   styleUrl: './checklist-item.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChecklistItemComponent {
   readonly item = input.required<ChecklistItem>();

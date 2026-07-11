@@ -1547,10 +1547,16 @@
     },
     "home": {
       "title": "Aujourd'hui",
+      "greeting": "Bonjour, {{name}}",
       "empty": "Aucune intervention prévue aujourd'hui.",
       "assignedCount": "{{count}} intervention(s) qui vous sont assignées.",
       "start": "Démarrer",
-      "continue": "Continuer"
+      "continue": "Continuer",
+      "stats": {
+        "total": "Assignées",
+        "urgent": "Urgentes",
+        "inProgress": "En cours"
+      }
     },
     "interventionDetail": {
       "notFound": "Cette intervention ne vous est pas assignée.",

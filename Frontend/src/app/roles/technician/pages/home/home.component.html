@@ -1,10 +1,27 @@
 <div class="page">
-  <h1>{{ 'technician.home.title' | translate }}</h1>
+  <h1>{{ 'technician.home.greeting' | translate: { name: username() } }}</h1>
+
+  @if (!loading()) {
+    <div class="stats-row">
+      <div class="stat-tile">
+        <span class="stat-value">{{ totalCount() }}</span>
+        <span class="stat-label">{{ 'technician.home.stats.total' | translate }}</span>
+      </div>
+      <div class="stat-tile stat-tile-urgent">
+        <span class="stat-value">{{ urgentCount() }}</span>
+        <span class="stat-label">{{ 'technician.home.stats.urgent' | translate }}</span>
+      </div>
+      <div class="stat-tile stat-tile-inprogress">
+        <span class="stat-value">{{ inProgressCount() }}</span>
+        <span class="stat-label">{{ 'technician.home.stats.inProgress' | translate }}</span>
+      </div>
+    </div>
+  }
 
   @if (loading()) {
     <div class="list">
       @for (i of [1, 2, 3]; track i) {
-        <div class="skeleton-card"></div>
+        <div class="skeleton-card skeleton-shimmer"></div>
       }
     </div>
   } @else if (interventions().length === 0) {

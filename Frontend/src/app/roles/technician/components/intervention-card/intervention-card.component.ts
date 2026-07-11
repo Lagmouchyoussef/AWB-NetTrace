@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import {
@@ -15,6 +15,7 @@ import { Intervention } from '../../../super-admin/pages/interventions/intervent
   imports: [RouterLink, TranslatePipe],
   templateUrl: './intervention-card.component.html',
   styleUrl: './intervention-card.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InterventionCardComponent {
   readonly intervention = input.required<Intervention>();
