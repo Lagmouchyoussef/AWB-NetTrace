@@ -18,7 +18,8 @@
     "superAdmin": "Super Admin",
     "dcAdmin": "Datacenter Admin",
     "networkEngineer": "Network Engineer",
-    "technician": "Technician"
+    "technician": "Technician",
+    "auditor": "Auditor"
   },
   "nav": {
     "dashboard": "Dashboard",
@@ -98,6 +99,19 @@
     "jumpToTopology": "Jump to Topology View",
     "jumpToPathTracing": "Jump to Path-Tracing",
     "devicesByRole": "Devices by Fabric Role"
+  },
+  "auditorDashboard": {
+    "title": "Compliance Overview",
+    "jumpToAuditLog": "Jump to Audit Log",
+    "jumpToAnomalies": "Jump to Anomaly Detections",
+    "stats": {
+      "totalAuditEvents": "Total Audit Events",
+      "openAnomalies": "Open Anomalies",
+      "criticalAnomalies": "Critical Anomalies",
+      "activeReports": "Active Reports"
+    },
+    "eventsByAction": "Audit Events by Action",
+    "anomaliesBySeverity": "Anomalies by Severity"
   },
   "topologyView": {
     "pageTitle": "Interactive Topology View",
@@ -219,7 +233,8 @@
     "of": "of",
     "yes": "Yes",
     "no": "No",
-    "back": "Back"
+    "back": "Back",
+    "add": "Add"
   },
   "datacenters": {
     "pageTitle": "Datacenters",
@@ -1533,10 +1548,53 @@
     "home": {
       "title": "Today",
       "empty": "No interventions assigned today.",
-      "assignedCount": "{{count}} intervention(s) assigned to you."
+      "assignedCount": "{{count}} intervention(s) assigned to you.",
+      "start": "Start",
+      "continue": "Continue"
     },
     "interventionDetail": {
-      "notFound": "This intervention isn't assigned to you."
+      "notFound": "This intervention isn't assigned to you.",
+      "checklist": "Checklist",
+      "checklistLockedHint": "Start the intervention to begin checking off steps.",
+      "notes": "Notes",
+      "notePlaceholder": "Add a note about this intervention...",
+      "completeIntervention": "Complete intervention",
+      "completeConfirmTitle": "Complete this intervention?",
+      "completeConfirmMessage": "The checklist, photos and notes will become read-only after this. This cannot be undone.",
+      "completeConfirmAction": "Complete",
+      "completedSuccess": "Intervention completed successfully.",
+      "photoUploadError": "The photo could not be uploaded. Please try again.",
+      "addPhoto": "Add photo",
+      "noPhotosYet": "No photos added yet.",
+      "phase": {
+        "BEFORE": "Before",
+        "AFTER": "After"
+      }
+    },
+    "rackReference": {
+      "title": "Rack reference",
+      "youAreHere": "This device"
+    },
+    "myInterventions": {
+      "view": "View",
+      "empty": "No interventions match this filter.",
+      "loadMore": "Load more",
+      "filters": {
+        "all": "All",
+        "toDo": "To do",
+        "inProgress": "In progress",
+        "done": "Done"
+      }
+    },
+    "schedule": {
+      "previousWeek": "Previous week",
+      "nextWeek": "Next week",
+      "today": "Today",
+      "noneThisDay": "Nothing scheduled"
+    },
+    "notifications": {
+      "empty": "No notifications.",
+      "markAllRead": "Mark all as read"
     }
   }
 }

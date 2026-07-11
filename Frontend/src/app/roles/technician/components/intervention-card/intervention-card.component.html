@@ -1,0 +1,27 @@
+<a [routerLink]="['/technician/interventions', intervention().id]" class="card">
+  <div class="card-top">
+    <span class="type-icon" [style.background]="typeColor(intervention().interventionType)">
+      <span class="material-symbols-outlined">{{ typeIcon(intervention().interventionType) }}</span>
+    </span>
+    <div class="card-heading">
+      <span class="card-title">{{ intervention().title }}</span>
+      <span class="card-location">
+        <span class="material-symbols-outlined location-icon">place</span>
+        {{ intervention().datacenterName }} &middot; {{ intervention().rackName }}
+      </span>
+    </div>
+    <span class="priority-badge" [attr.data-priority]="intervention().priority">
+      {{ 'interventions.priority.' + intervention().priority | translate }}
+    </span>
+  </div>
+
+  <div class="card-bottom">
+    <span class="status-badge" [attr.data-status]="intervention().status">
+      {{ 'interventions.status.' + intervention().status | translate }}
+    </span>
+    <span class="action-button">
+      {{ actionLabelKey(intervention().status) | translate }}
+      <span class="material-symbols-outlined">arrow_forward</span>
+    </span>
+  </div>
+</a>

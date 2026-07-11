@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { PlaceholderPageComponent } from '../../core/components/placeholder-page/placeholder-page.component';
 import { TechnicianShellComponent } from './technician-shell.component';
 
 export const technicianRoutes: Routes = [
@@ -15,8 +14,10 @@ export const technicianRoutes: Routes = [
       },
       {
         path: 'my-interventions',
-        component: PlaceholderPageComponent,
-        data: { titleKey: 'technician.nav.myInterventions' },
+        loadComponent: () =>
+          import('./pages/my-interventions/my-interventions.component').then(
+            (m) => m.TechnicianMyInterventionsComponent,
+          ),
       },
       {
         path: 'interventions/:id',
@@ -27,13 +28,15 @@ export const technicianRoutes: Routes = [
       },
       {
         path: 'schedule',
-        component: PlaceholderPageComponent,
-        data: { titleKey: 'technician.nav.schedule' },
+        loadComponent: () =>
+          import('./pages/schedule/schedule.component').then((m) => m.TechnicianScheduleComponent),
       },
       {
         path: 'notifications',
-        component: PlaceholderPageComponent,
-        data: { titleKey: 'technician.nav.notifications' },
+        loadComponent: () =>
+          import('./pages/notifications/notifications.component').then(
+            (m) => m.TechnicianNotificationsComponent,
+          ),
       },
       {
         path: 'profile',

@@ -1,0 +1,18 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'nav.anomalyDetection' | translate }}</h1>
+  </div>
+
+  <app-data-table
+    [columns]="columns"
+    [data]="data()"
+    [totalCount]="totalCount()"
+    [loading]="loading()"
+    [readOnly]="true"
+    (page)="onPage($event)"
+    (sortChange)="onSort($event)"
+    (searchChange)="onSearch($event)"
+    (view)="onView($event)"
+    (exportCsv)="onExportCsv()"
+  />
+</div>

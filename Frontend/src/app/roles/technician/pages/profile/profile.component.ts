@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthService } from '../../../../core/services/auth.service';
 
-// Minimal for Step 1 (just enough to log out while the rest of the app is being built) - the
-// full profile (name, role badge, assigned datacenters) is the Step 6 build.
+// Name, role badge and a large, easy-to-find logout button (per the brief - technicians need to
+// switch accounts/devices quickly between shifts). No photo/datacenter-assignment fields: unlike
+// DC Admin, this role isn't scoped to specific datacenters, and there's no profile-photo upload
+// endpoint for this role's account type, so nothing is faked here that the API doesn't provide.
 @Component({
   selector: 'app-technician-profile',
   standalone: true,
@@ -17,6 +19,10 @@ export class TechnicianProfileComponent {
   private readonly router = inject(Router);
 
   protected readonly username = computed(() => this.authService.username() ?? '');
+  protected readonly initials = computed(() => {
+    const name = this.username();
+    return name ? name.slice(0, 2).toUpperCase() : '?';
+  });
 
   protected onLogout(): void {
     this.authService.logout();

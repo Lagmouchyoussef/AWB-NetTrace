@@ -1,0 +1,52 @@
+<div class="page">
+  <h1>{{ 'technician.nav.myInterventions' | translate }}</h1>
+
+  <div class="chip-row">
+    @for (chip of chips; track chip.value) {
+      <button
+        type="button"
+        class="chip"
+        [class.chip-active]="activeFilter() === chip.value"
+        (click)="onFilterChange(chip.value)"
+      >
+        {{ chip.labelKey | translate }}
+      </button>
+    }
+  </div>
+
+  @if (loading()) {
+    <div class="list">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="skeleton-card"></div>
+      }
+    </div>
+  } @else if (interventions().length === 0) {
+    <div class="empty-state">
+      <span class="material-symbols-outlined">inbox</span>
+      <p>{{ 'technician.myInterventions.empty' | translate }}</p>
+    </div>
+  } @else {
+    <ul class="list">
+      @for (intervention of interventions(); track intervention.id) {
+        <li>
+          <app-intervention-card [intervention]="intervention" />
+        </li>
+      }
+    </ul>
+
+    @if (hasMore()) {
+      <div class="load-more-row">
+        <button
+          type="button"
+          class="load-more-button"
+          [disabled]="loadingMore()"
+          (click)="onLoadMore()"
+        >
+          {{
+            (loadingMore() ? 'common.loading' : 'technician.myInterventions.loadMore') | translate
+          }}
+        </button>
+      </div>
+    }
+  }
+</div>

@@ -18,7 +18,8 @@
     "superAdmin": "المسؤول العام",
     "dcAdmin": "مسؤول مركز البيانات",
     "networkEngineer": "مهندس الشبكة",
-    "technician": "فني"
+    "technician": "فني",
+    "auditor": "مدقق"
   },
   "nav": {
     "dashboard": "لوحة التحكم",
@@ -98,6 +99,19 @@
     "jumpToTopology": "الانتقال إلى عرض الطوبولوجيا",
     "jumpToPathTracing": "الانتقال إلى تتبع المسار",
     "devicesByRole": "الأجهزة حسب دور النسيج"
+  },
+  "auditorDashboard": {
+    "title": "نظرة عامة على الامتثال",
+    "jumpToAuditLog": "الانتقال إلى سجل التدقيق",
+    "jumpToAnomalies": "الانتقال إلى الحالات الشاذة المكتشفة",
+    "stats": {
+      "totalAuditEvents": "إجمالي أحداث التدقيق",
+      "openAnomalies": "الحالات الشاذة المفتوحة",
+      "criticalAnomalies": "الحالات الشاذة الحرجة",
+      "activeReports": "التقارير النشطة"
+    },
+    "eventsByAction": "أحداث التدقيق حسب الإجراء",
+    "anomaliesBySeverity": "الحالات الشاذة حسب الخطورة"
   },
   "topologyView": {
     "pageTitle": "عرض الطوبولوجيا التفاعلي",
@@ -219,7 +233,8 @@
     "of": "من",
     "yes": "نعم",
     "no": "لا",
-    "back": "رجوع"
+    "back": "رجوع",
+    "add": "إضافة"
   },
   "datacenters": {
     "pageTitle": "مراكز البيانات",
@@ -1533,10 +1548,53 @@
     "home": {
       "title": "اليوم",
       "empty": "لا توجد تدخلات مسندة إليك اليوم.",
-      "assignedCount": "{{count}} تدخل (تدخلات) مسندة إليك."
+      "assignedCount": "{{count}} تدخل (تدخلات) مسندة إليك.",
+      "start": "بدء",
+      "continue": "متابعة"
     },
     "interventionDetail": {
-      "notFound": "هذا التدخل غير مسند إليك."
+      "notFound": "هذا التدخل غير مسند إليك.",
+      "checklist": "قائمة التحقق",
+      "checklistLockedHint": "ابدأ التدخل لتتمكن من تحديد الخطوات.",
+      "notes": "الملاحظات",
+      "notePlaceholder": "أضف ملاحظة حول هذا التدخل...",
+      "completeIntervention": "إنهاء التدخل",
+      "completeConfirmTitle": "هل تريد إنهاء هذا التدخل؟",
+      "completeConfirmMessage": "ستصبح قائمة التحقق والصور والملاحظات للقراءة فقط. لا يمكن التراجع عن هذا الإجراء.",
+      "completeConfirmAction": "إنهاء",
+      "completedSuccess": "تم إنهاء التدخل بنجاح.",
+      "photoUploadError": "تعذر رفع الصورة. يرجى المحاولة مرة أخرى.",
+      "addPhoto": "إضافة صورة",
+      "noPhotosYet": "لم تتم إضافة أي صور بعد.",
+      "phase": {
+        "BEFORE": "قبل",
+        "AFTER": "بعد"
+      }
+    },
+    "rackReference": {
+      "title": "مرجع الخزانة",
+      "youAreHere": "هذا الجهاز"
+    },
+    "myInterventions": {
+      "view": "عرض",
+      "empty": "لا توجد تدخلات مطابقة لهذا الفلتر.",
+      "loadMore": "تحميل المزيد",
+      "filters": {
+        "all": "الكل",
+        "toDo": "قيد الانتظار",
+        "inProgress": "قيد التنفيذ",
+        "done": "منجزة"
+      }
+    },
+    "schedule": {
+      "previousWeek": "الأسبوع السابق",
+      "nextWeek": "الأسبوع التالي",
+      "today": "اليوم",
+      "noneThisDay": "لا شيء مجدول"
+    },
+    "notifications": {
+      "empty": "لا توجد إشعارات.",
+      "markAllRead": "تحديد الكل كمقروء"
     }
   }
 }

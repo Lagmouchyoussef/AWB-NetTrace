@@ -1,0 +1,14 @@
+<button
+  type="button"
+  class="checklist-row"
+  [class.checklist-row-done]="item().completed"
+  [disabled]="disabled()"
+  (click)="onTap()"
+>
+  <span class="checkbox" [class.checkbox-checked]="item().completed">
+    @if (item().completed) {
+      <span class="material-symbols-outlined">check</span>
+    }
+  </span>
+  <span class="label">{{ item().label }}</span>
+</button>

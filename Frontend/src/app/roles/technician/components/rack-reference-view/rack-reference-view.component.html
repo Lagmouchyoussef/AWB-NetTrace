@@ -1,0 +1,29 @@
+<div class="rack-reference">
+  <h3>{{ 'technician.rackReference.title' | translate }}</h3>
+
+  @if (loading()) {
+    <div class="skeleton"></div>
+  } @else if (elevation()) {
+    <div class="rack-name">{{ elevation()?.rackName }}</div>
+    <div #rackShell class="rack-shell" [style.height.px]="rackHeightPx()">
+      @for (device of positionedDevices(); track device.id) {
+        <div
+          class="device-slot"
+          [class.device-slot-target]="device.target"
+          [style.top.px]="device.topPx"
+          [style.height.px]="device.heightPx"
+          [style.background]="colorFor(device.deviceType)"
+        >
+          <img [src]="iconFor(device.deviceType)" alt="" class="device-icon" />
+          <span class="device-name">{{ device.name }}</span>
+          @if (device.target) {
+            <span class="target-flag">
+              <span class="material-symbols-outlined">place</span>
+              {{ 'technician.rackReference.youAreHere' | translate }}
+            </span>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

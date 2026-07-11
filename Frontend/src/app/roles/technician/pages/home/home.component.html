@@ -2,22 +2,21 @@
   <h1>{{ 'technician.home.title' | translate }}</h1>
 
   @if (loading()) {
-    <p class="hint">{{ 'common.loading' | translate }}</p>
+    <div class="list">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="skeleton-card"></div>
+      }
+    </div>
   } @else if (interventions().length === 0) {
-    <p class="hint">{{ 'technician.home.empty' | translate }}</p>
+    <div class="empty-state">
+      <span class="material-symbols-outlined">task_alt</span>
+      <p>{{ 'technician.home.empty' | translate }}</p>
+    </div>
   } @else {
-    <p class="hint">
-      {{ 'technician.home.assignedCount' | translate: { count: interventions().length } }}
-    </p>
     <ul class="list">
       @for (intervention of interventions(); track intervention.id) {
         <li>
-          <a [routerLink]="['/technician/interventions', intervention.id]" class="item-link">
-            <span class="item-title">{{ intervention.title }}</span>
-            <span class="item-status">{{
-              'interventions.status.' + intervention.status | translate
-            }}</span>
-          </a>
+          <app-intervention-card [intervention]="intervention" />
         </li>
       }
     </ul>

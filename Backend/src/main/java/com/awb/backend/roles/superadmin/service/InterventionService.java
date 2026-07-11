@@ -328,6 +328,9 @@ public class InterventionService {
     response.setId(intervention.getId());
     response.setDeviceId(intervention.getDevice().getId());
     response.setDeviceName(intervention.getDevice().getName());
+    response.setRackName(intervention.getDevice().getRack().getName());
+    response.setDatacenterName(
+        intervention.getDevice().getRack().getRoom().getDatacenter().getName());
     response.setTitle(intervention.getTitle());
     response.setDescription(intervention.getDescription());
     response.setInterventionType(intervention.getInterventionType());

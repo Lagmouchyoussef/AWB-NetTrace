@@ -11,6 +11,8 @@ public class InterventionResponse {
   private Long id;
   private Long deviceId;
   private String deviceName;
+  private String rackName;
+  private String datacenterName;
   private String title;
   private String description;
   private InterventionType interventionType;
@@ -53,6 +55,22 @@ public class InterventionResponse {
 
   public void setDeviceName(String deviceName) {
     this.deviceName = deviceName;
+  }
+
+  public String getRackName() {
+    return rackName;
+  }
+
+  public void setRackName(String rackName) {
+    this.rackName = rackName;
+  }
+
+  public String getDatacenterName() {
+    return datacenterName;
+  }
+
+  public void setDatacenterName(String datacenterName) {
+    this.datacenterName = datacenterName;
   }
 
   public String getTitle() {

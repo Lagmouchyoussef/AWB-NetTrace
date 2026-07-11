@@ -1,0 +1,106 @@
+.rack-reference {
+  border: 1px solid var(--awb-border);
+  border-radius: 14px;
+  background: var(--awb-surface);
+  padding: 1rem;
+}
+
+h3 {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--awb-on-surface);
+}
+
+.rack-name {
+  font-size: 0.82rem;
+  color: var(--awb-on-surface-muted);
+  margin-bottom: 0.6rem;
+}
+
+.rack-shell {
+  position: relative;
+  max-height: 420px;
+  overflow-y: auto;
+  border: 2px solid var(--awb-border);
+  border-radius: 8px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--awb-content-bg) 0,
+    var(--awb-content-bg) 21px,
+    var(--awb-border) 22px
+  );
+}
+
+.device-slot {
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 5px;
+  padding: 0 0.5rem;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.device-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.device-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.device-slot-target {
+  outline: 3px solid var(--chart-series-1);
+  outline-offset: 1px;
+  z-index: 2;
+}
+
+.target-flag {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  flex-shrink: 0;
+  background: var(--chart-series-1);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.target-flag .material-symbols-outlined {
+  font-size: 13px;
+}
+
+.skeleton {
+  height: 300px;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--awb-hover) 25%,
+    var(--awb-border) 37%,
+    var(--awb-hover) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

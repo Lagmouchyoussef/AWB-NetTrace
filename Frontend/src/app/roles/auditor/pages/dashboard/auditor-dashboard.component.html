@@ -1,0 +1,58 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'auditorDashboard.title' | translate }}</h1>
+  </div>
+
+  <div class="quick-actions">
+    <a class="quick-action" routerLink="/auditor/audit-log">
+      <span class="material-symbols-outlined">fact_check</span>
+      {{ 'auditorDashboard.jumpToAuditLog' | translate }}
+    </a>
+    <a class="quick-action" routerLink="/auditor/anomaly-detections">
+      <span class="material-symbols-outlined">sensors</span>
+      {{ 'auditorDashboard.jumpToAnomalies' | translate }}
+    </a>
+  </div>
+
+  @if (loading()) {
+    <div class="stats-grid">
+      @for (i of [1, 2, 3, 4]; track i) {
+        <div class="stat-card skeleton-card"></div>
+      }
+    </div>
+  } @else {
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-value">{{ totalAuditEvents() }}</span>
+        <span class="stat-label">{{ 'auditorDashboard.stats.totalAuditEvents' | translate }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ openAnomaliesCount() }}</span>
+        <span class="stat-label">{{ 'auditorDashboard.stats.openAnomalies' | translate }}</span>
+      </div>
+      <div class="stat-card stat-card-critical">
+        <span class="stat-value">{{ criticalAnomaliesCount() }}</span>
+        <span class="stat-label">{{ 'auditorDashboard.stats.criticalAnomalies' | translate }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ activeReportsCount() }}</span>
+        <span class="stat-label">{{ 'auditorDashboard.stats.activeReports' | translate }}</span>
+      </div>
+    </div>
+
+    <div class="charts-grid">
+      <app-stat-chart
+        [data]="actionData()"
+        titleKey="auditorDashboard.eventsByAction"
+        initialMode="donut"
+        [showLegend]="true"
+      />
+      <app-stat-chart
+        [data]="severityData()"
+        titleKey="auditorDashboard.anomaliesBySeverity"
+        initialMode="donut"
+        [showLegend]="true"
+      />
+    </div>
+  }
+</div>

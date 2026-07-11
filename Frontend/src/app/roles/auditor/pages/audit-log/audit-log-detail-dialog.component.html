@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>{{ data.entityType }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'auditLogs.fields.actorUsername' | translate }}</dt>
+    <dd>{{ data.actorUsername }}</dd>
+
+    <dt>{{ 'auditLogs.fields.action' | translate }}</dt>
+    <dd>{{ 'auditLogs.action.' + data.action | translate }}</dd>
+
+    @if (data.entityReference) {
+      <dt>{{ 'auditLogs.fields.entityReference' | translate }}</dt>
+      <dd>{{ data.entityReference }}</dd>
+    }
+
+    @if (data.description) {
+      <dt>{{ 'auditLogs.fields.description' | translate }}</dt>
+      <dd>{{ data.description }}</dd>
+    }
+
+    @if (data.ipAddress) {
+      <dt>{{ 'auditLogs.fields.ipAddress' | translate }}</dt>
+      <dd>{{ data.ipAddress }}</dd>
+    }
+
+    <dt>{{ 'auditLogs.fields.occurredAt' | translate }}</dt>
+    <dd>{{ data.occurredAt | date: 'medium' }}</dd>
+
+    @if (data.notes) {
+      <dt>{{ 'auditLogs.fields.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

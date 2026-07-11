@@ -1,0 +1,60 @@
+<div class="page">
+  <h1>{{ 'technician.nav.schedule' | translate }}</h1>
+
+  <div class="week-controls">
+    <button
+      type="button"
+      class="nav-button"
+      [attr.aria-label]="'technician.schedule.previousWeek' | translate"
+      (click)="onPreviousWeek()"
+    >
+      <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+    <div class="week-label-group">
+      <span class="week-label">{{ weekLabel() }}</span>
+      <button type="button" class="today-button" (click)="onToday()">
+        {{ 'technician.schedule.today' | translate }}
+      </button>
+    </div>
+    <button
+      type="button"
+      class="nav-button"
+      [attr.aria-label]="'technician.schedule.nextWeek' | translate"
+      (click)="onNextWeek()"
+    >
+      <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+  </div>
+
+  @if (loading()) {
+    <div class="skeleton-week"></div>
+  } @else {
+    <div class="week-grid">
+      @for (day of days(); track day.dateKey) {
+        <div class="day-column" [class.day-column-today]="day.isToday">
+          <div class="day-header">
+            <span class="day-name">{{ day.date | date: 'EEE' }}</span>
+            <span class="day-number">{{ day.date | date: 'd' }}</span>
+          </div>
+          <div class="day-body">
+            @if (day.interventions.length === 0) {
+              <p class="day-empty">{{ 'technician.schedule.noneThisDay' | translate }}</p>
+            } @else {
+              @for (intervention of day.interventions; track intervention.id) {
+                <button
+                  type="button"
+                  class="day-item"
+                  [attr.data-priority]="intervention.priority"
+                  (click)="onOpen(intervention)"
+                >
+                  <span class="day-item-time">{{ timeOf(intervention) }}</span>
+                  <span class="day-item-title">{{ intervention.title }}</span>
+                </button>
+              }
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

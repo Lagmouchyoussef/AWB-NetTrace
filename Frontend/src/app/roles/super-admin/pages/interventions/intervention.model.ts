@@ -41,6 +41,8 @@ export interface Intervention {
   id: number;
   deviceId: number;
   deviceName: string;
+  rackName: string;
+  datacenterName: string;
   title: string;
   description: string | null;
   interventionType: InterventionType;

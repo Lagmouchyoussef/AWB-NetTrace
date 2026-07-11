@@ -5,20 +5,156 @@
   </a>
 
   @if (loading()) {
-    <p class="hint">{{ 'common.loading' | translate }}</p>
-  } @else if (notFound() || !intervention()) {
+    <div class="skeleton-block"></div>
+    <div class="skeleton-block"></div>
+  } @else if (notFound()) {
     <div class="empty-state">
-      <span class="material-symbols-outlined">link_off</span>
+      <span class="material-symbols-outlined">block</span>
       <p>{{ 'technician.interventionDetail.notFound' | translate }}</p>
     </div>
-  } @else {
-    <h1>{{ intervention()!.title }}</h1>
-    <p class="device">{{ intervention()!.deviceName }}</p>
-    <span class="status-badge">{{
-      'interventions.status.' + intervention()!.status | translate
-    }}</span>
-    @if (intervention()!.description) {
-      <p class="description">{{ intervention()!.description }}</p>
+  } @else if (intervention(); as data) {
+    <header class="header">
+      <div class="header-top">
+        <h1>{{ data.title }}</h1>
+        <span class="badge badge-priority" [attr.data-priority]="data.priority">
+          {{ priorityLabel(data.priority) }}
+        </span>
+      </div>
+      <p class="header-meta">
+        <span class="material-symbols-outlined">dns</span>
+        {{ data.deviceName }}
+        <span class="dot">&middot;</span>
+        <span class="material-symbols-outlined">place</span>
+        {{ data.datacenterName }} &mdash; {{ data.rackName }}
+      </p>
+      <span class="badge badge-status" [attr.data-status]="data.status">
+        {{ statusLabel(data.status) }}
+      </span>
+      @if (data.description) {
+        <p class="description">{{ data.description }}</p>
+      }
+    </header>
+
+    @if (justCompleted()) {
+      <div class="success-banner">
+        <span class="material-symbols-outlined">check_circle</span>
+        {{ 'technician.interventionDetail.completedSuccess' | translate }}
+      </div>
+    }
+
+    @if (data.status === 'SCHEDULED') {
+      <button type="button" class="primary-button" [disabled]="starting()" (click)="onStart()">
+        <span class="material-symbols-outlined">play_arrow</span>
+        {{ 'technician.home.start' | translate }}
+      </button>
+    }
+
+    <section class="card">
+      <div class="card-header">
+        <h2>{{ 'technician.interventionDetail.checklist' | translate }}</h2>
+        <span class="progress-pill">
+          {{ checklist().filter((i) => i.completed).length }}/{{ checklist().length }}
+        </span>
+      </div>
+      @if (!checklistInteractive() && !locked()) {
+        <p class="hint">{{ 'technician.interventionDetail.checklistLockedHint' | translate }}</p>
+      }
+      <div class="checklist-list">
+        @for (item of checklist(); track item.id) {
+          <app-checklist-item
+            [item]="item"
+            [disabled]="!checklistInteractive()"
+            (toggled)="onToggleChecklistItem(item, $event)"
+          />
+        }
+      </div>
+    </section>
+
+    <app-rack-reference-view [elevation]="rackElevation()" [loading]="rackElevationLoading()" />
+
+    <div class="photo-grid">
+      <app-photo-capture [interventionId]="interventionId" phase="BEFORE" [disabled]="locked()" />
+      <app-photo-capture [interventionId]="interventionId" phase="AFTER" [disabled]="locked()" />
+    </div>
+
+    <section class="card">
+      <h2>{{ 'technician.interventionDetail.notes' | translate }}</h2>
+      @if (!locked()) {
+        <div class="note-form">
+          <textarea
+            [(ngModel)]="newNoteBody"
+            rows="2"
+            [attr.aria-label]="'technician.interventionDetail.notePlaceholder' | translate"
+            [placeholder]="'technician.interventionDetail.notePlaceholder' | translate"
+          ></textarea>
+          <button
+            type="button"
+            class="note-add-button"
+            [disabled]="!newNoteBody().trim()"
+            (click)="onAddNote()"
+          >
+            {{ 'common.add' | translate }}
+          </button>
+        </div>
+      }
+      <div class="note-list">
+        @for (note of notes(); track note.id) {
+          <div class="note-item">
+            @if (editingNoteId() === note.id) {
+              <textarea
+                rows="2"
+                [(ngModel)]="editingNoteBody"
+                [attr.aria-label]="'technician.interventionDetail.notePlaceholder' | translate"
+              ></textarea>
+              <div class="note-edit-actions">
+                <button type="button" (click)="onCancelEditNote()">
+                  {{ 'common.cancel' | translate }}
+                </button>
+                <button type="button" class="note-save" (click)="onSaveEditNote(note)">
+                  {{ 'common.save' | translate }}
+                </button>
+              </div>
+            } @else {
+              <p class="note-body">{{ note.body }}</p>
+              <div class="note-footer">
+                <span class="note-date">{{ note.createdAt | date: 'short' }}</span>
+                @if (!locked()) {
+                  <button
+                    type="button"
+                    class="note-icon-button"
+                    [attr.aria-label]="'common.edit' | translate"
+                    (click)="onStartEditNote(note)"
+                  >
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="note-icon-button"
+                    [attr.aria-label]="'common.delete' | translate"
+                    (click)="onDeleteNote(note)"
+                  >
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </section>
+
+    @if (data.status === 'IN_PROGRESS') {
+      <div class="complete-bar">
+        <button
+          type="button"
+          class="complete-button"
+          [disabled]="!allChecklistDone() || completing()"
+          (click)="onComplete()"
+        >
+          <span class="material-symbols-outlined">task_alt</span>
+          {{ 'technician.interventionDetail.completeIntervention' | translate }}
+        </button>
+      </div>
     }
   }
 </div>

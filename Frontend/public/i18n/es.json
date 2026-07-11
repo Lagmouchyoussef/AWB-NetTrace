@@ -18,7 +18,8 @@
     "superAdmin": "Superadministrador",
     "dcAdmin": "Administrador de Datacenter",
     "networkEngineer": "Ingeniero de Red",
-    "technician": "Técnico"
+    "technician": "Técnico",
+    "auditor": "Auditor"
   },
   "nav": {
     "dashboard": "Panel de control",
@@ -98,6 +99,19 @@
     "jumpToTopology": "Ir a la Vista de Topología",
     "jumpToPathTracing": "Ir al Trazado de Ruta",
     "devicesByRole": "Dispositivos por rol de fabric"
+  },
+  "auditorDashboard": {
+    "title": "Resumen de cumplimiento",
+    "jumpToAuditLog": "Ir al registro de auditoría",
+    "jumpToAnomalies": "Ir a anomalías detectadas",
+    "stats": {
+      "totalAuditEvents": "Total de eventos de auditoría",
+      "openAnomalies": "Anomalías abiertas",
+      "criticalAnomalies": "Anomalías críticas",
+      "activeReports": "Informes activos"
+    },
+    "eventsByAction": "Eventos de auditoría por acción",
+    "anomaliesBySeverity": "Anomalías por gravedad"
   },
   "topologyView": {
     "pageTitle": "Vista de Topología Interactiva",
@@ -219,7 +233,8 @@
     "of": "de",
     "yes": "Sí",
     "no": "No",
-    "back": "Atrás"
+    "back": "Atrás",
+    "add": "Añadir"
   },
   "datacenters": {
     "pageTitle": "Centros de datos",
@@ -1533,10 +1548,53 @@
     "home": {
       "title": "Hoy",
       "empty": "No hay intervenciones asignadas para hoy.",
-      "assignedCount": "{{count}} intervención(es) asignadas a usted."
+      "assignedCount": "{{count}} intervención(es) asignadas a usted.",
+      "start": "Iniciar",
+      "continue": "Continuar"
     },
     "interventionDetail": {
-      "notFound": "Esta intervención no le está asignada."
+      "notFound": "Esta intervención no le está asignada.",
+      "checklist": "Lista de verificación",
+      "checklistLockedHint": "Inicie la intervención para empezar a marcar los pasos.",
+      "notes": "Notas",
+      "notePlaceholder": "Añadir una nota sobre esta intervención...",
+      "completeIntervention": "Completar intervención",
+      "completeConfirmTitle": "¿Completar esta intervención?",
+      "completeConfirmMessage": "La lista de verificación, las fotos y las notas pasarán a ser de solo lectura. Esta acción no se puede deshacer.",
+      "completeConfirmAction": "Completar",
+      "completedSuccess": "Intervención completada correctamente.",
+      "photoUploadError": "No se pudo subir la foto. Inténtelo de nuevo.",
+      "addPhoto": "Añadir foto",
+      "noPhotosYet": "Aún no se han añadido fotos.",
+      "phase": {
+        "BEFORE": "Antes",
+        "AFTER": "Después"
+      }
+    },
+    "rackReference": {
+      "title": "Referencia del rack",
+      "youAreHere": "Este equipo"
+    },
+    "myInterventions": {
+      "view": "Ver",
+      "empty": "Ninguna intervención coincide con este filtro.",
+      "loadMore": "Cargar más",
+      "filters": {
+        "all": "Todas",
+        "toDo": "Pendientes",
+        "inProgress": "En curso",
+        "done": "Completadas"
+      }
+    },
+    "schedule": {
+      "previousWeek": "Semana anterior",
+      "nextWeek": "Semana siguiente",
+      "today": "Hoy",
+      "noneThisDay": "Nada programado"
+    },
+    "notifications": {
+      "empty": "No hay notificaciones.",
+      "markAllRead": "Marcar todo como leído"
     }
   }
 }

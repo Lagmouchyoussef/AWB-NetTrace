@@ -104,6 +104,13 @@ export function deviceIconDataUri(deviceType: DeviceType): string {
   return toDataUri(ICON_PATHS[deviceType] ?? ICON_PATHS.OTHER);
 }
 
+// For Cytoscape's canvas renderer, which can't resolve a live var() reference.
 export function deviceBadgeColor(deviceType: DeviceType): string {
   return resolveCssColor(BADGE_COLOR[deviceType] ?? BADGE_COLOR.OTHER);
+}
+
+// For plain DOM/CSS consumers - a raw var() token stays theme-reactive (light/dark toggle),
+// unlike the resolved literal deviceBadgeColor() returns for canvas use.
+export function deviceBadgeColorToken(deviceType: DeviceType): string {
+  return BADGE_COLOR[deviceType] ?? BADGE_COLOR.OTHER;
 }

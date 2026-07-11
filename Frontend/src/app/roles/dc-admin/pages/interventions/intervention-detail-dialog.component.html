@@ -18,9 +18,9 @@
     <dt>{{ 'interventions.fields.status' | translate }}</dt>
     <dd>{{ 'interventions.status.' + data.status | translate }}</dd>
 
-    @if (data.assignedTechnician) {
+    @if (data.assignedTechnicianUsername) {
       <dt>{{ 'interventions.fields.assignedTechnician' | translate }}</dt>
-      <dd>{{ data.assignedTechnician }}</dd>
+      <dd>{{ data.assignedTechnicianUsername }}</dd>
     }
 
     <dt>{{ 'interventions.fields.scheduledAt' | translate }}</dt>

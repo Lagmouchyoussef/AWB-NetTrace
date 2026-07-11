@@ -18,7 +18,8 @@
     "superAdmin": "超级管理员",
     "dcAdmin": "数据中心管理员",
     "networkEngineer": "网络工程师",
-    "technician": "技术员"
+    "technician": "技术员",
+    "auditor": "审计员"
   },
   "nav": {
     "dashboard": "仪表盘",
@@ -98,6 +99,19 @@
     "jumpToTopology": "跳转到拓扑视图",
     "jumpToPathTracing": "跳转到路径追踪",
     "devicesByRole": "按结构角色划分的设备"
+  },
+  "auditorDashboard": {
+    "title": "合规概览",
+    "jumpToAuditLog": "跳转到审计日志",
+    "jumpToAnomalies": "跳转到异常检测",
+    "stats": {
+      "totalAuditEvents": "审计事件总数",
+      "openAnomalies": "待处理异常",
+      "criticalAnomalies": "严重异常",
+      "activeReports": "启用中的报告"
+    },
+    "eventsByAction": "按操作类型划分的审计事件",
+    "anomaliesBySeverity": "按严重程度划分的异常"
   },
   "topologyView": {
     "pageTitle": "交互式拓扑视图",
@@ -219,7 +233,8 @@
     "of": "共",
     "yes": "是",
     "no": "否",
-    "back": "返回"
+    "back": "返回",
+    "add": "添加"
   },
   "datacenters": {
     "pageTitle": "数据中心",
@@ -1533,10 +1548,53 @@
     "home": {
       "title": "今日",
       "empty": "今天没有分配给您的工单。",
-      "assignedCount": "已分配给您 {{count}} 个工单。"
+      "assignedCount": "已分配给您 {{count}} 个工单。",
+      "start": "开始",
+      "continue": "继续"
     },
     "interventionDetail": {
-      "notFound": "此工单未分配给您。"
+      "notFound": "此工单未分配给您。",
+      "checklist": "检查清单",
+      "checklistLockedHint": "开始工单后即可勾选步骤。",
+      "notes": "备注",
+      "notePlaceholder": "添加关于此工单的备注...",
+      "completeIntervention": "完成工单",
+      "completeConfirmTitle": "确认完成此工单？",
+      "completeConfirmMessage": "检查清单、照片和备注将变为只读，此操作无法撤销。",
+      "completeConfirmAction": "完成",
+      "completedSuccess": "工单已成功完成。",
+      "photoUploadError": "照片上传失败，请重试。",
+      "addPhoto": "添加照片",
+      "noPhotosYet": "尚未添加照片。",
+      "phase": {
+        "BEFORE": "之前",
+        "AFTER": "之后"
+      }
+    },
+    "rackReference": {
+      "title": "机柜参考图",
+      "youAreHere": "此设备"
+    },
+    "myInterventions": {
+      "view": "查看",
+      "empty": "没有符合此筛选条件的工单。",
+      "loadMore": "加载更多",
+      "filters": {
+        "all": "全部",
+        "toDo": "待处理",
+        "inProgress": "进行中",
+        "done": "已完成"
+      }
+    },
+    "schedule": {
+      "previousWeek": "上一周",
+      "nextWeek": "下一周",
+      "today": "今天",
+      "noneThisDay": "当天没有安排"
+    },
+    "notifications": {
+      "empty": "暂无通知。",
+      "markAllRead": "全部标为已读"
     }
   }
 }

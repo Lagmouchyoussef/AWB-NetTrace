@@ -18,7 +18,8 @@
     "superAdmin": "Super Administrateur",
     "dcAdmin": "Administrateur Datacenter",
     "networkEngineer": "Ingénieur Réseau",
-    "technician": "Technicien"
+    "technician": "Technicien",
+    "auditor": "Auditeur"
   },
   "nav": {
     "dashboard": "Tableau de bord",
@@ -98,6 +99,19 @@
     "jumpToTopology": "Aller à la vue Topologie",
     "jumpToPathTracing": "Aller au traçage de chemin",
     "devicesByRole": "Équipements par rôle de fabric"
+  },
+  "auditorDashboard": {
+    "title": "Vue d'ensemble conformité",
+    "jumpToAuditLog": "Aller au journal d'audit",
+    "jumpToAnomalies": "Aller aux anomalies détectées",
+    "stats": {
+      "totalAuditEvents": "Total des événements d'audit",
+      "openAnomalies": "Anomalies ouvertes",
+      "criticalAnomalies": "Anomalies critiques",
+      "activeReports": "Rapports actifs"
+    },
+    "eventsByAction": "Événements d'audit par action",
+    "anomaliesBySeverity": "Anomalies par gravité"
   },
   "topologyView": {
     "pageTitle": "Vue Topologie Interactive",
@@ -219,7 +233,8 @@
     "of": "sur",
     "yes": "Oui",
     "no": "Non",
-    "back": "Retour"
+    "back": "Retour",
+    "add": "Ajouter"
   },
   "datacenters": {
     "pageTitle": "Centres de données",
@@ -1533,10 +1548,53 @@
     "home": {
       "title": "Aujourd'hui",
       "empty": "Aucune intervention prévue aujourd'hui.",
-      "assignedCount": "{{count}} intervention(s) qui vous sont assignées."
+      "assignedCount": "{{count}} intervention(s) qui vous sont assignées.",
+      "start": "Démarrer",
+      "continue": "Continuer"
     },
     "interventionDetail": {
-      "notFound": "Cette intervention ne vous est pas assignée."
+      "notFound": "Cette intervention ne vous est pas assignée.",
+      "checklist": "Checklist",
+      "checklistLockedHint": "Démarrez l'intervention pour commencer à cocher les étapes.",
+      "notes": "Notes",
+      "notePlaceholder": "Ajouter une note sur cette intervention...",
+      "completeIntervention": "Clôturer l'intervention",
+      "completeConfirmTitle": "Clôturer cette intervention ?",
+      "completeConfirmMessage": "La checklist, les photos et les notes deviendront en lecture seule. Cette action est irréversible.",
+      "completeConfirmAction": "Clôturer",
+      "completedSuccess": "Intervention clôturée avec succès.",
+      "photoUploadError": "La photo n'a pas pu être envoyée. Veuillez réessayer.",
+      "addPhoto": "Ajouter une photo",
+      "noPhotosYet": "Aucune photo ajoutée pour le moment.",
+      "phase": {
+        "BEFORE": "Avant",
+        "AFTER": "Après"
+      }
+    },
+    "rackReference": {
+      "title": "Référence de baie",
+      "youAreHere": "Cet équipement"
+    },
+    "myInterventions": {
+      "view": "Voir",
+      "empty": "Aucune intervention ne correspond à ce filtre.",
+      "loadMore": "Charger plus",
+      "filters": {
+        "all": "Toutes",
+        "toDo": "À faire",
+        "inProgress": "En cours",
+        "done": "Terminées"
+      }
+    },
+    "schedule": {
+      "previousWeek": "Semaine précédente",
+      "nextWeek": "Semaine suivante",
+      "today": "Aujourd'hui",
+      "noneThisDay": "Rien de prévu"
+    },
+    "notifications": {
+      "empty": "Aucune notification.",
+      "markAllRead": "Tout marquer comme lu"
     }
   }
 }
