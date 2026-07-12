@@ -49,6 +49,13 @@ export const approverRoutes: Routes = [
             (m) => m.ApproverMyRequestsComponent,
           ),
       },
+      {
+        path: 'my-account',
+        loadComponent: () =>
+          import('./pages/my-account/my-account.component').then(
+            (m) => m.ApproverMyAccountComponent,
+          ),
+      },
     ],
   },
 ];

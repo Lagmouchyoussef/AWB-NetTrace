@@ -199,6 +199,13 @@ export const networkEngineerRoutes: Routes = [
           ),
         data: { titleKey: 'nav.myInterventionRequests' },
       },
+      {
+        path: 'my-account',
+        loadComponent: () =>
+          import('./pages/my-account/my-account.component').then(
+            (m) => m.NetworkEngineerMyAccountComponent,
+          ),
+      },
       ...placeholderRoutes,
     ],
   },

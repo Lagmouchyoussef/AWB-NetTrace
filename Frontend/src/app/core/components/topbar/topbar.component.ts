@@ -139,6 +139,15 @@ export class TopbarComponent {
     if (role === 'TECHNICIAN') {
       return '/technician/profile';
     }
+    if (role === 'NETWORK_ENGINEER') {
+      return '/network-engineer/my-account';
+    }
+    if (role === 'APPROVER') {
+      return '/approver/my-account';
+    }
+    if (role === 'AUDITOR') {
+      return '/auditor/my-account';
+    }
     return null;
   });
 
