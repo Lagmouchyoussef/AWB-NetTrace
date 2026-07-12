@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { AuthService } from './auth.service';
 import { DashboardService } from './dashboard.service';
 import { DcAdminDashboardService } from './dc-admin-dashboard.service';
+import { ApproverDashboardService } from './approver-dashboard.service';
 
 export interface AppNotification {
   id: string;
@@ -29,6 +30,7 @@ export class NotificationService {
   private readonly translateService = inject(TranslateService);
   private readonly dashboardService = inject(DashboardService);
   private readonly dcAdminDashboardService = inject(DcAdminDashboardService);
+  private readonly approverDashboardService = inject(ApproverDashboardService);
 
   private eventSource: EventSource | null = null;
   private readonly notifications$ = new BehaviorSubject<AppNotification[]>([]);
@@ -59,8 +61,11 @@ export class NotificationService {
         );
         // Only refresh the dashboard matching the signed-in role - the other role's endpoint
         // would 403 for this user's token.
-        if (this.authService.currentRole() === 'DC_ADMIN') {
+        const role = this.authService.currentRole();
+        if (role === 'DC_ADMIN') {
           this.dcAdminDashboardService.triggerRefresh();
+        } else if (role === 'APPROVER') {
+          this.approverDashboardService.triggerRefresh();
         } else {
           this.dashboardService.triggerRefresh();
         }

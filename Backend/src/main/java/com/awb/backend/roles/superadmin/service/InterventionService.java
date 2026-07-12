@@ -47,11 +47,38 @@ public class InterventionService {
   @Transactional(readOnly = true)
   public Page<InterventionResponse> list(
       String search, InterventionStatus status, InterventionPriority priority, Pageable pageable) {
+    return list(search, status, priority, null, pageable);
+  }
+
+  // Overload adding an approvalStatus filter (e.g. Approver's "All Interventions" and "Validated
+  // Calendar" screens, the latter passing APPROVED) - kept separate from the 4-arg list() above
+  // so every existing caller (Super Admin, DC Admin, Network Engineer) is untouched.
+  @Transactional(readOnly = true)
+  public Page<InterventionResponse> list(
+      String search,
+      InterventionStatus status,
+      InterventionPriority priority,
+      ApprovalStatus approvalStatus,
+      Pageable pageable) {
     Specification<Intervention> spec =
         Specification.where(InterventionSpecifications.notDeleted())
             .and(InterventionSpecifications.search(search))
             .and(InterventionSpecifications.hasStatus(status))
-            .and(InterventionSpecifications.hasPriority(priority));
+            .and(InterventionSpecifications.hasPriority(priority))
+            .and(InterventionSpecifications.hasApprovalStatus(approvalStatus));
+    return interventionRepository.findAll(spec, pageable).map(this::toResponse);
+  }
+
+  // Approver's decision history / compliance reports - everything this specific approver has
+  // decided (approved or rejected; PENDING is naturally excluded since approvedBy is unset until
+  // a decision is made). approvalStatus is optional: null returns both APPROVED and REJECTED.
+  @Transactional(readOnly = true)
+  public Page<InterventionResponse> listDecisions(
+      String approverUsername, ApprovalStatus approvalStatus, Pageable pageable) {
+    Specification<Intervention> spec =
+        Specification.where(InterventionSpecifications.notDeleted())
+            .and(InterventionSpecifications.approvedByUsername(approverUsername))
+            .and(InterventionSpecifications.hasApprovalStatus(approvalStatus));
     return interventionRepository.findAll(spec, pageable).map(this::toResponse);
   }
 

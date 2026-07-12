@@ -19,7 +19,8 @@
     "dcAdmin": "Administrateur Datacenter",
     "networkEngineer": "Ingénieur Réseau",
     "technician": "Technicien",
-    "auditor": "Auditeur"
+    "auditor": "Auditeur",
+    "approver": "Approbateur"
   },
   "nav": {
     "dashboard": "Tableau de bord",
@@ -1614,6 +1615,63 @@
       "bodyPlaceholder": "Écrire une note...",
       "add": "Ajouter la note",
       "empty": "Tu n'as encore écrit aucune note."
+    }
+  },
+  "approver": {
+    "nav": {
+      "calendar": "Calendrier validé",
+      "decisionHistory": "Historique des décisions"
+    },
+    "dashboard": {
+      "title": "Aperçu des approbations",
+      "stats": {
+        "pending": "Approbations en attente",
+        "urgent": "Priorité critique et haute"
+      },
+      "charts": {
+        "byPriority": "En attente par priorité",
+        "byType": "En attente par type"
+      }
+    },
+    "approvalQueue": {
+      "subtitle": "Demandes d'intervention en attente de ta décision, tous datacenters confondus."
+    },
+    "allInterventions": {
+      "pageTitle": "Toutes les interventions",
+      "subtitle": "Toutes les interventions quel que soit leur statut ou leur décision, pour une vue d'ensemble.",
+      "approvalStatus": "Statut d'approbation"
+    },
+    "calendar": {
+      "pageTitle": "Calendrier des interventions validées",
+      "subtitle": "Interventions approuvées par date planifiée, pour repérer les conflits avant d'approuver une nouvelle demande qui chevauche.",
+      "today": "Aujourd'hui",
+      "more": "+{{count}} de plus",
+      "weekdays": {
+        "0": "Lun",
+        "1": "Mar",
+        "2": "Mer",
+        "3": "Jeu",
+        "4": "Ven",
+        "5": "Sam",
+        "6": "Dim"
+      }
+    },
+    "decisionHistory": {
+      "pageTitle": "Historique des décisions",
+      "subtitle": "Toutes tes décisions - approuvées ou rejetées - pour ta propre référence.",
+      "empty": "Tu n'as encore pris aucune décision."
+    },
+    "reports": {
+      "pageTitle": "Rapports de conformité",
+      "subtitle": "Ton activité de validation sur une période.",
+      "decidedAt": "Décidé le",
+      "exportCsv": "Exporter en CSV",
+      "stats": {
+        "approved": "Approuvées",
+        "rejected": "Rejetées",
+        "approvalRate": "Taux d'approbation",
+        "avgDecisionTime": "Temps moyen de décision"
+      }
     }
   }
 }

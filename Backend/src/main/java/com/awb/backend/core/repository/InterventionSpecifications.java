@@ -56,6 +56,15 @@ public final class InterventionSpecifications {
     return (root, query, cb) -> cb.equal(root.get("requestedBy").get("username"), username);
   }
 
+  // Decision-history filter for the Approver role - who decided (approved or rejected), not who
+  // requested. PENDING requests never have approvedBy set, so this alone already excludes them.
+  public static Specification<Intervention> approvedByUsername(String username) {
+    if (username == null || username.isBlank()) {
+      return (root, query, cb) -> cb.conjunction();
+    }
+    return (root, query, cb) -> cb.equal(root.get("approvedBy").get("username"), username);
+  }
+
   // Personal-scope filter for the Technician role - only interventions assigned to them, ever.
   public static Specification<Intervention> assignedToUsername(String username) {
     if (username == null || username.isBlank()) {

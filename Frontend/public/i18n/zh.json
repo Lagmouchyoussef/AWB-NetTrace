@@ -19,7 +19,8 @@
     "dcAdmin": "数据中心管理员",
     "networkEngineer": "网络工程师",
     "technician": "技术员",
-    "auditor": "审计员"
+    "auditor": "审计员",
+    "approver": "审批人"
   },
   "nav": {
     "dashboard": "仪表盘",
@@ -1614,6 +1615,63 @@
       "bodyPlaceholder": "写一条笔记...",
       "add": "添加笔记",
       "empty": "你还没有写任何笔记。"
+    }
+  },
+  "approver": {
+    "nav": {
+      "calendar": "已批准日历",
+      "decisionHistory": "决策历史"
+    },
+    "dashboard": {
+      "title": "审批概览",
+      "stats": {
+        "pending": "待审批",
+        "urgent": "紧急与高优先级"
+      },
+      "charts": {
+        "byPriority": "按优先级统计的待审批",
+        "byType": "按类型统计的待审批"
+      }
+    },
+    "approvalQueue": {
+      "subtitle": "等待你决定的干预请求，覆盖所有数据中心。"
+    },
+    "allInterventions": {
+      "pageTitle": "所有工单",
+      "subtitle": "不论状态或审批结果的全部工单，用于全局了解情况。",
+      "approvalStatus": "审批状态"
+    },
+    "calendar": {
+      "pageTitle": "已批准工单日历",
+      "subtitle": "按计划日期显示已批准的工单，便于在批准新的重叠请求前发现排期冲突。",
+      "today": "今天",
+      "more": "+{{count}} 更多",
+      "weekdays": {
+        "0": "周一",
+        "1": "周二",
+        "2": "周三",
+        "3": "周四",
+        "4": "周五",
+        "5": "周六",
+        "6": "周日"
+      }
+    },
+    "decisionHistory": {
+      "pageTitle": "决策历史",
+      "subtitle": "你做出的所有决定——批准或拒绝——供自行查阅。",
+      "empty": "你还没有做出任何决定。"
+    },
+    "reports": {
+      "pageTitle": "合规报告",
+      "subtitle": "你在某一时间段内的审批活动。",
+      "decidedAt": "决定时间",
+      "exportCsv": "导出 CSV",
+      "stats": {
+        "approved": "已批准",
+        "rejected": "已拒绝",
+        "approvalRate": "批准率",
+        "avgDecisionTime": "平均决策时间"
+      }
     }
   }
 }

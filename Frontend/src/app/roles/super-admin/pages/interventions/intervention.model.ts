@@ -89,4 +89,7 @@ export interface InterventionListParams {
   search?: string;
   status?: InterventionStatus;
   priority?: InterventionPriority;
+  // Approver's "All Interventions"/"Validated Calendar" screens only - every other caller leaves
+  // this unset (see ApproverInterventionController's list() overload on the backend).
+  approvalStatus?: ApprovalStatus;
 }

@@ -19,7 +19,8 @@
     "dcAdmin": "Datacenter Admin",
     "networkEngineer": "Network Engineer",
     "technician": "Technician",
-    "auditor": "Auditor"
+    "auditor": "Auditor",
+    "approver": "Approver"
   },
   "nav": {
     "dashboard": "Dashboard",
@@ -1614,6 +1615,63 @@
       "bodyPlaceholder": "Write a note...",
       "add": "Add note",
       "empty": "You haven't written any notes yet."
+    }
+  },
+  "approver": {
+    "nav": {
+      "calendar": "Validated Calendar",
+      "decisionHistory": "Decision History"
+    },
+    "dashboard": {
+      "title": "Approval Overview",
+      "stats": {
+        "pending": "Pending approvals",
+        "urgent": "Critical & high priority"
+      },
+      "charts": {
+        "byPriority": "Pending by Priority",
+        "byType": "Pending by Type"
+      }
+    },
+    "approvalQueue": {
+      "subtitle": "Intervention requests awaiting your decision, across all datacenters."
+    },
+    "allInterventions": {
+      "pageTitle": "All Interventions",
+      "subtitle": "Every intervention regardless of status or decision, for situational awareness.",
+      "approvalStatus": "Approval Status"
+    },
+    "calendar": {
+      "pageTitle": "Validated Interventions Calendar",
+      "subtitle": "Approved interventions by scheduled date, to spot conflicts before approving new overlapping requests.",
+      "today": "Today",
+      "more": "+{{count}} more",
+      "weekdays": {
+        "0": "Mon",
+        "1": "Tue",
+        "2": "Wed",
+        "3": "Thu",
+        "4": "Fri",
+        "5": "Sat",
+        "6": "Sun"
+      }
+    },
+    "decisionHistory": {
+      "pageTitle": "Decision History",
+      "subtitle": "Every decision you've made - approved or rejected - for self-reference.",
+      "empty": "You haven't made any decisions yet."
+    },
+    "reports": {
+      "pageTitle": "Compliance Reports",
+      "subtitle": "Your validation activity over a period.",
+      "decidedAt": "Decided At",
+      "exportCsv": "Export CSV",
+      "stats": {
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "approvalRate": "Approval Rate",
+        "avgDecisionTime": "Avg. Decision Time"
+      }
     }
   }
 }

@@ -1,0 +1,91 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'interventions.approvalQueue.pageTitle' | translate }}</h1>
+    <p class="page-subtitle">{{ 'approver.approvalQueue.subtitle' | translate }}</p>
+  </div>
+
+  @if (loading()) {
+    <div class="queue-list">
+      @for (placeholder of [1, 2, 3]; track placeholder) {
+        <div class="request-card skeleton-card"></div>
+      }
+    </div>
+  } @else if (requests().length === 0) {
+    <div class="empty-state">
+      <mat-icon fontSet="material-symbols-outlined">task_alt</mat-icon>
+      <p>{{ 'interventions.approvalQueue.empty' | translate }}</p>
+    </div>
+  } @else {
+    <div class="queue-list">
+      @for (request of requests(); track request.id) {
+        <div class="request-card" [attr.data-priority]="request.priority">
+          <div class="request-card-main">
+            <div class="request-card-header">
+              <span class="priority-dot" [attr.data-priority]="request.priority"></span>
+              <h2 class="request-title">{{ request.title }}</h2>
+              <span class="priority-badge" [attr.data-priority]="request.priority">
+                {{ 'interventions.priority.' + request.priority | translate }}
+              </span>
+            </div>
+
+            <div class="request-meta">
+              <span class="meta-item">
+                <mat-icon fontSet="material-symbols-outlined">router</mat-icon>
+                {{ request.deviceName }}
+              </span>
+              <span class="meta-item">
+                <mat-icon fontSet="material-symbols-outlined">build</mat-icon>
+                {{ interventionTypeLabel(request) }}
+              </span>
+              <span class="meta-item">
+                <mat-icon fontSet="material-symbols-outlined">schedule</mat-icon>
+                {{ 'interventions.approvalQueue.scheduledFor' | translate }}
+                {{ formatDate(request.scheduledAt) }}
+              </span>
+            </div>
+
+            @if (request.description) {
+              <p class="request-description">{{ request.description }}</p>
+            }
+
+            <div class="request-requester">
+              {{ 'interventions.approvalQueue.requestedBy' | translate }}
+              <strong>{{ request.requestedByUsername }}</strong>
+            </div>
+          </div>
+
+          <div class="request-actions">
+            <button
+              type="button"
+              class="action-button action-approve"
+              [disabled]="isActing(request) || isOwnRequest(request)"
+              [matTooltip]="
+                isOwnRequest(request)
+                  ? ('interventions.approvalQueue.cannotApproveOwnRequest' | translate)
+                  : ''
+              "
+              (click)="onApprove(request)"
+            >
+              <mat-icon fontSet="material-symbols-outlined">check</mat-icon>
+              {{ 'interventions.approvalQueue.approve' | translate }}
+            </button>
+            <button
+              type="button"
+              class="action-button action-reject"
+              [disabled]="isActing(request) || isOwnRequest(request)"
+              [matTooltip]="
+                isOwnRequest(request)
+                  ? ('interventions.approvalQueue.cannotApproveOwnRequest' | translate)
+                  : ''
+              "
+              (click)="onReject(request)"
+            >
+              <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
+              {{ 'interventions.approvalQueue.reject' | translate }}
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

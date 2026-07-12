@@ -1,0 +1,46 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'approver.calendar.pageTitle' | translate }}</h1>
+    <p class="page-subtitle">{{ 'approver.calendar.subtitle' | translate }}</p>
+  </div>
+
+  <div class="month-controls">
+    <button type="button" class="nav-button" (click)="onPreviousMonth()">
+      <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+    <span class="month-label">{{ monthLabel() }}</span>
+    <button type="button" class="nav-button" (click)="onNextMonth()">
+      <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+    <button type="button" class="today-button" (click)="onToday()">
+      {{ 'approver.calendar.today' | translate }}
+    </button>
+  </div>
+
+  @if (loading()) {
+    <div class="skeleton-grid skeleton-shimmer"></div>
+  } @else {
+    <div class="weekday-row">
+      @for (i of [0, 1, 2, 3, 4, 5, 6]; track i) {
+        <span class="weekday-label">{{ 'approver.calendar.weekdays.' + i | translate }}</span>
+      }
+    </div>
+    <div class="month-grid">
+      @for (day of days(); track day.dateKey) {
+        <div class="day-cell" [class.day-cell-outside]="!day.inCurrentMonth" [class.day-cell-today]="day.isToday">
+          <span class="day-number">{{ day.date.getDate() }}</span>
+          @for (item of day.interventions.slice(0, 3); track item.id) {
+            <div class="day-chip" [attr.data-priority]="item.priority" [title]="item.title">
+              {{ item.title }}
+            </div>
+          }
+          @if (day.interventions.length > 3) {
+            <div class="day-chip-more">
+              {{ 'approver.calendar.more' | translate: { count: day.interventions.length - 3 } }}
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>
