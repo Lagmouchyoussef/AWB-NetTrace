@@ -1555,7 +1555,13 @@
       "stats": {
         "total": "已分配",
         "urgent": "紧急",
-        "inProgress": "进行中"
+        "inProgress": "进行中",
+        "completed": "已完成"
+      },
+      "charts": {
+        "byStatus": "按状态统计的工单",
+        "byPriority": "按优先级统计的工单",
+        "byType": "按类型统计的工单"
       }
     },
     "interventionDetail": {

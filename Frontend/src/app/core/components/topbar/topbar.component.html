@@ -225,7 +225,7 @@
       @if (myAccountPath(); as accountPath) {
         <button mat-menu-item class="option-item" (click)="goToMyAccount(accountPath)">
           <mat-icon fontSet="material-symbols-outlined">account_circle</mat-icon>
-          {{ 'topbar.myAccount' | translate }}
+          {{ myAccountLabelKey() | translate }}
         </button>
       }
       <div class="menu-divider"></div>

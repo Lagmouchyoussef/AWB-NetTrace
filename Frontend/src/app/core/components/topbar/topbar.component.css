@@ -339,7 +339,7 @@
 }
 
 .notif-item.unread {
-  background: light-dark(rgba(244, 121, 32, 0.06), rgba(244, 121, 32, 0.1));
+  background: var(--notif-unread-bg);
 }
 
 .notif-dot {

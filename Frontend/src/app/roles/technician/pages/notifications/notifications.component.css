@@ -26,6 +26,11 @@ h1 {
   font-size: 0.82rem;
   font-weight: 700;
   cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.mark-all-button:hover {
+  background: var(--awb-hover);
 }
 
 .list {
@@ -46,11 +51,21 @@ h1 {
   border-radius: 12px;
   background: var(--awb-surface);
   border: 1px solid var(--awb-border);
+  transition: background 0.15s ease;
+}
+
+.notif-row:hover {
+  background: var(--awb-hover);
 }
 
 .notif-row-unread {
-  background: rgba(244, 121, 32, 0.05);
-  border-color: rgba(244, 121, 32, 0.3);
+  background: var(--notif-unread-bg);
+  border-color: var(--notif-unread-border);
+}
+
+.notif-row-unread:hover {
+  background: var(--notif-unread-bg);
+  filter: brightness(0.97);
 }
 
 .unread-dot {
@@ -84,6 +99,12 @@ h1 {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.dismiss-button:hover {
+  background: var(--awb-border);
+  color: var(--awb-on-surface);
 }
 
 .empty-state {

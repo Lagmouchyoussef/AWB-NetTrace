@@ -1,7 +1,23 @@
 <div class="page">
   <h1>{{ 'technician.home.greeting' | translate: { name: username() } }}</h1>
 
-  @if (!loading()) {
+  @if (loading()) {
+    <div class="stats-row">
+      @for (i of [1, 2, 3, 4]; track i) {
+        <div class="skeleton-tile skeleton-shimmer"></div>
+      }
+    </div>
+    <div class="charts-grid">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="skeleton-chart skeleton-shimmer"></div>
+      }
+    </div>
+    <div class="list">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="skeleton-card skeleton-shimmer"></div>
+      }
+    </div>
+  } @else {
     <div class="stats-row">
       <div class="stat-tile">
         <span class="stat-value">{{ totalCount() }}</span>
@@ -15,27 +31,53 @@
         <span class="stat-value">{{ inProgressCount() }}</span>
         <span class="stat-label">{{ 'technician.home.stats.inProgress' | translate }}</span>
       </div>
+      <div class="stat-tile stat-tile-completed">
+        <span class="stat-value">{{ completedCount() }}</span>
+        <span class="stat-label">{{ 'technician.home.stats.completed' | translate }}</span>
+      </div>
     </div>
-  }
 
-  @if (loading()) {
-    <div class="list">
-      @for (i of [1, 2, 3]; track i) {
-        <div class="skeleton-card skeleton-shimmer"></div>
-      }
-    </div>
-  } @else if (interventions().length === 0) {
-    <div class="empty-state">
-      <span class="material-symbols-outlined">task_alt</span>
-      <p>{{ 'technician.home.empty' | translate }}</p>
-    </div>
-  } @else {
-    <ul class="list">
-      @for (intervention of interventions(); track intervention.id) {
-        <li>
-          <app-intervention-card [intervention]="intervention" />
-        </li>
-      }
-    </ul>
+    @if (allInterventions().length > 0) {
+      <div class="charts-grid">
+        <div class="chart-card">
+          <app-stat-chart
+            [data]="statusBreakdownData()"
+            titleKey="technician.home.charts.byStatus"
+            initialMode="donut"
+          />
+        </div>
+        <div class="chart-card">
+          <app-stat-chart
+            [data]="priorityBreakdownData()"
+            titleKey="technician.home.charts.byPriority"
+            initialMode="bar"
+            [showLegend]="true"
+          />
+        </div>
+        <div class="chart-card">
+          <app-stat-chart
+            [data]="typeBreakdownData()"
+            titleKey="technician.home.charts.byType"
+            initialMode="bar"
+            [showLegend]="true"
+          />
+        </div>
+      </div>
+    }
+
+    @if (actionableList().length === 0) {
+      <div class="empty-state">
+        <span class="material-symbols-outlined">task_alt</span>
+        <p>{{ 'technician.home.empty' | translate }}</p>
+      </div>
+    } @else {
+      <ul class="list">
+        @for (intervention of actionableList(); track intervention.id) {
+          <li>
+            <app-intervention-card [intervention]="intervention" />
+          </li>
+        }
+      </ul>
+    }
   }
 </div>

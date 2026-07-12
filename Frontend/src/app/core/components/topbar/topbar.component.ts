@@ -136,8 +136,17 @@ export class TopbarComponent {
     if (role === 'DC_ADMIN') {
       return '/dc-admin/my-account';
     }
+    if (role === 'TECHNICIAN') {
+      return '/technician/profile';
+    }
     return null;
   });
+
+  // Technician's account page already lives in their own nav as "Profile" - reuse that label here
+  // instead of "My Account" so the wording matches what they clicked to get the same screen.
+  protected readonly myAccountLabelKey = computed(() =>
+    this.authService.currentRole() === 'TECHNICIAN' ? 'technician.nav.profile' : 'topbar.myAccount',
+  );
 
   protected goToMyAccount(path: string): void {
     this.router.navigateByUrl(path);

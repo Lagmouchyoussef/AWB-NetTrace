@@ -1555,7 +1555,13 @@
       "stats": {
         "total": "Assigned",
         "urgent": "Urgent",
-        "inProgress": "In progress"
+        "inProgress": "In progress",
+        "completed": "Completed"
+      },
+      "charts": {
+        "byStatus": "Interventions by Status",
+        "byPriority": "Interventions by Priority",
+        "byType": "Interventions by Type"
       }
     },
     "interventionDetail": {

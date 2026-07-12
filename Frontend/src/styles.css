@@ -61,6 +61,11 @@ body {
   --status-cancelled-fg: var(--chart-critical);
   --status-cancelled-bg: light-dark(rgba(198, 40, 40, 0.12), rgba(198, 40, 40, 0.26));
 
+  /* Unread notification highlight - shared by the topbar bell dropdown and the technician
+     notifications page so both views of the same SSE feed agree, themed via light-dark(). */
+  --notif-unread-bg: light-dark(rgba(244, 121, 32, 0.06), rgba(244, 121, 32, 0.14));
+  --notif-unread-border: light-dark(rgba(244, 121, 32, 0.3), rgba(244, 121, 32, 0.4));
+
   --awb-brand-gradient-h: linear-gradient(90deg, #f7941d, #ee5b41);
   --awb-brand-gradient-d: linear-gradient(135deg, #f7941d, #ee5b41);
 }
