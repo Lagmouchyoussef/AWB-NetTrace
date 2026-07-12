@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,8 +56,9 @@ public class ApproverInterventionController {
 
   // Unscoped read-only visibility across every intervention regardless of status/decision - used
   // by "All Interventions" (no filters) and the "Validated Interventions Calendar"
-  // (approvalStatus=APPROVED) screens. No update/delete here: Approver never manages the
-  // intervention record itself, only decides on pending ones (see approve/reject above).
+  // (approvalStatus=APPROVED) screens. No update here: Approver never manages the intervention
+  // record itself, only decides on pending ones (see approve/reject above) - the one exception is
+  // withdrawing its own still-pending request, see deleteMyRequest below.
   @GetMapping
   public Page<InterventionResponse> list(
       @RequestParam(required = false) String search,
@@ -97,5 +99,14 @@ public class ApproverInterventionController {
       @Valid @RequestBody InterventionRequest request, Authentication authentication) {
     return ResponseEntity.status(HttpStatus.CREATED)
         .body(interventionService.createPendingApproval(request, authentication.getName()));
+  }
+
+  // Withdraw one of your own requests - only while it's still PENDING (see
+  // InterventionService.deleteOwnRequest for why), and only your own: a 404 either way if it
+  // doesn't exist or belongs to someone else, so this can't be used to probe other users' ids.
+  @DeleteMapping("/my-requests/{id}")
+  public ResponseEntity<Void> deleteMyRequest(@PathVariable Long id, Authentication authentication) {
+    interventionService.deleteOwnRequest(id, authentication.getName());
+    return ResponseEntity.noContent().build();
   }
 }

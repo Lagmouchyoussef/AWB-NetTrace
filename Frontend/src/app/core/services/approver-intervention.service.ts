@@ -58,11 +58,17 @@ export class ApproverInterventionService {
   createRequest(request: InterventionRequest): Promise<Intervention> {
     return firstValueFrom(this.http.post<Intervention>(`${BASE_URL}/my-requests`, request));
   }
+
+  // Withdraw one of your own requests - server-side only allows this while still PENDING (see
+  // ApproverInterventionController.deleteMyRequest).
+  deleteMyRequest(id: number): Promise<void> {
+    return firstValueFrom(this.http.delete<void>(`${BASE_URL}/my-requests/${id}`));
+  }
 }
 
-function toHttpParams(params: Record<string, unknown>): Record<string, string | number> {
+function toHttpParams(params: object): Record<string, string | number> {
   const result: Record<string, string | number> = {};
-  for (const [key, value] of Object.entries(params)) {
+  for (const [key, value] of Object.entries(params as Record<string, unknown>)) {
     if (value !== undefined && value !== null && value !== '') {
       result[key] = value as string | number;
     }

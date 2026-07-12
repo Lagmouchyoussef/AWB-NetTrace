@@ -1,10 +1,19 @@
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { ChartDatum } from '../../../../core/components/charts/chart-data.model';
+import { StatChartComponent } from '../../../../core/components/charts/stat-chart/stat-chart.component';
 import { ApproverInterventionService } from '../../../../core/services/approver-intervention.service';
 import { downloadCsv } from '../../../../core/utils/csv-export';
 import { Intervention } from '../../../super-admin/pages/interventions/intervention.model';
 
 const FETCH_SIZE = 1000;
+
+const PRIORITY_COLOR_ROLES: Record<string, string> = {
+  CRITICAL: 'critical',
+  HIGH: 'serious',
+  MEDIUM: 'warning',
+  LOW: 'good',
+};
 
 // Real statistics computed from this approver's own decision history, over a selectable period -
 // plus a genuine CSV export (core/utils/csv-export.ts, already used elsewhere in the app). No PDF
@@ -13,7 +22,7 @@ const FETCH_SIZE = 1000;
 @Component({
   selector: 'app-approver-reports',
   standalone: true,
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, StatChartComponent],
   templateUrl: './reports.component.html',
   styleUrl: './reports.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,6 +61,31 @@ export class ApproverReportsComponent implements OnInit {
       return sum + (decided - created) / (1000 * 60 * 60);
     }, 0);
     return Math.round((totalHours / items.length) * 10) / 10;
+  });
+
+  protected readonly outcomeData = computed<ChartDatum[]>(() => [
+    {
+      label: this.translateService.instant('interventions.approvalStatus.APPROVED'),
+      count: this.approvedCount(),
+      colorRole: 'good',
+    },
+    {
+      label: this.translateService.instant('interventions.approvalStatus.REJECTED'),
+      count: this.rejectedCount(),
+      colorRole: 'critical',
+    },
+  ]);
+
+  protected readonly priorityData = computed<ChartDatum[]>(() => {
+    const counts = new Map<string, number>();
+    for (const d of this.periodDecisions()) {
+      counts.set(d.priority, (counts.get(d.priority) ?? 0) + 1);
+    }
+    return Array.from(counts.entries()).map(([priority, count]) => ({
+      label: this.translateService.instant(`interventions.priority.${priority}`),
+      count,
+      colorRole: PRIORITY_COLOR_ROLES[priority],
+    }));
   });
 
   async ngOnInit(): Promise<void> {

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ChartDatum } from '../../../core/components/charts/chart-data.model';
 import { StatChartComponent } from '../../../core/components/charts/stat-chart/stat-chart.component';
@@ -37,7 +38,7 @@ const TYPE_COLOR_ROLES: Record<string, string> = {
 @Component({
   selector: 'app-approver-dashboard',
   standalone: true,
-  imports: [TranslatePipe, StatChartComponent],
+  imports: [TranslatePipe, StatChartComponent, RouterLink],
   templateUrl: './approver-dashboard.component.html',
   styleUrl: './approver-dashboard.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -56,6 +57,36 @@ export class ApproverDashboardComponent {
     () => this.pending().filter((i) => URGENT_PRIORITIES.has(i.priority)).length,
   );
 
+  protected readonly dueThisWeekCount = computed(() => {
+    const cutoff = Date.now() + 7 * 24 * 60 * 60 * 1000;
+    return this.pending().filter((i) => new Date(i.scheduledAt).getTime() <= cutoff).length;
+  });
+
+  protected readonly oldestPendingDays = computed(() => {
+    const items = this.pending();
+    if (items.length === 0) {
+      return 0;
+    }
+    const oldestCreatedAt = Math.min(...items.map((i) => new Date(i.createdAt).getTime()));
+    return Math.floor((Date.now() - oldestCreatedAt) / (1000 * 60 * 60 * 24));
+  });
+
+  // Sorted by priority then longest-waiting first - the same triage order the Approval Queue
+  // itself doesn't currently enforce, so this preview surfaces "what needs attention first"
+  // without navigating away.
+  protected readonly topPriorityRequests = computed<Intervention[]>(() => {
+    const rank: Record<InterventionPriority, number> = { CRITICAL: 0, HIGH: 1, MEDIUM: 2, LOW: 3 };
+    return [...this.pending()]
+      .sort((a, b) => {
+        const priorityDelta = rank[a.priority] - rank[b.priority];
+        if (priorityDelta !== 0) {
+          return priorityDelta;
+        }
+        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+      })
+      .slice(0, 5);
+  });
+
   protected readonly priorityBreakdownData = computed<ChartDatum[]>(() =>
     this.groupBy(
       this.pending(),
@@ -73,6 +104,10 @@ export class ApproverDashboardComponent {
       TYPE_COLOR_ROLES,
     ),
   );
+
+  protected waitingDays(item: Intervention): number {
+    return Math.floor((Date.now() - new Date(item.createdAt).getTime()) / (1000 * 60 * 60 * 24));
+  }
 
   private groupBy<K extends string>(
     items: Intervention[],

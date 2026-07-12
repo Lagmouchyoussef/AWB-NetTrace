@@ -1011,7 +1011,10 @@
       "empty": "Aún no ha enviado ninguna solicitud de intervención.",
       "loadMore": "Cargar más",
       "scheduledFor": "Programada para {{date}}",
-      "rejectionReason": "Motivo del rechazo"
+      "rejectionReason": "Motivo del rechazo",
+      "deleteConfirmTitle": "¿Retirar esta solicitud?",
+      "deleteConfirmMessage": "\"{{title}}\" se retirará de forma permanente. Esta acción no se puede deshacer.",
+      "withdraw": "Retirar solicitud"
     },
     "approvalQueue": {
       "pageTitle": "Cola de aprobación",
@@ -1624,13 +1627,23 @@
     },
     "dashboard": {
       "title": "Resumen de aprobaciones",
+      "subtitle": "Tu punto de control de gobernanza para las solicitudes de cambio.",
+      "goToQueue": "Ir a la cola de aprobación",
       "stats": {
         "pending": "Aprobaciones pendientes",
-        "urgent": "Prioridad crítica y alta"
+        "urgent": "Prioridad crítica y alta",
+        "dueThisWeek": "Para esta semana",
+        "oldestPending": "Pendiente más antigua",
+        "days": "d"
       },
       "charts": {
         "byPriority": "Pendientes por prioridad",
         "byType": "Pendientes por tipo"
+      },
+      "panels": {
+        "topPriority": "Requiere tu atención primero",
+        "viewAll": "Ver todas",
+        "waitingDays": "Esperando {{count}}d"
       }
     },
     "approvalQueue": {
@@ -1666,6 +1679,10 @@
       "subtitle": "Tu actividad de validación en un período.",
       "decidedAt": "Decidido el",
       "exportCsv": "Exportar CSV",
+      "charts": {
+        "outcome": "Aprobadas vs rechazadas",
+        "byPriority": "Decisiones por prioridad"
+      },
       "stats": {
         "approved": "Aprobadas",
         "rejected": "Rechazadas",

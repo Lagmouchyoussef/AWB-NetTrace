@@ -2,6 +2,10 @@ import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@ang
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
+import {
+  ConfirmDialogComponent,
+  ConfirmDialogData,
+} from '../../../../core/components/confirm-dialog/confirm-dialog.component';
 import { ApproverInterventionService } from '../../../../core/services/approver-intervention.service';
 import { Intervention } from '../../../super-admin/pages/interventions/intervention.model';
 import { ApproverRequestFormDialogComponent } from './request-form-dialog.component';
@@ -47,6 +51,29 @@ export class ApproverMyRequestsComponent implements OnInit {
   protected onLoadMore(): void {
     this.pageIndex += 1;
     this.load(true);
+  }
+
+  protected canDelete(request: Intervention): boolean {
+    return request.approvalStatus === 'PENDING';
+  }
+
+  protected onDelete(request: Intervention): void {
+    const data: ConfirmDialogData = {
+      titleKey: 'interventions.myRequests.deleteConfirmTitle',
+      messageKey: 'interventions.myRequests.deleteConfirmMessage',
+      messageParams: { title: request.title },
+      confirmKey: 'common.delete',
+      danger: true,
+    };
+    const ref = this.dialog.open(ConfirmDialogComponent, { width: '420px', data });
+    ref.afterClosed().subscribe(async (confirmed: boolean | string) => {
+      if (!confirmed) {
+        return;
+      }
+      await this.interventionService.deleteMyRequest(request.id);
+      this.pageIndex = 0;
+      await this.load(false);
+    });
   }
 
   protected get hasMore(): boolean {

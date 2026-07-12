@@ -60,7 +60,28 @@
       </div>
     </div>
 
-    <button type="button" class="export-button" (click)="onExportCsv()">
+    @if (periodDecisions().length > 0) {
+      <div class="charts-grid">
+        <div class="chart-card">
+          <app-stat-chart
+            [data]="outcomeData()"
+            titleKey="approver.reports.charts.outcome"
+            initialMode="donut"
+            [showLegend]="true"
+          />
+        </div>
+        <div class="chart-card">
+          <app-stat-chart
+            [data]="priorityData()"
+            titleKey="approver.reports.charts.byPriority"
+            initialMode="bar"
+            [showLegend]="true"
+          />
+        </div>
+      </div>
+    }
+
+    <button type="button" class="export-button" [disabled]="periodDecisions().length === 0" (click)="onExportCsv()">
       <span class="material-symbols-outlined">download</span>
       {{ 'approver.reports.exportCsv' | translate }}
     </button>

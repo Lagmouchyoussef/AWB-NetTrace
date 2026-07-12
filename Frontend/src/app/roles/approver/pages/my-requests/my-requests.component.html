@@ -50,6 +50,15 @@
               {{ request.approvalComment }}
             </p>
           }
+
+          @if (canDelete(request)) {
+            <div class="timeline-card-footer">
+              <button type="button" class="delete-button" (click)="onDelete(request)">
+                <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+                {{ 'interventions.myRequests.withdraw' | translate }}
+              </button>
+            </div>
+          }
         </div>
       }
     </div>

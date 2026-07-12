@@ -52,6 +52,12 @@
   border: 1px solid var(--awb-border);
   border-radius: 10px;
   padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.15s ease;
+}
+
+.timeline-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .timeline-card-header {
@@ -114,6 +120,41 @@
 .badge[data-approval='REJECTED'] {
   background: var(--status-cancelled-bg);
   color: var(--status-cancelled-fg);
+}
+
+.timeline-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--awb-border);
+}
+
+.delete-button {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--status-cancelled-fg);
+  background: none;
+  color: var(--status-cancelled-fg);
+  cursor: pointer;
+  min-height: 36px;
+  padding: 0 0.85rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.delete-button:hover {
+  background: var(--status-cancelled-fg);
+  color: #fff;
+}
+
+.delete-button mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .timeline-card-meta {

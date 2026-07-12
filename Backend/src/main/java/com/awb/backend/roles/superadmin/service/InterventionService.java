@@ -260,6 +260,29 @@ public class InterventionService {
         actorUsername, AuditAction.DELETE, "Intervention", intervention.getTitle(), null);
   }
 
+  // Lets a requester withdraw their own request (e.g. Approver's "My Requests" screen) - unlike
+  // the unrestricted delete() above (DC Admin/Super Admin managing any record), this only allows
+  // it on your own submissions, and only while still PENDING: once a decision has been made,
+  // "decisions are final" (see approve/reject) - withdrawing after the fact would silently erase
+  // an already-recorded approval/rejection instead of going through the same decision flow.
+  @Transactional
+  public void deleteOwnRequest(Long id, String requesterUsername) {
+    Intervention intervention = findActiveOrThrow(id);
+    User requester = intervention.getRequestedBy();
+    if (requester == null || !requester.getUsername().equals(requesterUsername)) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Intervention not found.");
+    }
+    if (intervention.getApprovalStatus() != ApprovalStatus.PENDING) {
+      throw new ResponseStatusException(
+          HttpStatus.CONFLICT, "Only a request still awaiting approval can be withdrawn.");
+    }
+    intervention.setDeleted(true);
+    intervention.setUpdatedAt(Instant.now());
+    interventionRepository.save(intervention);
+    auditLogWriter.log(
+        requesterUsername, AuditAction.DELETE, "Intervention", intervention.getTitle(), "Withdrawn by requester");
+  }
+
   private Intervention findActiveOrThrow(Long id) {
     Intervention intervention =
         interventionRepository

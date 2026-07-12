@@ -1,11 +1,19 @@
 <div class="page">
   <div class="page-header">
-    <h1>{{ 'approver.dashboard.title' | translate }}</h1>
+    <div>
+      <h1>{{ 'approver.dashboard.title' | translate }}</h1>
+      <p class="page-subtitle">{{ 'approver.dashboard.subtitle' | translate }}</p>
+    </div>
+    <a routerLink="/approver/approval-queue" class="queue-shortcut">
+      <span class="material-symbols-outlined">fact_check</span>
+      {{ 'approver.dashboard.goToQueue' | translate }}
+      <span class="material-symbols-outlined">arrow_forward</span>
+    </a>
   </div>
 
   @if (loading()) {
     <div class="stats-row">
-      @for (i of [1, 2]; track i) {
+      @for (i of [1, 2, 3, 4]; track i) {
         <div class="skeleton-tile skeleton-shimmer"></div>
       }
     </div>
@@ -23,6 +31,14 @@
       <div class="stat-tile stat-tile-urgent">
         <span class="stat-value">{{ urgentCount() }}</span>
         <span class="stat-label">{{ 'approver.dashboard.stats.urgent' | translate }}</span>
+      </div>
+      <div class="stat-tile stat-tile-week">
+        <span class="stat-value">{{ dueThisWeekCount() }}</span>
+        <span class="stat-label">{{ 'approver.dashboard.stats.dueThisWeek' | translate }}</span>
+      </div>
+      <div class="stat-tile stat-tile-oldest">
+        <span class="stat-value">{{ oldestPendingDays() }}{{ 'approver.dashboard.stats.days' | translate }}</span>
+        <span class="stat-label">{{ 'approver.dashboard.stats.oldestPending' | translate }}</span>
       </div>
     </div>
 
@@ -45,6 +61,33 @@
           />
         </div>
       </div>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>{{ 'approver.dashboard.panels.topPriority' | translate }}</h2>
+          <a routerLink="/approver/approval-queue" class="panel-link">
+            {{ 'approver.dashboard.panels.viewAll' | translate }}
+          </a>
+        </div>
+        <ul class="panel-list">
+          @for (item of topPriorityRequests(); track item.id) {
+            <li>
+              <span class="panel-priority-dot" [attr.data-priority]="item.priority"></span>
+              <div class="panel-item-main">
+                <span class="panel-item-title">{{ item.title }}</span>
+                <span class="panel-item-meta">
+                  {{ item.deviceName }} ·
+                  {{ 'interventions.approvalQueue.requestedBy' | translate }}
+                  {{ item.requestedByUsername }}
+                </span>
+              </div>
+              <span class="panel-item-waiting">
+                {{ 'approver.dashboard.panels.waitingDays' | translate: { count: waitingDays(item) } }}
+              </span>
+            </li>
+          }
+        </ul>
+      </section>
     } @else {
       <div class="empty-state">
         <span class="material-symbols-outlined">task_alt</span>

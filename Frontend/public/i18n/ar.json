@@ -1011,7 +1011,10 @@
       "empty": "لم تقدّم أي طلب تدخل بعد.",
       "loadMore": "تحميل المزيد",
       "scheduledFor": "مجدولة في {{date}}",
-      "rejectionReason": "سبب الرفض"
+      "rejectionReason": "سبب الرفض",
+      "deleteConfirmTitle": "سحب هذا الطلب؟",
+      "deleteConfirmMessage": "سيتم سحب \"{{title}}\" نهائيًا. لا يمكن التراجع عن هذا الإجراء.",
+      "withdraw": "سحب الطلب"
     },
     "approvalQueue": {
       "pageTitle": "قائمة الموافقات",
@@ -1624,13 +1627,23 @@
     },
     "dashboard": {
       "title": "نظرة عامة على الموافقات",
+      "subtitle": "نقطة تحكمك في حوكمة طلبات التغيير.",
+      "goToQueue": "الذهاب إلى قائمة الموافقات",
       "stats": {
         "pending": "الموافقات المعلقة",
-        "urgent": "أولوية حرجة وعالية"
+        "urgent": "أولوية حرجة وعالية",
+        "dueThisWeek": "مستحقة هذا الأسبوع",
+        "oldestPending": "أقدم طلب معلق",
+        "days": "ي"
       },
       "charts": {
         "byPriority": "المعلقة حسب الأولوية",
         "byType": "المعلقة حسب النوع"
+      },
+      "panels": {
+        "topPriority": "يتطلب اهتمامك أولاً",
+        "viewAll": "عرض الكل",
+        "waitingDays": "بانتظار منذ {{count}} يوم"
       }
     },
     "approvalQueue": {
@@ -1666,6 +1679,10 @@
       "subtitle": "نشاطك في التحقق خلال فترة معينة.",
       "decidedAt": "تاريخ القرار",
       "exportCsv": "تصدير CSV",
+      "charts": {
+        "outcome": "موافق عليها مقابل مرفوضة",
+        "byPriority": "القرارات حسب الأولوية"
+      },
       "stats": {
         "approved": "موافق عليها",
         "rejected": "مرفوضة",

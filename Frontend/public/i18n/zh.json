@@ -1011,7 +1011,10 @@
       "empty": "您尚未提交任何干预请求。",
       "loadMore": "加载更多",
       "scheduledFor": "计划于 {{date}}",
-      "rejectionReason": "拒绝原因"
+      "rejectionReason": "拒绝原因",
+      "deleteConfirmTitle": "撤回此请求？",
+      "deleteConfirmMessage": "“{{title}}”将被永久撤回，此操作无法撤销。",
+      "withdraw": "撤回请求"
     },
     "approvalQueue": {
       "pageTitle": "审批队列",
@@ -1624,13 +1627,23 @@
     },
     "dashboard": {
       "title": "审批概览",
+      "subtitle": "你负责变更请求治理的关卡。",
+      "goToQueue": "前往审批队列",
       "stats": {
         "pending": "待审批",
-        "urgent": "紧急与高优先级"
+        "urgent": "紧急与高优先级",
+        "dueThisWeek": "本周需处理",
+        "oldestPending": "最早的待审批",
+        "days": "天"
       },
       "charts": {
         "byPriority": "按优先级统计的待审批",
         "byType": "按类型统计的待审批"
+      },
+      "panels": {
+        "topPriority": "优先需要你关注",
+        "viewAll": "查看全部",
+        "waitingDays": "已等待 {{count}} 天"
       }
     },
     "approvalQueue": {
@@ -1666,6 +1679,10 @@
       "subtitle": "你在某一时间段内的审批活动。",
       "decidedAt": "决定时间",
       "exportCsv": "导出 CSV",
+      "charts": {
+        "outcome": "批准与拒绝对比",
+        "byPriority": "按优先级统计的决策"
+      },
       "stats": {
         "approved": "已批准",
         "rejected": "已拒绝",

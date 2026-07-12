@@ -1011,7 +1011,10 @@
       "empty": "You haven't submitted any intervention requests yet.",
       "loadMore": "Load more",
       "scheduledFor": "Scheduled for {{date}}",
-      "rejectionReason": "Rejection reason"
+      "rejectionReason": "Rejection reason",
+      "deleteConfirmTitle": "Withdraw this request?",
+      "deleteConfirmMessage": "\"{{title}}\" will be permanently withdrawn. This cannot be undone.",
+      "withdraw": "Withdraw request"
     },
     "approvalQueue": {
       "pageTitle": "Approval Queue",
@@ -1624,13 +1627,23 @@
     },
     "dashboard": {
       "title": "Approval Overview",
+      "subtitle": "Your governance checkpoint for change requests.",
+      "goToQueue": "Go to Approval Queue",
       "stats": {
         "pending": "Pending approvals",
-        "urgent": "Critical & high priority"
+        "urgent": "Critical & high priority",
+        "dueThisWeek": "Due this week",
+        "oldestPending": "Oldest pending",
+        "days": "d"
       },
       "charts": {
         "byPriority": "Pending by Priority",
         "byType": "Pending by Type"
+      },
+      "panels": {
+        "topPriority": "Needs your attention first",
+        "viewAll": "View all",
+        "waitingDays": "Waiting {{count}}d"
       }
     },
     "approvalQueue": {
@@ -1666,6 +1679,10 @@
       "subtitle": "Your validation activity over a period.",
       "decidedAt": "Decided At",
       "exportCsv": "Export CSV",
+      "charts": {
+        "outcome": "Approved vs Rejected",
+        "byPriority": "Decisions by Priority"
+      },
       "stats": {
         "approved": "Approved",
         "rejected": "Rejected",
