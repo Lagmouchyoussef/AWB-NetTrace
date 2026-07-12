@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'interventions.fields.device' | translate }}</dt>
+    <dd>{{ data.deviceName }}</dd>
+
+    <dt>{{ 'interventions.columns.priority' | translate }}</dt>
+    <dd>{{ 'interventions.priority.' + data.priority | translate }}</dd>
+
+    <dt>{{ 'interventions.columns.status' | translate }}</dt>
+    <dd>{{ 'interventions.status.' + data.status | translate }}</dd>
+
+    <dt>{{ 'auditor.interventions.approvalStatus' | translate }}</dt>
+    <dd>{{ 'interventions.approvalStatus.' + data.approvalStatus | translate }}</dd>
+
+    @if (data.requestedByUsername) {
+      <dt>{{ 'interventions.approvalQueue.requestedBy' | translate }}</dt>
+      <dd>{{ data.requestedByUsername }}</dd>
+    }
+
+    @if (data.approvedByUsername) {
+      <dt>{{ 'auditor.interventions.approvedBy' | translate }}</dt>
+      <dd>{{ data.approvedByUsername }}</dd>
+    }
+
+    @if (data.approvalComment) {
+      <dt>{{ 'auditor.interventions.approvalComment' | translate }}</dt>
+      <dd>{{ data.approvalComment }}</dd>
+    }
+
+    <dt>{{ 'interventions.columns.scheduledAt' | translate }}</dt>
+    <dd>{{ formatDate(data.scheduledAt) }}</dd>
+
+    @if (data.description) {
+      <dt>{{ 'interventions.fields.description' | translate }}</dt>
+      <dd>{{ data.description }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

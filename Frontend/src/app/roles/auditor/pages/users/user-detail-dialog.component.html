@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{ data.username }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'users.columns.role' | translate }}</dt>
+    <dd>{{ 'users.role.' + data.role | translate }}</dd>
+
+    <dt>{{ 'users.columns.enabled' | translate }}</dt>
+    <dd>{{ (data.enabled ? 'users.enabledYes' : 'users.enabledNo') | translate }}</dd>
+
+    <dt>{{ 'users.columns.ipRestrictionEnabled' | translate }}</dt>
+    <dd>{{ (data.ipRestrictionEnabled ? 'users.enabledYes' : 'users.enabledNo') | translate }}</dd>
+
+    <dt>{{ 'auditor.users.createdAt' | translate }}</dt>
+    <dd>{{ formatDate(data.createdAt) }}</dd>
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

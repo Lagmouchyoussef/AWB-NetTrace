@@ -54,6 +54,7 @@
     "equipmentTypes": "设备类型",
     "networkTechnologyCatalog": "网络技术目录",
     "administration": "管理",
+    "systemOversight": "系统监督",
     "users": "用户",
     "rolesPermissions": "角色与权限",
     "systemSettings": "系统设置",
@@ -1689,6 +1690,31 @@
         "approvalRate": "批准率",
         "avgDecisionTime": "平均决策时间"
       }
+    }
+  },
+  "auditor": {
+    "interventions": {
+      "pageTitle": "维护干预追踪",
+      "subtitle": "无论状态或决定如何,所有维护干预记录,供独立监督使用。",
+      "approvalStatus": "审批状态",
+      "approvedBy": "审批人",
+      "approvalComment": "审批意见"
+    },
+    "users": {
+      "pageTitle": "用户名录",
+      "subtitle": "所有账户及其角色和访问状态,供独立监督使用。",
+      "createdAt": "创建时间"
+    },
+    "rolePermissions": {
+      "pageTitle": "角色权限",
+      "subtitle": "每个角色被授予或拒绝的模块,供独立监督使用。",
+      "notes": "备注"
+    },
+    "systemSettings": {
+      "pageTitle": "系统设置",
+      "subtitle": "当前生效的系统配置,供独立监督使用。",
+      "description": "描述",
+      "notes": "备注"
     }
   }
 }

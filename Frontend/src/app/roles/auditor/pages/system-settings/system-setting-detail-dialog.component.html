@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>{{ data.settingKey }}</h2>
+<mat-dialog-content>
+  <dl class="detail-list">
+    <dt>{{ 'systemSettings.columns.settingValue' | translate }}</dt>
+    <dd>{{ data.settingValue ?? '—' }}</dd>
+
+    <dt>{{ 'systemSettings.columns.category' | translate }}</dt>
+    <dd>{{ 'systemSettings.category.' + data.category | translate }}</dd>
+
+    <dt>{{ 'systemSettings.columns.dataType' | translate }}</dt>
+    <dd>{{ 'systemSettings.dataType.' + data.dataType | translate }}</dd>
+
+    @if (data.description) {
+      <dt>{{ 'auditor.systemSettings.description' | translate }}</dt>
+      <dd>{{ data.description }}</dd>
+    }
+
+    @if (data.notes) {
+      <dt>{{ 'auditor.systemSettings.notes' | translate }}</dt>
+      <dd>{{ data.notes }}</dd>
+    }
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" class="dialog-button" (click)="close()">
+    {{ 'common.close' | translate }}
+  </button>
+</mat-dialog-actions>

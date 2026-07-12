@@ -1,0 +1,19 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'auditor.systemSettings.pageTitle' | translate }}</h1>
+    <p class="page-subtitle">{{ 'auditor.systemSettings.subtitle' | translate }}</p>
+  </div>
+
+  <app-data-table
+    [columns]="columns"
+    [data]="data()"
+    [totalCount]="totalCount()"
+    [loading]="loading()"
+    [readOnly]="true"
+    (page)="onPage($event)"
+    (sortChange)="onSort($event)"
+    (searchChange)="onSearch($event)"
+    (view)="onView($event)"
+    (exportCsv)="onExportCsv()"
+  />
+</div>

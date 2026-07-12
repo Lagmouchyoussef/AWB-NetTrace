@@ -54,6 +54,7 @@
     "equipmentTypes": "أنواع الأجهزة",
     "networkTechnologyCatalog": "كتالوج تقنيات الشبكة",
     "administration": "الإدارة",
+    "systemOversight": "الإشراف على النظام",
     "users": "المستخدمون",
     "rolesPermissions": "الأدوار والصلاحيات",
     "systemSettings": "إعدادات النظام",
@@ -1689,6 +1690,31 @@
         "approvalRate": "معدل الموافقة",
         "avgDecisionTime": "متوسط زمن القرار"
       }
+    }
+  },
+  "auditor": {
+    "interventions": {
+      "pageTitle": "سجل التدخلات",
+      "subtitle": "جميع التدخلات بغض النظر عن حالتها أو قرارها، لأغراض الرقابة المستقلة.",
+      "approvalStatus": "حالة الموافقة",
+      "approvedBy": "تمت الموافقة من قبل",
+      "approvalComment": "تعليق الموافقة"
+    },
+    "users": {
+      "pageTitle": "دليل المستخدمين",
+      "subtitle": "جميع الحسابات ودورها وحالة وصولها، لأغراض الرقابة المستقلة.",
+      "createdAt": "أُنشئ في"
+    },
+    "rolePermissions": {
+      "pageTitle": "صلاحيات الأدوار",
+      "subtitle": "الوحدات الممنوحة أو الممنوعة لكل دور، لأغراض الرقابة المستقلة.",
+      "notes": "ملاحظات"
+    },
+    "systemSettings": {
+      "pageTitle": "إعدادات النظام",
+      "subtitle": "إعدادات النظام الحالية، لأغراض الرقابة المستقلة.",
+      "description": "الوصف",
+      "notes": "ملاحظات"
     }
   }
 }

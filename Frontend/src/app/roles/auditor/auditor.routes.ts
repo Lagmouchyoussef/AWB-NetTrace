@@ -28,6 +28,32 @@ export const auditorRoutes: Routes = [
           ),
       },
       {
+        path: 'interventions',
+        loadComponent: () =>
+          import('./pages/interventions/interventions-list.component').then(
+            (m) => m.AuditorInterventionsListComponent,
+          ),
+      },
+      {
+        path: 'users',
+        loadComponent: () =>
+          import('./pages/users/users-list.component').then((m) => m.AuditorUsersListComponent),
+      },
+      {
+        path: 'role-permissions',
+        loadComponent: () =>
+          import('./pages/role-permissions/role-permissions-list.component').then(
+            (m) => m.AuditorRolePermissionsListComponent,
+          ),
+      },
+      {
+        path: 'system-settings',
+        loadComponent: () =>
+          import('./pages/system-settings/system-settings-list.component').then(
+            (m) => m.AuditorSystemSettingsListComponent,
+          ),
+      },
+      {
         path: 'reports',
         loadComponent: () =>
           import('./pages/reports/reports-list.component').then(

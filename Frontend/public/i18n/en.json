@@ -54,6 +54,7 @@
     "equipmentTypes": "Equipment Types",
     "networkTechnologyCatalog": "Network Technology Catalog",
     "administration": "Administration",
+    "systemOversight": "System Oversight",
     "users": "Users",
     "rolesPermissions": "Roles & Permissions",
     "systemSettings": "System Settings",
@@ -1689,6 +1690,31 @@
         "approvalRate": "Approval Rate",
         "avgDecisionTime": "Avg. Decision Time"
       }
+    }
+  },
+  "auditor": {
+    "interventions": {
+      "pageTitle": "Interventions Trail",
+      "subtitle": "Every intervention regardless of status or decision, for independent oversight.",
+      "approvalStatus": "Approval Status",
+      "approvedBy": "Approved By",
+      "approvalComment": "Approval Comment"
+    },
+    "users": {
+      "pageTitle": "User Directory",
+      "subtitle": "Every account, its role, and its access state, for independent oversight.",
+      "createdAt": "Created At"
+    },
+    "rolePermissions": {
+      "pageTitle": "Role Permissions",
+      "subtitle": "Which modules are granted or denied per role, for independent oversight.",
+      "notes": "Notes"
+    },
+    "systemSettings": {
+      "pageTitle": "System Settings",
+      "subtitle": "The live system configuration, for independent oversight.",
+      "description": "Description",
+      "notes": "Notes"
     }
   }
 }

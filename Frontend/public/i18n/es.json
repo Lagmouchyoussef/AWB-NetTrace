@@ -54,6 +54,7 @@
     "equipmentTypes": "Tipos de equipos",
     "networkTechnologyCatalog": "Catálogo de tecnologías de red",
     "administration": "Administración",
+    "systemOversight": "Supervisión del sistema",
     "users": "Usuarios",
     "rolesPermissions": "Roles y permisos",
     "systemSettings": "Configuración del sistema",
@@ -1689,6 +1690,31 @@
         "approvalRate": "Tasa de aprobación",
         "avgDecisionTime": "Tiempo medio de decisión"
       }
+    }
+  },
+  "auditor": {
+    "interventions": {
+      "pageTitle": "Seguimiento de intervenciones",
+      "subtitle": "Todas las intervenciones, sin importar su estado o decisión, para una supervisión independiente.",
+      "approvalStatus": "Estado de aprobación",
+      "approvedBy": "Aprobado por",
+      "approvalComment": "Comentario de aprobación"
+    },
+    "users": {
+      "pageTitle": "Directorio de usuarios",
+      "subtitle": "Todas las cuentas, su rol y su estado de acceso, para una supervisión independiente.",
+      "createdAt": "Creado el"
+    },
+    "rolePermissions": {
+      "pageTitle": "Permisos por rol",
+      "subtitle": "Qué módulos están concedidos o denegados por rol, para una supervisión independiente.",
+      "notes": "Notas"
+    },
+    "systemSettings": {
+      "pageTitle": "Configuración del sistema",
+      "subtitle": "La configuración del sistema vigente, para una supervisión independiente.",
+      "description": "Descripción",
+      "notes": "Notas"
     }
   }
 }
