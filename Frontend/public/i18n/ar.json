@@ -1543,7 +1543,8 @@
       "myInterventions": "تدخلاتي",
       "schedule": "جدولي",
       "notifications": "الإشعارات",
-      "profile": "الملف الشخصي"
+      "profile": "الملف الشخصي",
+      "notes": "ملاحظاتي"
     },
     "home": {
       "title": "اليوم",
@@ -1607,6 +1608,12 @@
     "notifications": {
       "empty": "لا توجد إشعارات.",
       "markAllRead": "تحديد الكل كمقروء"
+    },
+    "notes": {
+      "titlePlaceholder": "العنوان (اختياري)",
+      "bodyPlaceholder": "اكتب ملاحظة...",
+      "add": "إضافة ملاحظة",
+      "empty": "لم تكتب أي ملاحظة بعد."
     }
   }
 }

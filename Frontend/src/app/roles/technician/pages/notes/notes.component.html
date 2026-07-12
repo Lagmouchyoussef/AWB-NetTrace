@@ -1,0 +1,92 @@
+<div class="page">
+  <h1>{{ 'technician.nav.notes' | translate }}</h1>
+
+  <div class="card note-form-card">
+    <input
+      type="text"
+      class="note-title-input"
+      [(ngModel)]="newNoteTitle"
+      [placeholder]="'technician.notes.titlePlaceholder' | translate"
+    />
+    <textarea
+      [(ngModel)]="newNoteBody"
+      rows="3"
+      [attr.aria-label]="'technician.notes.bodyPlaceholder' | translate"
+      [placeholder]="'technician.notes.bodyPlaceholder' | translate"
+    ></textarea>
+    <button
+      type="button"
+      class="note-add-button"
+      [disabled]="!newNoteBody().trim() || saving()"
+      (click)="onAddNote()"
+    >
+      <span class="material-symbols-outlined">add</span>
+      {{ 'technician.notes.add' | translate }}
+    </button>
+  </div>
+
+  @if (loading()) {
+    <div class="list">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="skeleton-card skeleton-shimmer"></div>
+      }
+    </div>
+  } @else if (notes().length === 0) {
+    <div class="empty-state">
+      <span class="material-symbols-outlined">edit_note</span>
+      <p>{{ 'technician.notes.empty' | translate }}</p>
+    </div>
+  } @else {
+    <div class="list">
+      @for (note of notes(); track note.id) {
+        <div class="card note-item">
+          @if (editingNoteId() === note.id) {
+            <input
+              type="text"
+              class="note-title-input"
+              [(ngModel)]="editingNoteTitle"
+              [placeholder]="'technician.notes.titlePlaceholder' | translate"
+            />
+            <textarea
+              rows="3"
+              [(ngModel)]="editingNoteBody"
+              [attr.aria-label]="'technician.notes.bodyPlaceholder' | translate"
+            ></textarea>
+            <div class="note-edit-actions">
+              <button type="button" (click)="onCancelEditNote()">
+                {{ 'common.cancel' | translate }}
+              </button>
+              <button type="button" class="note-save" (click)="onSaveEditNote(note)">
+                {{ 'common.save' | translate }}
+              </button>
+            </div>
+          } @else {
+            @if (note.title) {
+              <p class="note-title">{{ note.title }}</p>
+            }
+            <p class="note-body">{{ note.body }}</p>
+            <div class="note-footer">
+              <span class="note-date">{{ formatDate(note.updatedAt) }}</span>
+              <button
+                type="button"
+                class="note-icon-button"
+                [attr.aria-label]="'common.edit' | translate"
+                (click)="onStartEditNote(note)"
+              >
+                <span class="material-symbols-outlined">edit</span>
+              </button>
+              <button
+                type="button"
+                class="note-icon-button"
+                [attr.aria-label]="'common.delete' | translate"
+                (click)="onDeleteNote(note)"
+              >
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

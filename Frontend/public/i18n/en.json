@@ -1543,7 +1543,8 @@
       "myInterventions": "My Interventions",
       "schedule": "My Schedule",
       "notifications": "Notifications",
-      "profile": "Profile"
+      "profile": "Profile",
+      "notes": "My Notes"
     },
     "home": {
       "title": "Today",
@@ -1607,6 +1608,12 @@
     "notifications": {
       "empty": "No notifications.",
       "markAllRead": "Mark all as read"
+    },
+    "notes": {
+      "titlePlaceholder": "Title (optional)",
+      "bodyPlaceholder": "Write a note...",
+      "add": "Add note",
+      "empty": "You haven't written any notes yet."
     }
   }
 }

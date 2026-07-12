@@ -43,6 +43,11 @@ export const technicianRoutes: Routes = [
         loadComponent: () =>
           import('./pages/profile/profile.component').then((m) => m.TechnicianProfileComponent),
       },
+      {
+        path: 'notes',
+        loadComponent: () =>
+          import('./pages/notes/notes.component').then((m) => m.TechnicianNotesComponent),
+      },
     ],
   },
 ];
