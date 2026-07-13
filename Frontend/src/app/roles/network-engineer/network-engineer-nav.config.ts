@@ -23,7 +23,7 @@ export const NETWORK_ENGINEER_NAV: NavSection[] = [
     icon: 'hub',
     children: [
       { labelKey: 'nav.networkRoles', icon: 'device_hub', path: 'fabric/network-roles' },
-      { labelKey: 'nav.vxlanEvpnOverlay', icon: 'layers', path: 'fabric/overlay-networks' },
+      { labelKey: 'nav.overlayNetworksReadOnly', icon: 'layers', path: 'fabric/overlay-networks' },
     ],
   },
   {
@@ -38,21 +38,12 @@ export const NETWORK_ENGINEER_NAV: NavSection[] = [
       },
     ],
   },
-  {
-    labelKey: 'nav.sdwanConnectivity',
-    icon: 'cloud',
-    children: [
-      { labelKey: 'nav.sdwanEdges', icon: 'router', path: 'sdwan/edges' },
-      { labelKey: 'nav.overlayTunnels', icon: 'swap_horiz', path: 'sdwan/tunnels' },
-      { labelKey: 'nav.carrierCircuits', icon: 'cell_tower', path: 'sdwan/circuits' },
-    ],
-  },
+  { labelKey: 'nav.carrierCircuits', icon: 'cell_tower', path: 'carrier-circuits' },
   {
     labelKey: 'nav.telemetryMonitoring',
     icon: 'sensors',
     children: [
       { labelKey: 'nav.telemetryConnectors', icon: 'sensors', path: 'telemetry/connectors' },
-      { labelKey: 'nav.realTimeDashboards', icon: 'monitoring', path: 'telemetry/dashboards' },
     ],
   },
   { labelKey: 'nav.myInterventionRequests', icon: 'build', path: 'my-requests' },
@@ -61,11 +52,6 @@ export const NETWORK_ENGINEER_NAV: NavSection[] = [
     icon: 'menu_book',
     children: [
       { labelKey: 'nav.equipmentTypes', icon: 'category', path: 'library/equipment-types' },
-      {
-        labelKey: 'nav.networkTechnologyCatalog',
-        icon: 'list_alt',
-        path: 'library/technology-catalog',
-      },
     ],
   },
 ];

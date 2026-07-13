@@ -47,9 +47,9 @@ public class AuditLogSeeder implements CommandLineRunner {
     seed(
         "network.engineer",
         AuditAction.UPDATE,
-        "OverlayTunnel",
-        "OT-01",
-        "Modification de la bande passante du tunnel overlay.",
+        "CarrierCircuit",
+        "CC-CASA-01",
+        "Mise à jour du point d'atterrissage du circuit opérateur.",
         "10.0.0.21",
         24);
     seed(

@@ -1,6 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -9,14 +8,14 @@ import { DataTableComponent } from '../../../../../core/components/data-table/da
 import { NetworkEngineerOverlayNetworkService } from '../../../../../core/services/network-engineer-overlay-network.service';
 import { downloadCsv } from '../../../../../core/utils/csv-export';
 import { OverlayNetwork } from '../../../../super-admin/pages/overlay-networks/overlay-network.model';
-import { NeOverlayNetworkFormDialogComponent } from './overlay-network-form-dialog.component';
 import { NeOverlayNetworkDetailDialogComponent } from './overlay-network-detail-dialog.component';
 
-// Create/edit allowed, no delete - decommission via status.
+// Read-only: the backend controller only exposes GET (list + detail) - POST/PUT/DELETE were
+// removed. No create/edit/delete affordance here (readOnly on the table hides them).
 @Component({
   selector: 'app-ne-overlay-networks-list',
   standalone: true,
-  imports: [DataTableComponent, MatIconModule, TranslatePipe],
+  imports: [DataTableComponent, TranslatePipe],
   templateUrl: './overlay-networks-list.component.html',
   styleUrl: './overlay-networks-list.component.css',
 })
@@ -77,32 +76,8 @@ export class NeOverlayNetworksListComponent implements OnInit {
     this.load();
   }
 
-  protected onCreate(): void {
-    const ref = this.dialog.open(NeOverlayNetworkFormDialogComponent, {
-      width: '560px',
-      data: null,
-    });
-    ref.afterClosed().subscribe((saved) => {
-      if (saved) {
-        this.load();
-      }
-    });
-  }
-
   protected onView(row: OverlayNetwork): void {
     this.dialog.open(NeOverlayNetworkDetailDialogComponent, { width: '480px', data: row });
-  }
-
-  protected onEdit(row: OverlayNetwork): void {
-    const ref = this.dialog.open(NeOverlayNetworkFormDialogComponent, {
-      width: '560px',
-      data: row,
-    });
-    ref.afterClosed().subscribe((saved) => {
-      if (saved) {
-        this.load();
-      }
-    });
   }
 
   protected async onExportCsv(): Promise<void> {

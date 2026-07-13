@@ -35,25 +35,19 @@
     "devices": "الأجهزة",
     "fabricTopology": "البنية الشبكية والطوبولوجيا",
     "networkRoles": "أدوار الشبكة",
-    "vxlanEvpnOverlay": "شبكة VXLAN/EVPN الفوقية",
+    "overlayNetworksReadOnly": "VLAN / الشبكة الفوقية (للقراءة فقط)",
     "interactiveTopologyView": "عرض الطوبولوجيا التفاعلي",
     "cabling": "الكابلات",
     "cables": "الكابلات",
     "connectorsTransceivers": "الموصلات ووحدات الإرسال والاستقبال",
     "pathTracing": "تتبع المسار",
-    "sdwanConnectivity": "SD-WAN والاتصال",
-    "sdwanEdges": "أطراف SD-WAN",
-    "overlayTunnels": "الأنفاق الفوقية",
-    "carrierCircuits": "دوائر مشغلي الاتصالات",
+    "carrierCircuits": "دوائر مشغلي الاتصالات (غرفة الالتقاء)",
     "telemetryMonitoring": "القياس عن بعد والمراقبة",
     "telemetryConnectors": "موصلات القياس عن بعد",
-    "realTimeDashboards": "لوحات المعلومات اللحظية",
-    "anomalyDetection": "كشف الحالات الشاذة",
     "interventions": "التدخلات",
     "myInterventionRequests": "طلبات التدخل الخاصة بي",
     "technicalLibrary": "المكتبة التقنية",
     "equipmentTypes": "أنواع الأجهزة",
-    "networkTechnologyCatalog": "كتالوج تقنيات الشبكة",
     "administration": "الإدارة",
     "systemOversight": "الإشراف على النظام",
     "users": "المستخدمون",
@@ -64,10 +58,7 @@
     "syncDrift": "المزامنة والانحراف",
     "auditCompliance": "التدقيق والامتثال",
     "reports": "التقارير",
-    "myAccount": "حسابي",
-    "aiOperations": "عمليات الذكاء الاصطناعي",
-    "aiInsights": "رؤى الذكاء الاصطناعي",
-    "aiSettings": "إعدادات الذكاء الاصطناعي"
+    "myAccount": "حسابي"
   },
   "topbar": {
     "searchPlaceholder": "بحث...",
@@ -96,7 +87,6 @@
     "stats": {
       "portsUsed": "المنافذ المستخدمة",
       "vlanCount": "VLAN / الشبكات الفوقية",
-      "activeTunnels": "الأنفاق الفوقية النشطة",
       "devices": "الأجهزة"
     },
     "jumpToTopology": "الانتقال إلى عرض الطوبولوجيا",
@@ -106,15 +96,11 @@
   "auditorDashboard": {
     "title": "نظرة عامة على الامتثال",
     "jumpToAuditLog": "الانتقال إلى سجل التدقيق",
-    "jumpToAnomalies": "الانتقال إلى الحالات الشاذة المكتشفة",
     "stats": {
       "totalAuditEvents": "إجمالي أحداث التدقيق",
-      "openAnomalies": "الحالات الشاذة المفتوحة",
-      "criticalAnomalies": "الحالات الشاذة الحرجة",
       "activeReports": "التقارير النشطة"
     },
-    "eventsByAction": "أحداث التدقيق حسب الإجراء",
-    "anomaliesBySeverity": "الحالات الشاذة حسب الخطورة"
+    "eventsByAction": "أحداث التدقيق حسب الإجراء"
   },
   "topologyView": {
     "pageTitle": "عرض الطوبولوجيا التفاعلي",
@@ -160,14 +146,10 @@
       "rooms": "الغرف",
       "racks": "الحوامل",
       "devices": "الأجهزة",
-      "openAnomalies": "الحالات الشاذة المفتوحة",
       "activeInterventions": "التدخلات النشطة",
       "activityToday": "نشاط اليوم"
     },
     "panels": {
-      "aiInsights": "رؤى الذكاء الاصطناعي",
-      "aiNotConfigured": "مساعد الذكاء الاصطناعي غير مُهيأ بعد.",
-      "noInsights": "لا توجد رؤى ذكاء اصطناعي بعد.",
       "recentInterventions": "التدخلات الأخيرة",
       "noInterventions": "لا توجد تدخلات حديثة.",
       "activityFeed": "موجز النشاط المباشر",
@@ -186,8 +168,7 @@
       "activityTrend": "اتجاه النشاط",
       "activityByEntityType": "النشاط حسب نوع العنصر",
       "infraHealth": "سلامة البنية التحتية",
-      "interventionsByPriority": "التدخلات حسب الأولوية",
-      "anomaliesBySeverity": "الحالات الشاذة حسب الخطورة"
+      "interventionsByPriority": "التدخلات حسب الأولوية"
     },
     "dateRange": {
       "label": "الفترة:",
@@ -476,13 +457,7 @@
     }
   },
   "overlayNetworks": {
-    "pageTitle": "شبكات Overlay VXLAN/EVPN",
-    "addNew": "إضافة شبكة Overlay",
-    "createTitle": "شبكة Overlay جديدة",
-    "editTitle": "تعديل شبكة Overlay",
-    "deleteTitle": "حذف شبكة Overlay",
-    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
-    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز و VNI فريدان وحاول مرة أخرى.",
+    "pageTitle": "شبكات VLAN / Overlay (للقراءة فقط)",
     "columns": {
       "name": "الاسم",
       "code": "الرمز",
@@ -503,9 +478,6 @@
       "routeTargets": "Route Targets",
       "status": "الحالة",
       "notes": "ملاحظات"
-    },
-    "validation": {
-      "required": "هذا الحقل مطلوب."
     },
     "overlayType": {
       "L2_EVPN": "L2 EVPN (Overlay جسري)",
@@ -699,86 +671,8 @@
       "FAILED": "فشل"
     }
   },
-  "sdwanEdges": {
-    "pageTitle": "أطراف SD-WAN",
-    "addNew": "إضافة طرف SD-WAN",
-    "createTitle": "طرف SD-WAN جديد",
-    "editTitle": "تعديل طرف SD-WAN",
-    "deleteTitle": "حذف طرف SD-WAN",
-    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
-    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
-    "columns": {
-      "name": "الاسم",
-      "code": "الرمز",
-      "datacenter": "مركز البيانات",
-      "vendor": "المورّد",
-      "status": "الحالة"
-    },
-    "fields": {
-      "datacenter": "مركز البيانات",
-      "name": "الاسم",
-      "code": "الرمز",
-      "vendor": "المورّد",
-      "model": "الطراز",
-      "wanLinkCount": "عدد روابط WAN",
-      "managementIp": "عنوان IP للإدارة",
-      "status": "الحالة",
-      "notes": "ملاحظات"
-    },
-    "validation": {
-      "required": "هذا الحقل مطلوب."
-    },
-    "status": {
-      "ACTIVE": "نشط",
-      "MAINTENANCE": "قيد الصيانة",
-      "DECOMMISSIONED": "خارج الخدمة",
-      "PROVISIONING": "قيد التهيئة"
-    }
-  },
-  "overlayTunnels": {
-    "pageTitle": "أنفاق Overlay",
-    "addNew": "إضافة نفق overlay",
-    "createTitle": "نفق overlay جديد",
-    "editTitle": "تعديل نفق overlay",
-    "deleteTitle": "حذف نفق overlay",
-    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
-    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وأن المصدر والهدف مختلفان.",
-    "columns": {
-      "name": "الاسم",
-      "code": "الرمز",
-      "source": "المصدر",
-      "target": "الهدف",
-      "tunnelType": "نوع النفق",
-      "status": "الحالة"
-    },
-    "fields": {
-      "source": "الطرف المصدر",
-      "target": "الطرف الهدف",
-      "name": "الاسم",
-      "code": "الرمز",
-      "tunnelType": "نوع النفق",
-      "bandwidthMbps": "عرض النطاق (ميجابت/ث)",
-      "status": "الحالة",
-      "notes": "ملاحظات"
-    },
-    "validation": {
-      "required": "هذا الحقل مطلوب."
-    },
-    "tunnelType": {
-      "IPSEC": "IPsec",
-      "GRE": "GRE",
-      "DTLS": "DTLS",
-      "VXLAN": "VXLAN"
-    },
-    "status": {
-      "UP": "متصل",
-      "DOWN": "منقطع",
-      "DEGRADED": "متدهور",
-      "PLANNED": "مخطط له"
-    }
-  },
   "carrierCircuits": {
-    "pageTitle": "دوائر المشغلين",
+    "pageTitle": "دوائر مشغلي الاتصالات (غرفة الالتقاء)",
     "addNew": "إضافة دائرة مشغل",
     "createTitle": "دائرة مشغل جديدة",
     "editTitle": "تعديل دائرة المشغل",
@@ -788,18 +682,18 @@
     "columns": {
       "name": "الاسم",
       "code": "الرمز",
-      "edge": "طرف SD-WAN",
+      "connector": "ينتهي عند الموصل",
       "circuitType": "نوع الدائرة",
       "provider": "المزوّد",
       "status": "الحالة"
     },
     "fields": {
-      "edge": "طرف SD-WAN",
+      "connector": "ينتهي عند الموصل",
+      "noConnector": "بلا",
       "name": "الاسم",
       "code": "الرمز",
       "circuitType": "نوع الدائرة",
       "provider": "المزوّد",
-      "bandwidthMbps": "عرض النطاق (ميجابت/ث)",
       "status": "الحالة",
       "notes": "ملاحظات"
     },
@@ -860,93 +754,6 @@
       "PAUSED": "متوقف مؤقتًا",
       "ERROR": "خطأ",
       "DECOMMISSIONED": "خارج الخدمة"
-    }
-  },
-  "realTimeDashboards": {
-    "pageTitle": "لوحات المعلومات في الوقت الفعلي",
-    "addNew": "إضافة لوحة معلومات",
-    "createTitle": "لوحة معلومات جديدة",
-    "editTitle": "تعديل لوحة المعلومات",
-    "deleteTitle": "حذف لوحة المعلومات",
-    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
-    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
-    "columns": {
-      "name": "الاسم",
-      "code": "الرمز",
-      "description": "الوصف",
-      "refreshIntervalSeconds": "فاصل التحديث",
-      "widgetCount": "عدد الودجات",
-      "status": "الحالة"
-    },
-    "fields": {
-      "name": "الاسم",
-      "code": "الرمز",
-      "description": "الوصف",
-      "refreshIntervalSeconds": "فاصل التحديث (ث)",
-      "widgetCount": "عدد الودجات",
-      "status": "الحالة",
-      "notes": "ملاحظات"
-    },
-    "validation": {
-      "required": "هذا الحقل مطلوب."
-    },
-    "status": {
-      "ACTIVE": "نشط",
-      "DRAFT": "مسودة",
-      "ARCHIVED": "مؤرشف"
-    }
-  },
-  "anomalyDetections": {
-    "pageTitle": "كشف الشذوذ",
-    "addNew": "الإبلاغ عن شذوذ",
-    "createTitle": "شذوذ جديد",
-    "editTitle": "تعديل الشذوذ",
-    "deleteTitle": "حذف الشذوذ",
-    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
-    "saveError": "حدث خطأ أثناء الحفظ. تحقق من الحقول وحاول مرة أخرى.",
-    "columns": {
-      "title": "العنوان",
-      "device": "الجهاز",
-      "anomalyType": "النوع",
-      "severity": "الخطورة",
-      "status": "الحالة",
-      "detectedAt": "تاريخ الاكتشاف"
-    },
-    "fields": {
-      "device": "الجهاز",
-      "title": "العنوان",
-      "description": "الوصف",
-      "anomalyType": "نوع الشذوذ",
-      "severity": "الخطورة",
-      "status": "الحالة",
-      "detectedAt": "تاريخ الاكتشاف",
-      "resolvedAt": "تاريخ الحل",
-      "notes": "ملاحظات"
-    },
-    "validation": {
-      "required": "هذا الحقل مطلوب."
-    },
-    "anomalyType": {
-      "THRESHOLD_BREACH": "تجاوز الحد",
-      "TRAFFIC_SPIKE": "ارتفاع مفاجئ في حركة المرور",
-      "FLAPPING_LINK": "رابط متذبذب",
-      "CONFIG_DRIFT": "انحراف في الإعداد",
-      "UNAUTHORIZED_ACCESS": "وصول غير مصرح به",
-      "PACKET_LOSS": "فقدان الحزم",
-      "LATENCY_DEGRADATION": "تدهور زمن الاستجابة"
-    },
-    "severity": {
-      "CRITICAL": "حرجة",
-      "HIGH": "عالية",
-      "MEDIUM": "متوسطة",
-      "LOW": "منخفضة",
-      "INFO": "معلوماتية"
-    },
-    "status": {
-      "OPEN": "مفتوحة",
-      "ACKNOWLEDGED": "مقرّة",
-      "RESOLVED": "محلولة",
-      "FALSE_POSITIVE": "إيجابية كاذبة"
     }
   },
   "interventions": {
@@ -1047,6 +854,8 @@
       "code": "الرمز",
       "category": "الفئة",
       "manufacturer": "الشركة المصنعة",
+      "vendor": "المورّد",
+      "version": "الإصدار",
       "status": "الحالة"
     },
     "fields": {
@@ -1054,6 +863,9 @@
       "code": "الرمز",
       "category": "الفئة",
       "manufacturer": "الشركة المصنعة",
+      "vendor": "المورّد",
+      "version": "الإصدار",
+      "description": "الوصف",
       "defaultRackUnits": "الارتفاع الافتراضي (U)",
       "defaultPowerWatts": "الطاقة الافتراضية (واط)",
       "status": "الحالة",
@@ -1072,48 +884,6 @@
     },
     "status": {
       "ACTIVE": "نشط",
-      "DEPRECATED": "قديم"
-    }
-  },
-  "technologyCatalog": {
-    "pageTitle": "كتالوج تقنيات الشبكة",
-    "addNew": "إضافة تقنية",
-    "createTitle": "تقنية جديدة",
-    "editTitle": "تعديل التقنية",
-    "deleteTitle": "حذف التقنية",
-    "deleteMessage": "هل أنت متأكد من حذف \"{{name}}\"؟ يمكن التراجع عن هذا لاحقًا من قبل أحد المسؤولين.",
-    "saveError": "حدث خطأ أثناء الحفظ. تأكد من أن الرمز فريد وحاول مرة أخرى.",
-    "columns": {
-      "name": "الاسم",
-      "code": "الرمز",
-      "category": "الفئة",
-      "vendor": "المورّد",
-      "status": "الحالة"
-    },
-    "fields": {
-      "name": "الاسم",
-      "code": "الرمز",
-      "category": "الفئة",
-      "vendor": "المورّد",
-      "version": "الإصدار",
-      "description": "الوصف",
-      "status": "الحالة",
-      "notes": "ملاحظات"
-    },
-    "validation": {
-      "required": "هذا الحقل مطلوب."
-    },
-    "category": {
-      "NETWORKING_PROTOCOL": "بروتوكول شبكة",
-      "SECURITY": "أمن",
-      "VIRTUALIZATION": "المحاكاة الافتراضية",
-      "MONITORING": "المراقبة",
-      "STORAGE": "تخزين",
-      "CLOUD": "سحابة"
-    },
-    "status": {
-      "ACTIVE": "نشط",
-      "EVALUATION": "قيد التقييم",
       "DEPRECATED": "قديم"
     }
   },
@@ -1472,76 +1242,6 @@
       "email": "عنوان بريد إلكتروني غير صالح.",
       "passwordLength": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل."
     }
-  },
-  "aiChat": {
-    "title": "مساعد الذكاء الاصطناعي",
-    "placeholder": "اسأل عن بنية مركز البيانات الخاصة بك...",
-    "inputPlaceholder": "اكتب رسالة...",
-    "loading": "الذكاء الاصطناعي يتحقق من البيانات المباشرة...",
-    "toolsUsed": "الأدوات المستخدمة",
-    "error": "حدث خطأ أثناء التواصل مع مساعد الذكاء الاصطناعي. يرجى المحاولة مرة أخرى."
-  },
-  "aiInsights": {
-    "pageTitle": "رؤى الذكاء الاصطناعي",
-    "columns": {
-      "title": "العنوان",
-      "type": "النوع",
-      "severity": "الخطورة",
-      "status": "الحالة",
-      "entity": "الكيان",
-      "createdAt": "تاريخ الإنشاء"
-    },
-    "type": {
-      "RISK_PREDICTION": "توقع مخاطر",
-      "RECOMMENDATION": "توصية",
-      "AUTONOMOUS_ACTION": "إجراء ذاتي"
-    },
-    "severity": {
-      "CRITICAL": "حرجة",
-      "HIGH": "عالية",
-      "MEDIUM": "متوسطة",
-      "LOW": "منخفضة",
-      "INFO": "معلومة"
-    },
-    "status": {
-      "NEW": "جديد",
-      "ACKNOWLEDGED": "تم الاطلاع",
-      "APPLIED": "تم التطبيق",
-      "DISMISSED": "مرفوض"
-    },
-    "fields": {
-      "severity": "الخطورة",
-      "status": "الحالة",
-      "entity": "الكيان",
-      "summary": "الملخص",
-      "recommendedAction": "الإجراء الموصى به",
-      "actionTaken": "الإجراء المتخذ",
-      "createdAt": "تاريخ الإنشاء"
-    },
-    "acknowledge": "الاطلاع",
-    "dismiss": "رفض",
-    "apply": "تطبيق",
-    "dismissTitle": "رفض الرؤية",
-    "dismissMessage": "هل أنت متأكد من رفض \"{{title}}\"؟",
-    "applyTitle": "تطبيق التوصية",
-    "applyMessage": "هل أنت متأكد من تطبيق الإجراء الموصى به لـ \"{{title}}\"؟ سيؤدي هذا إلى تغيير حقيقي في المنصة.",
-    "actionError": "حدث خطأ أثناء تنفيذ هذا الإجراء. يرجى المحاولة مرة أخرى."
-  },
-  "aiSettings": {
-    "pageTitle": "إعدادات الذكاء الاصطناعي",
-    "assistantEnabled": "مساعد الدردشة بالذكاء الاصطناعي",
-    "assistantEnabledDescription": "يتيح لكبار المسؤولين طرح الأسئلة والتصرف بناءً على بيانات مركز البيانات المباشرة عبر أداة الدردشة بالذكاء الاصطناعي.",
-    "predictiveAnalysisEnabled": "التحليل التنبؤي",
-    "predictiveAnalysisEnabledDescription": "يشغّل مهمة مجدولة تحلل بيانات البنية التحتية للإشارة إلى المخاطر قبل أن تتحول إلى أعطال.",
-    "autonomousActionsEnabled": "الإجراءات الذاتية",
-    "autonomousActionsEnabledDescription": "يسمح للذكاء الاصطناعي بتطبيق إجراءات علاجية (تغيير الحالة، تدخلات عاجلة) من تلقاء نفسه، دون انتظار موافقة بشرية. معطل افتراضيًا.",
-    "apiKeyConfigured": "تم تكوين مفتاح واجهة برمجة تطبيقات Anthropic",
-    "confirmAutonomousTitle": "تفعيل الإجراءات الذاتية؟",
-    "confirmAutonomousMessage": "سيتمكن الذكاء الاصطناعي من تغيير حالة المعدات وإنشاء تدخلات عاجلة تلقائيًا، دون موافقة بشرية. يبقى كل إجراء مسجلاً وقابلاً للتدقيق. هل تريد المتابعة؟",
-    "confirmAutonomousEnable": "تفعيل",
-    "saveSuccess": "تم حفظ الإعدادات بنجاح.",
-    "saveError": "حدث خطأ أثناء الحفظ. يرجى المحاولة مرة أخرى.",
-    "loadError": "تعذر تحميل إعدادات الذكاء الاصطناعي. يرجى التحقق من اتصالك والمحاولة مرة أخرى."
   },
   "technician": {
     "nav": {

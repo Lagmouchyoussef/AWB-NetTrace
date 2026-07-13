@@ -7,13 +7,12 @@ import java.time.Instant;
 public class CarrierCircuitResponse {
 
   private Long id;
-  private Long edgeId;
-  private String edgeName;
   private String name;
   private String code;
   private CarrierCircuitType circuitType;
   private String provider;
-  private Integer bandwidthMbps;
+  private Long terminatesAtConnectorId;
+  private String terminatesAtConnectorName;
   private CarrierCircuitStatus status;
   private String notes;
   private Instant createdAt;
@@ -25,22 +24,6 @@ public class CarrierCircuitResponse {
 
   public void setId(Long id) {
     this.id = id;
-  }
-
-  public Long getEdgeId() {
-    return edgeId;
-  }
-
-  public void setEdgeId(Long edgeId) {
-    this.edgeId = edgeId;
-  }
-
-  public String getEdgeName() {
-    return edgeName;
-  }
-
-  public void setEdgeName(String edgeName) {
-    this.edgeName = edgeName;
   }
 
   public String getName() {
@@ -75,12 +58,20 @@ public class CarrierCircuitResponse {
     this.provider = provider;
   }
 
-  public Integer getBandwidthMbps() {
-    return bandwidthMbps;
+  public Long getTerminatesAtConnectorId() {
+    return terminatesAtConnectorId;
   }
 
-  public void setBandwidthMbps(Integer bandwidthMbps) {
-    this.bandwidthMbps = bandwidthMbps;
+  public void setTerminatesAtConnectorId(Long terminatesAtConnectorId) {
+    this.terminatesAtConnectorId = terminatesAtConnectorId;
+  }
+
+  public String getTerminatesAtConnectorName() {
+    return terminatesAtConnectorName;
+  }
+
+  public void setTerminatesAtConnectorName(String terminatesAtConnectorName) {
+    this.terminatesAtConnectorName = terminatesAtConnectorName;
   }
 
   public CarrierCircuitStatus getStatus() {

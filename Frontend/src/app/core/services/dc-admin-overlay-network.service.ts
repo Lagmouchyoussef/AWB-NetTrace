@@ -7,6 +7,8 @@ import {
 } from '../../roles/super-admin/pages/overlay-networks/overlay-network.model';
 import { createScopedCrudService } from './scoped-crud.factory';
 
+// Read-only: the backend controller only exposes GET (list + detail) - POST/PUT/DELETE were
+// removed, so no create/update/delete methods here.
 @Injectable({ providedIn: 'root' })
 export class DcAdminOverlayNetworkService {
   private readonly crud = createScopedCrudService<
@@ -21,17 +23,5 @@ export class DcAdminOverlayNetworkService {
 
   getById(id: number): Promise<OverlayNetwork> {
     return this.crud.getById(id);
-  }
-
-  create(request: OverlayNetworkRequest): Promise<OverlayNetwork> {
-    return this.crud.create(request);
-  }
-
-  update(id: number, request: OverlayNetworkRequest): Promise<OverlayNetwork> {
-    return this.crud.update(id, request);
-  }
-
-  delete(id: number): Promise<void> {
-    return this.crud.delete(id);
   }
 }

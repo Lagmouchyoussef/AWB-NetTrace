@@ -5,16 +5,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslatePipe } from '@ngx-translate/core';
-import { NetworkEngineerSdwanEdgeService } from '../../../../../core/services/network-engineer-sdwan-edge.service';
-import { NetworkEngineerCarrierCircuitService } from '../../../../../core/services/network-engineer-carrier-circuit.service';
-import { SdwanEdge } from '../../../../super-admin/pages/sdwan-edges/sdwan-edge.model';
+import { NetworkEngineerConnectorService } from '../../../../core/services/network-engineer-connector.service';
+import { NetworkEngineerCarrierCircuitService } from '../../../../core/services/network-engineer-carrier-circuit.service';
+import { Connector } from '../../../super-admin/pages/connectors/connector.model';
 import {
   CARRIER_CIRCUIT_STATUSES,
   CARRIER_CIRCUIT_TYPES,
   CarrierCircuit,
   CarrierCircuitStatus,
   CarrierCircuitType,
-} from '../../../../super-admin/pages/carrier-circuits/carrier-circuit.model';
+} from '../../../super-admin/pages/carrier-circuits/carrier-circuit.model';
 
 @Component({
   selector: 'app-ne-carrier-circuit-form-dialog',
@@ -32,7 +32,7 @@ import {
 })
 export class NeCarrierCircuitFormDialogComponent implements OnInit {
   private readonly carrierCircuitService = inject(NetworkEngineerCarrierCircuitService);
-  private readonly sdwanEdgeService = inject(NetworkEngineerSdwanEdgeService);
+  private readonly connectorService = inject(NetworkEngineerConnectorService);
   private readonly dialogRef = inject(MatDialogRef<NeCarrierCircuitFormDialogComponent, boolean>);
   protected readonly data = inject<CarrierCircuit | null>(MAT_DIALOG_DATA);
 
@@ -41,12 +41,12 @@ export class NeCarrierCircuitFormDialogComponent implements OnInit {
   protected readonly statuses = CARRIER_CIRCUIT_STATUSES;
   protected readonly saving = signal(false);
   protected readonly errorKey = signal<string | null>(null);
-  protected readonly edges = signal<SdwanEdge[]>([]);
+  protected readonly connectors = signal<Connector[]>([]);
 
   protected readonly form = new FormGroup({
-    edgeId: new FormControl<number | null>(this.data?.edgeId ?? null, {
-      validators: [Validators.required],
-    }),
+    terminatesAtConnectorId: new FormControl<number | null>(
+      this.data?.terminatesAtConnector?.id ?? null,
+    ),
     name: new FormControl(this.data?.name ?? '', {
       nonNullable: true,
       validators: [Validators.required],
@@ -63,9 +63,6 @@ export class NeCarrierCircuitFormDialogComponent implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    bandwidthMbps: new FormControl<number | null>(this.data?.bandwidthMbps ?? 100, {
-      validators: [Validators.required],
-    }),
     status: new FormControl<CarrierCircuitStatus>(this.data?.status ?? 'ACTIVE', {
       nonNullable: true,
       validators: [Validators.required],
@@ -74,8 +71,8 @@ export class NeCarrierCircuitFormDialogComponent implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
-    const result = await this.sdwanEdgeService.list({ page: 0, size: 1000 });
-    this.edges.set(result.content);
+    const result = await this.connectorService.list({ page: 0, size: 1000 });
+    this.connectors.set(result.content);
   }
 
   protected async onSubmit(): Promise<void> {
@@ -89,17 +86,9 @@ export class NeCarrierCircuitFormDialogComponent implements OnInit {
     const value = this.form.getRawValue();
     try {
       if (this.data) {
-        await this.carrierCircuitService.update(this.data.id, {
-          ...value,
-          edgeId: value.edgeId!,
-          bandwidthMbps: value.bandwidthMbps!,
-        });
+        await this.carrierCircuitService.update(this.data.id, value);
       } else {
-        await this.carrierCircuitService.create({
-          ...value,
-          edgeId: value.edgeId!,
-          bandwidthMbps: value.bandwidthMbps!,
-        });
+        await this.carrierCircuitService.create(value);
       }
       this.dialogRef.close(true);
     } catch {

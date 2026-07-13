@@ -26,9 +26,6 @@ export class CarrierCircuitService {
     if (params.status) {
       httpParams = httpParams.set('status', params.status);
     }
-    if (params.edgeId) {
-      httpParams = httpParams.set('edgeId', params.edgeId);
-    }
     return firstValueFrom(this.http.get<CarrierCircuitPage>(BASE_URL, { params: httpParams }));
   }
 

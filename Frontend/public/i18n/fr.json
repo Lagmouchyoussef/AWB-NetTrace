@@ -35,25 +35,19 @@
     "devices": "Équipements",
     "fabricTopology": "Fabric et topologie",
     "networkRoles": "Rôles réseau",
-    "vxlanEvpnOverlay": "Overlay VXLAN/EVPN",
+    "overlayNetworksReadOnly": "VLAN / Overlay (lecture seule)",
     "interactiveTopologyView": "Vue topologie interactive",
     "cabling": "Câblage",
     "cables": "Câbles",
     "connectorsTransceivers": "Connecteurs et transceivers",
     "pathTracing": "Traçage de chemin",
-    "sdwanConnectivity": "SD-WAN et connectivité",
-    "sdwanEdges": "Edges SD-WAN",
-    "overlayTunnels": "Tunnels overlay",
-    "carrierCircuits": "Circuits opérateurs",
+    "carrierCircuits": "Circuits opérateurs (salle de rencontre)",
     "telemetryMonitoring": "Télémétrie et supervision",
     "telemetryConnectors": "Connecteurs de télémétrie",
-    "realTimeDashboards": "Tableaux de bord temps réel",
-    "anomalyDetection": "Détection d'anomalies",
     "interventions": "Interventions",
     "myInterventionRequests": "Mes demandes d'intervention",
     "technicalLibrary": "Bibliothèque technique",
     "equipmentTypes": "Types d'équipements",
-    "networkTechnologyCatalog": "Catalogue des technologies réseau",
     "administration": "Administration",
     "systemOversight": "Supervision système",
     "users": "Utilisateurs",
@@ -64,10 +58,7 @@
     "syncDrift": "Synchronisation et dérive",
     "auditCompliance": "Audit et conformité",
     "reports": "Rapports",
-    "myAccount": "Mon compte",
-    "aiOperations": "Opérations IA",
-    "aiInsights": "Insights IA",
-    "aiSettings": "Paramètres IA"
+    "myAccount": "Mon compte"
   },
   "topbar": {
     "searchPlaceholder": "Rechercher...",
@@ -96,7 +87,6 @@
     "stats": {
       "portsUsed": "Ports utilisés",
       "vlanCount": "VLANs / Réseaux overlay",
-      "activeTunnels": "Tunnels overlay actifs",
       "devices": "Équipements"
     },
     "jumpToTopology": "Aller à la vue Topologie",
@@ -106,15 +96,11 @@
   "auditorDashboard": {
     "title": "Vue d'ensemble conformité",
     "jumpToAuditLog": "Aller au journal d'audit",
-    "jumpToAnomalies": "Aller aux anomalies détectées",
     "stats": {
       "totalAuditEvents": "Total des événements d'audit",
-      "openAnomalies": "Anomalies ouvertes",
-      "criticalAnomalies": "Anomalies critiques",
       "activeReports": "Rapports actifs"
     },
-    "eventsByAction": "Événements d'audit par action",
-    "anomaliesBySeverity": "Anomalies par gravité"
+    "eventsByAction": "Événements d'audit par action"
   },
   "topologyView": {
     "pageTitle": "Vue Topologie Interactive",
@@ -160,14 +146,10 @@
       "rooms": "Salles",
       "racks": "Baies",
       "devices": "Équipements",
-      "openAnomalies": "Anomalies ouvertes",
       "activeInterventions": "Interventions actives",
       "activityToday": "Activité aujourd'hui"
     },
     "panels": {
-      "aiInsights": "Insights IA",
-      "aiNotConfigured": "L'assistant IA n'est pas encore configuré.",
-      "noInsights": "Aucun insight IA pour le moment.",
       "recentInterventions": "Interventions récentes",
       "noInterventions": "Aucune intervention récente.",
       "activityFeed": "Flux d'activité en direct",
@@ -186,8 +168,7 @@
       "activityTrend": "Tendance d'activité",
       "activityByEntityType": "Activité par type d'élément",
       "infraHealth": "Santé de l'infrastructure",
-      "interventionsByPriority": "Interventions par priorité",
-      "anomaliesBySeverity": "Anomalies par sévérité"
+      "interventionsByPriority": "Interventions par priorité"
     },
     "dateRange": {
       "label": "Période :",
@@ -476,13 +457,7 @@
     }
   },
   "overlayNetworks": {
-    "pageTitle": "Réseaux overlay VXLAN/EVPN",
-    "addNew": "Ajouter un réseau overlay",
-    "createTitle": "Nouveau réseau overlay",
-    "editTitle": "Modifier le réseau overlay",
-    "deleteTitle": "Supprimer le réseau overlay",
-    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
-    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code et le VNI sont uniques et réessayez.",
+    "pageTitle": "Réseaux VLAN / Overlay (lecture seule)",
     "columns": {
       "name": "Nom",
       "code": "Code",
@@ -503,9 +478,6 @@
       "routeTargets": "Route Targets",
       "status": "Statut",
       "notes": "Notes"
-    },
-    "validation": {
-      "required": "Ce champ est obligatoire."
     },
     "overlayType": {
       "L2_EVPN": "L2 EVPN (Overlay ponté)",
@@ -699,86 +671,8 @@
       "FAILED": "Échoué"
     }
   },
-  "sdwanEdges": {
-    "pageTitle": "Edges SD-WAN",
-    "addNew": "Ajouter un edge SD-WAN",
-    "createTitle": "Nouvel edge SD-WAN",
-    "editTitle": "Modifier l'edge SD-WAN",
-    "deleteTitle": "Supprimer l'edge SD-WAN",
-    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
-    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
-    "columns": {
-      "name": "Nom",
-      "code": "Code",
-      "datacenter": "Centre de données",
-      "vendor": "Fournisseur",
-      "status": "Statut"
-    },
-    "fields": {
-      "datacenter": "Centre de données",
-      "name": "Nom",
-      "code": "Code",
-      "vendor": "Fournisseur",
-      "model": "Modèle",
-      "wanLinkCount": "Nombre de liens WAN",
-      "managementIp": "IP de gestion",
-      "status": "Statut",
-      "notes": "Notes"
-    },
-    "validation": {
-      "required": "Ce champ est obligatoire."
-    },
-    "status": {
-      "ACTIVE": "Actif",
-      "MAINTENANCE": "Maintenance",
-      "DECOMMISSIONED": "Hors service",
-      "PROVISIONING": "En cours de provisionnement"
-    }
-  },
-  "overlayTunnels": {
-    "pageTitle": "Tunnels overlay",
-    "addNew": "Ajouter un tunnel overlay",
-    "createTitle": "Nouveau tunnel overlay",
-    "editTitle": "Modifier le tunnel overlay",
-    "deleteTitle": "Supprimer le tunnel overlay",
-    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
-    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et que la source/cible sont différentes.",
-    "columns": {
-      "name": "Nom",
-      "code": "Code",
-      "source": "Source",
-      "target": "Cible",
-      "tunnelType": "Type de tunnel",
-      "status": "Statut"
-    },
-    "fields": {
-      "source": "Edge source",
-      "target": "Edge cible",
-      "name": "Nom",
-      "code": "Code",
-      "tunnelType": "Type de tunnel",
-      "bandwidthMbps": "Bande passante (Mbps)",
-      "status": "Statut",
-      "notes": "Notes"
-    },
-    "validation": {
-      "required": "Ce champ est obligatoire."
-    },
-    "tunnelType": {
-      "IPSEC": "IPsec",
-      "GRE": "GRE",
-      "DTLS": "DTLS",
-      "VXLAN": "VXLAN"
-    },
-    "status": {
-      "UP": "Actif",
-      "DOWN": "Inactif",
-      "DEGRADED": "Dégradé",
-      "PLANNED": "Planifié"
-    }
-  },
   "carrierCircuits": {
-    "pageTitle": "Circuits opérateurs",
+    "pageTitle": "Circuits opérateurs (salle de rencontre)",
     "addNew": "Ajouter un circuit opérateur",
     "createTitle": "Nouveau circuit opérateur",
     "editTitle": "Modifier le circuit opérateur",
@@ -788,18 +682,18 @@
     "columns": {
       "name": "Nom",
       "code": "Code",
-      "edge": "Edge SD-WAN",
+      "connector": "Se termine au connecteur",
       "circuitType": "Type de circuit",
       "provider": "Opérateur",
       "status": "Statut"
     },
     "fields": {
-      "edge": "Edge SD-WAN",
+      "connector": "Se termine au connecteur",
+      "noConnector": "Aucun",
       "name": "Nom",
       "code": "Code",
       "circuitType": "Type de circuit",
       "provider": "Opérateur",
-      "bandwidthMbps": "Bande passante (Mbps)",
       "status": "Statut",
       "notes": "Notes"
     },
@@ -860,93 +754,6 @@
       "PAUSED": "En pause",
       "ERROR": "Erreur",
       "DECOMMISSIONED": "Hors service"
-    }
-  },
-  "realTimeDashboards": {
-    "pageTitle": "Tableaux de bord temps réel",
-    "addNew": "Ajouter un tableau de bord",
-    "createTitle": "Nouveau tableau de bord",
-    "editTitle": "Modifier le tableau de bord",
-    "deleteTitle": "Supprimer le tableau de bord",
-    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
-    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
-    "columns": {
-      "name": "Nom",
-      "code": "Code",
-      "description": "Description",
-      "refreshIntervalSeconds": "Intervalle de rafraîchissement",
-      "widgetCount": "Widgets",
-      "status": "Statut"
-    },
-    "fields": {
-      "name": "Nom",
-      "code": "Code",
-      "description": "Description",
-      "refreshIntervalSeconds": "Intervalle de rafraîchissement (s)",
-      "widgetCount": "Nombre de widgets",
-      "status": "Statut",
-      "notes": "Notes"
-    },
-    "validation": {
-      "required": "Ce champ est obligatoire."
-    },
-    "status": {
-      "ACTIVE": "Actif",
-      "DRAFT": "Brouillon",
-      "ARCHIVED": "Archivé"
-    }
-  },
-  "anomalyDetections": {
-    "pageTitle": "Détection d'anomalies",
-    "addNew": "Signaler une anomalie",
-    "createTitle": "Nouvelle anomalie",
-    "editTitle": "Modifier l'anomalie",
-    "deleteTitle": "Supprimer l'anomalie",
-    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
-    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez les champs et réessayez.",
-    "columns": {
-      "title": "Titre",
-      "device": "Équipement",
-      "anomalyType": "Type",
-      "severity": "Sévérité",
-      "status": "Statut",
-      "detectedAt": "Détectée le"
-    },
-    "fields": {
-      "device": "Équipement",
-      "title": "Titre",
-      "description": "Description",
-      "anomalyType": "Type d'anomalie",
-      "severity": "Sévérité",
-      "status": "Statut",
-      "detectedAt": "Détectée le",
-      "resolvedAt": "Résolue le",
-      "notes": "Notes"
-    },
-    "validation": {
-      "required": "Ce champ est obligatoire."
-    },
-    "anomalyType": {
-      "THRESHOLD_BREACH": "Dépassement de seuil",
-      "TRAFFIC_SPIKE": "Pic de trafic",
-      "FLAPPING_LINK": "Lien instable (flapping)",
-      "CONFIG_DRIFT": "Dérive de configuration",
-      "UNAUTHORIZED_ACCESS": "Accès non autorisé",
-      "PACKET_LOSS": "Perte de paquets",
-      "LATENCY_DEGRADATION": "Dégradation de latence"
-    },
-    "severity": {
-      "CRITICAL": "Critique",
-      "HIGH": "Élevée",
-      "MEDIUM": "Moyenne",
-      "LOW": "Faible",
-      "INFO": "Information"
-    },
-    "status": {
-      "OPEN": "Ouverte",
-      "ACKNOWLEDGED": "Acquittée",
-      "RESOLVED": "Résolue",
-      "FALSE_POSITIVE": "Faux positif"
     }
   },
   "interventions": {
@@ -1047,6 +854,8 @@
       "code": "Code",
       "category": "Catégorie",
       "manufacturer": "Fabricant",
+      "vendor": "Fournisseur",
+      "version": "Version",
       "status": "Statut"
     },
     "fields": {
@@ -1054,6 +863,9 @@
       "code": "Code",
       "category": "Catégorie",
       "manufacturer": "Fabricant",
+      "vendor": "Fournisseur",
+      "version": "Version",
+      "description": "Description",
       "defaultRackUnits": "Hauteur par défaut (U)",
       "defaultPowerWatts": "Puissance par défaut (W)",
       "status": "Statut",
@@ -1072,48 +884,6 @@
     },
     "status": {
       "ACTIVE": "Actif",
-      "DEPRECATED": "Obsolète"
-    }
-  },
-  "technologyCatalog": {
-    "pageTitle": "Catalogue des technologies réseau",
-    "addNew": "Ajouter une technologie",
-    "createTitle": "Nouvelle technologie",
-    "editTitle": "Modifier la technologie",
-    "deleteTitle": "Supprimer la technologie",
-    "deleteMessage": "Voulez-vous vraiment supprimer « {{name}} » ? Cette action peut être annulée plus tard par un administrateur.",
-    "saveError": "Une erreur est survenue lors de l'enregistrement. Vérifiez que le code est unique et réessayez.",
-    "columns": {
-      "name": "Nom",
-      "code": "Code",
-      "category": "Catégorie",
-      "vendor": "Fournisseur",
-      "status": "Statut"
-    },
-    "fields": {
-      "name": "Nom",
-      "code": "Code",
-      "category": "Catégorie",
-      "vendor": "Fournisseur",
-      "version": "Version",
-      "description": "Description",
-      "status": "Statut",
-      "notes": "Notes"
-    },
-    "validation": {
-      "required": "Ce champ est obligatoire."
-    },
-    "category": {
-      "NETWORKING_PROTOCOL": "Protocole réseau",
-      "SECURITY": "Sécurité",
-      "VIRTUALIZATION": "Virtualisation",
-      "MONITORING": "Supervision",
-      "STORAGE": "Stockage",
-      "CLOUD": "Cloud"
-    },
-    "status": {
-      "ACTIVE": "Actif",
-      "EVALUATION": "En évaluation",
       "DEPRECATED": "Obsolète"
     }
   },
@@ -1472,76 +1242,6 @@
       "email": "Adresse email invalide.",
       "passwordLength": "Le mot de passe doit contenir au moins 8 caractères."
     }
-  },
-  "aiChat": {
-    "title": "Assistant IA",
-    "placeholder": "Posez une question sur votre infrastructure de datacenter...",
-    "inputPlaceholder": "Écrivez un message...",
-    "loading": "L'IA vérifie les données en direct...",
-    "toolsUsed": "Outils utilisés",
-    "error": "Une erreur s'est produite lors de la communication avec l'assistant IA. Veuillez réessayer."
-  },
-  "aiInsights": {
-    "pageTitle": "Insights IA",
-    "columns": {
-      "title": "Titre",
-      "type": "Type",
-      "severity": "Gravité",
-      "status": "Statut",
-      "entity": "Entité",
-      "createdAt": "Créé le"
-    },
-    "type": {
-      "RISK_PREDICTION": "Prédiction de risque",
-      "RECOMMENDATION": "Recommandation",
-      "AUTONOMOUS_ACTION": "Action autonome"
-    },
-    "severity": {
-      "CRITICAL": "Critique",
-      "HIGH": "Élevée",
-      "MEDIUM": "Moyenne",
-      "LOW": "Faible",
-      "INFO": "Info"
-    },
-    "status": {
-      "NEW": "Nouveau",
-      "ACKNOWLEDGED": "Pris en compte",
-      "APPLIED": "Appliqué",
-      "DISMISSED": "Ignoré"
-    },
-    "fields": {
-      "severity": "Gravité",
-      "status": "Statut",
-      "entity": "Entité",
-      "summary": "Résumé",
-      "recommendedAction": "Action recommandée",
-      "actionTaken": "Action effectuée",
-      "createdAt": "Créé le"
-    },
-    "acknowledge": "Prendre en compte",
-    "dismiss": "Ignorer",
-    "apply": "Appliquer",
-    "dismissTitle": "Ignorer l'insight",
-    "dismissMessage": "Voulez-vous vraiment ignorer « {{title}} » ?",
-    "applyTitle": "Appliquer la recommandation",
-    "applyMessage": "Voulez-vous vraiment appliquer l'action recommandée pour « {{title}} » ? Cela effectuera un changement réel sur la plateforme.",
-    "actionError": "Une erreur s'est produite lors de cette action. Veuillez réessayer."
-  },
-  "aiSettings": {
-    "pageTitle": "Paramètres IA",
-    "assistantEnabled": "Assistant IA (chat)",
-    "assistantEnabledDescription": "Permet aux super administrateurs de poser des questions et d'agir sur les données du datacenter via le widget de chat IA.",
-    "predictiveAnalysisEnabled": "Analyse prédictive",
-    "predictiveAnalysisEnabledDescription": "Exécute une tâche planifiée qui analyse les données d'infrastructure pour signaler les risques avant qu'ils ne deviennent des pannes.",
-    "autonomousActionsEnabled": "Actions autonomes",
-    "autonomousActionsEnabledDescription": "Permet à l'IA d'appliquer elle-même des actions correctives (changement de statut, intervention urgente), sans attendre une validation humaine. Désactivé par défaut.",
-    "apiKeyConfigured": "Clé API Anthropic configurée",
-    "confirmAutonomousTitle": "Activer les actions autonomes ?",
-    "confirmAutonomousMessage": "L'IA pourra changer le statut des équipements et créer des interventions urgentes automatiquement, sans validation humaine. Chaque action reste journalisée et auditable. Voulez-vous continuer ?",
-    "confirmAutonomousEnable": "Activer",
-    "saveSuccess": "Paramètres enregistrés avec succès.",
-    "saveError": "Une erreur s'est produite lors de l'enregistrement. Veuillez réessayer.",
-    "loadError": "Impossible de charger les paramètres IA. Vérifiez votre connexion et réessayez."
   },
   "technician": {
     "nav": {

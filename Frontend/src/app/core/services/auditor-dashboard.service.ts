@@ -3,15 +3,12 @@ import { Observable, Subject, from, interval, merge, shareReplay, startWith, swi
 import { TranslateService } from '@ngx-translate/core';
 import { ChartDatum } from '../components/charts/chart-data.model';
 import { AuditorAuditLogService } from './auditor-audit-log.service';
-import { AuditorAnomalyDetectionService } from './auditor-anomaly-detection.service';
 import { AuditorReportService } from './auditor-report.service';
 import { AuditAction } from '../../roles/super-admin/pages/audit-logs/audit-log.model';
-import { AnomalySeverity } from '../../roles/super-admin/pages/anomaly-detections/anomaly-detection.model';
 
 const POLL_INTERVAL_MS = 30000;
 
 const ACTIONS: AuditAction[] = ['CREATE', 'UPDATE', 'DELETE', 'CONFIG_CHANGE'];
-const SEVERITIES: AnomalySeverity[] = ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'INFO'];
 
 const ACTION_COLOR: Record<AuditAction, string> = {
   CREATE: 'good',
@@ -23,21 +20,10 @@ const ACTION_COLOR: Record<AuditAction, string> = {
   EXPORT: 'ordinal-3',
 };
 
-const SEVERITY_COLOR: Record<AnomalySeverity, string> = {
-  CRITICAL: 'critical',
-  HIGH: 'serious',
-  MEDIUM: 'warning',
-  LOW: 'good',
-  INFO: 'ordinal-1',
-};
-
 export interface AuditorDashboardSummary {
   totalAuditEvents: number;
-  openAnomaliesCount: number;
-  criticalAnomaliesCount: number;
   activeReportsCount: number;
   actionData: ChartDatum[];
-  severityData: ChartDatum[];
 }
 
 // Same live-refresh shape as ApproverDashboardService/RequesterDashboardService (30s poll +
@@ -48,7 +34,6 @@ export interface AuditorDashboardSummary {
 @Injectable({ providedIn: 'root' })
 export class AuditorDashboardService {
   private readonly auditLogService = inject(AuditorAuditLogService);
-  private readonly anomalyDetectionService = inject(AuditorAnomalyDetectionService);
   private readonly reportService = inject(AuditorReportService);
   private readonly translateService = inject(TranslateService);
 
@@ -67,40 +52,19 @@ export class AuditorDashboardService {
   }
 
   private async fetchSummary(): Promise<AuditorDashboardSummary> {
-    const [
-      totalAuditEvents,
-      actionCounts,
-      openAnomalies,
-      criticalAnomalies,
-      severityCounts,
-      activeReports,
-    ] = await Promise.all([
+    const [totalAuditEvents, actionCounts, activeReports] = await Promise.all([
       this.auditLogService.list({ page: 0, size: 1 }),
       Promise.all(ACTIONS.map((action) => this.auditLogService.list({ page: 0, size: 1, action }))),
-      this.anomalyDetectionService.list({ page: 0, size: 1, status: 'OPEN' }),
-      this.anomalyDetectionService.list({ page: 0, size: 1, severity: 'CRITICAL' }),
-      Promise.all(
-        SEVERITIES.map((severity) =>
-          this.anomalyDetectionService.list({ page: 0, size: 1, severity }),
-        ),
-      ),
       this.reportService.list({ page: 0, size: 1, status: 'ACTIVE' }),
     ]);
 
     return {
       totalAuditEvents: totalAuditEvents.totalElements,
-      openAnomaliesCount: openAnomalies.totalElements,
-      criticalAnomaliesCount: criticalAnomalies.totalElements,
       activeReportsCount: activeReports.totalElements,
       actionData: ACTIONS.map((action, i) => ({
         label: this.translateService.instant(`auditLogs.action.${action}`),
         count: actionCounts[i].totalElements,
         colorRole: ACTION_COLOR[action],
-      })).filter((datum) => datum.count > 0),
-      severityData: SEVERITIES.map((severity, i) => ({
-        label: this.translateService.instant(`anomalyDetections.severity.${severity}`),
-        count: severityCounts[i].totalElements,
-        colorRole: SEVERITY_COLOR[severity],
       })).filter((datum) => datum.count > 0),
     };
   }

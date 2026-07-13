@@ -21,6 +21,12 @@ public class EquipmentTypeRequest {
 
   @NotNull private EquipmentTypeStatus status;
 
+  private String vendor;
+
+  private String version;
+
+  private String description;
+
   private String notes;
 
   public String getName() {
@@ -77,6 +83,30 @@ public class EquipmentTypeRequest {
 
   public void setStatus(EquipmentTypeStatus status) {
     this.status = status;
+  }
+
+  public String getVendor() {
+    return vendor;
+  }
+
+  public void setVendor(String vendor) {
+    this.vendor = vendor;
+  }
+
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public String getNotes() {

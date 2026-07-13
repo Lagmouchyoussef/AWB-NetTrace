@@ -32,7 +32,11 @@ export class DcAdminCarrierCircuitsListComponent implements OnInit {
   protected readonly columns: DataTableColumn<CarrierCircuit>[] = [
     { key: 'name', headerKey: 'carrierCircuits.columns.name', cell: (row) => row.name },
     { key: 'code', headerKey: 'carrierCircuits.columns.code', cell: (row) => row.code },
-    { key: 'edgeName', headerKey: 'carrierCircuits.columns.edge', cell: (row) => row.edgeName },
+    {
+      key: 'connector',
+      headerKey: 'carrierCircuits.columns.connector',
+      cell: (row) => row.terminatesAtConnector?.name ?? '—',
+    },
     {
       key: 'circuitType',
       headerKey: 'carrierCircuits.columns.circuitType',
@@ -127,11 +131,11 @@ export class DcAdminCarrierCircuitsListComponent implements OnInit {
       size: 10000,
       search: this.searchQuery,
     });
-    const header = ['Name', 'Code', 'Edge', 'Circuit Type', 'Provider', 'Status'];
+    const header = ['Name', 'Code', 'Connector', 'Circuit Type', 'Provider', 'Status'];
     const rows = all.content.map((row) => [
       row.name,
       row.code,
-      row.edgeName,
+      row.terminatesAtConnector?.name ?? '',
       row.circuitType,
       row.provider,
       row.status,

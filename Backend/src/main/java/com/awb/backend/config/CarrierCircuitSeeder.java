@@ -3,30 +3,30 @@ package com.awb.backend.config;
 import com.awb.backend.core.entity.CarrierCircuit;
 import com.awb.backend.core.entity.CarrierCircuitStatus;
 import com.awb.backend.core.entity.CarrierCircuitType;
-import com.awb.backend.core.entity.SdwanEdge;
+import com.awb.backend.core.entity.Connector;
 import com.awb.backend.core.repository.CarrierCircuitRepository;
-import com.awb.backend.core.repository.SdwanEdgeRepository;
+import com.awb.backend.core.repository.ConnectorRepository;
 import java.time.Instant;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
- * Seeds demo carrier circuits feeding existing demo SD-WAN edges on first startup (only if the
- * table is empty). Looks edges up by code rather than assuming ids, so it stays correct regardless
- * of seeder execution order. Dev/demo data only.
+ * Seeds demo carrier circuits (physical meet-me-room landing points for external circuits) on
+ * first startup (only if the table is empty). Looks connectors up by code rather than assuming
+ * ids, so it stays correct regardless of seeder execution order. Dev/demo data only.
  */
 @Component
 @Order(13)
 public class CarrierCircuitSeeder implements CommandLineRunner {
 
   private final CarrierCircuitRepository carrierCircuitRepository;
-  private final SdwanEdgeRepository sdwanEdgeRepository;
+  private final ConnectorRepository connectorRepository;
 
   public CarrierCircuitSeeder(
-      CarrierCircuitRepository carrierCircuitRepository, SdwanEdgeRepository sdwanEdgeRepository) {
+      CarrierCircuitRepository carrierCircuitRepository, ConnectorRepository connectorRepository) {
     this.carrierCircuitRepository = carrierCircuitRepository;
-    this.sdwanEdgeRepository = sdwanEdgeRepository;
+    this.connectorRepository = connectorRepository;
   }
 
   @Override
@@ -36,55 +36,48 @@ public class CarrierCircuitSeeder implements CommandLineRunner {
     }
 
     seed(
-        "SDW-CASA-01",
         "Circuit MPLS Casablanca",
         "CC-CASA-01",
         CarrierCircuitType.MPLS,
         "Maroc Telecom",
-        1000);
+        "CN-CASA-01");
     seed(
-        "SDW-CASA-01",
         "Circuit Broadband Casablanca",
         "CC-CASA-02",
         CarrierCircuitType.BROADBAND,
         "Orange Maroc",
-        500);
-    seed("SDW-RABAT-01", "Circuit 5G Rabat", "CC-RABAT-01", CarrierCircuitType.LTE_5G, "inwi", 300);
+        "CN-CASA-02");
+    seed("Circuit 5G Rabat", "CC-RABAT-01", CarrierCircuitType.LTE_5G, "inwi", "CN-RABAT-01");
     seed(
-        "SDW-TNG-01",
         "Circuit Fibre Noire Tanger",
         "CC-TNG-01",
         CarrierCircuitType.DARK_FIBER,
         "Maroc Telecom",
-        10000);
-    seed(
-        "SDW-RAK-01",
-        "Circuit MPLS Marrakech",
-        "CC-RAK-01",
-        CarrierCircuitType.MPLS,
-        "Orange Maroc",
-        1000);
+        "CN-TNG-01");
+    // No demo connector exists for Marrakech yet - landing point left unassigned.
+    seed("Circuit MPLS Marrakech", "CC-RAK-01", CarrierCircuitType.MPLS, "Orange Maroc", null);
   }
 
   private void seed(
-      String edgeCode,
       String name,
       String code,
       CarrierCircuitType circuitType,
       String provider,
-      int bandwidthMbps) {
-    SdwanEdge edge = sdwanEdgeRepository.findByCodeIgnoreCase(edgeCode).orElse(null);
-    if (edge == null) {
-      return;
-    }
+      String connectorCode) {
+    Connector connector =
+        connectorCode == null
+            ? null
+            : connectorRepository.findAll().stream()
+                .filter(c -> c.getCode().equalsIgnoreCase(connectorCode))
+                .findFirst()
+                .orElse(null);
 
     CarrierCircuit circuit = new CarrierCircuit();
-    circuit.setEdge(edge);
     circuit.setName(name);
     circuit.setCode(code);
     circuit.setCircuitType(circuitType);
     circuit.setProvider(provider);
-    circuit.setBandwidthMbps(bandwidthMbps);
+    circuit.setTerminatesAtConnector(connector);
     circuit.setStatus(CarrierCircuitStatus.ACTIVE);
     Instant now = Instant.now();
     circuit.setCreatedAt(now);

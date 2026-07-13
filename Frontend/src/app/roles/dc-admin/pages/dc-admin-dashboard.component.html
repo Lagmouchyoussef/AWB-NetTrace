@@ -21,10 +21,6 @@
         <span class="stat-value">{{ s.infra.devicesActive }}/{{ s.infra.devices }}</span>
         <span class="stat-label">{{ 'dashboard.stats.devices' | translate }}</span>
       </div>
-      <div class="stat-card stat-card-warning">
-        <span class="stat-value">{{ s.openAnomaliesCount }}</span>
-        <span class="stat-label">{{ 'dashboard.stats.openAnomalies' | translate }}</span>
-      </div>
       <div class="stat-card">
         <span class="stat-value">{{ s.activeInterventionsCount }}</span>
         <span class="stat-label">{{ 'dashboard.stats.activeInterventions' | translate }}</span>
@@ -78,7 +74,7 @@
       />
     </div>
 
-    <div class="charts-grid-3col">
+    <div class="charts-grid-2col">
       <app-stat-chart
         [data]="infraHealthData()"
         titleKey="dashboard.charts.infraHealth"
@@ -91,36 +87,9 @@
         initialMode="bar"
         [showLegend]="true"
       />
-
-      <app-stat-chart
-        [data]="anomaliesBySeverityData()"
-        titleKey="dashboard.charts.anomaliesBySeverity"
-        initialMode="bar"
-        [showLegend]="true"
-      />
     </div>
 
     <div class="panels-grid">
-      <section class="panel">
-        <h2>{{ 'dashboard.panels.aiInsights' | translate }}</h2>
-        @if (!s.aiConfigured) {
-          <p class="panel-empty">{{ 'dashboard.panels.aiNotConfigured' | translate }}</p>
-        } @else if (s.recentInsights.length === 0) {
-          <p class="panel-empty">{{ 'dashboard.panels.noInsights' | translate }}</p>
-        } @else {
-          <ul class="panel-list">
-            @for (insight of s.recentInsights; track insight.id) {
-              <li>
-                <span class="badge" [attr.data-severity]="insight.severity">{{
-                  severityLabel(insight.severity)
-                }}</span>
-                <span class="panel-item-title">{{ insight.title }}</span>
-              </li>
-            }
-          </ul>
-        }
-      </section>
-
       <section class="panel">
         <h2>{{ 'dashboard.panels.recentInterventions' | translate }}</h2>
         @if (s.recentInterventions.length === 0) {

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { TranslatePipe } from '@ngx-translate/core';
-import { CarrierCircuit } from '../../../../super-admin/pages/carrier-circuits/carrier-circuit.model';
+import { CarrierCircuit } from '../../../super-admin/pages/carrier-circuits/carrier-circuit.model';
 
 @Component({
   selector: 'app-ne-carrier-circuit-detail-dialog',

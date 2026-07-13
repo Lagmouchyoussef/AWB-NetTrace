@@ -17,15 +17,20 @@ export const CARRIER_CIRCUIT_STATUSES: CarrierCircuitStatus[] = [
   'PLANNED',
 ];
 
+// Carrier Circuits (Meet-Me-Room): a circuit optionally terminates at a physical Connector (a
+// port on a device/patch-panel) rather than an SD-WAN edge - SD-WAN was removed from scope.
+export interface CarrierCircuitConnectorRef {
+  id: number;
+  name: string;
+}
+
 export interface CarrierCircuit {
   id: number;
-  edgeId: number;
-  edgeName: string;
   name: string;
   code: string;
   circuitType: CarrierCircuitType;
   provider: string;
-  bandwidthMbps: number;
+  terminatesAtConnector: CarrierCircuitConnectorRef | null;
   status: CarrierCircuitStatus;
   notes: string | null;
   createdAt: string;
@@ -33,12 +38,11 @@ export interface CarrierCircuit {
 }
 
 export interface CarrierCircuitRequest {
-  edgeId: number;
   name: string;
   code: string;
   circuitType: CarrierCircuitType;
   provider: string;
-  bandwidthMbps: number;
+  terminatesAtConnectorId?: number | null;
   status: CarrierCircuitStatus;
   notes?: string | null;
 }
@@ -54,5 +58,4 @@ export interface CarrierCircuitListParams {
   sort?: string;
   search?: string;
   status?: CarrierCircuitStatus;
-  edgeId?: number;
 }

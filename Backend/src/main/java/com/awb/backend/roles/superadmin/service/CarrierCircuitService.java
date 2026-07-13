@@ -5,10 +5,10 @@ import com.awb.backend.core.dto.CarrierCircuitResponse;
 import com.awb.backend.core.entity.AuditAction;
 import com.awb.backend.core.entity.CarrierCircuit;
 import com.awb.backend.core.entity.CarrierCircuitStatus;
-import com.awb.backend.core.entity.SdwanEdge;
+import com.awb.backend.core.entity.Connector;
 import com.awb.backend.core.repository.CarrierCircuitRepository;
 import com.awb.backend.core.repository.CarrierCircuitSpecifications;
-import com.awb.backend.core.repository.SdwanEdgeRepository;
+import com.awb.backend.core.repository.ConnectorRepository;
 import com.awb.backend.core.util.AuditLogWriter;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
@@ -23,26 +23,26 @@ import org.springframework.web.server.ResponseStatusException;
 public class CarrierCircuitService {
 
   private final CarrierCircuitRepository carrierCircuitRepository;
-  private final SdwanEdgeRepository sdwanEdgeRepository;
+  private final ConnectorRepository connectorRepository;
   private final AuditLogWriter auditLogWriter;
 
   public CarrierCircuitService(
       CarrierCircuitRepository carrierCircuitRepository,
-      SdwanEdgeRepository sdwanEdgeRepository,
+      ConnectorRepository connectorRepository,
       AuditLogWriter auditLogWriter) {
     this.carrierCircuitRepository = carrierCircuitRepository;
-    this.sdwanEdgeRepository = sdwanEdgeRepository;
+    this.connectorRepository = connectorRepository;
     this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
   public Page<CarrierCircuitResponse> list(
-      String search, CarrierCircuitStatus status, Long edgeId, Pageable pageable) {
+      String search, CarrierCircuitStatus status, Long connectorId, Pageable pageable) {
     Specification<CarrierCircuit> spec =
         Specification.where(CarrierCircuitSpecifications.notDeleted())
             .and(CarrierCircuitSpecifications.search(search))
             .and(CarrierCircuitSpecifications.hasStatus(status))
-            .and(CarrierCircuitSpecifications.hasEdgeId(edgeId));
+            .and(CarrierCircuitSpecifications.hasConnectorId(connectorId));
     return carrierCircuitRepository.findAll(spec, pageable).map(this::toResponse);
   }
 
@@ -59,7 +59,6 @@ public class CarrierCircuitService {
     }
 
     CarrierCircuit circuit = new CarrierCircuit();
-    circuit.setEdge(findActiveEdgeOrThrow(request.getEdgeId()));
     applyRequest(circuit, request);
     Instant now = Instant.now();
     circuit.setCreatedAt(now);
@@ -79,7 +78,6 @@ public class CarrierCircuitService {
           HttpStatus.BAD_REQUEST, "A carrier circuit with this code already exists.");
     }
 
-    circuit.setEdge(findActiveEdgeOrThrow(request.getEdgeId()));
     applyRequest(circuit, request);
     circuit.setUpdatedAt(Instant.now());
     CarrierCircuitResponse response = toResponse(carrierCircuitRepository.save(circuit));
@@ -112,17 +110,16 @@ public class CarrierCircuitService {
     return circuit;
   }
 
-  private SdwanEdge findActiveEdgeOrThrow(Long edgeId) {
-    SdwanEdge edge =
-        sdwanEdgeRepository
-            .findById(edgeId)
+  private Connector findActiveConnectorOrThrow(Long connectorId) {
+    Connector connector =
+        connectorRepository
+            .findById(connectorId)
             .orElseThrow(
-                () ->
-                    new ResponseStatusException(HttpStatus.BAD_REQUEST, "SD-WAN edge not found."));
-    if (edge.isDeleted()) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SD-WAN edge not found.");
+                () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Connector not found."));
+    if (connector.isDeleted()) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Connector not found.");
     }
-    return edge;
+    return connector;
   }
 
   private void applyRequest(CarrierCircuit circuit, CarrierCircuitRequest request) {
@@ -130,7 +127,10 @@ public class CarrierCircuitService {
     circuit.setCode(request.getCode());
     circuit.setCircuitType(request.getCircuitType());
     circuit.setProvider(request.getProvider());
-    circuit.setBandwidthMbps(request.getBandwidthMbps());
+    circuit.setTerminatesAtConnector(
+        request.getTerminatesAtConnectorId() == null
+            ? null
+            : findActiveConnectorOrThrow(request.getTerminatesAtConnectorId()));
     circuit.setStatus(request.getStatus());
     circuit.setNotes(request.getNotes());
   }
@@ -138,13 +138,14 @@ public class CarrierCircuitService {
   private CarrierCircuitResponse toResponse(CarrierCircuit circuit) {
     CarrierCircuitResponse response = new CarrierCircuitResponse();
     response.setId(circuit.getId());
-    response.setEdgeId(circuit.getEdge().getId());
-    response.setEdgeName(circuit.getEdge().getName());
     response.setName(circuit.getName());
     response.setCode(circuit.getCode());
     response.setCircuitType(circuit.getCircuitType());
     response.setProvider(circuit.getProvider());
-    response.setBandwidthMbps(circuit.getBandwidthMbps());
+    if (circuit.getTerminatesAtConnector() != null) {
+      response.setTerminatesAtConnectorId(circuit.getTerminatesAtConnector().getId());
+      response.setTerminatesAtConnectorName(circuit.getTerminatesAtConnector().getName());
+    }
     response.setStatus(circuit.getStatus());
     response.setNotes(circuit.getNotes());
     response.setCreatedAt(circuit.getCreatedAt());

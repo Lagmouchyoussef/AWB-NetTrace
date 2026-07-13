@@ -111,6 +111,9 @@ public class EquipmentTypeService {
     equipmentType.setDefaultRackUnits(request.getDefaultRackUnits());
     equipmentType.setDefaultPowerWatts(request.getDefaultPowerWatts());
     equipmentType.setStatus(request.getStatus());
+    equipmentType.setVendor(request.getVendor());
+    equipmentType.setVersion(request.getVersion());
+    equipmentType.setDescription(request.getDescription());
     equipmentType.setNotes(request.getNotes());
   }
 
@@ -124,6 +127,9 @@ public class EquipmentTypeService {
     response.setDefaultRackUnits(equipmentType.getDefaultRackUnits());
     response.setDefaultPowerWatts(equipmentType.getDefaultPowerWatts());
     response.setStatus(equipmentType.getStatus());
+    response.setVendor(equipmentType.getVendor());
+    response.setVersion(equipmentType.getVersion());
+    response.setDescription(equipmentType.getDescription());
     response.setNotes(equipmentType.getNotes());
     response.setCreatedAt(equipmentType.getCreatedAt());
     response.setUpdatedAt(equipmentType.getUpdatedAt());

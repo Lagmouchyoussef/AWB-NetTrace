@@ -43,6 +43,16 @@ export class EquipmentTypesListComponent implements OnInit {
       cell: (row) => row.manufacturer ?? '',
     },
     {
+      key: 'vendor',
+      headerKey: 'equipmentTypes.columns.vendor',
+      cell: (row) => row.vendor ?? '',
+    },
+    {
+      key: 'version',
+      headerKey: 'equipmentTypes.columns.version',
+      cell: (row) => row.version ?? '',
+    },
+    {
       key: 'status',
       headerKey: 'equipmentTypes.columns.status',
       cell: (row) => this.translateService.instant(`equipmentTypes.status.${row.status}`),
@@ -129,12 +139,14 @@ export class EquipmentTypesListComponent implements OnInit {
       size: 10000,
       search: this.searchQuery,
     });
-    const header = ['Name', 'Code', 'Category', 'Manufacturer', 'Status'];
+    const header = ['Name', 'Code', 'Category', 'Manufacturer', 'Vendor', 'Version', 'Status'];
     const rows = all.content.map((row) => [
       row.name,
       row.code,
       row.category,
       row.manufacturer ?? '',
+      row.vendor ?? '',
+      row.version ?? '',
       row.status,
     ]);
     downloadCsv('equipment-types.csv', header, rows);

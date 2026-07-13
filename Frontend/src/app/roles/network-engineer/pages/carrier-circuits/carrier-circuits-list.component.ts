@@ -4,11 +4,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { DataTableColumn } from '../../../../../core/components/data-table/data-table.model';
-import { DataTableComponent } from '../../../../../core/components/data-table/data-table.component';
-import { NetworkEngineerCarrierCircuitService } from '../../../../../core/services/network-engineer-carrier-circuit.service';
-import { downloadCsv } from '../../../../../core/utils/csv-export';
-import { CarrierCircuit } from '../../../../super-admin/pages/carrier-circuits/carrier-circuit.model';
+import { DataTableColumn } from '../../../../core/components/data-table/data-table.model';
+import { DataTableComponent } from '../../../../core/components/data-table/data-table.component';
+import { NetworkEngineerCarrierCircuitService } from '../../../../core/services/network-engineer-carrier-circuit.service';
+import { downloadCsv } from '../../../../core/utils/csv-export';
+import { CarrierCircuit } from '../../../super-admin/pages/carrier-circuits/carrier-circuit.model';
 import { NeCarrierCircuitFormDialogComponent } from './carrier-circuit-form-dialog.component';
 import { NeCarrierCircuitDetailDialogComponent } from './carrier-circuit-detail-dialog.component';
 
@@ -28,7 +28,11 @@ export class NeCarrierCircuitsListComponent implements OnInit {
   protected readonly columns: DataTableColumn<CarrierCircuit>[] = [
     { key: 'name', headerKey: 'carrierCircuits.columns.name', cell: (row) => row.name },
     { key: 'code', headerKey: 'carrierCircuits.columns.code', cell: (row) => row.code },
-    { key: 'edgeName', headerKey: 'carrierCircuits.columns.edge', cell: (row) => row.edgeName },
+    {
+      key: 'connector',
+      headerKey: 'carrierCircuits.columns.connector',
+      cell: (row) => row.terminatesAtConnector?.name ?? '—',
+    },
     {
       key: 'circuitType',
       headerKey: 'carrierCircuits.columns.circuitType',
@@ -107,11 +111,11 @@ export class NeCarrierCircuitsListComponent implements OnInit {
       size: 10000,
       search: this.searchQuery,
     });
-    const header = ['Name', 'Code', 'Edge', 'Circuit Type', 'Provider', 'Status'];
+    const header = ['Name', 'Code', 'Connector', 'Circuit Type', 'Provider', 'Status'];
     const rows = all.content.map((row) => [
       row.name,
       row.code,
-      row.edgeName,
+      row.terminatesAtConnector?.name ?? '',
       row.circuitType,
       row.provider,
       row.status,

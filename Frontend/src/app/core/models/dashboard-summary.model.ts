@@ -9,14 +9,6 @@ export interface InfraCounts {
   devicesActive: number;
 }
 
-export interface InsightSummary {
-  id: number;
-  severity: string;
-  status: string;
-  title: string;
-  createdAt: string;
-}
-
 export interface InterventionSummary {
   id: number;
   title: string;
@@ -41,15 +33,11 @@ export interface LabeledCount {
 
 export interface DashboardSummary {
   infra: InfraCounts;
-  openAnomaliesCount: number;
   activeInterventionsCount: number;
   activityTodayCount: number;
-  aiConfigured: boolean;
-  recentInsights: InsightSummary[];
   recentInterventions: InterventionSummary[];
   recentActivity: ActivityItem[];
   activityTimeSeries: LabeledCount[];
   activityByEntityType: LabeledCount[];
   interventionsByPriority: LabeledCount[];
-  anomaliesBySeverity: LabeledCount[];
 }

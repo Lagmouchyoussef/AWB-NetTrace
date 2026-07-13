@@ -1,16 +1,10 @@
 package com.awb.backend.roles.superadmin.service;
 
-import com.awb.backend.core.dto.OverlayNetworkRequest;
 import com.awb.backend.core.dto.OverlayNetworkResponse;
-import com.awb.backend.core.entity.AuditAction;
-import com.awb.backend.core.entity.Datacenter;
 import com.awb.backend.core.entity.OverlayNetwork;
 import com.awb.backend.core.entity.OverlayNetworkStatus;
-import com.awb.backend.core.repository.DatacenterRepository;
 import com.awb.backend.core.repository.OverlayNetworkRepository;
 import com.awb.backend.core.repository.OverlayNetworkSpecifications;
-import com.awb.backend.core.util.AuditLogWriter;
-import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -19,20 +13,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+// Read-only: overlay networks (VXLAN/EVPN) are no longer created/edited/deleted through this
+// platform - only viewed. Mutating endpoints were removed from every role controller.
 @Service
 public class OverlayNetworkService {
 
   private final OverlayNetworkRepository overlayNetworkRepository;
-  private final DatacenterRepository datacenterRepository;
-  private final AuditLogWriter auditLogWriter;
 
-  public OverlayNetworkService(
-      OverlayNetworkRepository overlayNetworkRepository,
-      DatacenterRepository datacenterRepository,
-      AuditLogWriter auditLogWriter) {
+  public OverlayNetworkService(OverlayNetworkRepository overlayNetworkRepository) {
     this.overlayNetworkRepository = overlayNetworkRepository;
-    this.datacenterRepository = datacenterRepository;
-    this.auditLogWriter = auditLogWriter;
   }
 
   @Transactional(readOnly = true)
@@ -51,61 +40,6 @@ public class OverlayNetworkService {
     return toResponse(findActiveOrThrow(id));
   }
 
-  @Transactional
-  public OverlayNetworkResponse create(OverlayNetworkRequest request, String actorUsername) {
-    if (overlayNetworkRepository.existsByCodeIgnoreCase(request.getCode())) {
-      throw new ResponseStatusException(
-          HttpStatus.BAD_REQUEST, "An overlay network with this code already exists.");
-    }
-    if (overlayNetworkRepository.existsByVni(request.getVni())) {
-      throw new ResponseStatusException(
-          HttpStatus.BAD_REQUEST, "An overlay network with this VNI already exists.");
-    }
-
-    OverlayNetwork overlay = new OverlayNetwork();
-    overlay.setDatacenter(findActiveDatacenterOrThrow(request.getDatacenterId()));
-    applyRequest(overlay, request);
-    Instant now = Instant.now();
-    overlay.setCreatedAt(now);
-    overlay.setUpdatedAt(now);
-    OverlayNetworkResponse response = toResponse(overlayNetworkRepository.save(overlay));
-    auditLogWriter.log(
-        actorUsername, AuditAction.CREATE, "OverlayNetwork", response.getName(), null);
-    return response;
-  }
-
-  @Transactional
-  public OverlayNetworkResponse update(
-      Long id, OverlayNetworkRequest request, String actorUsername) {
-    OverlayNetwork overlay = findActiveOrThrow(id);
-    if (overlayNetworkRepository.existsByCodeIgnoreCaseAndIdNot(request.getCode(), id)) {
-      throw new ResponseStatusException(
-          HttpStatus.BAD_REQUEST, "An overlay network with this code already exists.");
-    }
-    if (overlayNetworkRepository.existsByVniAndIdNot(request.getVni(), id)) {
-      throw new ResponseStatusException(
-          HttpStatus.BAD_REQUEST, "An overlay network with this VNI already exists.");
-    }
-
-    overlay.setDatacenter(findActiveDatacenterOrThrow(request.getDatacenterId()));
-    applyRequest(overlay, request);
-    overlay.setUpdatedAt(Instant.now());
-    OverlayNetworkResponse response = toResponse(overlayNetworkRepository.save(overlay));
-    auditLogWriter.log(
-        actorUsername, AuditAction.UPDATE, "OverlayNetwork", response.getName(), null);
-    return response;
-  }
-
-  @Transactional
-  public void delete(Long id, String actorUsername) {
-    OverlayNetwork overlay = findActiveOrThrow(id);
-    overlay.setDeleted(true);
-    overlay.setUpdatedAt(Instant.now());
-    overlayNetworkRepository.save(overlay);
-    auditLogWriter.log(
-        actorUsername, AuditAction.DELETE, "OverlayNetwork", overlay.getName(), null);
-  }
-
   private OverlayNetwork findActiveOrThrow(Long id) {
     OverlayNetwork overlay =
         overlayNetworkRepository
@@ -118,31 +52,6 @@ public class OverlayNetworkService {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Overlay network not found.");
     }
     return overlay;
-  }
-
-  private Datacenter findActiveDatacenterOrThrow(Long datacenterId) {
-    Datacenter datacenter =
-        datacenterRepository
-            .findById(datacenterId)
-            .orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Datacenter not found."));
-    if (datacenter.isDeleted()) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Datacenter not found.");
-    }
-    return datacenter;
-  }
-
-  private void applyRequest(OverlayNetwork overlay, OverlayNetworkRequest request) {
-    overlay.setName(request.getName());
-    overlay.setCode(request.getCode());
-    overlay.setVni(request.getVni());
-    overlay.setOverlayType(request.getOverlayType());
-    overlay.setVlanId(request.getVlanId());
-    overlay.setVrfName(request.getVrfName());
-    overlay.setRouteDistinguisher(request.getRouteDistinguisher());
-    overlay.setRouteTargets(request.getRouteTargets());
-    overlay.setStatus(request.getStatus());
-    overlay.setNotes(request.getNotes());
   }
 
   private OverlayNetworkResponse toResponse(OverlayNetwork overlay) {

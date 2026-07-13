@@ -1,10 +1,6 @@
 <div class="page">
   <div class="page-header">
     <h1>{{ 'overlayNetworks.pageTitle' | translate }}</h1>
-    <button type="button" class="add-button" (click)="onCreate()">
-      <mat-icon fontSet="material-symbols-outlined">add</mat-icon>
-      {{ 'overlayNetworks.addNew' | translate }}
-    </button>
   </div>
 
   <app-data-table
@@ -12,12 +8,11 @@
     [data]="data()"
     [totalCount]="totalCount()"
     [loading]="loading()"
-    [hideDelete]="true"
+    [readOnly]="true"
     (page)="onPage($event)"
     (sortChange)="onSort($event)"
     (searchChange)="onSearch($event)"
     (view)="onView($event)"
-    (edit)="onEdit($event)"
     (exportCsv)="onExportCsv()"
   />
 </div>

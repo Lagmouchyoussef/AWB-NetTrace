@@ -32,10 +32,10 @@ public final class CarrierCircuitSpecifications {
     return (root, query, cb) -> cb.equal(root.get("status"), status);
   }
 
-  public static Specification<CarrierCircuit> hasEdgeId(Long edgeId) {
-    if (edgeId == null) {
+  public static Specification<CarrierCircuit> hasConnectorId(Long connectorId) {
+    if (connectorId == null) {
       return (root, query, cb) -> cb.conjunction();
     }
-    return (root, query, cb) -> cb.equal(root.get("edge").get("id"), edgeId);
+    return (root, query, cb) -> cb.equal(root.get("terminatesAtConnector").get("id"), connectorId);
   }
 }

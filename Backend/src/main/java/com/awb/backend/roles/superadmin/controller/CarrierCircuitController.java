@@ -34,9 +34,9 @@ public class CarrierCircuitController {
   public Page<CarrierCircuitResponse> list(
       @RequestParam(required = false) String search,
       @RequestParam(required = false) CarrierCircuitStatus status,
-      @RequestParam(required = false) Long edgeId,
+      @RequestParam(required = false) Long connectorId,
       Pageable pageable) {
-    return carrierCircuitService.list(search, status, edgeId, pageable);
+    return carrierCircuitService.list(search, status, connectorId, pageable);
   }
 
   @GetMapping("/{id}")

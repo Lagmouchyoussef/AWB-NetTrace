@@ -14,14 +14,6 @@ const PRIORITY_COLOR_ROLES: Record<string, string> = {
   LOW: 'good',
 };
 
-const SEVERITY_COLOR_ROLES: Record<string, string> = {
-  CRITICAL: 'ordinal-5',
-  HIGH: 'ordinal-4',
-  MEDIUM: 'ordinal-3',
-  LOW: 'ordinal-2',
-  INFO: 'ordinal-1',
-};
-
 @Component({
   selector: 'app-super-admin-dashboard',
   standalone: true,
@@ -84,14 +76,6 @@ export class SuperAdminDashboardComponent {
     })),
   );
 
-  protected readonly anomaliesBySeverityData = computed<ChartDatum[]>(() =>
-    (this.summary()?.anomaliesBySeverity ?? []).map((point) => ({
-      label: this.severityLabel(point.label),
-      count: point.count,
-      colorRole: SEVERITY_COLOR_ROLES[point.label],
-    })),
-  );
-
   protected readonly infraHealthData = computed<ChartDatum[]>(() => {
     const infra = this.summary()?.infra;
     if (!infra) {
@@ -120,10 +104,6 @@ export class SuperAdminDashboardComponent {
       },
     ];
   });
-
-  protected severityLabel(severity: string): string {
-    return this.translateService.instant(`aiInsights.severity.${severity}`);
-  }
 
   protected priorityLabel(priority: string): string {
     return this.translateService.instant(`interventions.priority.${priority}`);

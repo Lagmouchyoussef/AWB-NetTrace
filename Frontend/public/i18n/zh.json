@@ -35,25 +35,19 @@
     "devices": "设备",
     "fabricTopology": "网络架构与拓扑",
     "networkRoles": "网络角色",
-    "vxlanEvpnOverlay": "VXLAN/EVPN 叠加网络",
+    "overlayNetworksReadOnly": "VLAN / 叠加网络（只读）",
     "interactiveTopologyView": "交互式拓扑视图",
     "cabling": "布线",
     "cables": "线缆",
     "connectorsTransceivers": "连接器与收发器",
     "pathTracing": "路径追踪",
-    "sdwanConnectivity": "SD-WAN 与连接",
-    "sdwanEdges": "SD-WAN 边缘节点",
-    "overlayTunnels": "叠加隧道",
-    "carrierCircuits": "运营商线路",
+    "carrierCircuits": "运营商线路（Meet-Me-Room）",
     "telemetryMonitoring": "遥测与监控",
     "telemetryConnectors": "遥测连接器",
-    "realTimeDashboards": "实时仪表盘",
-    "anomalyDetection": "异常检测",
     "interventions": "维护干预",
     "myInterventionRequests": "我的维护干预申请",
     "technicalLibrary": "技术资料库",
     "equipmentTypes": "设备类型",
-    "networkTechnologyCatalog": "网络技术目录",
     "administration": "管理",
     "systemOversight": "系统监督",
     "users": "用户",
@@ -64,10 +58,7 @@
     "syncDrift": "同步与偏差检测",
     "auditCompliance": "审计与合规",
     "reports": "报表",
-    "myAccount": "我的账户",
-    "aiOperations": "AI 运营",
-    "aiInsights": "AI 洞察",
-    "aiSettings": "AI 设置"
+    "myAccount": "我的账户"
   },
   "topbar": {
     "searchPlaceholder": "搜索...",
@@ -96,7 +87,6 @@
     "stats": {
       "portsUsed": "已用端口",
       "vlanCount": "VLAN / 叠加网络",
-      "activeTunnels": "活动叠加隧道",
       "devices": "设备"
     },
     "jumpToTopology": "跳转到拓扑视图",
@@ -106,15 +96,11 @@
   "auditorDashboard": {
     "title": "合规概览",
     "jumpToAuditLog": "跳转到审计日志",
-    "jumpToAnomalies": "跳转到异常检测",
     "stats": {
       "totalAuditEvents": "审计事件总数",
-      "openAnomalies": "待处理异常",
-      "criticalAnomalies": "严重异常",
       "activeReports": "启用中的报告"
     },
-    "eventsByAction": "按操作类型划分的审计事件",
-    "anomaliesBySeverity": "按严重程度划分的异常"
+    "eventsByAction": "按操作类型划分的审计事件"
   },
   "topologyView": {
     "pageTitle": "交互式拓扑视图",
@@ -160,14 +146,10 @@
       "rooms": "机房",
       "racks": "机柜",
       "devices": "设备",
-      "openAnomalies": "未解决的异常",
       "activeInterventions": "进行中的干预",
       "activityToday": "今日活动"
     },
     "panels": {
-      "aiInsights": "AI 洞察",
-      "aiNotConfigured": "AI 助手尚未配置。",
-      "noInsights": "暂无 AI 洞察。",
       "recentInterventions": "最近的干预",
       "noInterventions": "暂无最近的干预。",
       "activityFeed": "实时活动动态",
@@ -186,8 +168,7 @@
       "activityTrend": "活动趋势",
       "activityByEntityType": "按元素类型划分的活动",
       "infraHealth": "基础设施健康状况",
-      "interventionsByPriority": "按优先级划分的干预",
-      "anomaliesBySeverity": "按严重程度划分的异常"
+      "interventionsByPriority": "按优先级划分的干预"
     },
     "dateRange": {
       "label": "时间范围：",
@@ -476,13 +457,7 @@
     }
   },
   "overlayNetworks": {
-    "pageTitle": "VXLAN/EVPN 叠加网络",
-    "addNew": "添加叠加网络",
-    "createTitle": "新建叠加网络",
-    "editTitle": "编辑叠加网络",
-    "deleteTitle": "删除叠加网络",
-    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
-    "saveError": "保存时出错。请确认代码和VNI是唯一的，然后重试。",
+    "pageTitle": "VLAN / 叠加网络（只读）",
     "columns": {
       "name": "名称",
       "code": "代码",
@@ -503,9 +478,6 @@
       "routeTargets": "路由目标",
       "status": "状态",
       "notes": "备注"
-    },
-    "validation": {
-      "required": "此字段为必填项。"
     },
     "overlayType": {
       "L2_EVPN": "L2 EVPN（桥接叠加）",
@@ -699,86 +671,8 @@
       "FAILED": "失败"
     }
   },
-  "sdwanEdges": {
-    "pageTitle": "SD-WAN 边缘设备",
-    "addNew": "添加SD-WAN边缘设备",
-    "createTitle": "新建SD-WAN边缘设备",
-    "editTitle": "编辑SD-WAN边缘设备",
-    "deleteTitle": "删除SD-WAN边缘设备",
-    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
-    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
-    "columns": {
-      "name": "名称",
-      "code": "代码",
-      "datacenter": "数据中心",
-      "vendor": "厂商",
-      "status": "状态"
-    },
-    "fields": {
-      "datacenter": "数据中心",
-      "name": "名称",
-      "code": "代码",
-      "vendor": "厂商",
-      "model": "型号",
-      "wanLinkCount": "WAN链路数量",
-      "managementIp": "管理IP",
-      "status": "状态",
-      "notes": "备注"
-    },
-    "validation": {
-      "required": "此字段为必填项。"
-    },
-    "status": {
-      "ACTIVE": "使用中",
-      "MAINTENANCE": "维护中",
-      "DECOMMISSIONED": "已停用",
-      "PROVISIONING": "配置中"
-    }
-  },
-  "overlayTunnels": {
-    "pageTitle": "叠加隧道",
-    "addNew": "添加叠加隧道",
-    "createTitle": "新建叠加隧道",
-    "editTitle": "编辑叠加隧道",
-    "deleteTitle": "删除叠加隧道",
-    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
-    "saveError": "保存时出错。请确认代码是唯一的，且源与目标不同。",
-    "columns": {
-      "name": "名称",
-      "code": "代码",
-      "source": "源",
-      "target": "目标",
-      "tunnelType": "隧道类型",
-      "status": "状态"
-    },
-    "fields": {
-      "source": "源边缘设备",
-      "target": "目标边缘设备",
-      "name": "名称",
-      "code": "代码",
-      "tunnelType": "隧道类型",
-      "bandwidthMbps": "带宽（Mbps）",
-      "status": "状态",
-      "notes": "备注"
-    },
-    "validation": {
-      "required": "此字段为必填项。"
-    },
-    "tunnelType": {
-      "IPSEC": "IPsec",
-      "GRE": "GRE",
-      "DTLS": "DTLS",
-      "VXLAN": "VXLAN"
-    },
-    "status": {
-      "UP": "正常",
-      "DOWN": "中断",
-      "DEGRADED": "降级",
-      "PLANNED": "已规划"
-    }
-  },
   "carrierCircuits": {
-    "pageTitle": "运营商线路",
+    "pageTitle": "运营商线路（Meet-Me-Room）",
     "addNew": "添加运营商线路",
     "createTitle": "新建运营商线路",
     "editTitle": "编辑运营商线路",
@@ -788,18 +682,18 @@
     "columns": {
       "name": "名称",
       "code": "代码",
-      "edge": "SD-WAN边缘设备",
+      "connector": "终接连接器",
       "circuitType": "线路类型",
       "provider": "运营商",
       "status": "状态"
     },
     "fields": {
-      "edge": "SD-WAN边缘设备",
+      "connector": "终接连接器",
+      "noConnector": "无",
       "name": "名称",
       "code": "代码",
       "circuitType": "线路类型",
       "provider": "运营商",
-      "bandwidthMbps": "带宽（Mbps）",
       "status": "状态",
       "notes": "备注"
     },
@@ -860,93 +754,6 @@
       "PAUSED": "已暂停",
       "ERROR": "错误",
       "DECOMMISSIONED": "已停用"
-    }
-  },
-  "realTimeDashboards": {
-    "pageTitle": "实时仪表盘",
-    "addNew": "添加仪表盘",
-    "createTitle": "新建仪表盘",
-    "editTitle": "编辑仪表盘",
-    "deleteTitle": "删除仪表盘",
-    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
-    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
-    "columns": {
-      "name": "名称",
-      "code": "代码",
-      "description": "描述",
-      "refreshIntervalSeconds": "刷新间隔",
-      "widgetCount": "小部件数量",
-      "status": "状态"
-    },
-    "fields": {
-      "name": "名称",
-      "code": "代码",
-      "description": "描述",
-      "refreshIntervalSeconds": "刷新间隔（秒）",
-      "widgetCount": "小部件数量",
-      "status": "状态",
-      "notes": "备注"
-    },
-    "validation": {
-      "required": "此字段为必填项。"
-    },
-    "status": {
-      "ACTIVE": "使用中",
-      "DRAFT": "草稿",
-      "ARCHIVED": "已归档"
-    }
-  },
-  "anomalyDetections": {
-    "pageTitle": "异常检测",
-    "addNew": "报告异常",
-    "createTitle": "新建异常",
-    "editTitle": "编辑异常",
-    "deleteTitle": "删除异常",
-    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
-    "saveError": "保存时出错。请检查字段后重试。",
-    "columns": {
-      "title": "标题",
-      "device": "设备",
-      "anomalyType": "类型",
-      "severity": "严重程度",
-      "status": "状态",
-      "detectedAt": "检测时间"
-    },
-    "fields": {
-      "device": "设备",
-      "title": "标题",
-      "description": "描述",
-      "anomalyType": "异常类型",
-      "severity": "严重程度",
-      "status": "状态",
-      "detectedAt": "检测时间",
-      "resolvedAt": "解决时间",
-      "notes": "备注"
-    },
-    "validation": {
-      "required": "此字段为必填项。"
-    },
-    "anomalyType": {
-      "THRESHOLD_BREACH": "阈值突破",
-      "TRAFFIC_SPIKE": "流量激增",
-      "FLAPPING_LINK": "链路抖动",
-      "CONFIG_DRIFT": "配置漂移",
-      "UNAUTHORIZED_ACCESS": "未授权访问",
-      "PACKET_LOSS": "丢包",
-      "LATENCY_DEGRADATION": "延迟劣化"
-    },
-    "severity": {
-      "CRITICAL": "严重",
-      "HIGH": "高",
-      "MEDIUM": "中",
-      "LOW": "低",
-      "INFO": "信息"
-    },
-    "status": {
-      "OPEN": "待处理",
-      "ACKNOWLEDGED": "已确认",
-      "RESOLVED": "已解决",
-      "FALSE_POSITIVE": "误报"
     }
   },
   "interventions": {
@@ -1047,6 +854,8 @@
       "code": "代码",
       "category": "类别",
       "manufacturer": "制造商",
+      "vendor": "供应商",
+      "version": "版本",
       "status": "状态"
     },
     "fields": {
@@ -1054,6 +863,9 @@
       "code": "代码",
       "category": "类别",
       "manufacturer": "制造商",
+      "vendor": "供应商",
+      "version": "版本",
+      "description": "描述",
       "defaultRackUnits": "默认高度（U）",
       "defaultPowerWatts": "默认功率（瓦）",
       "status": "状态",
@@ -1072,48 +884,6 @@
     },
     "status": {
       "ACTIVE": "使用中",
-      "DEPRECATED": "已弃用"
-    }
-  },
-  "technologyCatalog": {
-    "pageTitle": "网络技术目录",
-    "addNew": "添加技术",
-    "createTitle": "新建技术",
-    "editTitle": "编辑技术",
-    "deleteTitle": "删除技术",
-    "deleteMessage": "确定要删除\"{{name}}\"吗？管理员之后可以撤销此操作。",
-    "saveError": "保存时出错。请确认代码是唯一的，然后重试。",
-    "columns": {
-      "name": "名称",
-      "code": "代码",
-      "category": "类别",
-      "vendor": "供应商",
-      "status": "状态"
-    },
-    "fields": {
-      "name": "名称",
-      "code": "代码",
-      "category": "类别",
-      "vendor": "供应商",
-      "version": "版本",
-      "description": "描述",
-      "status": "状态",
-      "notes": "备注"
-    },
-    "validation": {
-      "required": "此字段为必填项。"
-    },
-    "category": {
-      "NETWORKING_PROTOCOL": "网络协议",
-      "SECURITY": "安全",
-      "VIRTUALIZATION": "虚拟化",
-      "MONITORING": "监控",
-      "STORAGE": "存储",
-      "CLOUD": "云"
-    },
-    "status": {
-      "ACTIVE": "使用中",
-      "EVALUATION": "评估中",
       "DEPRECATED": "已弃用"
     }
   },
@@ -1472,76 +1242,6 @@
       "email": "邮箱地址无效。",
       "passwordLength": "密码至少需要8个字符。"
     }
-  },
-  "aiChat": {
-    "title": "AI 助手",
-    "placeholder": "询问有关您的数据中心基础设施的问题...",
-    "inputPlaceholder": "输入消息...",
-    "loading": "AI 正在检查实时数据...",
-    "toolsUsed": "已使用的工具",
-    "error": "联系 AI 助手时出错，请重试。"
-  },
-  "aiInsights": {
-    "pageTitle": "AI 洞察",
-    "columns": {
-      "title": "标题",
-      "type": "类型",
-      "severity": "严重程度",
-      "status": "状态",
-      "entity": "实体",
-      "createdAt": "创建时间"
-    },
-    "type": {
-      "RISK_PREDICTION": "风险预测",
-      "RECOMMENDATION": "建议",
-      "AUTONOMOUS_ACTION": "自主操作"
-    },
-    "severity": {
-      "CRITICAL": "严重",
-      "HIGH": "高",
-      "MEDIUM": "中",
-      "LOW": "低",
-      "INFO": "信息"
-    },
-    "status": {
-      "NEW": "新建",
-      "ACKNOWLEDGED": "已确认",
-      "APPLIED": "已应用",
-      "DISMISSED": "已忽略"
-    },
-    "fields": {
-      "severity": "严重程度",
-      "status": "状态",
-      "entity": "实体",
-      "summary": "摘要",
-      "recommendedAction": "建议操作",
-      "actionTaken": "已采取的操作",
-      "createdAt": "创建时间"
-    },
-    "acknowledge": "确认",
-    "dismiss": "忽略",
-    "apply": "应用",
-    "dismissTitle": "忽略洞察",
-    "dismissMessage": "确定要忽略\"{{title}}\"吗？",
-    "applyTitle": "应用建议",
-    "applyMessage": "确定要应用针对\"{{title}}\"的建议操作吗？这将对平台进行实际更改。",
-    "actionError": "执行此操作时出错，请重试。"
-  },
-  "aiSettings": {
-    "pageTitle": "AI 设置",
-    "assistantEnabled": "AI 聊天助手",
-    "assistantEnabledDescription": "允许超级管理员通过 AI 聊天小部件询问问题并对实时数据中心数据采取操作。",
-    "predictiveAnalysisEnabled": "预测性分析",
-    "predictiveAnalysisEnabledDescription": "运行一项计划任务，对基础设施数据进行推理，以在风险变成故障之前发出警示。",
-    "autonomousActionsEnabled": "自主操作",
-    "autonomousActionsEnabledDescription": "允许 AI 自行应用补救措施（状态更改、紧急干预），无需等待人工批准。默认关闭。",
-    "apiKeyConfigured": "已配置 Anthropic API 密钥",
-    "confirmAutonomousTitle": "启用自主操作？",
-    "confirmAutonomousMessage": "AI 将能够自动更改设备状态并创建紧急干预，无需人工批准。每项操作仍会被记录并可审计。是否继续？",
-    "confirmAutonomousEnable": "启用",
-    "saveSuccess": "设置已成功保存。",
-    "saveError": "保存时出错，请重试。",
-    "loadError": "无法加载 AI 设置，请检查您的网络连接并重试。"
   },
   "technician": {
     "nav": {

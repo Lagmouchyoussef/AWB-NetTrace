@@ -12,6 +12,21 @@
       <dd>{{ data.manufacturer }}</dd>
     }
 
+    @if (data.vendor) {
+      <dt>{{ 'equipmentTypes.fields.vendor' | translate }}</dt>
+      <dd>{{ data.vendor }}</dd>
+    }
+
+    @if (data.version) {
+      <dt>{{ 'equipmentTypes.fields.version' | translate }}</dt>
+      <dd>{{ data.version }}</dd>
+    }
+
+    @if (data.description) {
+      <dt>{{ 'equipmentTypes.fields.description' | translate }}</dt>
+      <dd>{{ data.description }}</dd>
+    }
+
     @if (data.defaultRackUnits !== null) {
       <dt>{{ 'equipmentTypes.fields.defaultRackUnits' | translate }}</dt>
       <dd>{{ data.defaultRackUnits }} U</dd>

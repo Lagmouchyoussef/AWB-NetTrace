@@ -53,6 +53,9 @@ export class EquipmentTypeFormDialogComponent {
       validators: [Validators.required],
     }),
     manufacturer: new FormControl(this.data?.manufacturer ?? ''),
+    vendor: new FormControl(this.data?.vendor ?? ''),
+    version: new FormControl(this.data?.version ?? ''),
+    description: new FormControl(this.data?.description ?? ''),
     defaultRackUnits: new FormControl<number | null>(this.data?.defaultRackUnits ?? null),
     defaultPowerWatts: new FormControl<number | null>(this.data?.defaultPowerWatts ?? null),
     status: new FormControl<EquipmentTypeStatus>(this.data?.status ?? 'ACTIVE', {

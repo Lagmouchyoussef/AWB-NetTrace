@@ -1,26 +1,21 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { firstValueFrom } from 'rxjs';
 import { DataTableColumn } from '../../../../core/components/data-table/data-table.model';
 import { DataTableComponent } from '../../../../core/components/data-table/data-table.component';
-import {
-  ConfirmDialogComponent,
-  ConfirmDialogData,
-} from '../../../../core/components/confirm-dialog/confirm-dialog.component';
 import { DcAdminOverlayNetworkService } from '../../../../core/services/dc-admin-overlay-network.service';
 import { downloadCsv } from '../../../../core/utils/csv-export';
 import { OverlayNetwork } from '../../../super-admin/pages/overlay-networks/overlay-network.model';
-import { DcAdminOverlayNetworkFormDialogComponent } from './overlay-network-form-dialog.component';
 import { DcAdminOverlayNetworkDetailDialogComponent } from './overlay-network-detail-dialog.component';
 
+// Read-only: the backend controller only exposes GET (list + detail) - POST/PUT/DELETE were
+// removed. No create/edit/delete affordance here (readOnly on the table hides them).
 @Component({
   selector: 'app-dc-admin-overlay-networks-list',
   standalone: true,
-  imports: [DataTableComponent, MatIconModule, TranslatePipe],
+  imports: [DataTableComponent, TranslatePipe],
   templateUrl: './overlay-networks-list.component.html',
   styleUrl: './overlay-networks-list.component.css',
 })
@@ -81,48 +76,8 @@ export class DcAdminOverlayNetworksListComponent implements OnInit {
     this.load();
   }
 
-  protected onCreate(): void {
-    const ref = this.dialog.open(DcAdminOverlayNetworkFormDialogComponent, {
-      width: '560px',
-      data: null,
-    });
-    ref.afterClosed().subscribe((saved) => {
-      if (saved) {
-        this.load();
-      }
-    });
-  }
-
   protected onView(row: OverlayNetwork): void {
     this.dialog.open(DcAdminOverlayNetworkDetailDialogComponent, { width: '480px', data: row });
-  }
-
-  protected onEdit(row: OverlayNetwork): void {
-    const ref = this.dialog.open(DcAdminOverlayNetworkFormDialogComponent, {
-      width: '560px',
-      data: row,
-    });
-    ref.afterClosed().subscribe((saved) => {
-      if (saved) {
-        this.load();
-      }
-    });
-  }
-
-  protected async onDelete(row: OverlayNetwork): Promise<void> {
-    const confirmData: ConfirmDialogData = {
-      titleKey: 'overlayNetworks.deleteTitle',
-      messageKey: 'overlayNetworks.deleteMessage',
-      messageParams: { name: row.name },
-      confirmKey: 'common.delete',
-      danger: true,
-    };
-    const ref = this.dialog.open(ConfirmDialogComponent, { width: '420px', data: confirmData });
-    const confirmed = await firstValueFrom(ref.afterClosed());
-    if (confirmed) {
-      await this.overlayNetworkService.delete(row.id);
-      this.load();
-    }
   }
 
   protected async onExportCsv(): Promise<void> {

@@ -7,7 +7,6 @@ import { NavSection } from '../../core/types/nav';
 export const AUDITOR_NAV: NavSection[] = [
   { labelKey: 'nav.dashboard', icon: 'dashboard', path: '' },
   { labelKey: 'nav.auditCompliance', icon: 'fact_check', path: 'audit-log' },
-  { labelKey: 'nav.anomalyDetection', icon: 'sensors', path: 'anomaly-detections' },
   { labelKey: 'nav.allInterventions', icon: 'build_circle', path: 'interventions' },
   {
     labelKey: 'nav.systemOversight',

@@ -45,19 +45,19 @@ public class PermissionSeeder implements CommandLineRunner {
         "Créer, modifier et supprimer les câbles, connecteurs et traces de chemin.");
     seed(
         "sdwan.manage",
-        "Gérer le SD-WAN",
+        "Gérer les circuits opérateurs",
         PermissionModule.SDWAN,
-        "Créer, modifier et supprimer les edges, tunnels et circuits opérateurs.");
+        "Créer, modifier et supprimer les circuits opérateurs (points d'atterrissage meet-me-room).");
     seed(
         "telemetry.manage",
         "Gérer la télémétrie",
         PermissionModule.TELEMETRY,
-        "Créer, modifier et supprimer les connecteurs de télémétrie et tableaux de bord.");
+        "Créer, modifier et supprimer les connecteurs de télémétrie.");
     seed(
         "library.manage",
         "Gérer la bibliothèque technique",
         PermissionModule.LIBRARY,
-        "Créer, modifier et supprimer les types d'équipements et le catalogue technologique.");
+        "Créer, modifier et supprimer les types d'équipements.");
     seed(
         "administration.manage",
         "Gérer l'administration",

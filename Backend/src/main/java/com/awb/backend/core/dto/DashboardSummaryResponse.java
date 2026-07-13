@@ -6,17 +6,13 @@ import java.util.List;
 public class DashboardSummaryResponse {
 
   private InfraCounts infra;
-  private long openAnomaliesCount;
   private long activeInterventionsCount;
   private long activityTodayCount;
-  private boolean aiConfigured;
-  private List<InsightSummary> recentInsights;
   private List<InterventionSummary> recentInterventions;
   private List<ActivityItem> recentActivity;
   private List<LabeledCount> activityTimeSeries;
   private List<LabeledCount> activityByEntityType;
   private List<LabeledCount> interventionsByPriority;
-  private List<LabeledCount> anomaliesBySeverity;
 
   public InfraCounts getInfra() {
     return infra;
@@ -26,36 +22,12 @@ public class DashboardSummaryResponse {
     this.infra = infra;
   }
 
-  public long getOpenAnomaliesCount() {
-    return openAnomaliesCount;
-  }
-
-  public void setOpenAnomaliesCount(long openAnomaliesCount) {
-    this.openAnomaliesCount = openAnomaliesCount;
-  }
-
   public long getActiveInterventionsCount() {
     return activeInterventionsCount;
   }
 
   public void setActiveInterventionsCount(long activeInterventionsCount) {
     this.activeInterventionsCount = activeInterventionsCount;
-  }
-
-  public boolean isAiConfigured() {
-    return aiConfigured;
-  }
-
-  public void setAiConfigured(boolean aiConfigured) {
-    this.aiConfigured = aiConfigured;
-  }
-
-  public List<InsightSummary> getRecentInsights() {
-    return recentInsights;
-  }
-
-  public void setRecentInsights(List<InsightSummary> recentInsights) {
-    this.recentInsights = recentInsights;
   }
 
   public List<InterventionSummary> getRecentInterventions() {
@@ -104,14 +76,6 @@ public class DashboardSummaryResponse {
 
   public void setInterventionsByPriority(List<LabeledCount> interventionsByPriority) {
     this.interventionsByPriority = interventionsByPriority;
-  }
-
-  public List<LabeledCount> getAnomaliesBySeverity() {
-    return anomaliesBySeverity;
-  }
-
-  public void setAnomaliesBySeverity(List<LabeledCount> anomaliesBySeverity) {
-    this.anomaliesBySeverity = anomaliesBySeverity;
   }
 
   public static class LabeledCount {
@@ -214,54 +178,6 @@ public class DashboardSummaryResponse {
 
     public void setDevicesActive(long devicesActive) {
       this.devicesActive = devicesActive;
-    }
-  }
-
-  public static class InsightSummary {
-    private Long id;
-    private String severity;
-    private String status;
-    private String title;
-    private Instant createdAt;
-
-    public Long getId() {
-      return id;
-    }
-
-    public void setId(Long id) {
-      this.id = id;
-    }
-
-    public String getSeverity() {
-      return severity;
-    }
-
-    public void setSeverity(String severity) {
-      this.severity = severity;
-    }
-
-    public String getStatus() {
-      return status;
-    }
-
-    public void setStatus(String status) {
-      this.status = status;
-    }
-
-    public String getTitle() {
-      return title;
-    }
-
-    public void setTitle(String title) {
-      this.title = title;
-    }
-
-    public Instant getCreatedAt() {
-      return createdAt;
-    }
-
-    public void setCreatedAt(Instant createdAt) {
-      this.createdAt = createdAt;
     }
   }
 

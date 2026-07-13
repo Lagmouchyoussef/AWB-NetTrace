@@ -5,13 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface OverlayNetworkRepository
-    extends JpaRepository<OverlayNetwork, Long>, JpaSpecificationExecutor<OverlayNetwork> {
-
-  boolean existsByCodeIgnoreCase(String code);
-
-  boolean existsByCodeIgnoreCaseAndIdNot(String code, Long id);
-
-  boolean existsByVni(Integer vni);
-
-  boolean existsByVniAndIdNot(Integer vni, Long id);
-}
+    extends JpaRepository<OverlayNetwork, Long>, JpaSpecificationExecutor<OverlayNetwork> {}

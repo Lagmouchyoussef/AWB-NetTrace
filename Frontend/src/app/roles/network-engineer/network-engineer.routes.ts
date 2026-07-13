@@ -19,13 +19,9 @@ const REAL_PAGE_PATHS = new Set([
   'fabric/overlay-networks',
   'cabling/cables',
   'cabling/connectors',
-  'sdwan/edges',
-  'sdwan/tunnels',
-  'sdwan/circuits',
+  'carrier-circuits',
   'telemetry/connectors',
-  'telemetry/dashboards',
   'library/equipment-types',
-  'library/technology-catalog',
   'my-requests',
 ]);
 
@@ -117,7 +113,7 @@ export const networkEngineerRoutes: Routes = [
           import('./pages/fabric/overlay-networks/overlay-networks-list.component').then(
             (m) => m.NeOverlayNetworksListComponent,
           ),
-        data: { titleKey: 'nav.vxlanEvpnOverlay', sectionKey: 'nav.fabricTopology' },
+        data: { titleKey: 'nav.overlayNetworksReadOnly', sectionKey: 'nav.fabricTopology' },
       },
       {
         path: 'cabling/cables',
@@ -136,28 +132,12 @@ export const networkEngineerRoutes: Routes = [
         data: { titleKey: 'nav.connectorsTransceivers', sectionKey: 'nav.cabling' },
       },
       {
-        path: 'sdwan/edges',
+        path: 'carrier-circuits',
         loadComponent: () =>
-          import('./pages/sdwan/edges/sdwan-edges-list.component').then(
-            (m) => m.NeSdwanEdgesListComponent,
-          ),
-        data: { titleKey: 'nav.sdwanEdges', sectionKey: 'nav.sdwanConnectivity' },
-      },
-      {
-        path: 'sdwan/tunnels',
-        loadComponent: () =>
-          import('./pages/sdwan/tunnels/overlay-tunnels-list.component').then(
-            (m) => m.NeOverlayTunnelsListComponent,
-          ),
-        data: { titleKey: 'nav.overlayTunnels', sectionKey: 'nav.sdwanConnectivity' },
-      },
-      {
-        path: 'sdwan/circuits',
-        loadComponent: () =>
-          import('./pages/sdwan/circuits/carrier-circuits-list.component').then(
+          import('./pages/carrier-circuits/carrier-circuits-list.component').then(
             (m) => m.NeCarrierCircuitsListComponent,
           ),
-        data: { titleKey: 'nav.carrierCircuits', sectionKey: 'nav.sdwanConnectivity' },
+        data: { titleKey: 'nav.carrierCircuits' },
       },
       {
         path: 'telemetry/connectors',
@@ -168,28 +148,12 @@ export const networkEngineerRoutes: Routes = [
         data: { titleKey: 'nav.telemetryConnectors', sectionKey: 'nav.telemetryMonitoring' },
       },
       {
-        path: 'telemetry/dashboards',
-        loadComponent: () =>
-          import('./pages/telemetry/dashboards/real-time-dashboards-list.component').then(
-            (m) => m.NeRealTimeDashboardsListComponent,
-          ),
-        data: { titleKey: 'nav.realTimeDashboards', sectionKey: 'nav.telemetryMonitoring' },
-      },
-      {
         path: 'library/equipment-types',
         loadComponent: () =>
           import('./pages/library/device-types/equipment-types-list.component').then(
             (m) => m.NeEquipmentTypesListComponent,
           ),
         data: { titleKey: 'nav.equipmentTypes', sectionKey: 'nav.technicalLibrary' },
-      },
-      {
-        path: 'library/technology-catalog',
-        loadComponent: () =>
-          import('./pages/library/technology-catalog/technology-catalog-list.component').then(
-            (m) => m.NeTechnologyCatalogListComponent,
-          ),
-        data: { titleKey: 'nav.networkTechnologyCatalog', sectionKey: 'nav.technicalLibrary' },
       },
       {
         path: 'my-requests',

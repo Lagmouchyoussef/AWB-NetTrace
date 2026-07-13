@@ -25,14 +25,7 @@ export class AuditorDashboardComponent {
   protected readonly loading = computed(() => this.summary() === null);
 
   protected readonly totalAuditEvents = computed(() => this.summary()?.totalAuditEvents ?? 0);
-  protected readonly openAnomaliesCount = computed(() => this.summary()?.openAnomaliesCount ?? 0);
-  protected readonly criticalAnomaliesCount = computed(
-    () => this.summary()?.criticalAnomaliesCount ?? 0,
-  );
   protected readonly activeReportsCount = computed(() => this.summary()?.activeReportsCount ?? 0);
 
   protected readonly actionData = computed<ChartDatum[]>(() => this.summary()?.actionData ?? []);
-  protected readonly severityData = computed<ChartDatum[]>(
-    () => this.summary()?.severityData ?? [],
-  );
 }

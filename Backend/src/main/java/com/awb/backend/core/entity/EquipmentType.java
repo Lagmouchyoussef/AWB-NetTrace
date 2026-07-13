@@ -41,6 +41,15 @@ public class EquipmentType {
   @Column(name = "status", nullable = false)
   private EquipmentTypeStatus status;
 
+  @Column(name = "vendor")
+  private String vendor;
+
+  @Column(name = "version")
+  private String version;
+
+  @Column(name = "description")
+  private String description;
+
   @Column(name = "notes")
   private String notes;
 
@@ -111,6 +120,30 @@ public class EquipmentType {
 
   public void setStatus(EquipmentTypeStatus status) {
     this.status = status;
+  }
+
+  public String getVendor() {
+    return vendor;
+  }
+
+  public void setVendor(String vendor) {
+    this.vendor = vendor;
+  }
+
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public String getNotes() {

@@ -20,7 +20,7 @@ export const DC_ADMIN_NAV: NavSection[] = [
     icon: 'hub',
     children: [
       { labelKey: 'nav.networkRoles', icon: 'device_hub', path: 'fabric/network-roles' },
-      { labelKey: 'nav.vxlanEvpnOverlay', icon: 'layers', path: 'fabric/overlay-networks' },
+      { labelKey: 'nav.overlayNetworksReadOnly', icon: 'layers', path: 'fabric/overlay-networks' },
       { labelKey: 'nav.interactiveTopologyView', icon: 'share', path: 'fabric/topology' },
     ],
   },
@@ -37,26 +37,12 @@ export const DC_ADMIN_NAV: NavSection[] = [
       { labelKey: 'nav.pathTracing', icon: 'route', path: 'cabling/path-tracing' },
     ],
   },
-  {
-    labelKey: 'nav.sdwanConnectivity',
-    icon: 'cloud',
-    children: [
-      { labelKey: 'nav.sdwanEdges', icon: 'router', path: 'sdwan/edges' },
-      { labelKey: 'nav.overlayTunnels', icon: 'swap_horiz', path: 'sdwan/tunnels' },
-      { labelKey: 'nav.carrierCircuits', icon: 'cell_tower', path: 'sdwan/circuits' },
-    ],
-  },
+  { labelKey: 'nav.carrierCircuits', icon: 'cell_tower', path: 'carrier-circuits' },
   {
     labelKey: 'nav.telemetryMonitoring',
     icon: 'sensors',
     children: [
       { labelKey: 'nav.telemetryConnectors', icon: 'sensors', path: 'telemetry/connectors' },
-      { labelKey: 'nav.realTimeDashboards', icon: 'monitoring', path: 'telemetry/dashboards' },
-      {
-        labelKey: 'nav.anomalyDetection',
-        icon: 'troubleshoot',
-        path: 'anomaly-detections',
-      },
     ],
   },
   {
@@ -76,11 +62,6 @@ export const DC_ADMIN_NAV: NavSection[] = [
     icon: 'menu_book',
     children: [
       { labelKey: 'nav.equipmentTypes', icon: 'category', path: 'library/equipment-types' },
-      {
-        labelKey: 'nav.networkTechnologyCatalog',
-        icon: 'list_alt',
-        path: 'library/technology-catalog',
-      },
     ],
   },
   { labelKey: 'nav.auditCompliance', icon: 'fact_check', path: 'audit-compliance' },

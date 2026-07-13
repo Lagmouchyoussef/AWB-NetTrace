@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 // Delegates to the same DatacenterService Super Admin uses - see DcAdminDatacenterController.
 // Read-only in the Network Engineer frontend (this role places devices, it doesn't create
-// sites); write endpoints are left in place rather than removed, matching DcAdminEquipmentType/
-// TechnologyCatalogController's precedent for a read-only-in-UI module.
+// sites); write endpoints are left in place rather than removed, matching
+// DcAdminEquipmentTypeController's precedent for a read-only-in-UI module.
 @RestController
 @RequestMapping("/api/roles/network-engineer/datacenters")
 public class NetworkEngineerDatacenterController {

@@ -1,10 +1,7 @@
 package com.awb.backend.roles.superadmin.service;
 
-import com.awb.backend.ai.AnthropicGateway;
 import com.awb.backend.core.dto.DashboardSummaryResponse;
 import com.awb.backend.core.dto.DashboardSummaryResponse.LabeledCount;
-import com.awb.backend.core.entity.AnomalyDetectionStatus;
-import com.awb.backend.core.entity.AnomalySeverity;
 import com.awb.backend.core.entity.AuditLog;
 import com.awb.backend.core.entity.Datacenter;
 import com.awb.backend.core.entity.DatacenterStatus;
@@ -16,8 +13,6 @@ import com.awb.backend.core.entity.Rack;
 import com.awb.backend.core.entity.RackStatus;
 import com.awb.backend.core.entity.Room;
 import com.awb.backend.core.entity.RoomStatus;
-import com.awb.backend.core.repository.AiInsightRepository;
-import com.awb.backend.core.repository.AnomalyDetectionRepository;
 import com.awb.backend.core.repository.AuditLogRepository;
 import com.awb.backend.core.repository.DatacenterRepository;
 import com.awb.backend.core.repository.DeviceRepository;
@@ -50,31 +45,22 @@ public class DashboardService {
   private final RoomRepository roomRepository;
   private final RackRepository rackRepository;
   private final DeviceRepository deviceRepository;
-  private final AnomalyDetectionRepository anomalyDetectionRepository;
   private final InterventionRepository interventionRepository;
-  private final AiInsightRepository aiInsightRepository;
   private final AuditLogRepository auditLogRepository;
-  private final AnthropicGateway anthropicGateway;
 
   public DashboardService(
       DatacenterRepository datacenterRepository,
       RoomRepository roomRepository,
       RackRepository rackRepository,
       DeviceRepository deviceRepository,
-      AnomalyDetectionRepository anomalyDetectionRepository,
       InterventionRepository interventionRepository,
-      AiInsightRepository aiInsightRepository,
-      AuditLogRepository auditLogRepository,
-      AnthropicGateway anthropicGateway) {
+      AuditLogRepository auditLogRepository) {
     this.datacenterRepository = datacenterRepository;
     this.roomRepository = roomRepository;
     this.rackRepository = rackRepository;
     this.deviceRepository = deviceRepository;
-    this.anomalyDetectionRepository = anomalyDetectionRepository;
     this.interventionRepository = interventionRepository;
-    this.aiInsightRepository = aiInsightRepository;
     this.auditLogRepository = auditLogRepository;
-    this.anthropicGateway = anthropicGateway;
   }
 
   @Transactional(readOnly = true)
@@ -84,10 +70,6 @@ public class DashboardService {
 
     DashboardSummaryResponse response = new DashboardSummaryResponse();
     response.setInfra(buildInfraCounts());
-    response.setOpenAnomaliesCount(
-        anomalyDetectionRepository.findAll().stream()
-            .filter(a -> !a.isDeleted() && a.getStatus() == AnomalyDetectionStatus.OPEN)
-            .count());
     response.setActiveInterventionsCount(
         interventionRepository.findAll().stream()
             .filter(
@@ -103,27 +85,9 @@ public class DashboardService {
                     a.getOccurredAt()
                         .isAfter(Instant.now().truncatedTo(java.time.temporal.ChronoUnit.DAYS)))
             .count());
-    response.setAiConfigured(anthropicGateway.isConfigured());
     response.setActivityTimeSeries(buildActivityTimeSeries(since, effectiveDays));
     response.setActivityByEntityType(buildActivityByEntityType(since));
     response.setInterventionsByPriority(buildInterventionsByPriority());
-    response.setAnomaliesBySeverity(buildAnomaliesBySeverity());
-    response.setRecentInsights(
-        aiInsightRepository
-            .findAll(
-                PageRequest.of(0, RECENT_ITEMS_LIMIT, Sort.by(Sort.Direction.DESC, "createdAt")))
-            .map(
-                insight -> {
-                  DashboardSummaryResponse.InsightSummary summary =
-                      new DashboardSummaryResponse.InsightSummary();
-                  summary.setId(insight.getId());
-                  summary.setSeverity(insight.getSeverity().name());
-                  summary.setStatus(insight.getStatus().name());
-                  summary.setTitle(insight.getTitle());
-                  summary.setCreatedAt(insight.getCreatedAt());
-                  return summary;
-                })
-            .getContent());
     response.setRecentInterventions(
         interventionRepository
             .findAll(
@@ -246,25 +210,6 @@ public class DashboardService {
 
     return order.keySet().stream()
         .map(p -> new LabeledCount(p.name(), countsByPriority.getOrDefault(p, 0L)))
-        .toList();
-  }
-
-  private List<LabeledCount> buildAnomaliesBySeverity() {
-    Map<AnomalySeverity, Long> countsBySeverity =
-        anomalyDetectionRepository.findAll().stream()
-            .filter(a -> !a.isDeleted())
-            .collect(Collectors.groupingBy(a -> a.getSeverity(), Collectors.counting()));
-
-    List<AnomalySeverity> order =
-        List.of(
-            AnomalySeverity.CRITICAL,
-            AnomalySeverity.HIGH,
-            AnomalySeverity.MEDIUM,
-            AnomalySeverity.LOW,
-            AnomalySeverity.INFO);
-
-    return order.stream()
-        .map(s -> new LabeledCount(s.name(), countsBySeverity.getOrDefault(s, 0L)))
         .toList();
   }
 }

@@ -20,6 +20,10 @@ export interface EquipmentType {
   code: string;
   category: EquipmentCategory;
   manufacturer: string | null;
+  // Absorbed from the (now-removed) Technology Catalog, which was merged into Device Types.
+  vendor: string | null;
+  version: string | null;
+  description: string | null;
   defaultRackUnits: number | null;
   defaultPowerWatts: number | null;
   status: EquipmentTypeStatus;
@@ -33,6 +37,9 @@ export interface EquipmentTypeRequest {
   code: string;
   category: EquipmentCategory;
   manufacturer?: string | null;
+  vendor?: string | null;
+  version?: string | null;
+  description?: string | null;
   defaultRackUnits?: number | null;
   defaultPowerWatts?: number | null;
   status: EquipmentTypeStatus;

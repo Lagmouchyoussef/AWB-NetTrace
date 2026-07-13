@@ -7,7 +7,6 @@ import { NetworkEngineerConnectorService } from '../../../../core/services/netwo
 import { NetworkEngineerDeviceService } from '../../../../core/services/network-engineer-device.service';
 import { NetworkEngineerNetworkRoleService } from '../../../../core/services/network-engineer-network-role.service';
 import { NetworkEngineerOverlayNetworkService } from '../../../../core/services/network-engineer-overlay-network.service';
-import { NetworkEngineerOverlayTunnelService } from '../../../../core/services/network-engineer-overlay-tunnel.service';
 
 const ROLE_COLOR_ROLES: Record<string, string> = {
   SUPER_SPINE: 'series-1',
@@ -34,7 +33,6 @@ export class NetworkEngineerDashboardComponent implements OnInit {
   private readonly deviceService = inject(NetworkEngineerDeviceService);
   private readonly networkRoleService = inject(NetworkEngineerNetworkRoleService);
   private readonly overlayNetworkService = inject(NetworkEngineerOverlayNetworkService);
-  private readonly overlayTunnelService = inject(NetworkEngineerOverlayTunnelService);
   private readonly translateService = inject(TranslateService);
 
   protected readonly loading = signal(true);
@@ -42,7 +40,6 @@ export class NetworkEngineerDashboardComponent implements OnInit {
   protected readonly portsTotal = signal(0);
   protected readonly portsFree = signal(0);
   protected readonly vlanCount = signal(0);
-  protected readonly activeTunnelsCount = signal(0);
   protected readonly deviceCount = signal(0);
   protected readonly rolesByType = signal<Record<string, number>>({});
 
@@ -63,20 +60,17 @@ export class NetworkEngineerDashboardComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.loading.set(true);
     try {
-      const [portsTotal, portsFree, vlanCount, activeTunnels, deviceCount, roles] =
-        await Promise.all([
-          this.connectorService.list({ page: 0, size: 1 }),
-          this.connectorService.list({ page: 0, size: 1, status: 'SPARE' }),
-          this.overlayNetworkService.list({ page: 0, size: 1 }),
-          this.overlayTunnelService.list({ page: 0, size: 1, status: 'UP' }),
-          this.deviceService.list({ page: 0, size: 1 }),
-          this.networkRoleService.list({ page: 0, size: 1000 }),
-        ]);
+      const [portsTotal, portsFree, vlanCount, deviceCount, roles] = await Promise.all([
+        this.connectorService.list({ page: 0, size: 1 }),
+        this.connectorService.list({ page: 0, size: 1, status: 'SPARE' }),
+        this.overlayNetworkService.list({ page: 0, size: 1 }),
+        this.deviceService.list({ page: 0, size: 1 }),
+        this.networkRoleService.list({ page: 0, size: 1000 }),
+      ]);
 
       this.portsTotal.set(portsTotal.totalElements);
       this.portsFree.set(portsFree.totalElements);
       this.vlanCount.set(vlanCount.totalElements);
-      this.activeTunnelsCount.set(activeTunnels.totalElements);
       this.deviceCount.set(deviceCount.totalElements);
 
       const grouped: Record<string, number> = {};

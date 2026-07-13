@@ -5,9 +5,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslatePipe } from '@ngx-translate/core';
-import { DcAdminSdwanEdgeService } from '../../../../core/services/dc-admin-sdwan-edge.service';
+import { DcAdminConnectorService } from '../../../../core/services/dc-admin-connector.service';
 import { DcAdminCarrierCircuitService } from '../../../../core/services/dc-admin-carrier-circuit.service';
-import { SdwanEdge } from '../../../super-admin/pages/sdwan-edges/sdwan-edge.model';
+import { Connector } from '../../../super-admin/pages/connectors/connector.model';
 import {
   CARRIER_CIRCUIT_STATUSES,
   CARRIER_CIRCUIT_TYPES,
@@ -32,7 +32,7 @@ import {
 })
 export class DcAdminCarrierCircuitFormDialogComponent implements OnInit {
   private readonly carrierCircuitService = inject(DcAdminCarrierCircuitService);
-  private readonly sdwanEdgeService = inject(DcAdminSdwanEdgeService);
+  private readonly connectorService = inject(DcAdminConnectorService);
   private readonly dialogRef = inject(
     MatDialogRef<DcAdminCarrierCircuitFormDialogComponent, boolean>,
   );
@@ -43,12 +43,12 @@ export class DcAdminCarrierCircuitFormDialogComponent implements OnInit {
   protected readonly statuses = CARRIER_CIRCUIT_STATUSES;
   protected readonly saving = signal(false);
   protected readonly errorKey = signal<string | null>(null);
-  protected readonly edges = signal<SdwanEdge[]>([]);
+  protected readonly connectors = signal<Connector[]>([]);
 
   protected readonly form = new FormGroup({
-    edgeId: new FormControl<number | null>(this.data?.edgeId ?? null, {
-      validators: [Validators.required],
-    }),
+    terminatesAtConnectorId: new FormControl<number | null>(
+      this.data?.terminatesAtConnector?.id ?? null,
+    ),
     name: new FormControl(this.data?.name ?? '', {
       nonNullable: true,
       validators: [Validators.required],
@@ -65,9 +65,6 @@ export class DcAdminCarrierCircuitFormDialogComponent implements OnInit {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    bandwidthMbps: new FormControl<number | null>(this.data?.bandwidthMbps ?? 100, {
-      validators: [Validators.required],
-    }),
     status: new FormControl<CarrierCircuitStatus>(this.data?.status ?? 'ACTIVE', {
       nonNullable: true,
       validators: [Validators.required],
@@ -76,8 +73,8 @@ export class DcAdminCarrierCircuitFormDialogComponent implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
-    const result = await this.sdwanEdgeService.list({ page: 0, size: 1000 });
-    this.edges.set(result.content);
+    const result = await this.connectorService.list({ page: 0, size: 1000 });
+    this.connectors.set(result.content);
   }
 
   protected async onSubmit(): Promise<void> {
@@ -91,17 +88,9 @@ export class DcAdminCarrierCircuitFormDialogComponent implements OnInit {
     const value = this.form.getRawValue();
     try {
       if (this.data) {
-        await this.carrierCircuitService.update(this.data.id, {
-          ...value,
-          edgeId: value.edgeId!,
-          bandwidthMbps: value.bandwidthMbps!,
-        });
+        await this.carrierCircuitService.update(this.data.id, value);
       } else {
-        await this.carrierCircuitService.create({
-          ...value,
-          edgeId: value.edgeId!,
-          bandwidthMbps: value.bandwidthMbps!,
-        });
+        await this.carrierCircuitService.create(value);
       }
       this.dialogRef.close(true);
     } catch {

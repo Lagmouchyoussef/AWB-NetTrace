@@ -6,11 +6,12 @@ import {
   OverlayNetwork,
   OverlayNetworkListParams,
   OverlayNetworkPage,
-  OverlayNetworkRequest,
 } from '../../roles/super-admin/pages/overlay-networks/overlay-network.model';
 
 const BASE_URL = `${environment.apiBaseUrl}/api/roles/super-admin/overlay-networks`;
 
+// Read-only: the backend controller only exposes GET (list + detail) - POST/PUT/DELETE were
+// removed, so no create/update/delete methods here.
 @Injectable({ providedIn: 'root' })
 export class OverlayNetworkService {
   private readonly http = inject(HttpClient);
@@ -34,17 +35,5 @@ export class OverlayNetworkService {
 
   getById(id: number): Promise<OverlayNetwork> {
     return firstValueFrom(this.http.get<OverlayNetwork>(`${BASE_URL}/${id}`));
-  }
-
-  create(request: OverlayNetworkRequest): Promise<OverlayNetwork> {
-    return firstValueFrom(this.http.post<OverlayNetwork>(BASE_URL, request));
-  }
-
-  update(id: number, request: OverlayNetworkRequest): Promise<OverlayNetwork> {
-    return firstValueFrom(this.http.put<OverlayNetwork>(`${BASE_URL}/${id}`, request));
-  }
-
-  delete(id: number): Promise<void> {
-    return firstValueFrom(this.http.delete<void>(`${BASE_URL}/${id}`));
   }
 }

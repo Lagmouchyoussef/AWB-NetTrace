@@ -4,8 +4,8 @@
     <dt>{{ 'carrierCircuits.fields.code' | translate }}</dt>
     <dd>{{ data.code }}</dd>
 
-    <dt>{{ 'carrierCircuits.fields.edge' | translate }}</dt>
-    <dd>{{ data.edgeName }}</dd>
+    <dt>{{ 'carrierCircuits.fields.connector' | translate }}</dt>
+    <dd>{{ data.terminatesAtConnector?.name ?? ('carrierCircuits.fields.noConnector' | translate) }}</dd>
 
     <dt>{{ 'carrierCircuits.fields.circuitType' | translate }}</dt>
     <dd>{{ 'carrierCircuits.circuitType.' + data.circuitType | translate }}</dd>
@@ -15,9 +15,6 @@
 
     <dt>{{ 'carrierCircuits.fields.status' | translate }}</dt>
     <dd>{{ 'carrierCircuits.status.' + data.status | translate }}</dd>
-
-    <dt>{{ 'carrierCircuits.fields.bandwidthMbps' | translate }}</dt>
-    <dd>{{ data.bandwidthMbps }} Mbps</dd>
 
     @if (data.notes) {
       <dt>{{ 'carrierCircuits.fields.notes' | translate }}</dt>

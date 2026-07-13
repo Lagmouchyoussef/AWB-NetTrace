@@ -21,10 +21,6 @@ public class CarrierCircuit {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "edge_id", nullable = false)
-  private SdwanEdge edge;
-
   @Column(name = "name", nullable = false)
   private String name;
 
@@ -38,8 +34,9 @@ public class CarrierCircuit {
   @Column(name = "provider", nullable = false)
   private String provider;
 
-  @Column(name = "bandwidth_mbps", nullable = false)
-  private Integer bandwidthMbps;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "terminates_at_connector_id")
+  private Connector terminatesAtConnector;
 
   @Enumerated(EnumType.STRING)
   @Column(name = "status", nullable = false)
@@ -59,14 +56,6 @@ public class CarrierCircuit {
 
   public Long getId() {
     return id;
-  }
-
-  public SdwanEdge getEdge() {
-    return edge;
-  }
-
-  public void setEdge(SdwanEdge edge) {
-    this.edge = edge;
   }
 
   public String getName() {
@@ -101,12 +90,12 @@ public class CarrierCircuit {
     this.provider = provider;
   }
 
-  public Integer getBandwidthMbps() {
-    return bandwidthMbps;
+  public Connector getTerminatesAtConnector() {
+    return terminatesAtConnector;
   }
 
-  public void setBandwidthMbps(Integer bandwidthMbps) {
-    this.bandwidthMbps = bandwidthMbps;
+  public void setTerminatesAtConnector(Connector terminatesAtConnector) {
+    this.terminatesAtConnector = terminatesAtConnector;
   }
 
   public CarrierCircuitStatus getStatus() {

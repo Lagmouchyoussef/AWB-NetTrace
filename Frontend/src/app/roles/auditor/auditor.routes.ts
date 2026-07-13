@@ -21,13 +21,6 @@ export const auditorRoutes: Routes = [
           ),
       },
       {
-        path: 'anomaly-detections',
-        loadComponent: () =>
-          import('./pages/anomaly-detections/anomaly-detections-list.component').then(
-            (m) => m.AuditorAnomalyDetectionsListComponent,
-          ),
-      },
-      {
         path: 'interventions',
         loadComponent: () =>
           import('./pages/interventions/interventions-list.component').then(

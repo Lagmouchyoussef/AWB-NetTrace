@@ -35,25 +35,19 @@
     "devices": "Devices",
     "fabricTopology": "Fabric & Topology",
     "networkRoles": "Network Roles",
-    "vxlanEvpnOverlay": "VXLAN/EVPN Overlay",
+    "overlayNetworksReadOnly": "VLAN / Overlay (read-only)",
     "interactiveTopologyView": "Interactive Topology View",
     "cabling": "Cabling",
     "cables": "Cables",
     "connectorsTransceivers": "Connectors & Transceivers",
     "pathTracing": "Path Tracing",
-    "sdwanConnectivity": "SD-WAN & Connectivity",
-    "sdwanEdges": "SD-WAN Edges",
-    "overlayTunnels": "Overlay Tunnels",
-    "carrierCircuits": "Carrier Circuits",
+    "carrierCircuits": "Carrier Circuits (Meet-Me-Room)",
     "telemetryMonitoring": "Telemetry & Monitoring",
     "telemetryConnectors": "Telemetry Connectors",
-    "realTimeDashboards": "Real-Time Dashboards",
-    "anomalyDetection": "Anomaly Detection",
     "interventions": "Interventions",
     "myInterventionRequests": "My Intervention Requests",
     "technicalLibrary": "Technical Library",
     "equipmentTypes": "Equipment Types",
-    "networkTechnologyCatalog": "Network Technology Catalog",
     "administration": "Administration",
     "systemOversight": "System Oversight",
     "users": "Users",
@@ -64,10 +58,7 @@
     "syncDrift": "Sync & Drift",
     "auditCompliance": "Audit & Compliance",
     "reports": "Reports",
-    "myAccount": "My Account",
-    "aiOperations": "AI Operations",
-    "aiInsights": "AI Insights",
-    "aiSettings": "AI Settings"
+    "myAccount": "My Account"
   },
   "topbar": {
     "searchPlaceholder": "Search...",
@@ -96,7 +87,6 @@
     "stats": {
       "portsUsed": "Ports Used",
       "vlanCount": "VLANs / Overlay Networks",
-      "activeTunnels": "Active Overlay Tunnels",
       "devices": "Devices"
     },
     "jumpToTopology": "Jump to Topology View",
@@ -106,15 +96,11 @@
   "auditorDashboard": {
     "title": "Compliance Overview",
     "jumpToAuditLog": "Jump to Audit Log",
-    "jumpToAnomalies": "Jump to Anomaly Detections",
     "stats": {
       "totalAuditEvents": "Total Audit Events",
-      "openAnomalies": "Open Anomalies",
-      "criticalAnomalies": "Critical Anomalies",
       "activeReports": "Active Reports"
     },
-    "eventsByAction": "Audit Events by Action",
-    "anomaliesBySeverity": "Anomalies by Severity"
+    "eventsByAction": "Audit Events by Action"
   },
   "topologyView": {
     "pageTitle": "Interactive Topology View",
@@ -160,14 +146,10 @@
       "rooms": "Rooms",
       "racks": "Racks",
       "devices": "Devices",
-      "openAnomalies": "Open Anomalies",
       "activeInterventions": "Active Interventions",
       "activityToday": "Activity Today"
     },
     "panels": {
-      "aiInsights": "AI Insights",
-      "aiNotConfigured": "The AI assistant is not configured yet.",
-      "noInsights": "No AI insights yet.",
       "recentInterventions": "Recent Interventions",
       "noInterventions": "No recent interventions.",
       "activityFeed": "Live Activity Feed",
@@ -186,8 +168,7 @@
       "activityTrend": "Activity Trend",
       "activityByEntityType": "Activity by Entity Type",
       "infraHealth": "Infrastructure Health",
-      "interventionsByPriority": "Interventions by Priority",
-      "anomaliesBySeverity": "Anomalies by Severity"
+      "interventionsByPriority": "Interventions by Priority"
     },
     "dateRange": {
       "label": "Range:",
@@ -476,13 +457,7 @@
     }
   },
   "overlayNetworks": {
-    "pageTitle": "VXLAN/EVPN Overlay Networks",
-    "addNew": "Add Overlay Network",
-    "createTitle": "New Overlay Network",
-    "editTitle": "Edit Overlay Network",
-    "deleteTitle": "Delete Overlay Network",
-    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
-    "saveError": "Something went wrong while saving. Please check the code and VNI are unique and try again.",
+    "pageTitle": "VLAN / Overlay Networks (Read-Only)",
     "columns": {
       "name": "Name",
       "code": "Code",
@@ -503,9 +478,6 @@
       "routeTargets": "Route Targets",
       "status": "Status",
       "notes": "Notes"
-    },
-    "validation": {
-      "required": "This field is required."
     },
     "overlayType": {
       "L2_EVPN": "L2 EVPN (Bridged Overlay)",
@@ -699,86 +671,8 @@
       "FAILED": "Failed"
     }
   },
-  "sdwanEdges": {
-    "pageTitle": "SD-WAN Edges",
-    "addNew": "Add SD-WAN Edge",
-    "createTitle": "New SD-WAN Edge",
-    "editTitle": "Edit SD-WAN Edge",
-    "deleteTitle": "Delete SD-WAN Edge",
-    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
-    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
-    "columns": {
-      "name": "Name",
-      "code": "Code",
-      "datacenter": "Datacenter",
-      "vendor": "Vendor",
-      "status": "Status"
-    },
-    "fields": {
-      "datacenter": "Datacenter",
-      "name": "Name",
-      "code": "Code",
-      "vendor": "Vendor",
-      "model": "Model",
-      "wanLinkCount": "WAN Link Count",
-      "managementIp": "Management IP",
-      "status": "Status",
-      "notes": "Notes"
-    },
-    "validation": {
-      "required": "This field is required."
-    },
-    "status": {
-      "ACTIVE": "Active",
-      "MAINTENANCE": "Maintenance",
-      "DECOMMISSIONED": "Decommissioned",
-      "PROVISIONING": "Provisioning"
-    }
-  },
-  "overlayTunnels": {
-    "pageTitle": "Overlay Tunnels",
-    "addNew": "Add Overlay Tunnel",
-    "createTitle": "New Overlay Tunnel",
-    "editTitle": "Edit Overlay Tunnel",
-    "deleteTitle": "Delete Overlay Tunnel",
-    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
-    "saveError": "Something went wrong while saving. Please check the code is unique and the source/target are different.",
-    "columns": {
-      "name": "Name",
-      "code": "Code",
-      "source": "Source",
-      "target": "Target",
-      "tunnelType": "Tunnel Type",
-      "status": "Status"
-    },
-    "fields": {
-      "source": "Source Edge",
-      "target": "Target Edge",
-      "name": "Name",
-      "code": "Code",
-      "tunnelType": "Tunnel Type",
-      "bandwidthMbps": "Bandwidth (Mbps)",
-      "status": "Status",
-      "notes": "Notes"
-    },
-    "validation": {
-      "required": "This field is required."
-    },
-    "tunnelType": {
-      "IPSEC": "IPsec",
-      "GRE": "GRE",
-      "DTLS": "DTLS",
-      "VXLAN": "VXLAN"
-    },
-    "status": {
-      "UP": "Up",
-      "DOWN": "Down",
-      "DEGRADED": "Degraded",
-      "PLANNED": "Planned"
-    }
-  },
   "carrierCircuits": {
-    "pageTitle": "Carrier Circuits",
+    "pageTitle": "Carrier Circuits (Meet-Me-Room)",
     "addNew": "Add Carrier Circuit",
     "createTitle": "New Carrier Circuit",
     "editTitle": "Edit Carrier Circuit",
@@ -788,18 +682,18 @@
     "columns": {
       "name": "Name",
       "code": "Code",
-      "edge": "SD-WAN Edge",
+      "connector": "Terminates At Connector",
       "circuitType": "Circuit Type",
       "provider": "Provider",
       "status": "Status"
     },
     "fields": {
-      "edge": "SD-WAN Edge",
+      "connector": "Terminates At Connector",
+      "noConnector": "None",
       "name": "Name",
       "code": "Code",
       "circuitType": "Circuit Type",
       "provider": "Provider",
-      "bandwidthMbps": "Bandwidth (Mbps)",
       "status": "Status",
       "notes": "Notes"
     },
@@ -860,93 +754,6 @@
       "PAUSED": "Paused",
       "ERROR": "Error",
       "DECOMMISSIONED": "Decommissioned"
-    }
-  },
-  "realTimeDashboards": {
-    "pageTitle": "Real-Time Dashboards",
-    "addNew": "Add Dashboard",
-    "createTitle": "New Dashboard",
-    "editTitle": "Edit Dashboard",
-    "deleteTitle": "Delete Dashboard",
-    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
-    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
-    "columns": {
-      "name": "Name",
-      "code": "Code",
-      "description": "Description",
-      "refreshIntervalSeconds": "Refresh Interval",
-      "widgetCount": "Widgets",
-      "status": "Status"
-    },
-    "fields": {
-      "name": "Name",
-      "code": "Code",
-      "description": "Description",
-      "refreshIntervalSeconds": "Refresh Interval (s)",
-      "widgetCount": "Widget Count",
-      "status": "Status",
-      "notes": "Notes"
-    },
-    "validation": {
-      "required": "This field is required."
-    },
-    "status": {
-      "ACTIVE": "Active",
-      "DRAFT": "Draft",
-      "ARCHIVED": "Archived"
-    }
-  },
-  "anomalyDetections": {
-    "pageTitle": "Anomaly Detection",
-    "addNew": "Report Anomaly",
-    "createTitle": "New Anomaly",
-    "editTitle": "Edit Anomaly",
-    "deleteTitle": "Delete Anomaly",
-    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
-    "saveError": "Something went wrong while saving. Please check the fields and try again.",
-    "columns": {
-      "title": "Title",
-      "device": "Device",
-      "anomalyType": "Type",
-      "severity": "Severity",
-      "status": "Status",
-      "detectedAt": "Detected At"
-    },
-    "fields": {
-      "device": "Device",
-      "title": "Title",
-      "description": "Description",
-      "anomalyType": "Anomaly Type",
-      "severity": "Severity",
-      "status": "Status",
-      "detectedAt": "Detected At",
-      "resolvedAt": "Resolved At",
-      "notes": "Notes"
-    },
-    "validation": {
-      "required": "This field is required."
-    },
-    "anomalyType": {
-      "THRESHOLD_BREACH": "Threshold Breach",
-      "TRAFFIC_SPIKE": "Traffic Spike",
-      "FLAPPING_LINK": "Flapping Link",
-      "CONFIG_DRIFT": "Configuration Drift",
-      "UNAUTHORIZED_ACCESS": "Unauthorized Access",
-      "PACKET_LOSS": "Packet Loss",
-      "LATENCY_DEGRADATION": "Latency Degradation"
-    },
-    "severity": {
-      "CRITICAL": "Critical",
-      "HIGH": "High",
-      "MEDIUM": "Medium",
-      "LOW": "Low",
-      "INFO": "Info"
-    },
-    "status": {
-      "OPEN": "Open",
-      "ACKNOWLEDGED": "Acknowledged",
-      "RESOLVED": "Resolved",
-      "FALSE_POSITIVE": "False Positive"
     }
   },
   "interventions": {
@@ -1047,6 +854,8 @@
       "code": "Code",
       "category": "Category",
       "manufacturer": "Manufacturer",
+      "vendor": "Vendor",
+      "version": "Version",
       "status": "Status"
     },
     "fields": {
@@ -1054,6 +863,9 @@
       "code": "Code",
       "category": "Category",
       "manufacturer": "Manufacturer",
+      "vendor": "Vendor",
+      "version": "Version",
+      "description": "Description",
       "defaultRackUnits": "Default Height (U)",
       "defaultPowerWatts": "Default Power (W)",
       "status": "Status",
@@ -1072,48 +884,6 @@
     },
     "status": {
       "ACTIVE": "Active",
-      "DEPRECATED": "Deprecated"
-    }
-  },
-  "technologyCatalog": {
-    "pageTitle": "Network Technology Catalog",
-    "addNew": "Add Technology",
-    "createTitle": "New Technology",
-    "editTitle": "Edit Technology",
-    "deleteTitle": "Delete Technology",
-    "deleteMessage": "Are you sure you want to delete \"{{name}}\"? This can be reversed later by an administrator.",
-    "saveError": "Something went wrong while saving. Please check the code is unique and try again.",
-    "columns": {
-      "name": "Name",
-      "code": "Code",
-      "category": "Category",
-      "vendor": "Vendor",
-      "status": "Status"
-    },
-    "fields": {
-      "name": "Name",
-      "code": "Code",
-      "category": "Category",
-      "vendor": "Vendor",
-      "version": "Version",
-      "description": "Description",
-      "status": "Status",
-      "notes": "Notes"
-    },
-    "validation": {
-      "required": "This field is required."
-    },
-    "category": {
-      "NETWORKING_PROTOCOL": "Networking Protocol",
-      "SECURITY": "Security",
-      "VIRTUALIZATION": "Virtualization",
-      "MONITORING": "Monitoring",
-      "STORAGE": "Storage",
-      "CLOUD": "Cloud"
-    },
-    "status": {
-      "ACTIVE": "Active",
-      "EVALUATION": "Evaluation",
       "DEPRECATED": "Deprecated"
     }
   },
@@ -1472,76 +1242,6 @@
       "email": "Invalid email address.",
       "passwordLength": "Password must be at least 8 characters long."
     }
-  },
-  "aiChat": {
-    "title": "AI Assistant",
-    "placeholder": "Ask about your datacenter infrastructure...",
-    "inputPlaceholder": "Type a message...",
-    "loading": "AI is checking live data...",
-    "toolsUsed": "Tools used",
-    "error": "Something went wrong while contacting the AI assistant. Please try again."
-  },
-  "aiInsights": {
-    "pageTitle": "AI Insights",
-    "columns": {
-      "title": "Title",
-      "type": "Type",
-      "severity": "Severity",
-      "status": "Status",
-      "entity": "Entity",
-      "createdAt": "Created at"
-    },
-    "type": {
-      "RISK_PREDICTION": "Risk Prediction",
-      "RECOMMENDATION": "Recommendation",
-      "AUTONOMOUS_ACTION": "Autonomous Action"
-    },
-    "severity": {
-      "CRITICAL": "Critical",
-      "HIGH": "High",
-      "MEDIUM": "Medium",
-      "LOW": "Low",
-      "INFO": "Info"
-    },
-    "status": {
-      "NEW": "New",
-      "ACKNOWLEDGED": "Acknowledged",
-      "APPLIED": "Applied",
-      "DISMISSED": "Dismissed"
-    },
-    "fields": {
-      "severity": "Severity",
-      "status": "Status",
-      "entity": "Entity",
-      "summary": "Summary",
-      "recommendedAction": "Recommended action",
-      "actionTaken": "Action taken",
-      "createdAt": "Created at"
-    },
-    "acknowledge": "Acknowledge",
-    "dismiss": "Dismiss",
-    "apply": "Apply",
-    "dismissTitle": "Dismiss insight",
-    "dismissMessage": "Are you sure you want to dismiss \"{{title}}\"?",
-    "applyTitle": "Apply recommendation",
-    "applyMessage": "Are you sure you want to apply the recommended action for \"{{title}}\"? This will make a real change to the platform.",
-    "actionError": "Something went wrong while performing this action. Please try again."
-  },
-  "aiSettings": {
-    "pageTitle": "AI Settings",
-    "assistantEnabled": "AI chat assistant",
-    "assistantEnabledDescription": "Lets super-admins ask questions and act on live datacenter data via the AI chat widget.",
-    "predictiveAnalysisEnabled": "Predictive analysis",
-    "predictiveAnalysisEnabledDescription": "Runs a scheduled job that reasons over infrastructure data to flag risks before they become failures.",
-    "autonomousActionsEnabled": "Autonomous actions",
-    "autonomousActionsEnabledDescription": "Allows the AI to apply remediation actions (status changes, urgent interventions) on its own, without waiting for human approval. Off by default.",
-    "apiKeyConfigured": "Anthropic API key configured",
-    "confirmAutonomousTitle": "Enable autonomous actions?",
-    "confirmAutonomousMessage": "The AI will be able to change equipment status and create urgent interventions automatically, without human approval. Every action is still logged and auditable. Do you want to proceed?",
-    "confirmAutonomousEnable": "Enable",
-    "saveSuccess": "Settings saved successfully.",
-    "saveError": "Something went wrong while saving. Please try again.",
-    "loadError": "Unable to load AI settings. Please check your connection and try again."
   },
   "technician": {
     "nav": {

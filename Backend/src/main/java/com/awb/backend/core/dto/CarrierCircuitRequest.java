@@ -7,8 +7,6 @@ import jakarta.validation.constraints.NotNull;
 
 public class CarrierCircuitRequest {
 
-  @NotNull private Long edgeId;
-
   @NotBlank private String name;
 
   @NotBlank private String code;
@@ -17,19 +15,11 @@ public class CarrierCircuitRequest {
 
   @NotBlank private String provider;
 
-  @NotNull private Integer bandwidthMbps;
+  private Long terminatesAtConnectorId;
 
   @NotNull private CarrierCircuitStatus status;
 
   private String notes;
-
-  public Long getEdgeId() {
-    return edgeId;
-  }
-
-  public void setEdgeId(Long edgeId) {
-    this.edgeId = edgeId;
-  }
 
   public String getName() {
     return name;
@@ -63,12 +53,12 @@ public class CarrierCircuitRequest {
     this.provider = provider;
   }
 
-  public Integer getBandwidthMbps() {
-    return bandwidthMbps;
+  public Long getTerminatesAtConnectorId() {
+    return terminatesAtConnectorId;
   }
 
-  public void setBandwidthMbps(Integer bandwidthMbps) {
-    this.bandwidthMbps = bandwidthMbps;
+  public void setTerminatesAtConnectorId(Long terminatesAtConnectorId) {
+    this.terminatesAtConnectorId = terminatesAtConnectorId;
   }
 
   public CarrierCircuitStatus getStatus() {
