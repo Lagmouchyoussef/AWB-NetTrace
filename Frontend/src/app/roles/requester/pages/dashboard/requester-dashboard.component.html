@@ -1,0 +1,57 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>{{ 'requester.dashboard.title' | translate }}</h1>
+      <p class="page-subtitle">{{ 'requester.dashboard.subtitle' | translate }}</p>
+    </div>
+    <a routerLink="/requester/my-requests" class="requests-shortcut">
+      <span class="material-symbols-outlined">build</span>
+      {{ 'requester.dashboard.goToMyRequests' | translate }}
+      <span class="material-symbols-outlined">arrow_forward</span>
+    </a>
+  </div>
+
+  @if (loading()) {
+    <div class="stats-row">
+      @for (i of [1, 2, 3, 4]; track i) {
+        <div class="skeleton-tile skeleton-shimmer"></div>
+      }
+    </div>
+    <div class="skeleton-chart skeleton-shimmer"></div>
+  } @else {
+    <div class="stats-row">
+      <div class="stat-tile">
+        <span class="stat-value">{{ totalCount() }}</span>
+        <span class="stat-label">{{ 'requester.dashboard.stats.total' | translate }}</span>
+      </div>
+      <div class="stat-tile stat-tile-pending">
+        <span class="stat-value">{{ pendingCount() }}</span>
+        <span class="stat-label">{{ 'requester.dashboard.stats.pending' | translate }}</span>
+      </div>
+      <div class="stat-tile stat-tile-approved">
+        <span class="stat-value">{{ approvedCount() }}</span>
+        <span class="stat-label">{{ 'requester.dashboard.stats.approved' | translate }}</span>
+      </div>
+      <div class="stat-tile stat-tile-rejected">
+        <span class="stat-value">{{ rejectedCount() }}</span>
+        <span class="stat-label">{{ 'requester.dashboard.stats.rejected' | translate }}</span>
+      </div>
+    </div>
+
+    @if (totalCount() > 0) {
+      <div class="chart-card">
+        <app-stat-chart
+          [data]="statusBreakdownData()"
+          titleKey="requester.dashboard.charts.byStatus"
+          initialMode="donut"
+          [showLegend]="true"
+        />
+      </div>
+    } @else {
+      <div class="empty-state">
+        <span class="material-symbols-outlined">build</span>
+        <p>{{ 'interventions.myRequests.empty' | translate }}</p>
+      </div>
+    }
+  }
+</div>

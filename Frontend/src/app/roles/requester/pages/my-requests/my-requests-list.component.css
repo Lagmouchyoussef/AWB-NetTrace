@@ -1,0 +1,201 @@
+.page {
+  padding: 1.5rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.page-header h1 {
+  font-size: 1.3rem;
+  margin: 0;
+  color: var(--awb-on-surface);
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--awb-brand-gradient-h);
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.add-button:hover {
+  filter: brightness(1.08);
+}
+
+.add-button mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 760px;
+}
+
+.timeline-card {
+  background: var(--awb-surface);
+  border: 1px solid var(--awb-border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.15s ease;
+}
+
+.timeline-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.timeline-card-header h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--awb-on-surface);
+}
+
+.badges {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: var(--awb-hover);
+  color: var(--awb-on-surface-muted);
+  white-space: nowrap;
+}
+
+.badge[data-priority='CRITICAL'] {
+  background: var(--priority-critical-bg);
+  color: var(--priority-critical-fg);
+}
+
+.badge[data-priority='HIGH'] {
+  background: var(--priority-high-bg);
+  color: var(--priority-high-fg);
+}
+
+.badge[data-priority='MEDIUM'] {
+  background: var(--priority-medium-bg);
+  color: var(--priority-medium-fg);
+}
+
+.badge[data-approval='PENDING'] {
+  background: var(--status-scheduled-bg);
+  color: var(--status-scheduled-fg);
+}
+
+.badge[data-approval='APPROVED'] {
+  background: var(--status-completed-bg);
+  color: var(--status-completed-fg);
+}
+
+.badge[data-approval='REJECTED'] {
+  background: var(--status-cancelled-bg);
+  color: var(--status-cancelled-fg);
+}
+
+.timeline-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--awb-border);
+}
+
+.delete-button {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--status-cancelled-fg);
+  background: none;
+  color: var(--status-cancelled-fg);
+  cursor: pointer;
+  min-height: 36px;
+  padding: 0 0.85rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.delete-button:hover {
+  background: var(--status-cancelled-fg);
+  color: #fff;
+}
+
+.delete-button mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.timeline-card-meta {
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  color: var(--awb-on-surface-muted);
+}
+
+.timeline-card-description {
+  margin: 0.6rem 0 0;
+  font-size: 0.85rem;
+  color: var(--awb-on-surface);
+}
+
+.timeline-card-rejection {
+  margin: 0.6rem 0 0;
+  font-size: 0.82rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 8px;
+  background: var(--status-cancelled-bg);
+  color: var(--status-cancelled-fg);
+}
+
+.skeleton-card {
+  height: 92px;
+  border-radius: 10px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 3rem 1rem;
+  color: var(--awb-on-surface-muted);
+  text-align: center;
+}
+
+.empty-state mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  opacity: 0.5;
+}

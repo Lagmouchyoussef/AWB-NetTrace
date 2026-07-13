@@ -148,6 +148,9 @@ export class TopbarComponent {
     if (role === 'AUDITOR') {
       return '/auditor/my-account';
     }
+    if (role === 'REQUESTER') {
+      return '/requester/my-account';
+    }
     return null;
   });
 

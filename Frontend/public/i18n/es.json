@@ -20,7 +20,8 @@
     "networkEngineer": "Ingeniero de Red",
     "technician": "Técnico",
     "auditor": "Auditor",
-    "approver": "Aprobador"
+    "approver": "Aprobador",
+    "requester": "Solicitante"
   },
   "nav": {
     "dashboard": "Panel de control",
@@ -1715,6 +1716,60 @@
       "subtitle": "La configuración del sistema vigente, para una supervisión independiente.",
       "description": "Descripción",
       "notes": "Notas"
+    }
+  },
+  "requester": {
+    "nav": {
+      "calendar": "Mi calendario"
+    },
+    "dashboard": {
+      "title": "Resumen de mis solicitudes",
+      "subtitle": "Realice el seguimiento de las solicitudes de intervención que ha enviado.",
+      "goToMyRequests": "Ver mis solicitudes",
+      "stats": {
+        "total": "Total de solicitudes",
+        "pending": "Pendientes",
+        "approved": "Aprobadas",
+        "rejected": "Rechazadas"
+      },
+      "charts": {
+        "byStatus": "Solicitudes por estado"
+      }
+    },
+    "calendar": {
+      "pageTitle": "Mi calendario",
+      "subtitle": "Sus solicitudes aprobadas, en su fecha programada.",
+      "today": "Hoy",
+      "more": "+{{count}} más",
+      "weekdays": {
+        "0": "Lun",
+        "1": "Mar",
+        "2": "Mié",
+        "3": "Jue",
+        "4": "Vie",
+        "5": "Sáb",
+        "6": "Dom"
+      }
+    },
+    "reports": {
+      "pageTitle": "Mis informes",
+      "subtitle": "Estadísticas sobre las solicitudes que ha enviado, durante un período.",
+      "decidedAt": "Decidida el",
+      "exportCsv": "Exportar CSV",
+      "charts": {
+        "outcome": "Aprobadas vs rechazadas",
+        "byPriority": "Solicitudes por prioridad"
+      },
+      "stats": {
+        "approved": "Aprobadas",
+        "rejected": "Rechazadas",
+        "approvalRate": "Tasa de aprobación",
+        "avgDecisionTime": "Tiempo medio de decisión"
+      }
+    },
+    "devices": {
+      "pageTitle": "Dispositivos",
+      "subtitle": "Directorio de referencia de dispositivos, para ayudarle a elegir el correcto al enviar una solicitud."
     }
   }
 }

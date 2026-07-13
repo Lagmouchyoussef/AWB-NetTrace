@@ -1,0 +1,50 @@
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1rem;
+  min-width: 460px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-error {
+  margin: 0 0 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: var(--status-cancelled-bg);
+  border: 1px solid var(--status-cancelled-fg);
+  color: var(--status-cancelled-fg);
+  font-size: 0.85rem;
+}
+
+.dialog-button {
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--awb-border);
+  background: none;
+  color: var(--awb-on-surface);
+}
+
+.dialog-button-cancel:hover {
+  background: var(--awb-hover);
+}
+
+.dialog-button-confirm {
+  border: none;
+  background: var(--awb-brand-gradient-h);
+  color: #fff;
+}
+
+.dialog-button-confirm:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.dialog-button-confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

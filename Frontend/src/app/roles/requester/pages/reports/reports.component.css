@@ -1,0 +1,147 @@
+.page {
+  padding: 1.5rem;
+}
+
+.page-header {
+  margin-bottom: 1.25rem;
+}
+
+.page-header h1 {
+  font-size: 1.3rem;
+  margin: 0 0 0.3rem;
+  color: var(--awb-on-surface);
+}
+
+.page-subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--awb-on-surface-muted);
+}
+
+.date-range-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.date-range-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--awb-on-surface-muted);
+}
+
+.date-range-buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.date-range-button {
+  min-height: 34px;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--awb-border);
+  background: var(--awb-surface);
+  color: var(--awb-on-surface-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.date-range-button.active {
+  background: var(--awb-brand-gradient-h);
+  border-color: transparent;
+  color: #fff;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: var(--awb-surface);
+  border: 1px solid var(--awb-border);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--awb-on-surface);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--awb-on-surface-muted);
+}
+
+.skeleton-tile {
+  height: 78px;
+  border-radius: 12px;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  padding: 1rem;
+  border-radius: 14px;
+  background: var(--awb-surface);
+  border: 1px solid var(--awb-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.15s ease;
+}
+
+.chart-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.export-button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--awb-brand-gradient-h);
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.export-button:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.export-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

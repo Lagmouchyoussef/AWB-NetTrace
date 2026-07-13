@@ -1,0 +1,89 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'requester.reports.pageTitle' | translate }}</h1>
+    <p class="page-subtitle">{{ 'requester.reports.subtitle' | translate }}</p>
+  </div>
+
+  <div class="date-range-row">
+    <span class="date-range-label">{{ 'dashboard.dateRange.label' | translate }}</span>
+    <div class="date-range-buttons">
+      <button
+        type="button"
+        class="date-range-button"
+        [class.active]="daysRange() === 7"
+        (click)="setDaysRange(7)"
+      >
+        {{ 'dashboard.dateRange.last7' | translate }}
+      </button>
+      <button
+        type="button"
+        class="date-range-button"
+        [class.active]="daysRange() === 14"
+        (click)="setDaysRange(14)"
+      >
+        {{ 'dashboard.dateRange.last14' | translate }}
+      </button>
+      <button
+        type="button"
+        class="date-range-button"
+        [class.active]="daysRange() === 30"
+        (click)="setDaysRange(30)"
+      >
+        {{ 'dashboard.dateRange.last30' | translate }}
+      </button>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="stats-grid">
+      @for (i of [1, 2, 3, 4]; track i) {
+        <div class="skeleton-tile skeleton-shimmer"></div>
+      }
+    </div>
+  } @else {
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-value">{{ approvedCount() }}</span>
+        <span class="stat-label">{{ 'requester.reports.stats.approved' | translate }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ rejectedCount() }}</span>
+        <span class="stat-label">{{ 'requester.reports.stats.rejected' | translate }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ approvalRate() }}%</span>
+        <span class="stat-label">{{ 'requester.reports.stats.approvalRate' | translate }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ avgDecisionHours() }}h</span>
+        <span class="stat-label">{{ 'requester.reports.stats.avgDecisionTime' | translate }}</span>
+      </div>
+    </div>
+
+    @if (periodDecisions().length > 0) {
+      <div class="charts-grid">
+        <div class="chart-card">
+          <app-stat-chart
+            [data]="outcomeData()"
+            titleKey="requester.reports.charts.outcome"
+            initialMode="donut"
+            [showLegend]="true"
+          />
+        </div>
+        <div class="chart-card">
+          <app-stat-chart
+            [data]="priorityData()"
+            titleKey="requester.reports.charts.byPriority"
+            initialMode="bar"
+            [showLegend]="true"
+          />
+        </div>
+      </div>
+    }
+
+    <button type="button" class="export-button" [disabled]="periodDecisions().length === 0" (click)="onExportCsv()">
+      <span class="material-symbols-outlined">download</span>
+      {{ 'requester.reports.exportCsv' | translate }}
+    </button>
+  }
+</div>

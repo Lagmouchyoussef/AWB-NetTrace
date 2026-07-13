@@ -20,7 +20,8 @@
     "networkEngineer": "Ingénieur Réseau",
     "technician": "Technicien",
     "auditor": "Auditeur",
-    "approver": "Approbateur"
+    "approver": "Approbateur",
+    "requester": "Demandeur"
   },
   "nav": {
     "dashboard": "Tableau de bord",
@@ -1715,6 +1716,60 @@
       "subtitle": "La configuration système en vigueur, pour un contrôle indépendant.",
       "description": "Description",
       "notes": "Notes"
+    }
+  },
+  "requester": {
+    "nav": {
+      "calendar": "Mon calendrier"
+    },
+    "dashboard": {
+      "title": "Aperçu de mes demandes",
+      "subtitle": "Suivez les demandes d'intervention que vous avez soumises.",
+      "goToMyRequests": "Voir mes demandes",
+      "stats": {
+        "total": "Total des demandes",
+        "pending": "En attente",
+        "approved": "Approuvées",
+        "rejected": "Rejetées"
+      },
+      "charts": {
+        "byStatus": "Demandes par statut"
+      }
+    },
+    "calendar": {
+      "pageTitle": "Mon calendrier",
+      "subtitle": "Vos demandes approuvées, à leur date planifiée.",
+      "today": "Aujourd'hui",
+      "more": "+{{count}} de plus",
+      "weekdays": {
+        "0": "Lun",
+        "1": "Mar",
+        "2": "Mer",
+        "3": "Jeu",
+        "4": "Ven",
+        "5": "Sam",
+        "6": "Dim"
+      }
+    },
+    "reports": {
+      "pageTitle": "Mes rapports",
+      "subtitle": "Statistiques sur les demandes que vous avez soumises, sur une période.",
+      "decidedAt": "Décidée le",
+      "exportCsv": "Exporter en CSV",
+      "charts": {
+        "outcome": "Approuvées vs rejetées",
+        "byPriority": "Demandes par priorité"
+      },
+      "stats": {
+        "approved": "Approuvées",
+        "rejected": "Rejetées",
+        "approvalRate": "Taux d'approbation",
+        "avgDecisionTime": "Temps moyen de décision"
+      }
+    },
+    "devices": {
+      "pageTitle": "Appareils",
+      "subtitle": "Répertoire de référence des appareils, pour vous aider à choisir le bon lors d'une demande."
     }
   }
 }

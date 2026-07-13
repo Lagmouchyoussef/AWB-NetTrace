@@ -1,0 +1,66 @@
+<div class="page">
+  <div class="page-header">
+    <h1>{{ 'interventions.myRequests.pageTitle' | translate }}</h1>
+    <button type="button" class="add-button" (click)="onNewRequest()">
+      <mat-icon fontSet="material-symbols-outlined">add</mat-icon>
+      {{ 'interventions.myRequests.newRequest' | translate }}
+    </button>
+  </div>
+
+  @if (loading() && requests().length === 0) {
+    <div class="timeline">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="timeline-card skeleton-card skeleton-shimmer"></div>
+      }
+    </div>
+  } @else if (requests().length === 0) {
+    <div class="empty-state">
+      <mat-icon fontSet="material-symbols-outlined">build</mat-icon>
+      <p>{{ 'interventions.myRequests.empty' | translate }}</p>
+    </div>
+  } @else {
+    <div class="timeline">
+      @for (request of requests(); track request.id) {
+        <div class="timeline-card">
+          <div class="timeline-card-header">
+            <h2>{{ request.title }}</h2>
+            <div class="badges">
+              <span class="badge" [attr.data-priority]="request.priority">{{
+                'interventions.priority.' + request.priority | translate
+              }}</span>
+              <span class="badge" [attr.data-approval]="request.approvalStatus">{{
+                'interventions.approvalStatus.' + request.approvalStatus | translate
+              }}</span>
+            </div>
+          </div>
+
+          <p class="timeline-card-meta">
+            {{ request.deviceName }} ·
+            {{ 'interventions.interventionType.' + request.interventionType | translate }} ·
+            {{ formatDate(request.scheduledAt) }}
+          </p>
+
+          @if (request.description) {
+            <p class="timeline-card-description">{{ request.description }}</p>
+          }
+
+          @if (request.approvalStatus === 'REJECTED' && request.approvalComment) {
+            <p class="timeline-card-rejection">
+              <strong>{{ 'interventions.myRequests.rejectionReason' | translate }}:</strong>
+              {{ request.approvalComment }}
+            </p>
+          }
+
+          @if (canDelete(request)) {
+            <div class="timeline-card-footer">
+              <button type="button" class="delete-button" (click)="onDelete(request)">
+                <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+                {{ 'interventions.myRequests.withdraw' | translate }}
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -20,7 +20,8 @@
     "networkEngineer": "网络工程师",
     "technician": "技术员",
     "auditor": "审计员",
-    "approver": "审批人"
+    "approver": "审批人",
+    "requester": "申请人"
   },
   "nav": {
     "dashboard": "仪表盘",
@@ -1715,6 +1716,60 @@
       "subtitle": "当前生效的系统配置,供独立监督使用。",
       "description": "描述",
       "notes": "备注"
+    }
+  },
+  "requester": {
+    "nav": {
+      "calendar": "我的日历"
+    },
+    "dashboard": {
+      "title": "我的申请概览",
+      "subtitle": "跟踪您提交的维护干预申请。",
+      "goToMyRequests": "查看我的申请",
+      "stats": {
+        "total": "申请总数",
+        "pending": "待处理",
+        "approved": "已批准",
+        "rejected": "已拒绝"
+      },
+      "charts": {
+        "byStatus": "按状态划分的申请"
+      }
+    },
+    "calendar": {
+      "pageTitle": "我的日历",
+      "subtitle": "您已批准的申请,按计划日期显示。",
+      "today": "今天",
+      "more": "+{{count}} 更多",
+      "weekdays": {
+        "0": "周一",
+        "1": "周二",
+        "2": "周三",
+        "3": "周四",
+        "4": "周五",
+        "5": "周六",
+        "6": "周日"
+      }
+    },
+    "reports": {
+      "pageTitle": "我的报告",
+      "subtitle": "您在某一时间段内提交的申请统计数据。",
+      "decidedAt": "决定时间",
+      "exportCsv": "导出 CSV",
+      "charts": {
+        "outcome": "已批准与已拒绝",
+        "byPriority": "按优先级划分的申请"
+      },
+      "stats": {
+        "approved": "已批准",
+        "rejected": "已拒绝",
+        "approvalRate": "批准率",
+        "avgDecisionTime": "平均决策时间"
+      }
+    },
+    "devices": {
+      "pageTitle": "设备",
+      "subtitle": "设备参考目录,帮助您在提交申请时选择正确的设备。"
     }
   }
 }

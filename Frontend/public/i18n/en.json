@@ -20,7 +20,8 @@
     "networkEngineer": "Network Engineer",
     "technician": "Technician",
     "auditor": "Auditor",
-    "approver": "Approver"
+    "approver": "Approver",
+    "requester": "Requester"
   },
   "nav": {
     "dashboard": "Dashboard",
@@ -1715,6 +1716,60 @@
       "subtitle": "The live system configuration, for independent oversight.",
       "description": "Description",
       "notes": "Notes"
+    }
+  },
+  "requester": {
+    "nav": {
+      "calendar": "My Calendar"
+    },
+    "dashboard": {
+      "title": "My Requests Overview",
+      "subtitle": "Track the intervention requests you've submitted.",
+      "goToMyRequests": "Go to My Requests",
+      "stats": {
+        "total": "Total requests",
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "charts": {
+        "byStatus": "Requests by Status"
+      }
+    },
+    "calendar": {
+      "pageTitle": "My Calendar",
+      "subtitle": "Your approved requests by scheduled date.",
+      "today": "Today",
+      "more": "+{{count}} more",
+      "weekdays": {
+        "0": "Mon",
+        "1": "Tue",
+        "2": "Wed",
+        "3": "Thu",
+        "4": "Fri",
+        "5": "Sat",
+        "6": "Sun"
+      }
+    },
+    "reports": {
+      "pageTitle": "My Reports",
+      "subtitle": "Statistics on the requests you've submitted, over a period.",
+      "decidedAt": "Decided At",
+      "exportCsv": "Export CSV",
+      "charts": {
+        "outcome": "Approved vs Rejected",
+        "byPriority": "Requests by Priority"
+      },
+      "stats": {
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "approvalRate": "Approval Rate",
+        "avgDecisionTime": "Avg. Decision Time"
+      }
+    },
+    "devices": {
+      "pageTitle": "Devices",
+      "subtitle": "Reference directory of devices, to help you pick the right one when submitting a request."
     }
   }
 }
