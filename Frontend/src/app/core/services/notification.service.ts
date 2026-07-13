@@ -7,6 +7,7 @@ import { DashboardService } from './dashboard.service';
 import { DcAdminDashboardService } from './dc-admin-dashboard.service';
 import { ApproverDashboardService } from './approver-dashboard.service';
 import { RequesterDashboardService } from './requester-dashboard.service';
+import { AuditorDashboardService } from './auditor-dashboard.service';
 
 export interface AppNotification {
   id: string;
@@ -33,6 +34,7 @@ export class NotificationService {
   private readonly dcAdminDashboardService = inject(DcAdminDashboardService);
   private readonly approverDashboardService = inject(ApproverDashboardService);
   private readonly requesterDashboardService = inject(RequesterDashboardService);
+  private readonly auditorDashboardService = inject(AuditorDashboardService);
 
   private eventSource: EventSource | null = null;
   private readonly notifications$ = new BehaviorSubject<AppNotification[]>([]);
@@ -70,6 +72,8 @@ export class NotificationService {
           this.approverDashboardService.triggerRefresh();
         } else if (role === 'REQUESTER') {
           this.requesterDashboardService.triggerRefresh();
+        } else if (role === 'AUDITOR') {
+          this.auditorDashboardService.triggerRefresh();
         } else {
           this.dashboardService.triggerRefresh();
         }

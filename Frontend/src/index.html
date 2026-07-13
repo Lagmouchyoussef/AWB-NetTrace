@@ -5,12 +5,14 @@
     <title>AWB-NetTrace — Data Center Cabling Management (DCIM) Platform</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Defense-in-depth for local dev only. Real CSP enforcement (with frame-ancestors
-       and report-uri support) must happen via the Content-Security-Policy HTTP response
-       header at the reverse-proxy/hosting layer in production. -->
+    <!-- Defense-in-depth for local dev only. frame-ancestors is deliberately omitted here -
+       the CSP spec ignores that directive when delivered via <meta> (browsers log a console
+       warning every load otherwise), so it's enforced for real via the HTTP response header
+       at the reverse-proxy layer instead (see Frontend/nginx.conf). worker-src allows blob:
+       because Angular's dev-server HMR ping runs in a blob worker. -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; connect-src 'self' https://localhost:8443; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'self'; frame-ancestors 'none'"
+      content="default-src 'self'; connect-src 'self' https://localhost:8443; script-src 'self'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'self'"
     />
     <link rel="icon" type="image/png" href="attijariwafa-logo.png" />
   </head>
