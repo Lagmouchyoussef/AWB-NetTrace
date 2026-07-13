@@ -1,16 +1,16 @@
 package com.awb.backend.core.repository;
 
-import com.awb.backend.core.entity.Connector;
+import com.awb.backend.core.entity.Pathway;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface ConnectorRepository
-    extends JpaRepository<Connector, Long>, JpaSpecificationExecutor<Connector> {
+public interface PathwayRepository
+    extends JpaRepository<Pathway, Long>, JpaSpecificationExecutor<Pathway> {
 
   boolean existsByCodeIgnoreCase(String code);
 
   boolean existsByCodeIgnoreCaseAndIdNot(String code, Long id);
 
-  Optional<Connector> findByCodeIgnoreCase(String code);
+  Optional<Pathway> findByCodeIgnoreCase(String code);
 }

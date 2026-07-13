@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * correct regardless of seeder execution order. Dev/demo data only.
  */
 @Component
-@Order(9)
+@Order(8)
 public class ConnectorSeeder implements CommandLineRunner {
 
   private final ConnectorRepository connectorRepository;
@@ -64,6 +64,41 @@ public class ConnectorSeeder implements CommandLineRunner {
         "SN-RK-TNG-A1-1",
         "Transceiver Stockage Tanger",
         "CN-TNG-01",
+        ConnectorFormFactor.SFP28,
+        ConnectorType.LC,
+        25,
+        850);
+
+    // Additional spare-side connectors so every seeded cable in CableSeeder can demonstrate a
+    // genuine port-to-port link (both endpoints need a connector on their respective device).
+    seed(
+        "SN-RK-CASA-A1-1",
+        "Transceiver Serveur Web Casablanca",
+        "CN-CASA-03",
+        ConnectorFormFactor.QSFP28,
+        ConnectorType.LC,
+        100,
+        1310);
+    seed(
+        "SN-RK-CASA-B1-2",
+        "Transceiver GPU 02",
+        "CN-CASA-04",
+        ConnectorFormFactor.QSFP_DD,
+        ConnectorType.MPO_MTP,
+        400,
+        850);
+    seed(
+        "SN-RK-RABAT-A1-2",
+        "Transceiver Routeur Bordure Rabat",
+        "CN-RABAT-02",
+        ConnectorFormFactor.QSFP28,
+        ConnectorType.LC,
+        100,
+        1310);
+    seed(
+        "SN-RK-TNG-A1-2",
+        "Transceiver Stockage Tanger 02",
+        "CN-TNG-02",
         ConnectorFormFactor.SFP28,
         ConnectorType.LC,
         25,

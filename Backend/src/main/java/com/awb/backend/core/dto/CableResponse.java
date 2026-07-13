@@ -3,6 +3,7 @@ package com.awb.backend.core.dto;
 import com.awb.backend.core.entity.CableStatus;
 import com.awb.backend.core.entity.CableType;
 import java.time.Instant;
+import java.util.List;
 
 public class CableResponse {
 
@@ -13,12 +14,20 @@ public class CableResponse {
   private String sourceDeviceName;
   private Long targetDeviceId;
   private String targetDeviceName;
+  private Long sourceConnectorId;
+  private String sourceConnectorName;
+  private Long targetConnectorId;
+  private String targetConnectorName;
   private CableType cableType;
   private Double lengthMeters;
   private CableStatus status;
   private String notes;
   private Instant createdAt;
   private Instant updatedAt;
+
+  // Ordered list reflecting this cable's current physical route assignment through pathway
+  // segments.
+  private List<PathwaySegmentResponse> pathwaySegments;
 
   public Long getId() {
     return id;
@@ -76,6 +85,38 @@ public class CableResponse {
     this.targetDeviceName = targetDeviceName;
   }
 
+  public Long getSourceConnectorId() {
+    return sourceConnectorId;
+  }
+
+  public void setSourceConnectorId(Long sourceConnectorId) {
+    this.sourceConnectorId = sourceConnectorId;
+  }
+
+  public String getSourceConnectorName() {
+    return sourceConnectorName;
+  }
+
+  public void setSourceConnectorName(String sourceConnectorName) {
+    this.sourceConnectorName = sourceConnectorName;
+  }
+
+  public Long getTargetConnectorId() {
+    return targetConnectorId;
+  }
+
+  public void setTargetConnectorId(Long targetConnectorId) {
+    this.targetConnectorId = targetConnectorId;
+  }
+
+  public String getTargetConnectorName() {
+    return targetConnectorName;
+  }
+
+  public void setTargetConnectorName(String targetConnectorName) {
+    this.targetConnectorName = targetConnectorName;
+  }
+
   public CableType getCableType() {
     return cableType;
   }
@@ -122,5 +163,13 @@ public class CableResponse {
 
   public void setUpdatedAt(Instant updatedAt) {
     this.updatedAt = updatedAt;
+  }
+
+  public List<PathwaySegmentResponse> getPathwaySegments() {
+    return pathwaySegments;
+  }
+
+  public void setPathwaySegments(List<PathwaySegmentResponse> pathwaySegments) {
+    this.pathwaySegments = pathwaySegments;
   }
 }

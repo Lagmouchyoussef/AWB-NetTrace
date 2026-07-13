@@ -14,8 +14,8 @@ import jakarta.persistence.Table;
 import java.time.Instant;
 
 @Entity
-@Table(name = "cables")
-public class Cable {
+@Table(name = "pathways")
+public class Pathway {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,32 +27,27 @@ public class Cable {
   @Column(name = "code", nullable = false, unique = true)
   private String code;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "source_device_id", nullable = false)
-  private Device sourceDevice;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "target_device_id", nullable = false)
-  private Device targetDevice;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "source_connector_id")
-  private Connector sourceConnector;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "target_connector_id")
-  private Connector targetConnector;
-
   @Enumerated(EnumType.STRING)
-  @Column(name = "cable_type", nullable = false)
-  private CableType cableType;
+  @Column(name = "type", nullable = false)
+  private PathwayType type;
 
-  @Column(name = "length_meters", nullable = false)
-  private Double lengthMeters;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "datacenter_id", nullable = false)
+  private Datacenter datacenter;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "room_id")
+  private Room room;
+
+  @Column(name = "capacity_cable_count", nullable = false)
+  private Integer capacityCableCount;
+
+  @Column(name = "fill_threshold_percent", nullable = false)
+  private Integer fillThresholdPercent;
 
   @Enumerated(EnumType.STRING)
   @Column(name = "status", nullable = false)
-  private CableStatus status;
+  private PathwayStatus status;
 
   @Column(name = "notes")
   private String notes;
@@ -86,59 +81,51 @@ public class Cable {
     this.code = code;
   }
 
-  public Device getSourceDevice() {
-    return sourceDevice;
+  public PathwayType getType() {
+    return type;
   }
 
-  public void setSourceDevice(Device sourceDevice) {
-    this.sourceDevice = sourceDevice;
+  public void setType(PathwayType type) {
+    this.type = type;
   }
 
-  public Device getTargetDevice() {
-    return targetDevice;
+  public Datacenter getDatacenter() {
+    return datacenter;
   }
 
-  public void setTargetDevice(Device targetDevice) {
-    this.targetDevice = targetDevice;
+  public void setDatacenter(Datacenter datacenter) {
+    this.datacenter = datacenter;
   }
 
-  public Connector getSourceConnector() {
-    return sourceConnector;
+  public Room getRoom() {
+    return room;
   }
 
-  public void setSourceConnector(Connector sourceConnector) {
-    this.sourceConnector = sourceConnector;
+  public void setRoom(Room room) {
+    this.room = room;
   }
 
-  public Connector getTargetConnector() {
-    return targetConnector;
+  public Integer getCapacityCableCount() {
+    return capacityCableCount;
   }
 
-  public void setTargetConnector(Connector targetConnector) {
-    this.targetConnector = targetConnector;
+  public void setCapacityCableCount(Integer capacityCableCount) {
+    this.capacityCableCount = capacityCableCount;
   }
 
-  public CableType getCableType() {
-    return cableType;
+  public Integer getFillThresholdPercent() {
+    return fillThresholdPercent;
   }
 
-  public void setCableType(CableType cableType) {
-    this.cableType = cableType;
+  public void setFillThresholdPercent(Integer fillThresholdPercent) {
+    this.fillThresholdPercent = fillThresholdPercent;
   }
 
-  public Double getLengthMeters() {
-    return lengthMeters;
-  }
-
-  public void setLengthMeters(Double lengthMeters) {
-    this.lengthMeters = lengthMeters;
-  }
-
-  public CableStatus getStatus() {
+  public PathwayStatus getStatus() {
     return status;
   }
 
-  public void setStatus(CableStatus status) {
+  public void setStatus(PathwayStatus status) {
     this.status = status;
   }
 
